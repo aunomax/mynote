@@ -1,0 +1,57 @@
+\chapter{复变函数}
+
+\section{复变函数}
+\begin{exercise}
+\hfill\\
+$\displaystyle|\frac{z-1}{z+1}|<1$表示点$z$的轨迹和图形是什么？它是不是区域？
+
+解答，令$z=a+bi$，带入原不等式化简可得$0<4a[(a+1)^2+b^2]$，这等价于$a>0$，或者说$Rez>0$，此即是说原不等式表示的区域是z平面的右半平面。
+
+证明：z平面上的圆周可以写成$Az\overline{z}+\beta\overline{z}+\overline{\beta}z+C=0$，其中$A>0,C$为实数，$A\neq0$，$\beta$为复数，且$\beta>AC$。
+\end{exercise}
+\begin{exercise}
+\hfill\\
+z平面上的圆周可以写成$a\overline{z}+\overline{a}z=C$（a是非零复常数，C是实常数）。
+
+\[
+\begin{aligned}
+Az\overline{z}+\beta\overline{z}+\overline{\beta}z+c=0&\iff z\overline{z}+\frac{\beta}A\overline{z}+\frac{\overline{\beta}}Az+\frac CA=0\\
+&\iff(z+\frac{\beta}A)(\overline{z}+\frac{\overline{\beta}}A)=\frac{\beta\overline{\beta}}{A^2}-\frac CA\\
+&\iff(z+\frac{\beta}A)(\overline{z+\frac{\beta}A})=\frac{|\beta|^2-AC}{A^2}\\
+&\iff|z+\frac{\beta}A|=\frac{\sqrt{|\beta|^2-AC}}A
+\end{aligned}
+\]
+故原方程表示以$z=-\frac{\beta}A$为圆心以$\frac{\sqrt{|\beta|^2-AC}}A$为半径的圆。
+
+一来，在扩充z平面上直线可表示为半径无限大的直线，此即证明了另一个问题。或者设$z=x+yi;a=\alpha+\beta i,x,y,\alpha,\beta\in R$，由$a\overline{z}+\overline{a}z=C$知，$\alpha x+\beta y=\frac C2$，而由a非零知，$\alpha\beta\neq0$，即$\alpha x+\beta y=\frac C2$表示为xoy平面的一条直线，即$a\overline{z}+\overline{a}z=C$表示为z平面的一条直线；另一方面，设z平面上的直线在xoy平面为$mx+ny=t$（m，n，t均为实数），若取$a=m+ni$则有$a\overline{z}+\overline{a}z=2(mx+ny)=2t$，再取$C=2t$即有$a\overline{z}+\overline{a}z=C$。这就完成了证明。
+
+
+\end{exercise}
+
+
+
+
+
+
+
+\begin{exercise}
+\hfill\\
+试证方程$z+e^{-z}=a(a>1)$在$Rez>0$内只有一个根，且为实根。
+
+证明，考虑以$R$为半径原点为圆心的右半圆与虚轴所形成的闭曲线$\Gamma_R$。令$z=i\lambda,\lambda\in R$。代入原方程得：$i\lambda+\cos\lambda-i\sin\lambda=a$，即$\cos\lambda=a>1$，这就是说原方程在虚轴上无解。从而记$f(z)=z+e^{-z}-a$，有$f(z)$在$\Gamma_R$内解析，在$\Gamma_R$内连续且不为零。由幅角原理，当$R$足够大使得$\Gamma_R$包含$f(z)$的零点时，$f(z)$在$\Gamma_R$上的幅角变化应为$2\pi n$，其中$n$为$\Gamma_R$包含零点个数。当$R\rightarrow\infty$时，$n$表示原方程在虚轴右侧的所有零点个数，易知$n<+\infty$。考虑到对称性沿半圆弧的幅角变化等于沿虚轴的幅角变化，且$f(z)=z(1+g(z))$，其中$(1+\frac{e^{-z}-a}{z})$；我们有
+\[
+\begin{aligned}
+\Delta_{\Gamma_R}argf(z)&=\Delta_{\Gamma_R}argz(1+g(z))\\
+&=\Delta_{\Gamma_R}argz+\Delta_{\Gamma_R}arg(1+g(z)),
+\end{aligned}
+\]
+其中$g(z)$在$R\rightarrow\infty$时$g(z)$沿$\Gamma_R$
+一致趋于零。由此知\[\lim_{R\rightarrow\infty}\Delta_{\Gamma_R}arg(1+g(z))=0.\]
+这样一来$\lim_{R\rightarrow\infty}\Delta_{\Gamma_R}f(z)=\pi$，这即是说$f(z)$
+在右边平面仅有一解。如若该解$z_0$不在实轴上则方程两边取逆易见$\overline{z_0}$也是原方程的解。
+与仅有一解矛盾。从而原方程在右半平面仅有一解且在实轴上。
+
+\end{exercise}
+
+
+

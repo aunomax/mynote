@@ -1,0 +1,297 @@
+\chapter{实变函数}
+
+
+
+
+
+
+
+\section{集合}\index{Set}
+
+
+
+
+
+
+\begin{example}
+\hfill\\
+非空完备集一定是不可数集。
+
+
+设$E$是完备集，若$E=\{x_n\}$可数，$\forall B_0=B(y_0,r_0)$，$y_0\in E$，$r_0=1$，$\exists y_1\in E$，$0<r_1\leq\frac{1}{2}$，使$B_1=B(y_1,r)\subset B_0$，且$x_1\not\in\overline{B_1}$。对$B(y_1,r_1)$，$\exists y_2\in E$，$0<r_2\leq\frac{1}{2^2}$，使$B_2=B(y_2,r_2)\subset B_1$，且$x_2\not\in\overline{B_2}$。以此类推，$\exists y_n\in E$，$0<r_n\leq\frac{1}{2^n}$，使$B_n=B(y_n,r_n)\subset B_{n-1}$，且$x_n\not\in\overline{B_n}$。因为$B_0\supset B_1\supset\cdots\supset B_n\cdots$，且$r_n\leq\frac{1}{2^n}$。所以$\{y_n\}$是基本列，$y_n\to y_0$。因为$\{y_n\}\subset E$，且$y_0\in\overline{B_n}$。因为$x_n\not\in\overline{B_n}$，所以$y_0\neq x_n,\forall n\geq1.$与$y_0\in E$矛盾。
+\end{example}
+
+
+
+
+\begin{exercise}
+\hfill\\
+证明：$R^n$中存在可列个开球$\{B_n\}_{n\geq1}$使得对任意开球$E$，存在子列$\{B_{n_k}\}$使得$E=\cup_{k\geq1}B_{n_k}$。满足这种条件的开球列$\{B_n\}_{n\geq1}$称为$R^n$中的一个可数邻域基。
+
+
+
+\end{exercise}
+
+
+
+\begin{exercise}
+\hfill\\
+设$E\subset R^n$。$\{G_{\alpha}\}_{\alpha\in\Lambda}$是$E$的一个开集族覆盖。证明：存在至多可数个开集$\{G_{\alpha_k}\}_{k\geq1}\subset\{G_{\alpha}\}_{\alpha\in\Lambda}$使得它仍覆盖$E$，即$E$的任意开覆盖有至多可数的子覆盖。
+
+
+
+\end{exercise}
+\hfill\\
+\section{可测函数}
+
+\begin{exercise}
+\hfill\\
+设$f(x)$是$[a,b]$上的可测函数，试证明$f'(x)$是$[a,b]$上的可测函数。
+
+
+
+\end{exercise}
+
+
+\begin{exercise}
+\hfill\\
+$\forall\delta>0$，$\exists E_{\delta}\subset E$使得$m(E_{\delta})<\delta$，且在$E\backslash E_{\delta}$上，$\{f_n(x)\}$一致收敛于$f(x)$。证$\{f_n(x)\}$几乎处处收敛于$f$。
+
+
+
+\end{exercise}
+
+
+\begin{exercise}
+\hfill\\
+证鲁津定理的逆定理：若$\forall\delta>0$，存在闭子集$F_{\delta}\subset E$，使$m(E\backslash F_{\delta})\leq\delta$，且$f(x)$在$F_{\delta}$上连续，则$f(x)$在$E$上是可测函数。
+
+
+
+\end{exercise}
+
+
+\begin{exercise}
+\hfill\\
+设$\{f_n(x)\}$是$E$上的可测函数列，$m(E)<\infty$。试证明$$\lim_{n\to\infty}f_n(x)=0,a.e.x\in E$$的充分必要条件是：对任意的$\varepsilon>0$有$$\lim_{n\to\infty}m(\{x\in E:\sup_{k>n}|f_k(x)|\geq\varepsilon\})=0.$$
+
+
+
+\end{exercise}
+
+
+\begin{exercise}
+\hfill\\
+设$\{f_n(x)\}$在$[a,b]$上依测度收敛于$f(x)$，$g(x)$是$R$上的连续函数。证明$\{g(f_n(x))\}$在$[a,b]$上依测度收敛于$g(f(x))$。
+
+
+
+\end{exercise}
+
+
+
+\begin{exercise}
+\hfill\\
+设$f(x)=f(\xi_1,\xi_2)$是$R^2$上的连续函数。$g_1(x)$，$g_2(x)$是$[a,b]$上的实值可测函数，试证明$F(x)=f(g_1(x),g_2(x))$是$[a,b]$上的可测函数。
+
+
+
+\end{exercise}
+
+\hfill\\
+\section{Lebesgue积分}
+
+
+\begin{exercise}
+\hfill\\
+设$f(x)$在$[a,b]$上的$\mathbb{R}$反常积分存在。证明：$f(x)$在$[a,b]$上可积的充要条件为$|f(x)|$在$[a,b]$上的$\mathbb{R}$反常积分存在。并证明此时成立$$(L)\int_{[a,b]}f(x)\mathrm{d}x=(R)\int_a^bf(x)\mathrm{d}x.$$
+
+
+不妨设$x=b$为$f(x)$的瑕点。
+
+若$|f|$在$[a,b]$上的$\mathbb{R}$反常积分存在，则$\forall n\geq1$，$|f|$在$E_n=[a,b-\frac{1}{n}]$上$\mathbb{R}$可积。因为$\{|f(x)|X_{E_n}(x)\}$是非负递增函数，且有$$\lim_{n\to\infty}|f(x)|X_{E_n}(x)=|f(x)|,x\in E.$$所以由Levi定理知：
+\begin{align*}
+(L)\int_E|f(x)|\mathrm{d}x&=\lim_{n\to\infty}\int_E|f(x)|X_{E_n}(x)\mathrm{d}x\\
+&=\lim_{n\to\infty}\int_{E_n}|f(x)|\mathrm{d}x\\
+&=(R)\int_a^b|f(x)|\mathrm{d}x\\
+&\leq\infty.
+\end{align*}
+这就说明了$|f(x)|\in L(E).$
+
+若$f(x)$在$E$上$\mathbb{L}$可积，则$|f(x)|$在$[a,b]$上$L$可积。
+定义$E_n=[a,b_n]$，其中$b_n\leq b$且$\lim\limits_{n\to\infty}b_n=b$。
+因为$\{|f(x)|X_{E_n}(x)\}$是非负递增函数，且
+$$\lim_{n\to\infty}|f(x)|X_{E_n}(x)=|f(x)|,$$
+所以应用Levi定理可得：
+$$+\infty>(L)\int_E|f(x)|\mathrm{d}x=\lim_{n\to\infty}\int_E|f(x)|X_{E_n}(x)\mathrm{d}x.$$
+另一方面$$\int_{E_n}|f(x)|\mathrm{d}x=\int_E|f(x)|X_{E_n}(x)\mathrm{d}x.$$
+这就说明了$$\lim_{n\to\infty}\int_a^{b_n}|f(x)|\mathrm{d}x=\int_E|f(x)|\mathrm{d}x<\infty$$
+对任意的$b_n\to b^-$恒成立，即$|f(x)|$在$[a,b]$上$\mathbb{R}$可积。
+\end{exercise}
+
+
+
+\begin{exercise}
+\hfill\\
+设$f$是$E$上定义的函数。如果存在可积函数列$g_n$，$h_n$使得$g_n(x)\leq f(x)\leq h_n(x)\quad a.e.$，而且
+$$\lim_{n\to\infty}(h_n(x)-g_n(x))\mathrm{d}x=0,$$
+则$f$在$E$上可积。
+
+
+定义$$K_n(x)=f(x)-g_n(x),$$
+$$F_n(x)=h_n(x)-g_n(x),$$
+则
+$$0\leq K_n(x)\leq F_n(x)\quad a.e.,$$
+且
+\begin{equation}\label{lebesgue_integral_1}
+\lim_{n\to\infty}F_n(x)\mathrm{d}x=0.
+\end{equation}
+由(\ref{lebesgue_integral_1})可知$F_n(x)\Rightarrow0$。
+于是$K_n(x)\Rightarrow0$。即$g_n(x)\Rightarrow f(x)$。
+那么由依测度收敛的Lebesgue控制收敛定理知$f$在$E$上可积，且积分满足：
+$$\int_Ef(x)\mathrm{d}x=\lim_{n\to\infty}\int_Eg_n(x)\mathrm{d}x.$$
+\end{exercise}
+
+
+
+\begin{exercise}
+\hfill\\
+设$f\in L(\mathbb{R})$，若对$\mathbb{R}$上任意连续函数$g(x)$，有$\int_{\mathbb{R}}f(x)g(x)\mathrm{d}x=0$，证明$f(x)=0,\quad a.e.x\in\mathbb{R}.$
+
+
+定义
+\begin{equation}
+h(x)=
+\begin{cases}
+1,&x\in R[f(x)\geq0],\\
+-1,&x\in R[f(x)<0],\\
+\end{cases}
+\end{equation}
+则$h(x)$为$\mathbb{R}$上简单函数。因为$f\in L(\mathbb{R})$，于是$\forall\varepsilon>0$，$\exists X>0$，使得$$\int_{\mathbb{R}\backslash E_X}|f|\mathrm{d}x<\frac{\varepsilon}{4},$$
+其中$E_X=\{x\in\mathbb{R}:|x|<X\}$。
+对在$E_X\subset\mathbb{R}$上的有界可测函数$f(x)$，有$\forall\delta>0$，存在闭集$F\subset E_X$满足$m(E_X\backslash F)<\delta$和$\mathbb{R}$上的连续函数$g(x)$满足$g(x)=h(x),\forall x\in E_X\backslash F$。进一步，
+$$\inf_{\mathbb{R}}g(x)=\inf_Fh(x)\geq-1,\sup_{\mathbb{R}}g(x)=\sup_Fh(x)\leq1.$$
+于是
+\begin{align*}
+|\int_{\mathbb{R}}f(x)h(x)\mathrm{d}x|&=|(\int_{\mathbb{R}\backslash E_X}+\int_{E_X\backslash F}+\int_F)f(x)h(x)\mathrm{d}x|\\
+&=|\int_{\mathbb{R}}f(x)g(x)\mathrm{d}x+(\int_{E_X\backslash F}+\int_{\mathbb{R}\backslash E_x})f(x)(h(x)-g(x))\mathrm{d}x|\\
+&\leq(\int_{E\backslash F}+\int_{\mathbb{R}\backslash E_X})|f(x)||h(x)-g(x)|\mathrm{d}x\\
+&\leq2(\int_{E\backslash F}+\int_{\mathbb{R}\backslash E_X})|f(x)|\mathrm{d}x\\
+&\leq\frac{\varepsilon}{2}+2\int_{E_X\backslash F}|f(x)|\mathrm{d}x\\
+\end{align*}
+又因为$|f(x)|\in L(\mathbb{R})$，从而由Lebesgue积分的绝对连续性知：对上述$\varepsilon>0$，$\exists\delta>0$，只要$m(E_X\backslash F)<\delta$就有
+$$\int_{E_X\backslash F}|f(x)|\mathrm{d}x<\frac{\varepsilon}{4}.$$
+于是$$|\int_{\mathbb{R}}f(x)h(x)\mathrm{d}x|<\varepsilon.$$
+事实上，我们有$$\int_{\mathbb{R}}|f(x)|\mathrm{d}x=\int_{\mathbb{R}}f(x)h(x)\mathrm{d}x<\varepsilon.$$
+于是由$\varepsilon$的任意性，就有$\int_{\mathbb{R}}|f(x)|\mathrm{d}x=0$，即$f(x)=0,a.e.$
+\end{exercise}
+
+\begin{exercise}
+\hfill\\
+设$f,f_k(k=1,2,\cdots)$在$R^n$上可积，且对于任一可测集$E\subset\mathbb{R}^n$，有
+$$\int_Ef_k(x)\mathrm{d}x\leq\int_Ef_{k+1}\mathrm{d}x,\quad k=1,2,\cdots,$$
+$$\lim_{k\to\infty}\int_Ef_k(x)\mathrm{d}x=\int_Ef(x)\mathrm{d}x,$$
+试证明$\lim_{k\to\infty}f_k(x)=f(x),a.e.x\in\mathbb{R}^n.$
+
+
+首先由题意，$\forall k\geq1$,有
+$$\int_Ef_k(x)\mathrm{d}x\leq\lim_{k\to\infty}f_k(x)\mathrm{d}x=\int_Ef(x)\mathrm{d}x,$$对任意可测子集$E\subset\mathbb{R}^n$恒成立。
+于是必然有
+\begin{equation}\label{lebesgue_intergal_2}
+f_k(x)\leq f(x)\quad a.e.x\in\mathbb{R}^n.
+\end{equation}
+另一方面，$\forall\varepsilon>0$，$\exists N>0$，使得$\forall k>N$，有
+$$|\int_E(f(x)-f_k(x))\mathrm{d}x<\varepsilon.$$
+由(\ref{lebesgue_intergal_2})知$$\int_E|f(x)-f_k(x)|\mathrm{d}x=|\int_E(f(x)-f_k(x))\mathrm{d}x,$$即
+$$\lim_{k\to\infty}\int_E|f(x)-f_k(x)|\mathrm{d}x=0.$$
+由此可知，$$f_k(x)\Rightarrow f(x).$$
+而且应用Fatou引理，$$\int_E\liminf_{k\to\infty}f(x)-f_k(x)\mathrm{d}x=\int_Ef(x)\mathrm{d}x-\int_E\limsup_{k\to\infty}f_k(x)\mathrm{d}x\leq0.$$
+
+
+从而
+$$\int_Ef(x)\mathrm{d}x\leq\int_E\limsup_{k\to\infty}f_k(x)\mathrm{d}x\leq\int_Ef(x)\mathrm{d}x.$$
+即$\limsup_{k\to\infty}f_k(x)=f(x),a.e.x\in E.$
+
+
+
+
+?
+
+?
+
+?
+
+--------------------未完成--------------
+
+
+
+\end{exercise}
+
+\begin{exercise}
+\hfill\\
+设$f(x)$，$g(x)$是$E$上非负可测函数且$f(x)g(x)$在$E$上可积。令$Ey=E[g\geq y]$。证明：$$F(y)=\int_{E_y}f(x)\mathrm{d}x$$对一切$y>0$都存在，且成立
+$$\int_0^{\infty}F(y)\mathrm{d}y=\int_Ef(x)g(x)\mathrm{d}x.$$
+
+$E_y$可测是显然的。$$F(y)=\int_Ef(x)X_{E_y}\mathrm{d}x,$$
+而$|f(x)X_{E_y}|\leq|f(x)|$，故由$f(x)$的可积性知$f(x)X_{E_y}\in L(E),\forall y>0.$
+考虑到$g(x)=\int_0^{\infty}X_{E_y}\mathrm{d}y$，于是
+\begin{align*}
+\int_Ef(x)g(x)\mathrm{d}x&=\int_Ef(x)\int_0^{\infty}X_{E_y}\mathrm{d}y\mathrm{d}x\\
+&=\int_E\int_0^{\infty}f(x)X_{E_y}\mathrm{d}y\mathrm{d}x\\
+&=\int_0^{\infty}\int_Ef(x)X_{E_y}\mathrm{d}x\mathrm{d}y\\
+&=\int_0^{\infty}F(y)\mathrm{d}y.\\
+\end{align*}
+
+\end{exercise}
+
+
+\begin{exercise}
+\hfill\\
+若$f$在$R$上可积，证明$\int_R|f(x+h)-f(x)|\mathrm{d}x\to0,h\to0$.
+
+首先注意到$0\leq|f(x+h)-f(x)|\leq|f(x+h)|+|f(x)|$，所以由$f\in L(R)$可知$f(x+h)\in L(R),\forall h\in R$，从而$|f(x+h)-f(x)|\in L(R).$于是对任给的$\varepsilon>0$，存在$X>0$使得$$\int_{|x|>X}|f(x+h)-f(x)|\mathrm{d}x<\frac{\varepsilon}{2}.$$
+
+其次，$|f(x+h)-f(x)|$在$[-X-1,X+1]$上可积，由鲁津定理，对任意的$\delta>0$，存在闭集$E\subset[-X,X]$且$m([-X,X]\backslash E)<\delta$，有$f(x)$在$E$上连续。从而$f$在$E$上一致连续，即对上述$\varepsilon>0$，存在$\tau>0$，只要$|h|<\tau$，就有
+$$|f(x+h)-f(x)|<\frac{\varepsilon}{8X}.$$
+另一方面，由Lebesgue积分的绝对连续性，对上述的$\varepsilon>0$，存在$\delta>0$，只要可测集$F$的测度$m(F)<\delta$，就有
+$$\int_{F}|f(x)|\mathrm{d}x<\frac{\varepsilon}{8}.$$
+于是$$\int_{F}|f(x+h)-f(x)|\mathrm{d}x<\int_{F}(|f(x)|+|f(x+h)|)\mathrm{d}x\leq\frac{\varepsilon}{4}.$$
+
+综合即有，对任给的$\varepsilon>0$，存在$\tau>0$，使得只要$|h|<\tau$，就有
+\begin{align*}
+\int_R|f(x+h)-f(x)|\mathrm{d}x&\leq\frac{\varepsilon}{2}+\int_{[-X,X]}|f(x+h)-f(x)|\mathrm{d}x\\
+&=\frac{\varepsilon}{2}+\int_{[-X,X]\backslash E}|f(x+h)-f(x)|\mathrm{d}x+\int_E|f(x+h)-f(x)|\mathrm{d}x\\
+&<\frac{\varepsilon}{2}+\frac{\varepsilon}{4}+2X*\frac{\varepsilon}{2X}\\
+&=\varepsilon.
+\end{align*}
+\end{exercise}
+
+
+
+
+\begin{exercise}
+\hfill\\
+
+
+
+\end{exercise}
+
+
+
+\begin{exercise}
+\hfill\\
+
+
+
+\end{exercise}
+
+
+
+\begin{exercise}
+\hfill\\
+
+
+
+\end{exercise}
+
+

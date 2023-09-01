@@ -1,0 +1,852 @@
+
+\chapter{note}
+\section{calculas}
+\begin{equation}
+	\int_\Omega |\nabla u|^\alpha \nabla u \cdot \nabla\Delta u\mathrm{d}x = \frac{1}{2}\int_{\partial \Omega} |\nabla u|^\alpha \frac{\partial |\nabla u|^2}{\partial n}\mathrm{d}S - \int_\Omega |\nabla u|^\alpha |\nabla^2u|^2\mathrm{d}x - \alpha \int_\Omega |\nabla u|^\alpha (\nabla |\nabla u|)^2\mathrm{d}x
+\end{equation}
+as \begin{equation}
+	\nonumber
+	\Delta|\nabla u|^2 = 2|D^2u|^2 + 2\nabla u \cdot \nabla \Delta u.
+\end{equation}
+
+\section{the interpolation-trace lemma}
+\begin{lemma}\cite{diaz_local_1985}\label{the interpolation-trace lemma}
+	Suppose $G$ is a bounded open subset of $R^{N}, N \geq 1,$ with a $C^{1}$ houndary $\partial G$ and $0 \leq \sigma \leq q<\infty .$ Then there exists a constant $C$ depending on $\sigma$, $q$ and $G$ such that for any $v \in W^{1, q+1}(G)$ we have
+(2.12)
+\begin{equation*}
+	\|v\|_{L^{q+1}(\partial G)} \leq C\left(\|D v\|_{L^{q+1}(G)}+\|v\|_{L^{\sigma+1}(G)}\right)^{\theta}\|v\|_{L^{\sigma+1}(G)}^{1-\theta}
+\end{equation*}
+where $\theta=(N(q-\sigma)+\sigma+1) / \kappa$
+
+\end{lemma}
+
+\begin{proof}
+	For the sake of simplicity we restrict ourselves to $v \in C^{1}(\bar{G})$ since $C^{1}(\bar{G})$ is dense in $W^{1, q+1}(G) .$ The proof of \Lref{the interpolation-trace lemma} is divided onto four steps (see [9, Appendix] for a similar result).
+	
+	First step. From a result of Ehrling's lemma, for any $\varepsilon>0$ there exists $C_{\varepsilon}>0$ such that for any $v \in C^{1}(\bar{G})$ the following holds:
+	\begin{equation*}
+		\|v\|_{L^{q+1}(G)} \leq \varepsilon\|D v\|_{L^{q+1}(G)}+C_{\varepsilon}\|v\|_{L^{\sigma+1}(G)}
+	\end{equation*}
+	If we set $C_{2}=\max \left(1+\varepsilon, C_{\varepsilon}|G|^{1-1 /(\sigma+1)}\right)$ we get
+	\begin{equation}\label{ehrling inequality}
+		\|v\|_{W^{1, q+1}(G)} \leq C_{2}\left(\|D v\|_{L^{q+1}(G)}+\|v\|_{L^{\sigma+1}(G)}\right)
+	\end{equation}
+Second step. We start from the elementary trace result \cite{adams_sobolev_2003}: there exists $C_{3}>0$ such that for any $u \in C^{1}(\bar{G})$ we have
+\begin{equation}\label{L1 trace}
+	\|u\|_{L^{1}(\partial G)} \leq C_{3}\|u\|_{W^{1,1}(G)}
+\end{equation}
+and for $q>0$ we apply \eqref{L1 trace} to $u=v|v|^{q}, v \in C^{1}(\bar{G}),$ so
+\begin{equation*}
+	\int_{\partial G}|v|^{q+1} d \sigma \leq C_{3}\left\{(q+1) \int_{G}|v|^{q}|D v| d x+\int_{G}|v|^{q+1} d x\right\}
+\end{equation*}
+since
+\begin{equation*}
+	\int_{G}|v|^{q}|D v| d x \leq\|D v\|_{L^{q+1}(G)}\|v\|_{L^{q+1}(G)}^{q}
+\end{equation*}
+we get
+\begin{equation*}
+	\int_{\partial G}|v|^{q+1} d \sigma \leq C_{3}\left\{(q+1)\|D v\|_{L^{q+1}(G)}\|v\|_{L^{q+1}(G)}^{q}+\|v\|_{L^{q+1}(G)}^{q+1}\right\}
+\end{equation*}
+which implies
+\begin{equation}\label{trace inequality of generalized l1}
+	\|v\|_{L^{q+1}(\partial G)} \leq\left((q+1) C_{3}\right)^{1 /(q+1)}\|v\|_{W^{1, q+1}(G)}^{1 /(q+1)}\|v\|_{L^{q+1}(G)}^{q /(q+1)}
+\end{equation}
+
+Third step. Set $0 \leq \sigma \leq q<\infty$. We claim that there exists a constant $C_{4}>0$ such that for any $v \in C^{1}(\bar{G})$ we have
+\begin{equation}\label{claim equation}
+	\|v\|_{L^{q+1}(G)} \leq C_{4}\|v\|_{W^{1, q+1}(G)}^{((q+1) \theta-1) / q}\|v\|_{L^{\sigma+1}(G)}^{(q+1)(1-\theta) / q}
+\end{equation}
+\textrm{Case 1. } Assume $q+1<N$. From Sobolev's inequality we have $\|v\|_{L^{\tau}(G)} \leq$ $C\|v\|_{W^{1, q+1}(G)}$ with $1 / \tau=1 /(q+1)-1 / N .$ Moreover
+\begin{equation}\label{lp interpolation inequality 1}
+	\|v\|_{L^{q+1}(G)} \leq\|v\|_{L^{\tau}(G)}^{1-\lambda}\|v\|_{L^{\sigma+1}(G)}^{\lambda},
+\end{equation}
+where $1 /(q+1)=\lambda /(\sigma+1)+(1-\lambda) / \tau,$ that is
+\begin{equation*}
+	\lambda=(q+1)(\sigma+1) / N(q-\sigma)+(q+1)(\sigma+1)
+\end{equation*}
+Hence with Sobolev's inequality
+\begin{equation}\label{sobolev inequality}
+	\|v\|_{L^{q+1}(G)} \leq C^{1-\lambda}\|v\|_{W^{1, q+1}(G)}^{1-\lambda}\|v\|_{L^{\sigma+1}(G)}^{\lambda}
+\end{equation}
+and
+\begin{equation*}
+	1-\lambda=\frac{N(q-\sigma)}{N(q-\sigma)+(q+1)(\sigma+1)}=\frac{(q+1) \theta-1}{q}, \quad \lambda=\frac{(q+1)(1-\theta)}{q}
+\end{equation*}
+\textrm{Case } ~ 2 . ~ \text { Assume } ~ $q+1 \geq N \geq 1$. We set $\alpha=(N+1) / 2, \rho=2(q+1) /(N+1)$, $\beta=(\sigma+1)(N+1) / 2(q+1)$ and $\alpha^{*}=\alpha N /(N-\alpha)\left(\alpha^{*}=\infty\right.$ if $\left.N=1\right) .$ From
+H\"{o}lder's interpolating inequality we have
+\begin{equation}\label{holder interpolating inequality}
+	\|u\|_{L^{\alpha}(G)} \leq\|u\|_{L^{\alpha^ *}(G)}^{1-\lambda}\|u\|_{L^{\beta}(G)}^{\lambda},
+\end{equation}
+where $1 / \alpha=(1-\lambda) / \alpha^{*}+\lambda / \beta$(\eqref{holder interpolating inequality} is valid even if $0<\beta<1$ with a simple change of function). From Sobolev's inequality we get
+\begin{equation}
+\|u\|_{L^{\alpha}(G)} \leq C_{5}\|u\|_{W^{1, \alpha}(G)}^{1-\lambda}\|u\|_{L^{\beta}(G)}^{\lambda}
+\end{equation}
+Now we set $u=v|v|^{\rho-1}$ and we have
+\begin{equation*}
+	\begin{array}{c}
+		\|u\|_{L^{\alpha}(G)}=\|v\|_{L^{\alpha \rho}(G)}^{\rho}=\|v\|_{L^{q+1}(G)}^{\rho} \\
+		\|u\|_{L^{\beta}(G)}=\|v\|_{L^{\beta \rho}(G)}^{\rho}=\|v\|_{L^{\sigma+1}(G)}^{\rho} \\
+		\|u\|_{W^{1, \alpha}(G)}=\|v\|_{L^{q+1}(G)}^{\rho}+\left(\int_{G}\left(\rho|v|^{\rho-1}|D v|\right)^{\alpha} d x\right)^{1 / \alpha}
+	\end{array}
+\end{equation*}
+and
+\begin{equation*}
+	\int_{G}\left(|v|^{\rho-1}|D v|\right)^{\alpha} d x \leq\left(\int_{G}|v|^{\alpha \rho} d x\right)^{1-1 / \rho}\left(\int_{G}|D v|^{\alpha \rho} d x\right)^{1 / \rho}
+\end{equation*}
+which yields $\|u\|_{W^{1, \alpha}(G)} \leq \rho\|v\|_{L^{q+1}(G)}^{\rho-1}\|v\|_{W^{1, q+1}(G)}$ and \eqref{sobolev inequality} becomes
+\begin{equation}
+	\|v\|_{L^{q+1}(G)}^{\rho} \leq C_{6} \rho^{1-\lambda}\|v\|_{L^{q+1}(G)}^{(\rho-1)(1-\lambda)}\|v\|_{W^{1, q+1}(G)}^{1-\lambda}\|v\|_{L^{\sigma +1}(G)}^{\lambda \rho}
+\end{equation}
+If we compute the exponents we get
+\begin{equation*}
+	\frac{1-\lambda}{\lambda \rho+1-\lambda}=\frac{N(q-\sigma)}{(q+1)(\sigma+1)+N(q-\sigma)}=\frac{(q+1) \theta-1}{q}
+\end{equation*}
+and
+\begin{equation*}
+	\frac{\lambda \rho}{\lambda \rho+1-\lambda}=\frac{(q+1)(\sigma+1)}{N(q-\sigma)+(q+1)(\sigma+1)}=\frac{(q+1)(1-\theta)}{q}
+\end{equation*}
+which is \eqref{claim equation}.
+
+Fourth step. End of the proof. We use \eqref{trace inequality of generalized l1} and \eqref{claim equation} and get
+\begin{equation}
+\|v\|_{L^{q+1}(\partial G)} \leq C_{7}\|v\|_{W^{1, q+1}(G)}^{1 /(q+1)}\|v\|_{W^{1, q+1}(G)}^{(q \theta+\theta-1) /(q+1)}\|v\|_{L^{\sigma+1}(G)}^{1-\theta}
+\end{equation}
+where $\theta=N(q-\sigma)+\sigma+1 / N(q-\sigma)+(q+1)(\sigma+1) ;$ using \eqref{ehrling inequality} yields finally 
+\begin{equation}
+\|v\|_{L^{q+1}(\partial G)} \leq C\left(\|D v\|_{L^{q+1}(G)}+\|v\|_{L^{\sigma+1}(G)}\right)^{\theta}\|v\|_{L^{\sigma+1}(G)}^{1-\theta}
+\end{equation}
+\end{proof}
+
+\section{Ehrling's lemma}
+\begin{lemma}[Ehrling's lemma]
+	Let $(X,\|\cdot\|_X),$ $(Y,\|\cdot\|_Y)$ and $(Z,\|\cdot\|_Z)$ be three banach spaces. Assume that:
+	$X$ is compactly embedded in $Y$: i.e. $X \subset Y$ and every $\|\cdot\|_X$ -bounded sequence in$ X$ has a subsequence that is $\|\cdot\|_Y$ convergent; and
+	$Y$ is continuously embedded in $Z$: i.e. $Y \subset Z$ and there is a constant $k$ so that 
+	$\|y\|_Z \leqslant k\|y\|_Y$ for every $y \in Y$.
+	Then, for every $\varepsilon > 0$, there exists a constant $C(\varepsilon)$ such that, for all $x \in X$,
+	
+	${\displaystyle \|x\|_{Y}\leqslant \varepsilon \|x\|_{X}+C(\varepsilon )\|x\|_{Z}}.$
+\end{lemma}
+\begin{proof}
+	proof by contradiction.
+	for some given $\varepsilon_0 > 0,$ for all $n \in N^ \star$, there exists $x_n \in X$, such that
+	${\displaystyle \|x_n\|_{Y} > \varepsilon_0 \|x_n\|_{X}+n\|x_n\|_{Z}}.$ Let $\tilde{x}_n=\dfrac{x_n}{\|x_n\|_Y},$we have $\|\tilde{x}_n\|_X < 1$ and $\|\tilde{x}_n\|_Z < \dfrac{1}{n}.$ on the one hand, 	$X$ is compactly embedded in $Y$, therefore $\{\tilde{x}_n\}$ has a subsequence that is $\|\cdot\|_Y$ convergent, noted $\{\tilde{x}_n\}$ as well; on the other hand, 	$Y$ is continuously embedded in $Z$, so $\{\tilde{x}_n\}$ is $\|\cdot\|_Z$ convengent. noticing $\|\tilde{x}_n\|_Z\mapsto0,$ we have $ \tilde{x}_n \mapsto 0 $ in $Z$, thus $ \tilde{x}_n \mapsto 0 $ in $Y$. However, $\|\tilde{x}_n\|_Y=1$ which has a controdiction with $ \tilde{x}_n \mapsto 0 $ in $Y$ .
+\end{proof}
+
+\section{inequation}
+\begin{lemma}
+	\begin{equation}
+		\|fgh\|_1\leqslant \|f\|_a \|g\|_b \|h\|_c, \quad \text{if } a^{-1} +b^{-1} + c^{-1}=1.
+	\end{equation}
+\end{lemma}
+\begin{lemma}
+	if $r,p,q\geqslant1$ and such that $1+r^{-1} = p^{-1}+q^{-1}$, then
+	\begin{equation}
+		\|F*G\|_r\leqslant\|F\|_p\|G\|_q.
+	\end{equation}
+	\end{lemma}
+\begin{proof}
+	using the generalized holder inequation above, with $f=F^{1-\dfrac{p}{r}},g=G^{1-\dfrac{q}{r}}$, $h=F^{\dfrac{p}{r}}G^{\dfrac{q}{r}}$ and $a=\dfrac{q}{q-1}$, $b=\dfrac{p}{p-1}$, $c= \dfrac{1}{r}$.
+\end{proof}
+
+
+
+\begin{lemma}
+	for any $z\in L^p(\Omega)$, there exists $c_1>0$ independent of $p$ and $q$ such that
+	\begin{equation}\label{greenapproximation}
+		\left\|e^{t \Delta} z\right\|_{L^{p}(\Omega)} \leqslant c_{1} t^{-\frac{n}{2}\left(\frac{1}{q}-\frac{1}{p}\right)}\|z\|_{L^{q}(\Omega)},
+	\end{equation}
+with $1\leqslant q\leqslant p < \infty.$
+\end{lemma}
+\begin{proof}
+	with the help of Green function $G$, we can express $e^{t\Delta}$ explictly 
+	\begin{equation}
+		e^{t\Delta}z = \int_{\Omega}G(x,t;0,y)z(y)\mathit{d}y,
+	\end{equation}
+by pointwise estimate of Green function of Neumman heat semigroup, we have $c_2,c_3>0$ only dependent of $\Omega$ such that
+\begin{equation}
+	|G(x,t;0,y)| \leqslant \dfrac{c_2}{t^\frac{n}{2}}e^{\frac{c_3|x-y|^2}{t}},
+\end{equation}
+so one can verfity \eqref{greenapproximation} with calculation.
+\end{proof}
+
+
+\begin{lemma}
+	 Let $\left(e^{t \Delta}\right)_{t \geqslant 0}$ be the Neumann heat semigroup in $\Omega,$ and let $\lambda_{1}>0$ denote the first nonzero eigenvalue of $-\Delta$ in $\Omega$ under Neumann boundary conditions. Then there exist constants $C_{1}, \ldots, C_{4}$ depending on $\Omega$ only which have the following properties.
+	 \begin{itemize}
+	 	\item [i] If $1 \leqslant q \leqslant p \leqslant \infty$ then
+	$$
+	\left\|e^{t \Delta} w\right\|_{L^{p}(\Omega)} \leqslant C_{1}\left(1+t^{-\frac{n}{2}\left(\frac{1}{q}-\frac{1}{p}\right)}\right) e^{-\lambda_{1} t}\|w\|_{L^{q}(\Omega)} \quad \text { for all } t>0
+	$$
+	holds for all $w \in L^{q}(\Omega)$ satisfying $\int_{\Omega} w=0$
+	\item [ii] If $1 \leqslant q \leqslant p \leqslant \infty$ then
+	$$
+	\left\|\nabla e^{t \Delta} w\right\|_{L^{p}(\Omega)} \leqslant C_{2}\left(1+t^{-\frac{1}{2}-\frac{n}{2}\left(\frac{1}{q}-\frac{1}{p}\right)}\right) e^{-\lambda_{1} t}\|w\|_{L^{q}(\Omega)} \quad \text { for all } t>0
+	$$
+	is true for each $w \in L^{q}(\Omega)$.
+	\item [iii] If $2 \leqslant p<\infty$ then
+	$$
+	\left\|\nabla e^{t \Delta} w\right\|_{L^{p}(\Omega)} \leqslant C_{3} e^{-\lambda_{1} t}\|\nabla w\|_{L^{p}(\Omega)} \text { for all } t>0
+	$$
+	is valid for all $w \in W^{1, p}(\Omega)$.
+	\item [iv] Let $1<q \leqslant p<\infty .$ Then
+	$$
+	\left\|e^{t \Delta} \nabla \cdot w\right\|_{L^{p}(\Omega)} \leqslant C_{4}\left(1+t^{-\frac{1}{2}-\frac{n}{2}\left(\frac{1}{q}-\frac{1}{p}\right)}\right) e^{-\lambda_{1} t}\|w\|_{L^{q}(\Omega)} \quad \text { for all } t>0
+	$$
+	 \end{itemize}
+	holds for all $w \in\left(C_{0}^{\infty}(\Omega)\right)^{n} .$ Consequently, for all $t>0$ the operator $e^{t \Delta} \nabla \cdot$ possesses a uniquely determined extension to an operator from $L^{q}(\Omega)$ into $L^{p}(\Omega),$ with norm controlled according to (1.7)
+	
+\end{lemma}
+\begin{proof}
+	Proof. (i) For $t<2,(1.4)$ is a consequence of the well-known smoothing estimate
+	$$
+	\left\|e^{t \Delta} z\right\|_{L^{p}(\Omega)} \leqslant c_{1} t^{-\frac{n}{2}\left(\frac{1}{q}-\frac{1}{p}\right)}\|z\|_{L^{q}(\Omega)} \quad \text { for all } t<2
+	$$
+	which can be checked for some $c_{1}$ independent of $p$ and $q$ and all $z \in L^{q}(\Omega)$ using pointwise estimates for Green's function of the Neumann heat semigroup [22, Theorem 2.2]. As to $t \geqslant 2,$ we first note that upon integrating the heat equation and using the variational definition of $\lambda_{1}$ we obtain
+	$$
+	\frac{1}{2} \frac{d}{d t} \int_{\Omega}\left|e^{t \Delta} w\right|^{2}=-\int_{\Omega}\left|\nabla e^{t \Delta} w\right|^{2} \leqslant-\lambda_{1} \int_{\Omega}\left|e^{t \Delta} w\right|^{2}
+	$$
+	for all $t>0$ and each smooth $w$ satisfying $\int_{\Omega} w=0 .$ Therefore,
+	$$
+	\left\|e^{t \Delta} w\right\|_{L^{2}(\Omega)} \leqslant e^{-\lambda_{1} t}\|w\|_{L^{2}(\Omega)} \quad \text { for all } t>0
+	$$
+	holds for all $w \in L^{2}(\Omega)$ with $\int_{\Omega} w=0 .$ Now for $p<2,$ using Hölder's inequality and then and (1.8) we find
+	$$
+	\begin{aligned}
+		\left\|e^{t \Delta} w\right\|_{L^{p}(\Omega)} & \leqslant|\Omega|^{\frac{2-p}{2 p}}\left\|e^{t \Delta} w\right\|_{L^{2}(\Omega)} \leqslant|\Omega|^{\frac{2-p}{2 p}} e^{-\lambda_{1}(t-1)}\left\|e^{\Delta} w\right\|_{L^{2}(\Omega)} \\
+		& \leqslant|\Omega|^{\frac{2-p}{2 p}} c_{1} e^{-\lambda_{1}(t-1)}\|w\|_{L^{q}(\Omega)}
+	\end{aligned}
+	$$
+	for all $t \geqslant 2 .$ By a similar reasoning, for $p \geqslant 2$ we derive
+	$$
+	\left\|e^{t \Delta} w\right\|_{L^{p}(\Omega)} \leqslant c_{1}\left\|e^{(t-1) \Delta} w\right\|_{L^{2}(\Omega)} \leqslant c_{1} e^{-\lambda_{1}(t-2)}\left\|e^{\Delta} w\right\|_{L^{2}(\Omega)} \leqslant c_{1}^{2} e^{-\lambda_{1}(t-2)}\|w\|_{L^{q}(\Omega)}
+	$$
+	for all $t \geqslant 2,$ from which the claim follows.
+	(ii) We first note that for some $c_{2}>0$ independent of $p$
+	$$
+	\left\|\nabla e^{t \Delta} w\right\|_{L^{p}(\Omega)} \leqslant c_{2} t^{-\frac{1}{2}}\|w\|_{L^{p}(\Omega)} \quad \text { for all } t \leqslant 1
+	$$
+	holds for all $w \in L^{p}(\Omega) .$ In fact, for $p=1$ and for $p=\infty$ this can be seen using pointwise estimates for the spatial gradient of Green's function of $e^{t \Delta}[22,$ Theorem 2.2$],$ whereby (1.10) for $1<p<\infty$ follows from a Marcinkiewicz-type interpolation argument (cf. $[10,$ Theorem 9.8$]$ ). In order to combine this with $(1.4),$ we write $\bar{w}:=\frac{1}{|\Omega|} \int_{\Omega} w$ and thus have $\int_{\Omega}(w-\bar{w})=0 .$ since constants are invariant under $e^{t \Delta},$ we thus obtain from (1.10) and (1.4)
+	
+	$$
+	\begin{aligned}
+		\left\|\nabla e^{t \Delta} w\right\|_{L^{p}(\Omega)} &=\left\|\nabla e^{\frac{t}{2} \Delta} e^{\frac{t}{2} \Delta}(w-\bar{w})\right\|_{L^{p}(\Omega)} \\
+		& \leqslant c_{2}\left(\frac{t}{2}\right)^{-\frac{1}{2}}\left\|e^{\frac{t}{2} \Delta(w-\bar{w})}\right\|_{L^{p}(\Omega)} \\
+		& \leqslant c_{2} C_{1}\left(\frac{t}{2}\right)^{-\frac{1}{2}}\left(1+\left(\frac{t}{2}\right)^{-\frac{n}{2}\left(\frac{1}{q}-\frac{1}{p}\right)}\right) e^{-\lambda_{1} \frac{t}{2}}\|w-\bar{w}\|_{L^{q}(\Omega)}
+	\end{aligned}
+	$$
+	which implies (1.5) for $t<2 .$ For $t \geqslant 2$ we split $e^{t \Delta}$ in a different way to see that
+	$$
+	\begin{aligned}
+		\left\|\nabla e^{t \Delta} w\right\|_{L^{p}(\Omega)} &=\left\|\nabla e^{\Delta} e^{(t-1) \Delta}(w-\bar{w})\right\|_{L^{p}(\Omega)} \leqslant c_{2}\left\|e^{(t-1) \Delta}(w-\bar{w})\right\|_{L^{p}(\Omega)} \\
+		& \leqslant c_{2} C_{1}\left(1+(t-1)^{-\frac{n}{2}\left(\frac{1}{q}-\frac{1}{p}\right)}\right) e^{-\lambda_{1}(t-1)}\|w-\bar{w}\|_{L^{q}(\Omega)} \\
+		& \leqslant 4 c_{2} C_{1} e^{-\lambda_{1}(t-1)}\|w\|_{L^{q}(\Omega)}
+	\end{aligned}
+	$$
+	for all $t \geqslant 2 .$ This together with (1.11) proves (1.5).
+	(iii) Passing to $\hat{w}:=w-\frac{1}{12} \int_{\Omega} w$ if necessary, we may assume that $\int_{\Omega} w=0 .$ We first consider the case $t \geqslant 1$, in which we apply (ii), (i) and the Poincaré inequality to find
+	$$
+	\begin{aligned}
+		\left\|\nabla e^{t \Delta} w\right\|_{L^{p}(\Omega)} & \leqslant 2 C_{2}\left\|e^{(t-1) \Delta} w\right\|_{L^{p}(\Omega)} \leqslant 4 C_{2} C_{1} e^{-\left(\lambda_{1}-1\right) t}\|w\|_{L^{p}(\Omega)} \\
+		& \leqslant 4 C_{2} C_{1} c_{P} e^{-\left(\lambda_{1}-1\right) t}\|\nabla w\|_{L^{p}(\Omega)}
+	\end{aligned}
+	$$
+	which yields (1.6) for all $t \geqslant 1$ and any $p \in(1, \infty),$ because, as can easily be verified, the Poincaré constant $c_{P}$ can be chosen independent of $p$ Next, for $p=2$, multiplying $\left(e^{t \Delta} w\right) t=\Delta e^{t \Delta} w$ by $-\Delta e^{t \Delta} w$ and integrating shows that
+	$$
+	\left\|\nabla e^{t \Delta} w\right\|_{L^{2}(\Omega)} \leqslant\|\nabla w\|_{L^{2}(\Omega)} \quad \text { for all } t \geqslant 0
+	$$
+	On the other hand, it is known [22, formula (2.39)] that for some $c_{3} \geqslant 1$,
+	$$
+	\left\|\nabla e^{t \Delta} w\right\|_{L^{\infty}(\Omega)} \leqslant c_{3}\|\nabla w\|_{L^{\infty}(\Omega)} \quad \text { for all } t \in(0,1)
+	$$
+	for each $w \in \hat{C}^{1}(\bar{\Omega}):=\left\{z \in C^{1}(\bar{\Omega}) \mid \frac{\partial z}{\partial v}=0\right.$ on $\left.\partial \Omega\right\} .$ A Marcinkiewicz interpolation as in
+	(ii) now asserts that (1.6) is valid for each $p \in[2, \infty)$ and $t \in(0,1)$ and all $w \in \hat{C}^{1}(\bar{\Omega}),$ so that all that remains to be shown is that $\hat{C}^{1}(\bar{\Omega})$ is dense in $W^{1, p}(\Omega) .$ To sketch a possible way to see this, we let $w \in$ $W^{1, p}(\Omega)$ be given and fix $\varepsilon>0 .$ Then there exists $w_{1} \in C^{1}(\bar{\Omega})$ such that $\left\|w-w_{1}\right\|_{W^{1, p}(\Omega)}<\frac{\varepsilon}{2} .$ Given $x^{0} \in \partial \Omega,$ applying a shifting and local flattening procedure if necessary, we may assume that $x^{0}=0$ that $\Omega \subset\left\{x_{n}>0\right\}:=\left\{x=\left(x_{1}, \ldots, x_{n}\right) \in \mathbb{R}^{n} \mid x_{n}>0\right\}$ and that $\partial \Omega$ is a part of $\left\{x_{n}=0\right\}$ near $x^{0} .$ For
+	near $x^{0},$ we define $w_{x^{0}}(x):=w_{1}\left(x_{1}, \ldots, x_{n-1}, 0\right)$ for $x \in \Omega,$ so that $w_{x^{0}}=w_{1}$ on $\partial \Omega$ and $\frac{\partial w_{x} 0}{\partial v}=0$
+	on $\partial \Omega$ hold near $x^{0}$. The same is thus valid for $w_{x^{0}, k}(x):=w_{x^{0}}(x) \cdot\left(1-\chi\left(k x_{n}\right)\right)+w_{1}(x) \cdot \chi\left(k x_{n}\right)$, where $\chi \in C^{\infty}(\mathbb{R})$ satisfies $\chi_{[2, \infty)} \leqslant \chi \leqslant \chi_{[1, \infty)} .$ since $w_{1} \in C^{1}(\bar{\Omega}),$ it is easily checked that $w_{x^{0}, k} \rightarrow w_{1}$
+	in $W^{1, p}$ in a neighborhood of $x^{0},$ so that returning to the original coordinates via a suitable partition of unity will provide some $w_{2} \in \hat{C}^{1}(\bar{\Omega})$ such that $\left\|w_{1}-w_{2}\right\|_{W^{1, p}(\Omega)}<\frac{\varepsilon}{2},$ which proves the claim.
+	
+	(iv) Given $\varphi \in C_{0}^{\infty}(\Omega),$ we use that $e^{t \Delta}$ is self-adjoint in $L^{2}(\Omega)$ and integrate by parts to see that
+	$$
+	\begin{aligned}
+		\left|\int_{\Omega} e^{t \Delta} \nabla \cdot w \varphi\right| &=\left|-\int_{\Omega} w \cdot \nabla e^{t \Delta} \varphi\right| \leqslant\|w\|_{L^{q}(\Omega)} \cdot\left\|\nabla e^{t \Delta} \varphi\right\|_{L^{q^{\prime}}(\Omega)} \\
+		& \leqslant C_{2}\left(1+t^{-\frac{1}{2}-\frac{\eta}{2}\left(\frac{1}{p^{\prime}}-\frac{1}{q^{\prime}}\right)}\right) e^{-\lambda_{1} t}\|w\|_{L^{q}(\Omega)}\|\varphi\|_{L^{p^{\prime}}(\Omega)}
+	\end{aligned}
+	$$
+	for all $t>0$ holds in view of (ii), where $\frac{1}{p}+\frac{1}{p^{\prime}}=1$ and $\frac{1}{q}+\frac{1}{q^{\prime}}=1 .$ since $\frac{1}{p^{\prime}}-\frac{1}{q^{\prime}}=\frac{1}{q}-\frac{1}{p},$ taking the
+	supremum over all such $\varphi$ satisfying $\|\varphi\|_{L^{\prime}(\Omega)} \leqslant 1$ we arrive at $(1.7) .$
+\end{proof}
+\section{uniform integrability}
+\begin{theorem}[Dunford-Pettis theorem] 
+A class of random variables $X_{n} \subset L^{1}(\mu)$ is uniformly integrable if and only if it is relatively compact for the weak topology $\sigma\left(L^{1}, L^{\infty}\right)$.
+\end{theorem}
+\begin{theorem}[de la Vallée-Poussin theorem] 
+The family $\left\{X_{\alpha}\right\}_{\alpha \in \mathrm{A}} \subset L^{1}(\mu)$ is uniformly integrable if and only if there exists a non-negative increasing convex function $G(t)$ such that $\lim _{t \rightarrow \infty} \frac{G(t)}{t}=\infty$ and $\sup _{\alpha} \mathrm{E}\left(G\left(\left|X_{\alpha}\right|\right)\right)<\infty$
+\end{theorem}
+\section{Lp}
+
+\begin{lemma}
+	Let $\Omega \subset \mathbb{R}^{d}$ be a bounded domain and let $\left(u_{\varepsilon}\right)$ be bounded in $L^{p}(\Omega),$ where $1<p \leq \infty,$ such that $u_{\varepsilon} \rightarrow u$ a.e. in $\Omega$ as $\varepsilon \rightarrow 0 .$ Then, for $1 \leq q<p$
+	$$
+	u_{\varepsilon} \rightarrow u \text { strongly in } L^{q}(\Omega).
+	$$
+\end{lemma}
+\begin{proof}
+	set $M > 0$, such that $\|u_\varepsilon\|_p \leqslant M$. by Fatou's lemma,$u\in L^p(\Omega),$ as 
+	\(\|u\|_p \leqslant \liminf\limits_{\varepsilon\rightarrow 0}\|u_\varepsilon\|_p \leqslant M\).
+	by H\"{o}lder inequality, for $1 \leqslant q\leqslant p,$ we have \[\|u\|_q \leqslant |\Omega|^{\frac{p-q}{pq}} \|u\|_p,\]
+	so $u,u_\varepsilon$ are in $L^q(\Omega)$.
+	
+	by Egoroff theorem, for any given $\tau > 0$, there exists a measurable set $\Omega_\tau$ with $|\Omega_\tau| < \tau$, such that $u_{\varepsilon_n}$ converges to $u$ uniformly on $\Omega\backslash \Omega_\tau$, while $\varepsilon_n \rightarrow 0$, as $n \rightarrow 0.$
+	that is to say, for $\tau$ given above, there exists a positive integer $N$, such that for any $n > N$, we have $\sup\limits_{x\in\Omega\backslash\Omega_\tau}|u_{\varepsilon_n} - u| \leqslant \tau$. therefore
+	\begin{equation*}
+		\begin{split}
+			\|u_{\varepsilon_n} - u\|_{L^q(\Omega)} &= \|u_{\varepsilon_n} - u\|_{L^q(\Omega\backslash\Omega_\tau)} + \|u_{\varepsilon_n} - u\|_{L^q(\Omega_\tau)}\\ 
+			& \leqslant \tau|\Omega|^{\frac{1}{q}} + |\Omega_\tau|^{\frac{p-q}{pq}}\|u_{\varepsilon_n } - u\|_p\\
+			& \leqslant \tau|\Omega|^{\frac{1}{q}} + 2M\tau^{\frac{p-q}{pq}},
+		\end{split}
+	\end{equation*}
+we can conclude $u_{\varepsilon_n} \rightarrow u \text { strongly in } L^{q}(\Omega)$. the subscript $n$ can be droped by the common contradiction discussion.
+\end{proof}
+
+a simple example, consider $u_n(x)=n^\delta x^n\in L^2(0,1)$. clearly, $u_n\rightarrow0$ a.e. in $(0,1)$.
+$u_n$ are bounded if $\delta \leqslant \dfrac{1}{2}.$
+
+if $\delta = \dfrac{1}{2}$, $u_n\not\rightarrow0$ in $L^2(0,1)$; otherwise in $L^q(0,1),1\leqslant q < 2$.
+
+if $\delta < \dfrac{1}{2}$, $u_n\rightarrow0$ in $L^q(0,1), 1\leqslant q \leqslant 2$.
+
+\begin{lemma}
+Let $\Omega$ be an open subset of $\mathcal{R}^n$, let $1<p<\infty$, and let functions $f_k\in L^p(\Omega)$, $k\geqslant1$, and $f\in L^p(\Omega)$ be such that the sequence $\{f_k\}_{k=1}^{\infty}$ is bounded in $L^p(\Omega)$ and $f_k$ converges almost everywhere in $\Omega$ to $f$ as $k\rightarrow \infty$. Show that 
+\begin{equation}
+	f_k\rightharpoonup f \text{ in } L^p(\Omega) \text{ as } k\rightarrow \infty.
+\end{equation}	
+\end{lemma}
+
+\begin{proof}
+	we only need to verfy that
+	\begin{equation}
+		\lim_{k\rightarrow\infty}\int_\Omega f_kg\rightarrow\int_\Omega fg \text{ for any } g\in L^q(\Omega) \text{ with } \frac1p+\frac1q=1.
+	\end{equation}
+
+	for one fixed $g\in L^q(\Omega)$, given $\varepsilon>0$, there exists a $R>0$ large enough such that 
+	\begin{equation}
+		\int_{\Omega\backslash B_R}|g|^q < (\frac\varepsilon2)^q.
+	\end{equation}
+therefore 
+\begin{equation}
+	\begin{split}
+	|\int_\Omega(f_k-f)g|&\leqslant|\int_{\Omega\backslash B_R}(f_k-f)g| + |\int_{B_R}(f_k-f)g|\\
+	&\leqslant 2M\frac\varepsilon2 + |\int_{B_R}(f_k-f)g|
+\end{split}
+\end{equation}
+as $\{f_k\}_{k=1}^{\infty}$ is bounded in $L^p(\Omega)$. By Egoroff theorem, since $f_k$ converges almost everywhere in $\Omega$ to $f$ as $k\rightarrow \infty$, for any given $\tau>0$, there exists a measurable set $B_\tau$ with $|B_\tau|<\tau$, such that $f_n$ converges to $f$ uniformly on $B_R\backslash B_\tau$. Furthermore, for $\varepsilon$ given above, there exists a $\tau>0$, such that for any $|B_\tau|<\tau$, $\int_{B_\tau}|g|^q<(\frac{\varepsilon}{2})^q.$ Consequently, there exists a large $K>0$, such that for any $k>K$, $|f_k-f|^p<\varepsilon/|B_R|$ for any $x\in B_R\backslash B_\tau$, thus
+\begin{equation}
+	\begin{split}
+		|\int_{B_R}(f_k-f)g|&\leqslant |\int_{B_R\backslash B_\tau}(f_k-f)g| + |\int_{B_\tau}(f_k-f)g|\\
+		&\leqslant \|g\|_{L^q}\varepsilon +2M\frac{\varepsilon}{2}.
+	\end{split}
+\end{equation}
+Now, we have for any $\varepsilon>0$, there exists a $K>0$ large enough such that 
+\begin{equation}
+	|\int_\Omega(f_k-f)g|\leqslant| (2M+ \|g\|_{L^q})\varepsilon \text{ for all } k> K.
+\end{equation}
+\end{proof}
+
+
+\section{a lemma related to convergence in $L_1$}
+
+\begin{lemma}
+denote $\mu$ Lebesgue measure, $\Omega$ a bounded domain in $\mathbb{R}^n$, abbreviate $L^1:= L^1(\Omega, \mu)$ and $L^\infty:= L^\infty(\Omega, \mu)$. if 
+\begin{itemize}
+\item $u_n\rightharpoonup u$ in $L^1$;
+\item $u_nv_n\rightharpoonup z$ in $L^1$;
+\item either $v_n\rightarrow v$ $\mu$-a.e.  or $v_n\stackrel{\mu}{\Longrightarrow}v$,
+\end{itemize}
+then $z = uv$ a.e..
+\end{lemma}
+\begin{proof}
+for each $\Delta\subset\Omega$ is a measurable set, denote $\chi_\Delta$ set function, that is for each $x\in\Delta, \chi_\Delta(x) = 1$, otherwise $\chi_\Delta(x)=0$.
+
+\textbf{Step 1.} supposed that $v\in L^\infty$,
+if $v_n\rightarrow v$ a.e., by Egrov theorem, for each $\delta > 0$ there exist a 
+measurable set $\Delta\subset\Omega$, such that $\mu(\Delta) < \delta$ and $v_n$ converges uniformly to $v$ in $\Delta^c$. Since weak convergence in $L^1$ implies uniformly integrable, that is for any $\varepsilon > 0$, there exists a $\delta>0$ and arbitrary measurable set $\Delta$ satisfied with $\mu(\Delta) < \delta$, we have $|(u_nv_n, \chi_\Delta)| < \varepsilon$ and $|(u_n, \chi_{\Delta})| < \varepsilon$.
+
+for $\phi\in L^\infty$ and $|\phi|\leqslant1$, 
+\begin{equation*}
+\begin{split}
+|(u_nv_n - uv, \phi)| & \leqslant |(u_nv_n - u_nv, \phi)| + |(u_nv - uv, \phi)|\\
+&\leqslant |(u_nv_n - u_nv, \chi_\Delta\phi)| + |(u_nv_n - u_nv, \chi_{\Delta^c}\phi)| \\
+&\quad + |(u_n - u, \phi v)|\\
+&\leqslant |(u_nv_n, \chi_\Delta\phi)| + |(u_n, \chi_\Delta\phi v)| + |(u_nv_n - u_nv, \chi_{\Delta^c}\phi)| \\
+&\quad+ |(u_n - u, \phi v)|\\
+&\leqslant C\varepsilon \text{ as } n\rightarrow\infty.
+\end{split}
+\end{equation*}
+Letting $\varepsilon\rightarrow0$, we have $u_nv_n\rightharpoonup uv$ in $L^1$ and hence 
+$uv=z$ $\mu$-a.e..
+
+or rather, if $v_n\stackrel{\mu}{\Longrightarrow}v$, denote $\Delta_\varepsilon:=\{|v_n - v| >\varepsilon\}$, then for each $\delta>0$, $ \varepsilon>0$, there exist $N$, such that  $$\mu(\Delta_\varepsilon) < \delta \text{ for each } n > N.$$
+\begin{equation*}
+\begin{split}
+|(u_nv_n - uv, \phi)| & \leqslant |(u_nv_n - u_nv, \phi)| + |(u_nv - uv, \phi)|\\
+&\leqslant |(u_nv_n - u_nv, \chi_{\Delta_\varepsilon}\phi)| + |(u_nv_n - u_nv, \chi_{\Delta_\varepsilon^c}\phi)| \\
+&\quad + |(u_n - u, \phi v)|\\
+&\leqslant |(u_nv_n, \chi_{\Delta_\varepsilon}\phi)| + |(u_n, \chi_{\Delta_\varepsilon}\phi v)| + |(u_nv_n - u_nv, \chi_{\Delta^c}\phi)| \\
+&\quad+ |(u_n - u, \phi v)|\\
+&\leqslant C\varepsilon \text{ for } n > N.
+\end{split}
+\end{equation*}
+this implies $u_nv_n\rightharpoonup uv$ in $L^1$ and hence 
+$uv=z$ $\mu$-a.e..
+
+\textbf{Step 2.} let $\Omega_k:= \{|v|\leqslant k\}$ for $k > 0$. then $\mu(\Omega_k)\nearrow\mu(\Omega)$, $z=uv$ $\mu|_{\Omega_k}$-a.e. and hence $z=uv$ $\mu$-a.e.. 
+\end{proof}
+
+\begin{example}[stability of weak convergence or something]
+if $u_\varepsilon\rightharpoonup u$ in $L^1$ and $u_\varepsilon\geqslant0$ in the sense of distribution, then $$\frac{u_\varepsilon}{1 + \varepsilon u_\varepsilon}\rightharpoonup u \text{ in } L^1.$$
+\begin{proof}
+since $\varepsilon u_\varepsilon\rightarrow 0$ in $L^1$, $$\frac{1}{1 + \varepsilon u_\varepsilon}\stackrel{\mu}{\Longrightarrow}1.$$
+the desired result is a direct consequence of above lemma.
+\end{proof}
+\end{example}
+
+\section{The Kolmogorov–Riesz theorem}
+\begin{theorem}[Kolmogorov-Riesz]
+	 Let $1 \leq p<\infty .$ A subset $\mathcal{F}$ of $L^{p}\left(\mathbb{R}^{n}\right)$ is totally bounded if, and only if,
+	 \begin{itemize}
+	 	\item $\mathcal{F}$ is bounded,
+	 	\item for every $\varepsilon>0$ there is some $R$ so that, for every $f \in \mathcal{F}$
+	 	$$
+	 	\int_{|x|>R}|f(x)|^{p} d x<\varepsilon^{p}
+	 	$$
+	 	\item for every $\varepsilon>0$ there is some $\rho>0$ so that, for every $f \in \mathcal{F}$ and $y \in \mathbb{R}^{n}$ with $|y|<\rho$
+	 	$$
+	 	\int_{\mathbb{R}^{n}}|f(x+y)-f(x)|^{p} d x<\varepsilon^{p}
+	 	$$	
+	 \end{itemize}
+\end{theorem}
+\section{vitali convergence theorem}
+
+\begin{theorem}
+Let $\left(f_{n}\right)_{n \in \mathbb{N}} \subseteq L^{p}(X, \tau, \mu), f \in L^{p}(X, \tau, \mu),$ with $1 \leq p<\infty .$ Then, $f_{n} \rightarrow f$ in $L^{p}$ if and only if we have
+\begin{itemize}
+	\item $f_{n}$ converge in measure to $f$.
+	\item For every $\varepsilon>0$ there exists a measurable set $E_{\varepsilon}$ with $\mu\left(E_{\varepsilon}\right)<\infty$ such that for every $G \in \tau$ disjoint from $E_{\varepsilon}$ we have, for every $n \in \mathbb{N}$, $\int_{G}\left|f_{n}\right|^{p} d \mu<\varepsilon^{p}$
+	\item  For every $\varepsilon>0$ there exists $\delta(\varepsilon)>0$ such that, if $E \in \tau$ and $\mu(E)<\delta(\varepsilon)$ then, for every $n \in \mathbb{N}$ we have $\int_{E}\left|f_{n}\right|^{p} d \mu<\varepsilon^{p}$	
+\end{itemize}
+\end{theorem}
+
+\begin{proof}
+	suffcient: as $ f\in L^p(X, \tau, \mu) $,
+	
+	as $ f_n \rightarrow f $ in $ L^p $, for any $ m\in N^\star $, we have $$\frac{1}{m^p} \mu(\{|f_n-f|>\frac{1}{m}\}) \leqslant \|f_n-f\|_{L^p}^p\rightarrow 0, n\rightarrow\infty,$$
+	which entails $ f_n $ converge in measure to $ f $.
+	
+	denote $ B(r) = \{|x|\leqslant r\} $, then for any $ \varepsilon>0 $, there exists a $R_0>0$ such that \[ \|f\|_{L^p(X\backslash B(R_0))} < \frac{\varepsilon}{2},\]
+	meanwhile, there exists a positive interger $ N $, such that for any $ n>N $, we have 
+	\[ \|f_n-f\|_{L^p(X\backslash B(R_0))} < \frac{\varepsilon}{2};\]
+	there exist $ R_1, R_2, \cdots, R_N > 0 $, such that 
+	\[ \|f_i\|_{L^p(X\backslash B(R_i))} < \frac{\varepsilon}{2}, i = 1, 2, \cdots, N.\]
+	now, we can conclude that for any $ \varepsilon>0 $, there exists a measure set $ E_\varepsilon = B(R)$ with $ R = \max\limits_{i=0}^N R_i,\mu(E_\varepsilon)<\infty $ such that for every $ G\in\tau $ disjoint from $ E_\varepsilon $, we have, for every $ n\in \mathbb{N} $, $ \|f_n\|_{L^p(G)}<\varepsilon $.
+	
+	the third one can be varified by the similar manner used in the above. by the absolute continuty of lebesgue integral, we assert that for any $ \varepsilon>0, $ there exists $ \delta_0>0 $ such that, if $ \mu(E)<\delta_0, $ we have $ \|f\|_{L^p(E)} < \dfrac\varepsilon2; $ there exists a positive integer $ N $ such that, for any $ n>N $, we have $ \|f_n-f\|_{L^p(E)} < \dfrac{\varepsilon}{2};$ there exist $ \delta_1 > 0  $ such that, if $ \mu(E)< \delta_1, $ 
+	\[ \|f_i\|_{L^p(E)} < \frac{\varepsilon}{2}, i = 1, 2, \cdots, N.\]
+	now, we can conclude that for  every $\varepsilon>0$ there exists $\delta=\min\{\delta_0, \delta_1\}>0$ such that, if $E \in \tau$ and $\mu(E)<\delta$ then, for every $n \in \mathbb{N}$ we have $\int_{E}\left|f_{n}\right|^{p} d \mu<\varepsilon^{p}$	
+	
+	necessary: for any $ \varepsilon>0 $, there exist $ \delta(\varepsilon)>0,$ a measurable set $ E_\varepsilon $ with $ \mu(E_\varepsilon)<\infty, $ $N\in\mathbb{N}$ such that, 
+	\[ \mu(X_n) < \delta(\varepsilon) \text{for any } n > N \text{ with } X_n:=\{|f_n-f|>\dfrac{\varepsilon}{\mu(E_\varepsilon)^{1+\frac{1}{p}}}\},\]
+	thus we have
+	\begin{equation*}
+		\begin{split}
+			\|f_n-f\|_{L^p(X)} &= \|f_n-f\|_{L^p(E_\varepsilon\cap X)} + \|f_n-f\|_{X\backslash L^p(E_\varepsilon)}\\
+			&= \|f_n-f\|_{L^p(E_\varepsilon\cap X_n)} + \|f_n-f\|_{L^p(E_\varepsilon\backslash X_n)} +
+			\|f_n-f\|_{X\backslash L^p(E_\varepsilon)}\\
+			&< 3\varepsilon, \text{for any } n>N,
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+\section{Admissible Relative Entropies and Their Generating
+	Functions}
+
+\begin{definition}
+	 Let $J$ be either $\mathbb{R}$ or $\mathbb{R}^{+}:=(0, \infty) .$ Let $\psi \in C(\bar{J}) \cap C^{4}(J)$ satisfy the conditions
+	$$
+	\begin{array}{l}
+	\psi(1)=0 \\
+	\psi^{\prime \prime} \geq 0, \quad \psi^{\prime \prime} \neq 0 \quad \text { on } J \\
+	\left(\psi^{\prime \prime \prime}\right)^{2} \leq \frac{1}{2} \psi^{\prime \prime} \psi^{I V} \quad \text { on } J \quad (\text{or } (\dfrac1{\varphi''})''\leqslant0 \quad \text { on } J)
+	\end{array}
+	$$
+	Let $\rho_{1} \in L^{1}\left(\mathbb{R}^{n}\right), \rho_{2} \in L_{+}^{1}\left(\mathbb{R}^{n}\right)$ with $\int \rho_{1} d x=\int \rho_{2} d x=1$ and $\rho_{1} / \rho_{2} \in$
+	$\bar{J} \rho_{2}(d x)-$ a.e. Then
+	$$
+	e_{\psi}\left(\rho_{1} \mid \rho_{2}\right):=\int_{\mathbb{R}^{n}} \psi\left(\frac{\rho_{1}}{\rho_{2}}\right) \rho_{2}(d x)
+	$$
+	is called an admissible relative entropy (of $\rho_{1}$ with respect to $\rho_{2}$ ) with generating function $\psi$.
+\end{definition}
+
+if \(\varphi\) generates a admissible relative entropy, then its normalization $\tilde{\psi}(\sigma)=\psi(\sigma)-\psi^{\prime}(1)(\sigma-1)$ generates the same admissible relative entropy.
+
+\begin{lemma}\label{entropy_on_R}
+	For $J=\mathbb{R}$ all admissible entropies are generated by $\varphi(\sigma)=\alpha(\sigma-1)^{2}, \quad \sigma \geq 0 ; \alpha>0 .$
+\end{lemma}
+
+\begin{lemma}
+ Let $\psi$ generate an admissible relative entropy with $J=\mathbb{R}^{+} .$ Then there exists a logarithmic-type function 
+ \begin{equation}\label{logarithmic-type-entropy-generator}
+ \chi(\sigma)=\alpha(\sigma+\beta) \ln \frac{\sigma+\beta}{1+\beta}-\alpha(\sigma-1), \quad \sigma>0 ; \alpha>0, \beta \geq 0\end{equation}
+  and a quadratic function
+  \begin{equation}\varphi(\sigma)=\alpha(\sigma-1)^{2}, \quad \sigma \geq 0 ; \alpha>0\end{equation}
+   such that
+$$
+\chi(\sigma) \leq \psi(\sigma) \leq \varphi(\sigma), \quad \sigma \in J
+$$
+and hence
+$$
+0 \leq e_{\chi}\left(\rho_{1} \mid \rho_{2}\right) \leq e_{\psi}\left(\rho_{1} \mid \rho_{2}\right) \leq e_{\varphi}\left(\rho_{1} \mid \rho_{2}\right)
+$$
+\(\chi\) and $\varphi$ both satisfy the conditions of admissible relative entropy and thus generate, respectively, an admissible sub- and superentropy for $e_{\psi}$	
+\end{lemma}
+
+\begin{proof}
+	since $J=\mathbb{R}^{+},$ the function $g$ from the proof of Lemma \ref{entropy_on_R} satisfies
+	\begin{equation}\label{gproperty}
+	g>0, \quad g^{\prime} \geq 0, \quad g^{\prime \prime} \leq 0 \quad \text { on } J	
+	\end{equation}
+
+	
+	Now denote the derivatives of the given function $\psi$ by
+\begin{equation}\label{varphiproperty}
+	\psi(1)=0, \psi^{\prime}(1)=0, \psi^{\prime \prime}(1)=: \mu_{2}>0, \psi^{\prime \prime \prime}(1)=: \mu_{3} \leq 0
+\end{equation}
+	From \eqref{gproperty} we readily get the estimate
+	$$
+	\left.\begin{array}{ll}
+	\sigma \mu_{2}^{-1}, & 0<\sigma<1 \\
+	\mu_{2}^{-1}, & \sigma>1
+	\end{array}\right\} \leq g(\sigma) \leq \gamma \sigma+\delta, \sigma>0
+	$$
+	with $\gamma:=-\mu_{3} \mu_{2}^{-2} \geq 0, \delta:=\left(\mu_{2}+\mu_{3}\right) \mu_{2}^{-2} \geq 0 .$ Integrating the corresponding
+	estimate for $\psi^{\prime \prime}=\frac{1}{g}$
+	$$
+	(\gamma \sigma+\delta)^{-1} \leq \psi^{\prime \prime}(\sigma) \leq\left\{\begin{array}{ll}
+	\mu_{2} / \sigma, & 0<\sigma<1 \\
+	\mu_{2}, & \sigma>1
+	\end{array}\right.
+	$$
+	we obtain with \eqref{varphiproperty} the upper bound for $\psi:$
+\begin{equation}\label{varphiprimeprimeproperty}
+	\psi(\sigma) \leq\left\{\begin{array}{cl}
+\mu_{2}(\sigma \ln \sigma-\sigma+1), & 0<\sigma<1 \\
+\frac{\mu_{2}}{2}(\sigma-1)^{2}, & \sigma>1
+\end{array}\right\}
+\end{equation}
+	$$
+	\leq \mu_{2}(\sigma-1)^{2}=: \varphi(\sigma), \quad \sigma>0
+	$$
+	To derive the lower bound of $\psi$ one integrates \eqref{varphiprimeprimeproperty} twice to show $\chi(\sigma) \leq$ $\psi(\sigma) .$ For $\gamma>0$ the function $\chi(\sigma)$ is given by \eqref{logarithmic-type-entropy-generator} with $\alpha=\frac{1}{\gamma}, \beta=\frac{\delta}{\gamma}$
+	If $\gamma=0$ we set
+	$$
+	\chi(\sigma)=\frac{\mu_{2}}{2}(\sigma-1)^{2}.
+	$$
+\end{proof}
+
+\begin{theorem}[Csiszár-Kullback inequality]
+	Let $\psi:(0, \infty) \rightarrow \mathbb{R}$ be bounded below, convex on $(0, \infty)$ strictly convex at 1 with $\psi(1)=0 .$ Then there exists a function $\mathrm{W}_{\psi}: \mathbb{R} \rightarrow[0, \infty)$
+	such that
+	1. W $_{\psi}$ is increasing.
+	2. $\mathbf{W}_{\psi}(0)=0$
+	3. W $_{\psi}$ is continuous at 0.
+	4. For all non-negative $u \in L^{1}(\Omega, \mathscr{S}, \mu)$ (where $(\Omega, \mathscr{S}, \mu)$ is a probability space $)$ with $\int_{\Omega} u d \mu=1$ the Csiszár-Kullback inequality holds:
+	$$
+	\|u-1\|_{L^{1}(d \mu)} \leqslant \mathbf{W}_{\psi}\left(e_{\psi}(u)\right)
+	$$
+	where $e_{\psi}(u):=\int_{\Omega} \psi(u) d \mu$ is the entropy of u (relative to the state 1) generated by the function $\psi$.
+\end{theorem}
+
+For the generating function $\psi(\sigma)=\sigma \ln \sigma-\sigma+1,$ e.g.,
+$\mathrm{W}_{\psi}$ can be chosen such that
+$$
+\mathrm{W}_{\psi}(c) \leqslant \sqrt{2 c}
+$$
+that is 
+\begin{equation}
+\frac{1}{2}\left\|\rho_{1}-\rho_{2}\right\|_{L^{1}\left(\mathbb{R}^{n}\right)}^{2} \leq e\left(\rho_{1} \mid \rho_{2}\right)=\int_{\mathbb{R}^n}\ln\dfrac{\rho_1}{\rho_2}\rho_{1}\mathrm{d}x.
+\end{equation}
+
+notice that $u\ln u \geqslant u - 1 + \dfrac{1}{2}(u-1)^2, \forall u\in(0,1),$ 
+\begin{equation}
+\begin{split}
+\left\|\rho_{1}-\rho_{2}\right\|_{L^{1}\left(\mathbb{R}^{n}\right)}^{2} &=
+4 (\int_{\rho_{1}<\rho_{2}}\left|\rho_{1}-\rho_{2}\right| d x)^2\\
+&= 4 (\int_{\rho_{1}<\rho_{2}}\left|\frac{\rho_{1}}{\rho_{2}}-1\right|\rho_{2} d x)^2\\
+&\leqslant
+4 \int_{\rho_{1}<\rho_{2}}\left|\frac{\rho_{1}}{\rho_{2}}-1\right|^2\rho_{2} d x\int_{\rho_{1}<\rho_{2}}\rho_{2}\mathrm{d}x\\
+&\leqslant 4 \int_{\rho_{1}<\rho_{2}}\left|\frac{\rho_{1}}{\rho_{2}}-1\right|^2\rho_{2} d x\\
+&\leqslant 2 \int_{\rho_{1}<\rho_{2}}(\dfrac{\rho_{1}}{\rho_{2}} \ln \dfrac{\rho_{1}}{\rho_{2}} - \dfrac{\rho_{1}}{\rho_{2}} + 1) \rho_{2} \mathrm{d}x\\
+&\leqslant 2 \int_{\mathbb{R}^n} (\dfrac{\rho_{1}}{\rho_{2}} \ln \dfrac{\rho_{1}}{\rho_{2}} - \dfrac{\rho_{1}}{\rho_{2}} + 1) \rho_{2} \mathrm{d}x\\
+&= 2 \int_{\mathbb{R}^n} \rho_{1} \ln \dfrac{\rho_{1}}{\rho_{2}} \mathrm{d}x\\
+\end{split}
+\end{equation}
+
+\section{convex sobolev inequation}
+The probably easiest equation for which the Bakry-Émery method leads to non-trivial results is the heat equation
+\begin{equation}\label{heat-equation}
+	\partial_{t} u=u_{x x}, \quad u(0 ; x)=\hat{u}(x)
+\end{equation}
+
+on the interval [0,1] with homogeneous Neumann boundary conditions.
+
+\begin{theorem}
+	 Assume that $\phi: \mathbb{R}_{\geq 0} \rightarrow \mathbb{R}_{\geq 0}$ is convex and s.t. $\left(\phi^{\prime \prime}\right)^{-1 / 2}$ is concave, and let $\psi$ be such that
+	$$
+	\psi^{\prime}(s)^{2}=\phi^{\prime \prime}(s)
+	$$
+	Then the following convex Sobolev inequality \eqref{convexsobolevinequation}
+\begin{equation}\label{convexsobolevinequation}
+	\int_{0}^{1} \phi(\hat{u}) d x-\phi\left(\int_{0}^{1} \hat{u} d x\right) \leq \frac{1}{2 \pi^{2}} \int_{0}^{1} \psi(\hat{u})_{x}^{2} d x
+\end{equation}
+	holds for all smooth, positive functions $\hat{u}$ on $[0,1] .$
+\end{theorem}
+
+\begin{proof}
+	Let us start from the special case of \eqref{convexsobolevinequation} with $\phi(s)=\frac{1}{2} s^{2}$ and $\psi(s)=s$
+	$$
+	\int_{0}^{1} \hat{u}^{2} d x-\left(\int_{0}^{1} \hat{u} d x\right)^{2} \leq \frac{1}{\pi^{2}} \int_{0}^{1} \hat{u}_{x}^{2} d x
+	$$
+	This is the Poincaré inequality which we shall not prove again. Instead, we shall now generalize it to other convex functions $\phi: \mathbb{R}_{\geq 0} \rightarrow \mathbb{R}_{\geq 0}$
+	
+	Define the l.h.s of \eqref{heat-equation} as $H_{\phi}[u],$ and let $u$ be the unique solution to \eqref{heat-equation} . One finds
+	$$
+	D_{\phi}[u]:=-\frac{d}{d t} H_{\phi}[u]=-\int \phi^{\prime}(u) u_{t} d x=-\int \phi^{\prime}(u) u_{x x} d x=\int \phi^{\prime \prime}(u) u_{x}^{2} d x=\int \psi(u)_{x}^{2} d x
+	$$
+	as first time derivative and
+	$$
+	\begin{aligned}
+		R_{\phi}[u] &:=-\frac{1}{2} \frac{d}{d t} D_{\phi}[u]=-\int \psi(u)_{x} \psi(u)_{x t} d x=\int \psi(u)_{x x} \psi^{\prime}(u) u_{x x} d x \\
+		&=\int \psi^{\prime}(u)^{2} u_{x x}^{2} d x+\int \psi^{\prime \prime}(u) \psi^{\prime}(u) u_{x}^{2} u_{x x} d x
+	\end{aligned}
+	$$
+	as second. The crucial step is to relate $R_{\phi}[u]$ to $D_{\phi}[u] .$ To this end, the expression
+	$$
+	\begin{aligned}
+		0 &=\frac{1}{3} \int\left(\psi^{\prime}(u) \psi^{\prime \prime}(u) u_{x}^{3}\right)_{x} d x \\
+		&=\int \psi^{\prime \prime}(u) \psi^{\prime}(u) u_{x}^{2} u_{x x} d x+\frac{1}{3} \int\left(\psi^{\prime \prime}(u)^{2}+\psi^{\prime}(u) \psi^{\prime \prime \prime}(u)\right) u_{x}^{4} d x
+	\end{aligned}
+	$$
+	is added to $R_{\phi}[u],$ obviously without changing the value of the latter. Hence
+	$$
+	R_{\phi}[u]=\int \psi^{\prime}(u)^{2} u_{x x}^{2} d x+2 \int \psi^{\prime \prime}(u) \psi^{\prime}(u) u_{x x} u_{x}^{2} d x+\frac{1}{3} \int\left(\psi^{\prime \prime}(u)^{2}+\psi^{\prime}(u) \psi^{\prime \prime \prime}(u)\right) u_{x}^{4} d x
+	$$
+	On the other hand, one has
+	$$
+	0 \leq(\psi(u))_{x x}^{2}=\psi^{\prime}(u)^{2} u_{x x}^{2}+2 \psi^{\prime \prime}(u) \psi^{\prime}(u) u_{x x} u_{x}^{2}+\psi^{\prime \prime}(u)^{2} u_{x}^{4}
+	$$
+	In combination with Poincaré's inquality, one concludes
+	\begin{equation}\label{entropy-production-prime-entropy-production-inequation}
+	D_{\phi}[u] \leq \frac{1}{\pi^{2}} R_{\phi}[u]
+	\end{equation}
+	provided that
+\begin{equation}\label{psi-prime-reverse-concavity}
+		\frac{1}{3}\left(\left(\psi^{\prime \prime}\right)^{2}+\psi^{\prime} \psi^{\prime \prime \prime}\right) \geq\left(\psi^{\prime \prime}\right)^{2}
+\end{equation}
+	since $\psi^{\prime}=\left(\phi^{\prime \prime}\right)^{1 / 2}>0,$ it is easy to see that \eqref{psi-prime-reverse-concavity} is equivalent to the concavity of $\left(\psi^{\prime}\right)^{-1}=$ $\left(\phi^{\prime \prime}\right)^{-1 / 2}$
+	To finish the argument, rewrite \eqref{entropy-production-prime-entropy-production-inequation} as
+	$$
+	-\frac{d}{d t} H_{\phi}[u(t)] \leq-\frac{1}{2 \pi^{2}} \frac{d}{d t} D_{\phi}[u(t)]
+	$$
+	and integrate both sides from $t=+\infty$ to $t=0 .$ This yields
+\begin{equation}\label{entropy-entropy-production-inequation}
+		H_{\phi}\left[u_{0}\right]-\lim _{t \rightarrow+\infty} H_{\phi}[u(t)] \leq \frac{1}{2 \pi^{2}}\left(D_{\phi}\left[u_{0}\right]-\lim _{t \rightarrow \infty} D_{\phi}[u(t)]\right)
+\end{equation}
+	By standard theory, the solution $u(t)$ to \eqref{heat-equation} converges to the homogeneous steady state $u_{\infty} \equiv$ $\int_{0}^{1} \hat{u}(x) d x$ in $C^{\infty},$ implying that $D_{\phi}[u(t)] \rightarrow 0$ and $H_{\phi}[u(t)] \rightarrow H_{\phi}\left[u_{\infty}\right]$ as $t \rightarrow \infty .$ Substituting
+	these limits, \eqref{entropy-entropy-production-inequation} becomes \eqref{convexsobolevinequation} . $\square$
+
+\end{proof}
+	For example, $\phi(s)=s \log s$ with $\psi(s)=2 s^{1 / 2}$ is a possible choice, leading to a logarithmic Sobolev inequality,
+\begin{equation}
+	0 \leq \int_{0}^{1} \hat{u} \log \hat{u} d x-\left(\int_{0}^{1} \hat{u} d x\right) \log \left(\int_{0}^{1} \hat{u} d x\right) \leq \frac{2}{\pi^{2}} \int_{0}^{1} \sqrt{\hat{u}}_{x}^{2} d x\label{logarithmic-sobolev-inequation}
+\end{equation}
+
+
+Moreover, the pairs $\phi(s)=s^{\alpha} /(\alpha-1)$ and $\psi(s)=2 s^{\alpha / 2} / \sqrt{\alpha}$ are also allowed, when $1<\alpha<2$. These yield Beckner's interpolation inequalities,
+\begin{equation}\label{beckner's-interpolation-inequation}
+	0 \leq \frac{1}{\alpha-1}\left[\int_{0}^{1} \hat{u}^{\alpha} d x-\left(\int_{0}^{1} \hat{u} d x\right)^{\alpha}\right] \leq \frac{2}{\alpha \pi^{2}} \int_{0}^{1}\left(\sqrt{\hat{u}^{\alpha}}\right)_{x}^{2} d x
+\end{equation}
+Notice that from \eqref{beckner's-interpolation-inequation}, one obtains both the Poincare inequality for $\alpha \nearrow 2,$ as well as the logarithmic Sobolev inequality \eqref{logarithmic-sobolev-inequation} for $\alpha \searrow 1$ as limit cases.
+
+\section{operator semigroup}
+
+\begin{definition}
+	
+ We call a linear operator A in a Banach space $X$ a sectorial operator if it is a closed densely defined operator such that, for some $\phi $ in $(0, \pi / 2)$ and some $M \geq 1$ and real $a$, the
+	Sector
+	$$
+	S_{a, \phi}=\{\lambda|\phi \leq| \arg (\lambda-a) \mid \leq \pi, \quad \lambda \neq a\}
+	$$
+	is in the resolvent set of $A$ and
+	$$
+	(\lambda-A)^{-1} \| \leq M /|\lambda-a| \quad \text { for all } \quad \lambda \in S_{a, \phi}
+	$$
+\end{definition}
+\begin{definition}
+	
+	A \textbf{strongly continuous semigroup} on a Banach space $X$ is a map $T: \mathbb{R}_{+} \rightarrow L(X)$ such that
+	\begin{itemize}
+		\item [1.] $T(0)=I,$ (identity operator on $X$ )
+		\item [2.] $\forall t, s \geq 0: T(t+s)=T(t) T(s)$
+		\item [3.] $\forall x_{0} \in X:\left\|T(t) x_{0}-x_{0}\right\| \rightarrow 0,$ as $t \downarrow 0$
+	\end{itemize}
+	The first two axioms are algebraic, and state that $T$ is a representation of the semigroup ( $\left.\mathbb{R}_{+},+\right)$; the last is topological, and states that the map $T$ is continuous in the strong operator topology.
+
+\end{definition}
+
+The infinitesimal generator $A$ of a strongly continuous semigroup $T$ is defined by
+$$
+A x=\lim _{t \downarrow 0} \frac{1}{t}(T(t)-I) x
+$$
+whenever the limit exists. The domain of $A, D(A)$, is the set of $x \in X$ for which this limit does exist; $D(A)$ is a linear subspace and $A$ is linear on this domain.  The operator $A$ is closed, although not necessarily bounded, and the domain is dense in $X.$
+
+The strongly continuous semigroup $T$ with generator $A$ is often denoted by the symbol $e^{A t}$. This notation is compatible with the notation for matrix exponentials, and for functions of an operator defined via functional calculus (for example, via the spectral theorem).
+
+
+
+
+\begin{proposition}
+	if $T$ is a strongly continuous semigroup with generator $A$, we have 
+	
+	\begin{itemize}
+		\item [I] $A$ is closed;
+		\item [II] $D(A)$ is densely in $X$; 
+		\item [III] if $x\in D(A)$, then $AT(t)x = T(t)Ax;$
+		\item [IV] if $x\in D(A)$, then $A\int_0^tT(s)x\mathrm{d}s=\int_0^tAT(s)x\mathrm{d}s= T(t)x - x;$
+	\end{itemize}
+\end{proposition}
+
+
+\begin{proof}
+	\begin{itemize}
+		\item [I] if $x_n\in D(A), y\in X$ such that $Ax_n\rightarrow y$ and $x_n\rightarrow x,$ we have
+	$$|\frac{1}{t}(T(t)-I)x-y| \leqslant |\frac{1}{t}(T(t)-I)(x - x_n)| + |\frac{1}{t}(T(t)-I)x_n-\dfrac{1}{t}\int_0^tT(s)y\mathrm{d}s| + |\dfrac{1}{t}\int_0^tT(s)y\mathrm{d}s-y|$$
+	and $$\frac{1}{t}(T(t)-I) x_n = \dfrac{1}{t}\int_0^tT(s)Ax_n\mathrm{d}s\rightarrow \dfrac{1}{t}\int_0^tT(s)y\mathrm{d}s$$
+	
+	\item [II] select $x\in X$, define \begin{equation*}
+		x_\lambda = \dfrac{1}{\lambda}\int_0^\lambda T(t)x\mathrm{d}t,
+	\end{equation*}
+obviously, $x_\lambda\rightarrow x,$ as $\lambda\rightarrow0.$ noticing that,
+\begin{equation}
+	\begin{split}
+		\lim\limits_{t\downarrow0}\dfrac{1}{t}(T(t)-I)x_\lambda &= \lim\limits_{t\downarrow0}\dfrac{1}{t\lambda}\int_0^\lambda [T(t+s)-T(s)]x\mathrm{d}s\\
+		&= \lim\limits_{t\downarrow0}\dfrac{1}{t\lambda}(\int_\lambda^{\lambda + t}T(s)x\mathrm{d}s -
+		\int_0^t T(s)x\mathrm{d}s)\\
+		&= \lim\limits_{t\downarrow0}\dfrac{T(\lambda)- I}{t\lambda}\int_0^t T(s)x\mathrm{d}s\\
+		&= \dfrac{T(\lambda)x- x}\lambda,\\
+	\end{split}
+\end{equation}
+thus $Ax_\lambda = \dfrac{T(\lambda)x- x}\lambda,$ $x_\lambda \in D(A).$
+\item [III] \begin{equation}
+	AT(t)x = \lim\limits_{s\downarrow0}\dfrac{T(s)T(t)x - T(t)x}{s}= T(t)\lim\limits_{s\downarrow0}\dfrac{T(s)x - x}{s} = T(t)Ax.
+\end{equation}
+\item [IV] from II, we have $\lambda Ax_\lambda = T(\lambda)x - x,$
+\end{itemize}
+\end{proof}
+
+\begin{theorem}
+	If $A$ is a sectorial operator, then $-A$ is the in finitesimal generator of an analytic semigroup $\left\{e^{-t A}\right\}_{t \geq 0},$ where
+	$$
+	e^{-A t}=\frac{1}{2 \pi i} \int_{\Gamma}(\lambda+A)^{-1} e^{\lambda t} d \lambda
+	$$
+	where $\Gamma$ is a contour in $\rho(-\mathrm{A}) \quad$ with arg $\lambda \rightarrow \pm \theta$ as $|\lambda| \rightarrow \infty$ for
+	some $\theta \quad$ in $\quad(\pi / 2, \pi)$
+	Further e $^{-A t}$ can be continued analytically into a sector
+	$\{t \neq 0:|\arg t|<\varepsilon\} \quad$ containing the positive real axis, and if
+	$\operatorname{Re} \sigma(\mathrm{A})>\mathrm{a}, \quad$ i. e. $\quad$ if $\quad \operatorname{Re} \lambda>\mathrm{a} \quad$ when ever $\quad \lambda \in \sigma(\mathrm{A}),$ then for $t>0$
+	$$
+	\left\|e^{-A t}\right\| \leq C e^{-a t},\left\|A e^{-A t}\right\| \leq \frac{C}{t} e^{-a t}
+	$$
+	for some constant $C$.
+	
+	Finally $\frac{d}{d t} e^{-A t}=-A e^{-A t}$ for $t>0$
+	\end{theorem}
+
+\begin{proof}
+\begin{equation}
+	\|e^{-At}\| \leqslant \frac{1}{2\pi}\int_\Gamma\frac{M}{|\lambda - a|}e^{Re \lambda t}\mathrm{d}\lambda\\
+\end{equation}
+\end{proof}
+
+Let us regard $\gamma-\Delta$ as a closed operator in a Banach space. So define the
+$$
+A_{p}=\gamma-\Delta, \quad D\left(A_{p}\right)=\left\{u \in W^{2, p}(\Omega) ; \frac{\partial u}{\partial n}=0 \quad \text { on } \partial \Omega\right\}
+$$
+
+The operator $A_{p}$ is sectorial in $L^{p}(\Omega)$ and $\sigma(A) \subset\left\{z \in C ; \mathscr{R}(z)>\gamma_{0}\right\}$ for a positive number $\gamma_{0},$ where $\sigma(A)$ is the spectrum of $A_{p} .$ Then for $\beta \geqq 0$ the fractional powers $A_{p}^{\beta}$ of $A_{p}$ are defined, and the domain $X_{p}^{\beta}=D\left(A_{p}^{\beta}\right)$ is a Banach space under the norm $\|u\|_{X_{p}^{\beta}}=\left\|A_{p}^{\beta} u\right\|_{p} . \quad$ since $A_{p}$ is sectorial in $L^{p}(\Omega)$ the operator $-A_{p}$ generates the analytic semigroup $\left\{T_{p}(t)\right\} .$ 
+
+\begin{definition}
+	suppose $A$ is a sectorial operator and $Re(\sigma(A))>0,$ then for any $\alpha>0$, define 
+	\begin{equation}
+		A^{-\alpha} = \frac{1}{\Gamma(\alpha)}\int_0^{\infty}t^{\alpha-1}e^{-At}\mathrm{d}t.
+	\end{equation}
+\end{definition}
+
+Lemma ( [10] ). Suppose $\Omega \subset R^{n}$ a bounded domain with smooth boundary. Then for $0 \leqq \beta \leqq 1$, the following holds:
+$$
+\begin{array}{ll}
+	X_{p}^{\beta} \subset W^{k, q}(\Omega) & \text { when } k-n / q<2 \beta-n / p, \quad q \geqq p \\
+	X_{p}^{\beta} \subset C^{\nu}(\Omega) & \text { when } 0 \leqq v<2 \beta-n / p
+\end{array}
+$$
+and the inclusion is continuous.
+
+\section{$W^{1,1}$ embeding coefficient}
+let $\Omega(t) = \{x\in\mathrm{R}^n : |u(x)| > t\},$ 
+\begin{equation}
+	\chi_E(x)=
+	\begin{cases}
+		0,& x\not\in E,\\
+		1,& x\in E,
+	\end{cases}
+\end{equation}
+and $w_n$ is the volume of unit ball in $\mathrm{R}^n$, then
+\begin{equation}
+	\begin{split}
+		\|u\|_{L^{\frac{n}{n-1}}(\mathrm{R}^n)} &= \left(\int_{\mathrm{R}^n}|u(x)|^\frac{n}{n-1}\right)^{\frac{n-1}{n}}\\
+		&= \left(\int_{\mathrm{R}^n}\left(\int_{0}^{\infty}\chi_{\Omega(t)}\mathrm{d}t\right)^{\frac{n}{n-1}}\right)\\
+		&\leqslant \int_0^\infty\left(\int_{\mathrm{R}^n}\chi_{\Omega(t)}^{\frac{n}{n-1}}\mathrm{d}x\right)^{\frac{n-1}{n}}\mathrm{d}t\\
+		&= \int_0^{\infty}|\Omega(t)|^{\frac{n-1}{n}}\mathrm{d}t\\
+		&\leqslant n^{-1}w_n^{-\frac{1}{n}}\int_0^{\infty}|\partial\Omega(t)|\mathrm{d}t\\
+		&= n^{-1}w_n^{-\frac{1}{n}} \int_{\mathrm{R}^n}|\nabla u|.
+	\end{split}
+\end{equation}
+
+
+\section{a isomorphism to Laplace}
+\begin{theorem}
+Suppose $\Omega$ is a bounded, connected open set with smooth boundary, then
+\begin{equation}
+D := \left\{\phi\in W^{2,2}(\Omega)\mid \frac{\partial \phi}{\partial \boldsymbol{n}}\mid_{\partial\Omega} = 0, \int_\Omega\phi=0\right\}
+\cong V :=\left\{f\in L^2(\Omega)\mid \int_\Omega f = 0\right\}
+\end{equation}
+\end{theorem}
+\begin{proof}
+if $u\in H^1(\Omega)$ is a weak solution to the Neumann boundary problem 
+\begin{equation*}
+\left\{
+\begin{array}{ll}
+-\Delta u =f, & \text{ in } \Omega\\
+\frac{\partial u}{\partial \boldsymbol{n}} = 0, & \text{ on } \partial\Omega
+\end{array}\right.
+\end{equation*}
+is to say, 
+\begin{equation*}
+\int_\Omega\nabla u\cdot\nabla v\mathrm{d}x = \int_\Omega fv\mathrm{d}x,\text{ for all } v\in H^1(\Omega).
+\end{equation*}
+Define $-\Delta u\in D \mapsto f\in V$. It will be clear that $-\Delta$ is a isomorphic map between $D$ and $V$.
+By Lax-Milgram Theorem, for arbitrary $f\in V$, there exists a $u\in H^1(\Omega)$ solving the Poisson equation. In fact, elliptic regularity implies $u\in H^2(\Omega)$, and hence 
+$-\Delta$ is surjective; Obviously, the Laplace equation has only zero solution in $D$, and thus $-\Delta$ is injective. A direct norm inequality deduces $-\Delta$ is bounded, and consequently, $(-\Delta)^{-1}$ exists and is a continuous linear functional invoked by Banach inverse mapping theorem.
+\end{proof}
+\begin{example}
+a direct consequence is $\|u\|_{H^2}\leq C\|\Delta u\|_{L^2}$ for all $u\in D$.
+\end{example}
+
