@@ -850,3 +850,146 @@ $-\Delta$ is surjective; Obviously, the Laplace equation has only zero solution 
 a direct consequence is $\|u\|_{H^2}\leq C\|\Delta u\|_{L^2}$ for all $u\in D$.
 \end{example}
 
+
+\section{global existence of a chemotaxis system with indirect signal production}
+\begin{align}\label{sys: ks with isp}
+  u_t &= \nabla\cdot(\nabla u - u\nabla w) \\
+  \varepsilon v_t &= u - v \\
+  w_t &= \Delta w - w + v
+\end{align}
+
+testing the first equation in \eqref{sys: ks with isp} by $pu^{p-1}$ ($p>1$), integrating by parts and substituting $\Delta w$ by the third equation, we get
+\begin{align*}
+    \frac{\dd}{\dd t}\int u^p &= p\int u^{p-1}\nabla\cdot(\nabla u - u\nabla w)\\
+    &= -p(p-1)\int u^{p-2}|\nabla u|^2 + p(p-1)\int u^{p-1}\nabla w\cdot \nabla u\\
+    &= -\frac{4(p-1)}{p}\int |\nabla u^{\frac{p}2}|^2 - (p-1)\int u^p\Delta w\\
+    &= -\frac{4(p-1)}{p}\int |\nabla u^{\frac{p}2}|^2
+    - (p-1)\int u^pw - (p-1)\int u^pw_t + (p-1)\int u^pv\\
+    &\leq \frac{4(p-1)}{p}\int |\nabla u^{\frac{p}2}|^2
+     + \delta\int u^{p+1} + c(\delta,p)\int w_t^{p+1} + c(\delta,p)\int v^{p+1},
+\end{align*}
+with some $\delta>0$.
+Using Gagliardo-Nirenberg interpolation inequality
+\[
+    \|u\|_{p+1}^{p+1} = \|u^{\frac{p}2}\|_{\frac{2(p+1)}{p}}^{\frac{2(p+1)}{p}}
+    \leq c_{gn}(\|\nabla u^{\frac{p}{2}}\|^2_2\cdot\|u^{\frac{p}{2}}|_{\frac2p}^{\frac2p}
+     + \|u^{\frac{p}{2}}\|_{\frac2p}^{\frac{2(p+1)}{p}})
+     \leq c_m(\|\nabla u^{\frac{p}2}\|_2^2 + 1),
+\]
+and putting $\delta c_m < \frac{p-1}{p}$, testing the second equation by $(p+1)v^p$ and integrating by parts,
+\begin{equation*}
+  \varepsilon\frac{\dd}{\dd t}\int v^{p+1} = (p+1)\int v^p(u-v) \leq \delta\int u^{p+1} + c(\delta, p)\int v^{p+1}
+\end{equation*}
+we obtain 
+\begin{align*}
+  \frac{\dd}{\dd t}\int u^p + \varepsilon v^{p+1} &\leq 
+  -\frac{2(p-1)}{p}\int |\nabla u^{\frac{p}2}|^2
+  + c(p)\int |w_t|^{p+1} + c(p)\int v^{p+1}.
+\end{align*}
+Denote $\mathcal{F}(t) = \int u^p + \varepsilon v^{p+1}$, then 
+\[
+    \mathcal{F}'(t) \leq c\mathcal{F} + \|w_t\|_{p+1}^{p+1}
+\]
+and thus using Gronwall's inequality and parabolic $L_p$ estimates (or Amann's Sobolev maximal regularity theory[Amann 1995, Theorem 4.10.7 and Remark 4.10.9), this yields 
+\begin{align*}
+  \mathcal{F} &\leq \mathcal{F}(0)e^{ct} + c\int_0^te^{c(t-s)}\|w_t\|_{p+1}^{p+1}\dd s\\
+  &\leq \mathcal{F}(0)e^{ct} + c\int_0^t\|w_t\|_{p+1}^{p+1}\dd s\\
+  &\leq F(0)e^{ct} + ce^{ct}(\|w_0\|_\star^{p+1} + \int_0^t\|v\|_{p+1}^{p+1}\dd s)\\
+  &\leq ce^{ct}\int_0^t\mathcal{F}\dd s + F(0)e^{ct} + ce^{ct}\|w_0\|_\star^{p+1},
+\end{align*}
+and 
+\[
+    \int_0^t\mathcal{F}\dd s\leq c(t),
+\]
+and consequently, \(\mathcal{F}(t)\leq c(t)\).
+Here,
+\begin{align*}
+  \star &= (L^{p+1},D(\Delta-1))_{1-\frac{1}{p+1},p+1}\\
+  &\cong (L^{p+1}, W^2_{p+1,\mathcal{B}})_{1-\frac{1}{p+1},p+1}\\
+  &\cong B_{p,p,\mathcal{B}}^{\frac{2p}{p+1}}\\
+  &\cong\begin{cases}
+          W^{\frac{2p}{p+1}}_{p+1,\mathcal{B}}, & \mbox{if } p>1 \\
+          H^1_{2,\mathcal{B}}\cong W^1_{2,\mathcal{B}}, & p=1.
+        \end{cases}
+\end{align*}
+
+\textbf{a Lyapunov functional}
+
+testing the first equation in \eqref{sys: ks with isp} by $\ln u -w$ and integrating by parts, we get
+\[
+    \frac{\dd}{\dd t}\int u(\ln u - w)
+    = \int u_t(\ln u - w) + \int u_t - \int uw_t
+    = -\int u|\nabla (\ln u - w)|^2 - \int uw_t.
+\]
+substituting $u$ and $v_t$ by the last two equations, respectively, we calculate by integration by parts
+\begin{align*}
+    \int uw_t &= \int (\varepsilon v_t + u)w_t\\
+    &= \int \varepsilon(w_{tt} - \Delta w_t + w_t)w_t 
+    + \int (w_t - \Delta w + w)w_t\\
+    &= \frac{\varepsilon}{2}\frac{\dd}{\dd t}\int w_t^2 
+    + \varepsilon\int |\nabla w_t|^2
+    + (1+\varepsilon) \int w_t^2
+    + \frac{1}{2}\frac{\dd}{\dd t}\int w^2
+    + \varepsilon\int |\nabla w_t|^2.
+\end{align*}
+finally, we have 
+\[
+    \mathcal{E}' = -\mathcal{D},
+\]
+where
+\[
+    \mathcal{E} = \int u\ln u - \int uw + \frac{1}{2}\int |\nabla w|^2 
+    + \frac12\int w^2 + \frac{\varepsilon}{2}\int w_t^2
+\]
+and 
+\[
+    \mathcal{D} = \int u|\nabla(\ln u - w)|^2 + (1 + \varepsilon)\int w_t^2 
+    + \varepsilon\int |\nabla w_t|^2.
+\]
+
+Using Morse-Trudinger inequality, one can verify that if $M=\int u_0\in(0,4\pi)$, then there exists $c(M)>0$ such that \(\mathcal{F}\geq -c(M)\) and
+\[
+    \sup_{t>0}(\|u\ln u\|_1 + \|w\|_{W^1_2} + \|w_t\|_2) + \int_0^\infty\|w_t\|_{W^1_2}^2\dd t < \infty.
+\]
+
+\textbf{Uniformly boundedness under the subcritical condition.}
+
+similarly, we test the first equation in \eqref{sys: ks with isp} by $pu^{p-1}$, integrate by parts and substitute $\Delta w$ by the third equation,
+\begin{align*}
+  \frac{\dd}{\dd t}\int u^p &= -p(p-1)\int u^{p-2}|\nabla u|^2 
+  + p(p-1)\int u^{p-1}\nabla u\cdot\nabla w\\
+  &= -\frac{4(p-1)}{p}\int |\nabla u^{\frac{p}2}|^2 - (p-1)\int u^p\Delta w\\
+  &= -\frac{4(p-1)}{p}\int |\nabla u^{\frac{p}2}|^2 
+  - (p-1)\int u^p w - (p-1)\int u^pw_t + (p-1)\int u^p v.
+\end{align*} 
+Using H\"older inequality, Sobolev imbedding inequality and Young's inequality, we estimate
+\begin{align*}
+    \int u^pw_t &\leq\left(\int u^{\frac{4p}3}\right)^{\frac34}\|w_t\|_4\\
+    &\leq c_S\left(\int u^{\frac{4p}3}\right)^{\frac34}\|w_t\|_{W^1_2}^{\frac12}\|w_t\|_2^{\frac12}\\
+    &\leq \int u^{\frac{4p}{3}} + c\|w_t\|_{W^1_2}^2.
+\end{align*}
+Testing the second equation by $(p+1)v^p$, we have
+\[
+    \varepsilon\frac{\dd}{\dd t}\int v^{p+1} = (p+1)\int uv^p - (p+1)\int v^{p+1}.
+\]
+we gather above estimates and obtain 
+\begin{align*}
+    \mathcal{F}' + \mathcal{F} &\leq
+    - \frac{4(p-1)}{p}\int\|\nabla u^{\frac{p}{2}}\|^2
+    + \int u^{\frac{4p}3} + c\int u^{p+1} + c\|w_t\|_{W^1_2}^2 + c.
+\end{align*} 
+Noting a logarithm-type variant of Gagliardo-Nirenberg interpolation inequality,
+\[
+    \int u^{p+1} = \|u^{\frac{p}{2}}\|_{\frac{2(p+1)}{p}}^{\frac{2(p+1)}{2}}
+    \leq c_{GN}\|\nabla u^{\frac{p}{2}}\|_2^2\cdot
+    \|(u\ln u)^{\frac{p}{2}}\|_{\frac{2}{p}}^{\frac2p}
+    + c_{GN}\|u^{\frac{p}{2}}\|_{\frac2p}^{\frac{2(p+1)}{p}},
+\] 
+putting $p=3$ and use the Gronwall's inequality, we have
+\begin{align*}
+    \int u^3 + \varepsilon\int v^4 &\leq
+    e^{-t}(\int u^3 + \varepsilon v^4)(0)
+    + c(\int_0^te^{s-t}\|w_t\|_{W^1_2}^2\dd s + 1 - e^{-t})\\
+    &\leq (\int u^3 + \varepsilon v^4)(0)
+    + c(\int_0^t\|w_t\|_{W^1_2}^2\dd s + 1).
+\end{align*}
