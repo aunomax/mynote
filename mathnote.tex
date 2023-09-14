@@ -799,6 +799,34 @@ $$
 $$
 and the inclusion is continuous.
 
+\begin{example}
+estimate \(0=\Delta v - v + u\) subjected to homogeneous Neumann boundary conditions.
+if \(u\in L_1\), then 
+\[  
+    \|v\|_q<c(q) \quad\text{for each }q\in[1,\frac{n}{n-2})
+\]
+and
+\[
+    \|\nabla v\|_p<c(p)\quad\text{for each }p\in[1,\frac{n}{n-1}).
+\]
+\end{example}
+\begin{proof}
+  Using Laplace transform of operator semigroup, 
+  \[
+    v = R(1)u=(I-\Delta)^{-1} u = \int_0^\infty e^{(\Delta-1)t}u\dd t
+  \]
+  we estimate
+  \begin{align*}
+    \|v\|_q &\leq\int_0^\infty \|e^{(\Delta-1)t}\|_q\dd t\\
+    &\leq c\|u\|_1\int_0^\infty (1+t^{-\frac{n}{2}(1-\frac1q)})e^{-t}\dd t. 
+  \end{align*}
+  and
+  \begin{align*}
+    \|\nabla v\|_p & \leq \int_0^\infty\|\nabla e^{(\Delta-1)t}u\|_p\dd t\\
+    &\leq c\|u\|_1\int_0^\infty (1+t^{-\frac{1}{2} - \frac{n}{2}(1-\frac{1}{p})})e^{-t}\dd t    
+  \end{align*}
+\end{proof}
+
 \section{\texorpdfstring{$W^{1,1}$}{} embeding coefficient}
 let $\Omega(t) = \{x\in\mathrm{R}^n : |u(x)| > t\},$ 
 \begin{equation}
