@@ -187,7 +187,6 @@ $$\lim_{N\to\infty}\exp\sum_{i=1}^{N(k)}\frac{2}{p_i}\geq\lim_{n\to\infty}\sum_{
   \end{example}
  
 \begin{example}
-\hfill\\
 定义区间$(a,b)$上的实连续函数满足：
 $$\forall x,y \in(a,b),f(\frac{x+y}{2})\leq\frac{1}{2}(f(x)+f(y)).$$
 求证：$f$是凸函数。其中，所谓凸函数是指
@@ -211,8 +210,38 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
 即$\frac{p}{1+p},\frac{1}{1+p}\in S.$证毕。
 \end{example} 
  
-  \hfill\\
-
+\begin{example}
+a convex function \(f\) defined on an open interval \(I\) is continuous.
+\end{example}
+\begin{proof}
+Without loss of generality, we may assume that \(f\) is finite. Fix \(a\in I\), choose \(x\), \(y\in I\) such that both \(f(x)\) and \(f(y)\) are finite, as well as \(x<a<y\). denote \(\varepsilon = \min\{y-a, a-x\}\). Using 
+\begin{gather*}
+  f(\lambda a + (1-\lambda)y)\leq\lambda f(a) + (1-\lambda)f(y), \\
+  f(\lambda a + (1-\lambda)x)\leq\lambda f(a) + (1-\lambda)f(x),
+  \intertext{as well as}
+  f(a) \leq \lambda  f(a+\varepsilon-\varepsilon\lambda) + (1-\lambda)f(a - \varepsilon\lambda),
+\end{gather*}
+we get 
+\begin{align*}
+  \limsup_{z\searrow a}f(z) & = \limsup_{\lambda\nearrow1}f(\lambda a + (1-\lambda)y)\leq f(a), \\
+  \limsup_{z\nearrow a}f(z) & = \limsup_{\lambda\nearrow1}f(\lambda a + (1-\lambda)x)\leq f(a), \\
+  f(a) &\leq \liminf_{\lambda\nearrow1} (\lambda  f(a+\varepsilon-\varepsilon\lambda) + (1-\lambda)f(a - \varepsilon\lambda))\\
+  &\leq \liminf_{\lambda\nearrow1}\lambda  f(a+\varepsilon-\varepsilon\lambda) + \limsup_{\lambda\searrow1}(1-\lambda)f(a - \varepsilon\lambda)\\
+  &\leq \liminf_{z\searrow a}f(z),
+\intertext{as well as}
+  f(a) &\leq
+  \liminf_{\lambda\searrow 0}(\lambda f(a+\varepsilon-\varepsilon\lambda) + (1-\lambda)f(a - \varepsilon\lambda))\\
+  &\leq 
+  \limsup_{\lambda\searrow 0}\lambda f(a+\varepsilon-\varepsilon\lambda) 
+  + \liminf_{\lambda\searrow0}(1-\lambda)f(a - \varepsilon\lambda)\\
+  &\leq\liminf_{z\nearrow a}f(z).
+\end{align*}
+Gathering the previous four inequalities leads us to
+\[
+    \lim_{z\to a} f(z) = f(a),
+\]
+which implies \(f\) is continuous over \(I\).
+\end{proof}
 
 
 \section{微分}
@@ -1204,4 +1233,4 @@ It is not uncommon for zero to be excluded from the natural numbers.  In fact, s
 For the purposes of these notes, zero will be included within the set of natural numbers.
 \end{remark}
 
-%-=-=-= DEFINITION
+%-=-=-= DEFINITION 
