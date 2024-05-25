@@ -10,7 +10,9 @@ as \begin{equation}
 \end{equation}
 
 \section{the interpolation-trace lemma}
-\begin{lemma}\cite{Diaz1985}\label{the interpolation-trace lemma}
+\begin{lemma}
+	\cite{Diaz1985}
+	\label{the interpolation-trace lemma}
 	Suppose $G$ is a bounded open subset of $R^{N}, N \geq 1,$ with a $C^{1}$ houndary $\partial G$ and $0 \leq \sigma \leq q<\infty .$ Then there exists a constant $C$ depending on $\sigma$, $q$ and $G$ such that for any $v \in W^{1, q+1}(G)$ we have
 (2.12)
 \begin{equation*}
@@ -1021,3 +1023,120 @@ putting $p=3$ and use the Gronwall's inequality, we have
     &\leq (\int u^3 + \varepsilon v^4)(0)
     + c(\int_0^t\|w_t\|_{W^1_2}^2\dd s + 1).
 \end{align*}
+
+\section{\texorpdfstring{$L^2$}{L2} theory}
+
+consider \cite{Winkler2023}
+\begin{equation}
+	v_t = \Delta v - v + f,
+\end{equation}
+with boundary conditions
+\begin{equation*}
+	\frac{\partial v}{\partial\nu} = 0,
+\end{equation*}
+where 
+\begin{equation*}
+	f\in L^\infty((0,T); L^1(\Omega)),
+\end{equation*}
+using \[
+\nabla v \cdot \nabla \Delta v=\Delta\left(\frac{1}{2}|\nabla v|^2\right)-\left|D^2 v\right|^2,
+\]
+we get
+\begin{align*}
+	\frac{\dd}{\dd t}\int|\nabla v|^p 
+	&= p\int |\nabla v|^{p-2}\nabla v\cdot \nabla v_t 
+	= p\int |\nabla v|^{p-2} (\nabla \Delta v - \nabla v + \nabla f) \\
+	&= \frac12\int |\nabla v|^{p-2}\Delta (|\nabla v|^2) - p\int |\nabla v|^{p-2}|D^2v|^2 
+		-p\int |\nabla v|^p + p\int |\nabla v|^{p-2}\nabla v \nabla f,
+\end{align*}
+by additional assumption of convex domain 
+or a pointwise estimate of boundary trace alongwith trace imbedding lemma and Sobolev imbedding inequality,
+we can control the first term of right hand, and estimate
+\begin{align*}
+	p\int |\nabla v|^{p-2}\nabla v \cdot \nabla f 
+	&= - p\int \nabla\cdot(|\nabla v|^{p-2}\nabla v) f\\
+	&= -p(p-2)\int |\nabla v|^{p-4}\nabla v\cdot (D^2v\nabla v) f 
+		- p \int |\nabla v|^{p-2}\Delta v f\\
+	&\leq c(p,n)\int |\nabla v|^{p-2} |D^2v| |f|\\
+	&\leq c(p,n)\left(\int |\nabla v|^{p-2}|D^2v|^2\right)^{\frac12}
+	\left(\int |\nabla v|^{p-2}f^2\right)^{\frac12}\\
+	&= c(p,n) \|\nabla w\|_{L^2} \left(\int |\nabla v|^{p-2}f^2\right)^{\frac12}
+\end{align*}
+here, 
+\[
+	w = |\nabla v|^{\frac{p}{2}},	
+\]
+let $q\in(2,p)$ to be specified below, we estimate
+\begin{align*}
+	\left(\int |\nabla v|^{p-2}f^2\right)^{\frac12}
+	&\leq \left(\int |\nabla v|^{\frac{(p-2)q}{q-2}}\right)^{\frac{q-2}{2q}}
+	\left(\int f^q\right)^{\frac{1}{q}}\\
+	&= \|w\|_{L^{\frac{2(p-2)q}{p(q-2)}}}^{\frac{p-2}{p}}
+		\|f\|_{L^q},
+\end{align*}
+using G-N inequality
+\[
+	\|u\|_{L^{\frac{2(p-2)q}{p(q-2)}}}
+	\leq C_g \|u\|_{W^{1,2}}^\theta\|u\|_{L^2}^{1-\theta},\quad u\in W^{1,2}, 
+\]
+with
+\[
+	\frac{p(q-2)}{2(p-2)q} = \theta\left(\frac12-\frac1n\right) + \frac{1-\theta}{2}.
+\]
+i.e.,
+\[
+	\theta = \frac{n(p-q)}{(p-2)q},
+\]
+we get
+\begin{equation*}
+	p\int |\nabla v|^{p-2}\nabla v \cdot \nabla f 
+	\leq c(p,n) \|w\|_{W^{1,2}}^{1+\frac{n(p-q)}{pq}}
+		\|w\|_{L^2}^{\frac{p-2}{p} - \frac{n(p-q)}{pq}}
+		\|f\|_{L^q}.
+\end{equation*}
+Fixing 
+\[
+	q = \frac{(n+2)p}{n+p},
+\]
+which is such that
+\[
+	\alpha := \frac{2}{1-\frac{n(p-q)}{pq}} = q,\quad \theta = \frac{n}{n+2},
+\]
+and 
+\begin{equation}\label{eq: gn inequality Lpw12L2}
+	\|u\|_{L^{\frac{2(n+2)}{n}}} \leq C_g \|u\|_{W^{1,2}}^{\frac{n}{n+2}}\|u\|_{L^2}^{\frac{2}{n+2}},
+\end{equation}
+using Young inequality, we get
+\begin{align*}
+	p\int |\nabla v|^{p-2}\nabla v \cdot \nabla f 
+	&\leq \varepsilon \|w\|_{W^{1,2}}^2
+		\|w\|_{L^2}^{\left(\frac{p-2}{p} - \frac{n(p-q)}{pq}\right)\alpha}
+		\|f\|_{L^q}^\alpha\\
+	&= \varepsilon \|w\|_{W^{1,2}}^2
+	+ c(\varepsilon) \|w\|_{L^2}^{\frac{2(p-2)}{n+p}}
+	\|f\|_{L^q}^q,
+\end{align*}
+and therefore
+\begin{equation*}
+	\mathcal{F}' + \frac1C F \leq C \mathcal{F}^{\frac{p-2}{n+p}} \|f\|_q^q, 
+\end{equation*} 
+where
+\[
+	\mathcal{F} := \int w^2.
+\]
+So we obtain by a direct application of ODE comparable method,
+\[
+	\mathcal{F}^{\frac{n+2}{n+p}} \leq C \int_0^T\|f\|_q^q,
+\]
+and consequently,
+\begin{align*}
+	\sup_{(0,T)}\int |\nabla v|^p + \int_0^T\int |\nabla v|^{p-2}|D^2 v|^2 
+	\leq C \left(\int_0^T\int |f|^{\frac{(n+2)p}{n+p}}\right)^{\frac{n+p}{n+2}}
+\end{align*}
+and by \eqref{eq: gn inequality Lpw12L2},
+\begin{equation*}
+	\left(\int_0^T\int |\nabla v|^{\frac{(n+2)p}{n}}\right)^{\frac{n}{n+2}} 
+	\leq C \left(\int_0^T\int |f|^{\frac{(n+2)p}{n+p}}\right)^{\frac{n+p}{n+2}}. 
+\end{equation*}
+
+\section{quadratic logistic dampening prevents chemotactic collapse}
