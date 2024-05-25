@@ -1025,6 +1025,7 @@ putting $p=3$ and use the Gronwall's inequality, we have
 \end{align*}
 
 \section{\texorpdfstring{$L^2$}{L2} theory}
+\label{sec: L2 theory}
 
 consider \cite{Winkler2023}
 \begin{equation}
@@ -1060,7 +1061,7 @@ we can control the first term of right hand, and estimate
 	&\leq c(p,n)\int |\nabla v|^{p-2} |D^2v| |f|\\
 	&\leq c(p,n)\left(\int |\nabla v|^{p-2}|D^2v|^2\right)^{\frac12}
 	\left(\int |\nabla v|^{p-2}f^2\right)^{\frac12}\\
-	&= c(p,n) \|\nabla w\|_{L^2} \left(\int |\nabla v|^{p-2}f^2\right)^{\frac12}
+	&= c(p,n) \|\nabla w\|_{L^2} \left(\int |\nabla v|^{p-2}f^2\right)^{\frac12},
 \end{align*}
 here, 
 \[
@@ -1140,3 +1141,53 @@ and by \eqref{eq: gn inequality Lpw12L2},
 \end{equation*}
 
 \section{quadratic logistic dampening prevents chemotactic collapse}
+
+consider 
+\begin{equation}
+	\begin{cases}
+		u_t = \Delta u - \nabla\cdot(u\nabla v) + \mu u (1-u), \\
+		v_t = \Delta v - v + u,\\
+		\partial_\nu u = \partial_\nu v = 0,
+	\end{cases}
+\end{equation}
+in a bounded domain $\Omega\subset\mathbb{R}^2$ with smooth boundary.
+It is obvious that
+\[
+	\int_t^{t+\tau}\int u^2 < C,
+\]
+for any $t\in(0, T-\tau)$ with $\tau = \min\{1, T/2\}$.
+By conclusions in Section~\ref{sec: L2 theory}, 
+we have 
+\begin{align*}
+	\sup_{(0,T)}\|\nabla v\|_{L^2} 
+	+ \sup_{(0,T-\tau)}\int_t^{t+\tau}\int |D^2v|^2 
+	+ \sup_{(0, T-\tau)}\int_t^{t+\tau}\int |\nabla v|^4 < C.
+\end{align*}
+Let 
+\[
+	\phi(\xi) := \int_0^\xi \ln^\alpha(1+\eta) \dd\eta,\quad\alpha \in (0,2],
+\]
+then
+\begin{align*}
+	\frac{\dd}{\dd t}\int\phi(u)
+	&= \int \nabla\cdot(\nabla u - u\nabla v) \ln^\alpha(1+u) + \mu\int u(1-u)\ln^\alpha(1+u)\\
+	&= - \int \frac{\alpha|\nabla u|^2\ln^{\alpha-1}(1+u)}{1+u}
+		+ \int \frac{\alpha u}{1+u} \ln^{\alpha-1}(1+u)\nabla u\cdot\nabla v  + \mu\int u(1-u)\ln^\alpha(1+u)\\
+	&\leq - \alpha \int \frac{|\nabla u|^2\ln^{\alpha-1}(1+u)}{1+u}
+		+ \alpha\left(\int \frac{|\nabla u|^2\ln^{\alpha-1}}{1+u}\right)^{\frac12}
+			\left(\int \frac{|\nabla v|^2u^2\ln^{\alpha-1}(1+u)}{1+u}\right)^{\frac12}\\
+	&\quad + \mu\int u(1-u)\ln^\alpha(1+u)\\
+	&\leq \frac{\mu}{2}\int u^2\ln^{2\alpha-2}(1+u) + c(\alpha, \mu)\int|\nabla v|^4 
+		+ \mu\int u(1-u)\ln^\alpha(1+u)\\
+	&\leq c(\alpha, \mu)\int|\nabla v|^4 - \int\phi(u) + c(\alpha, \mu),
+\end{align*}
+which implies
+\begin{align*}
+	\int u\ln^\alpha(1+u) \leq C\int \phi(u) + C \leq C.
+\end{align*}
+combining with a logarithmic variant of G-N inequality, one can get 
+\[
+	\|u\|_p + \|\nabla v\|_{2p} < C(p), \quad p>1,
+\]
+which implies uniform-in-time boundedness of $u$ 
+by well-established parabolic regularity theory in the context of chemotaxis models.
