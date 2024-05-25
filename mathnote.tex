@@ -1191,3 +1191,57 @@ combining with a logarithmic variant of G-N inequality, one can get
 \]
 which implies uniform-in-time boundedness of $u$ 
 by well-established parabolic regularity theory in the context of chemotaxis models.
+
+\textbf{is the title of this section right when $n\geq3$?}
+
+\begin{align*}
+	\frac2n\frac{\dd}{\dd t}\int u^{\frac n2} 
+	&= \int u^{\frac n2-1}\nabla\cdot(\nabla u - u\nabla v) + \mu\int u^{\frac n2} - \mu\int u^{\frac n2+1}\\
+	&= -\frac{n-2}{2}\int u^{\frac n2-2}|\nabla u|^2 
+		+ \frac{n-2}{2}\int u^{\frac n2-1}\nabla u\cdot\nabla v + \mu\int u^{\frac n2} - \mu\int u^{\frac n2+1}
+\end{align*}
+\begin{align*}
+	\frac{n-2}{2}\int u^{\frac n2-1}\nabla u\cdot\nabla v
+	&\leq c(n) \left(\int u^{\frac n2-2}|\nabla u|^2\right)^{\frac12}
+		\left(\int u^{\frac n2}|\nabla v|^2\right)^{\frac12}\\
+	&\leq c(n) \left(\int u^{\frac n2-2}|\nabla u|^2\right)^{\frac12}
+		\left(\int u^{\frac{n+2}{2}}\right)^{\frac{n}{2(n+2)}}
+		\left(\int |\nabla v|^{n+2}\right)^{\frac1{n+2}}\\
+	&\leq c\|\nabla u^{\frac n4}\|_2
+		\cdot \|u^{\frac{n+2}{2}}\|_1^{\frac{n}{2(n+2)}}
+		\cdot \||\nabla v|^{\frac n2}\|_2^{\frac{4}{(n+2)n}}
+		\cdot \||\nabla v|^{\frac n2}\|_{W^{1,2}}^{\frac{2}{n+2}},
+\end{align*}
+
+\begin{align*}
+	\frac{\dd}{\dd t}\int |\nabla v|^n 
+	= \frac{n}{2} \int |\nabla v|^{n-2}\Delta |\nabla v|^2 - n\int |\nabla v|^{n-2}|D^2v|^2
+		- n\int |\nabla v|^n 
+		+ n\int |\nabla v|^{n-2}\nabla v\cdot\nabla u,
+\end{align*}
+\begin{align*}
+	\frac{\dd}{\dd t}\int |\nabla v|^n 
+		+ n\int |\nabla v|^n
+	\leq - n\int |\nabla v|^{n-2}|D^2v|^2
+		+ n\int |\nabla v|^{n-2}\nabla v\cdot\nabla u,
+\end{align*}
+let 
+\[
+	w=|\nabla v|^{\frac n2},
+\]
+\begin{align*}
+	n\int |\nabla v|^{n-2}\nabla v\cdot\nabla u
+	&= -n\int \nabla\cdot(|\nabla v|^{n-2}\nabla v)u \\
+	&= -n\int((n-2)|\nabla v|^{n-4}\nabla v \cdot (D^2v\cdot\nabla v) + |\nabla v|^{n-2}\Delta v) u\\
+	&\leq c(n)\int |\nabla v|^{n-2}|D^2v|u\\
+	&\leq \|\nabla|\nabla v|^{\frac{n}{2}}\|_2\left(\int |\nabla v|^{n-2}u^2\right)^{\frac12}\\
+	&\leq c(n)\|\nabla w\|_2\left(\int w^{\frac{2(n-2)}{n}u^2}\right)^{\frac12}\\
+	&\leq c(n)\|\nabla w\|_2 \left(\int w^{\frac{2(n+2)}{n}}\right)^{\frac{n-2}{2(n+2)}}
+		\left(\int u^{\frac{n+2}{2}}\right)^{\frac{2}{n+2}}\\
+	&= c(n)\|\nabla w\|_2 
+		\cdot \|w\|_{\frac{2(n+2)}{n}}^{\frac{n-2}{n}}
+		\cdot \|u\|_{\frac{n+2}{2}}\\
+	&\leq c(n)\|w\|_{W^{1,2}}^{\frac{2n}{n+2}}
+		\cdot \|w\|_2^{\frac{2(n-2)}{n(n+2)}}
+		\cdot \|u\|_{\frac{n+2}{2}}
+\end{align*}
