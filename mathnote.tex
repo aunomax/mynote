@@ -1192,7 +1192,22 @@ combining with a logarithmic variant of G-N inequality, one can get
 which implies uniform-in-time boundedness of $u$ 
 by well-established parabolic regularity theory in the context of chemotaxis models.
 
-\textbf{is the title of this section right when $n\geq3$?}
+or
+
+denote 
+\[
+	\psi(\xi) := \int_0^\xi \frac{\alpha \eta}{1+\eta}\ln^{\alpha-1}(1+\eta),
+\]
+then 
+\begin{align*}
+	\int \frac{\alpha u}{1+u} \ln^{\alpha-1}(1+u)\nabla u\cdot\nabla v
+	&= - \int \psi(u) \Delta v\\
+	&\leq \varepsilon\int \psi^2(u) + c(\varepsilon)\int |\Delta v|^2\\
+	&\leq \varepsilon \int u^2\ln^{2\alpha -2}(1+u) + c(\varepsilon, n) \int |D^2 v|^2,
+\end{align*}
+
+
+\subsection{is the title of this section right when \texorpdfstring{$n\geq3$}{n>=3}?}
 
 \begin{align*}
 	\frac2n\frac{\dd}{\dd t}\int u^{\frac n2} 
@@ -1244,4 +1259,38 @@ let
 	&\leq c(n)\|w\|_{W^{1,2}}^{\frac{2n}{n+2}}
 		\cdot \|w\|_2^{\frac{2(n-2)}{n(n+2)}}
 		\cdot \|u\|_{\frac{n+2}{2}}
+\end{align*}
+\subsection{一个问题}
+\begin{align*}
+	\|u\|_{n/2} < C \Rightarrow \|u\|_\infty < C ?
+\end{align*}
+
+let 
+\[
+	\phi(\xi):= \int_0^\xi \eta^{\frac{n}{2}-1}\ln^{\alpha}(e+\eta), \quad\alpha>1,
+\]
+then
+\[
+	\frac{\xi^{\frac{n}{2}}\ln^{\alpha}(e+\xi)}{C} - C 
+	\leq \phi(\xi) 
+	\leq \xi^{\frac{n}{2}}\ln^{\alpha}(e+\xi),
+\]
+calculate
+\begin{align*}
+	\frac{\dd}{\dd t}\int \phi(u) 
+	&= \int u^{\frac{n}{2} - 1}\ln^{\alpha}(e+u) \nabla\cdot(\nabla u - u\nabla v)
+		+ \mu\int u^{\frac{n}{2}}(1-u)\ln^{\alpha}(e+u)\\
+	&= -\frac{n-2}{2}\int |\nabla u|^2u^{\frac{n}{2}-2}\ln^\alpha(e+u)
+		- \alpha\int\frac{u^{\frac{n}{2}-1}\ln^{\alpha-1}(e+u)}{e+u}|\nabla u|^2\\
+		&\quad + \frac{n-2}{2}\int u^{\frac{n}{2}-1}\ln^\alpha(e+u)\nabla u\cdot\nabla v 
+			+ \alpha\int \frac{u^{\frac{n}{2}}\ln^{\alpha-1}(e+u)}{e+u} \nabla u \cdot \nabla v\\
+		&\quad + \mu\int u^{\frac{n}{2}}(1-u)\ln^{\alpha}(e+u),
+\end{align*}
+Noting
+\begin{align*}
+	\|u\|_{n/2} < C 
+	&\Rightarrow \sup_{(0,T-\tau)}\int_t^{t+\tau} \int u^{\frac{n+2}{2}} < C \\
+	&\Rightarrow \|\nabla v\|_n 
+		+ \sup_{(0,T-\tau)}\int_t^{t+\tau}\int |\nabla v|^{n+2}
+		+ \sup_{(0,T-\tau)}\int_t^{t+\tau}\int  |\nabla v|^{n-2}|D^2v|^2 < C,
 \end{align*}
