@@ -20,7 +20,7 @@ as \begin{equation}
 	\]
 \end{proposition}
 \begin{proof}
-	it suffices to show that for any $\phi\in C_0^\infty(\Omega)$,
+	it suffices to show that for any $\phi\in C_0^\infty(\mathbb{R}^2)$,
 	\[
 		\lim_{t\searrow0}\int_{\mathbb{R}^2}K*f\phi = \int_{\mathbb{R}^2}f\phi.
 	\]
@@ -1478,3 +1478,153 @@ Here, if $T_m < \infty$, then
 	\limsup_{t\nearrow T_m} (u,v)_X = \infty.
 \]
 
+\section{comparable criterion of elliptic equation under Neumann boundary conditions}
+
+\begin{lemma}
+	Let $u\in H^1(\Omega)$ be the weak solution of the following elliptic equation
+	\begin{equation*}
+		\begin{cases}
+			-\Delta u = u = f, & \Omega,\\
+			\frac{\partial u}{\partial \nu} = 0, & \partial\Omega,
+		\end{cases}
+	\end{equation*} 
+	i.e.,
+	\begin{align*}
+		\int \nabla u\cdot\nabla \phi + \int u\phi = \int f\phi,\quad \phi\in H^1(\Omega),
+	\end{align*}
+	where $f\in L^2(\Omega)$.
+	If $f\geq0$ in the sense of distribution,
+	then $u\geq0$ a.e..
+\end{lemma}
+\begin{proof}
+	let $\underline{u} = \min\{u,0\}$, 
+	set $\phi = \underline{u}$, 
+	then
+	\begin{align*}
+		\int \nabla u\cdot\nabla\phi + \int_\Omega u\phi 
+		= \int|\nabla\phi|^2 + \int_\Omega\phi^2 
+		= \int f\phi \leq 0, 
+	\end{align*}
+	which implies $\phi = 0$ a.e., i.e., $u\geq0$ a.e..
+\end{proof}
+
+\section{Helly's compactness theorem}
+\begin{theorem}
+	单调有界序列存在子列点点收敛.
+\end{theorem}
+证明思路:
+\begin{itemize}
+	\item 先构造在有理点处逐点收敛的子序列
+	\begin{itemize}
+		\item 利用有界性逐点迭代构造
+		\item 取对角线序列
+	\end{itemize}
+	\item 利用单调性扩充定义
+	\begin{itemize}
+		\item 任取无理点, 若该点处的有理点左右极限相等, 则可将该点扩充到定义域中,
+		\item 如若不然, 由单调函数的不连续点至多可数, 
+		再利用第一步的技巧, 通过取对角线子列的办法, 
+		把剩下的所有无理点扩充到定义中, 得到点点收敛的子序列.
+	\end{itemize}
+\end{itemize}
+
+\section{Morser's iteration}
+
+\begin{lemma}
+	suppose $u\in C^(\overline{\Omega}\times[0,T))\cap C^{2,1}(\Omega\times[0,T))$ satisfy 
+\begin{equation*}
+	\begin{cases}
+		u_t \leq \Delta u + \nabla\cdot F, & \Omega,\\
+		\nabla u\cdot n \leq 0, \quad F\cdot n \leq 0, & \partial\Omega,
+	\end{cases}
+\end{equation*}
+if 
+\[
+	f\in L^\infty((0,T); L^q(\Omega)),\quad q>n,
+\]
+then
+$u\in L^\infty(\Omega\times(0,T))$.
+\end{lemma}
+\begin{proof}
+	\begin{align*}
+		\frac{\dd}{\dd t}\int u^p &+ p(p-1)\int u^{p-1}|\nabla u|^2 
+		\leq - p(p-2)\int u^{p-2}\nabla u\cdot F\\
+		&\leq p(p-1)\left(\int u^{\frac{q(p-2)}{q-1}}|\nabla u|^{\frac{q}{q-1}}\right)^{\frac{q-1}{q}}
+			\left(\int F^q\right)^{1/q}\\
+		&= p(p-1)\left(\int \left(u^{\frac{p-2}{2}}|\nabla u|\right)^{\frac{q}{q-1}}
+			\cdot u^{\frac{q(p-2)}{2(q-1)}}\right)^{\frac{q-1}{q}}\|F\|_q\\
+		&\leq p(p-1)\left(\int u^{p-2}|\nabla u|^2\right)^{\frac12}
+			\cdot\left(\int u^{\frac{q(p-2)}{q-2}}\right)^{\frac{q-2}{2q}}\|F\|_q,
+	\end{align*}
+	\begin{align*}
+		\left(\int u^{\frac{q(p-2)}{q-2}}\right)^{\frac{q-2}{2q}}
+		&= \|u^{\frac{p}{2}}\|_{\frac{2q(p-2)}{p(q-2)}}^{\frac{p-2}{p}}\\
+		&\leq C\|\nabla u^{\frac{p}{2}}\|_2^{\frac{(p-2)\alpha}{p}}\cdot\|u^{\frac{p}{2}}\|_1^{\frac{(1-\alpha)(p-2)}{p}} + C\|u^{\frac{p}{2}}\|_1^{\frac{p-2}{p}},
+	\end{align*}
+	with 
+	\[
+		\frac{p(q-2)}{2q(p-2)} = \alpha\left(\frac12-\frac1n\right) + 1-\alpha,
+	\]
+	noting $q>n$ ensures that
+	\[
+		\kappa := \frac{(p-2)\alpha}{p} = \frac{\frac{p-2}{p}-\frac{q-2}{2q}}{\frac12+\frac1n} <\gamma < 1,
+		\quad p > 1,
+	\]
+	we get
+	\begin{align*}
+		\frac{\dd}{\dd t}\int u^p &+ \frac{4(p-1)}{p}\int |\nabla u^{\frac{p}{2}}|^2
+		\leq Cp(p-1)\left(\int u^{p-2}|\nabla u|^2\right)^{\frac12+\frac\kappa2}\cdot\|u^{\frac{p}{2}}\|_1^{\frac{p-2}{p} - \kappa}\cdot\|F\|_q \\
+		&\quad +Cp(p-1) \left(\int u^{p-2}|\nabla u|^2\right)^{\frac12}\cdot\|u^{\frac{p}{2}}\|_1^{\frac{p-2}{p}}\cdot\|F\|_q \\
+		&\leq \frac{2(p-1)}{p}\int |\nabla u^{\frac{p}{2}}|^2 
+			+ C(F)p^2\|u^{\frac{p}{2}}\|_1^{\frac{2(p-2)}{p(1-\kappa)}-\frac{2\kappa}{1-\kappa}}
+			+ C(F)p^2\|u^{\frac{p}{2}}\|_1^{\frac{2(p-2)}{p}}.
+	\end{align*}
+	Using 
+	\[
+		\|f\|_2\leq C\|\nabla f\|_2^{\frac{n}{n+2}}\cdot\|f\|_1^{\frac{2}{n+2}} + \|f\|_1,\quad f\in W^{1,2}(\Omega),
+	\]
+	we arrive 
+	\begin{align*}
+		\frac{\dd}{\dd t}\int u^p &+ \int  u^{p}
+			\leq Cp^2 \|u^{\frac{p}{2}}\|_1^{\frac{2(p-2)}{p(1-\kappa)}-\frac{\kappa}{1-\kappa}}
+				+ Cp^2\|u^{\frac{p}{2}}\|_1^{\frac{2(p-2)}{p}}
+				+ C\|u^{\frac{p}{2}}\|_1^2,
+	\end{align*}
+	Let
+	\[
+		M_j(t) := \int u^{2^j} + 1, \quad j\geq1,
+	\]
+	noting 
+	\[
+		\frac{2(p-2)}{p(1-\kappa)}-\frac{\kappa}{1-\kappa} < 2,\quad p>2,
+	\]
+	we have 
+	\[
+		M_j' + M_j \leq C4^jM_{j-1}^2,
+	\]
+	which implies 
+	\begin{align*}
+		N_j := \sup_{t\in(0,T)}M_j \leq \max\left\{ M_j(0), C4^jM_{j-1}^2\right\},
+	\end{align*}
+	and hence
+	\[
+		N_j \leq \max\left\{ M_j(0), C4^jN_{j-1}^2\right\}.
+	\]
+	If there exist countably many $j$ such that $N_j \leq M_j(0)$, 
+	then $\|u\|_\infty \leq \|u_0\|_\infty + 1$.
+	On the other hand, there exists $j_0$ such that for any $j>j_0$, 
+	\[
+		N_j \leq C4^jN_{j-1}^2,
+	\]
+	it is no harm to assume that $j_0=1$ since we can appropriately enlarge the value of $C$.
+	Therefore,
+	\[
+		N_j\leq C^{\sum_{i=1}^j2^{i-1}}4^{\sum_{i=1}^{j}(j+1-i)2^{i-1}}N_1^{2^{j-1}}
+			\leq C^{2^j}4^{2^{j+1}}N_1^{2^{j-1}},
+	\]
+	and 
+	\[
+		\|u\|_\infty\leq\limsup_{j\to\infty}N_j^{2^{-j}}
+			\leq\limsup_{j\to\infty}C4^2N_1^{2^{-1}}=16C\sqrt{N_1}.
+	\]
+\end{proof}
