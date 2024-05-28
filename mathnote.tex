@@ -48,6 +48,45 @@ as \begin{equation}
 	the above two estimates entail the desired conclusion.
 \end{proof}
 
+\begin{proposition}
+	let $I\in\mathbb{R}$ be an open interval. suppose $f: I\mapsto\mathbb{R}$ be a convex function,
+	i.e.,
+	\[
+		f(\lambda a + (1-\lambda)b) \leq \lambda f(a) + (1-\lambda)f(b),\quad a,b\in I, \quad \lambda\in(0,1),
+	\]
+	then $f\in C(I,R)$.
+\end{proposition}
+\begin{proof}
+	fix $a\in I$.
+	if $a<b$, then we have by putting $\lambda\nearrow1$
+	\[
+		\limsup_{\lambda\nearrow1}f(\lambda a + (1-\lambda)b) = \limsup_{c\searrow a}f(c)\leq f(a),
+	\]
+	if $a>b$, then we have similarly
+	\[
+		\limsup_{\lambda\nearrow1}f(\lambda a + (1-\lambda)b) = \limsup_{c\nearrow a}f(c)\leq f(a),
+	\]
+	particularly, using
+	\[
+		f(a) = f(\lambda(a-\varepsilon(1-\lambda)) + (1-\lambda)(a+\varepsilon\lambda))
+			\leq \lambda f(a-\varepsilon(1-\lambda)) + (1-\lambda)f(a+\varepsilon\lambda),
+			\quad 0<\varepsilon<<1,
+	\]
+	we have by putting $\lambda\nearrow1$,
+	\[
+		f(a)\leq \liminf_{\lambda\nearrow1}\lambda f(a-\varepsilon(1-\lambda)) 
+			+ \limsup_{\lambda\nearrow1}(1-\lambda)f(a+\varepsilon\lambda)
+			= \liminf_{c\nearrow a}f(c),
+	\]
+	and by putting $\lambda\searrow0$,
+	\[
+		f(a)\leq \liminf_{\lambda\searrow0}\lambda f(a-\varepsilon(1-\lambda)) 
+			+ \limsup_{\lambda\searrow0}(1-\lambda)f(a+\varepsilon\lambda)
+			= \liminf_{c\searrow a}f(c).
+	\]	
+	all of four estimates above imply the continuity of $f$ at $a$.
+\end{proof}
+
 \section{the interpolation-trace lemma}
 \begin{lemma}
 	\cite{Diaz1985}
@@ -1654,3 +1693,105 @@ $u\in L^\infty(\Omega\times(0,T))$.
 			\leq\limsup_{j\to\infty}C4^2N_1^{2^{-1}}=16C\sqrt{N_1}.
 	\]
 \end{proof}
+
+\section{De Giorgi iteration}
+
+\begin{lemma}
+	suppose $u\in C^0(\overline{\Omega}\times[0,T))\cap C^{2,1}(\Omega\times[0,T))$ satisfy 
+\begin{equation*}
+	\begin{cases}
+		u_t \leq \Delta u + \nabla\cdot F, & \Omega,\\
+		\nabla u\cdot n \leq 0, \quad F\cdot n \leq 0, & \partial\Omega,
+	\end{cases}
+\end{equation*}
+if 
+\[
+	f\in L^p(\Omega)\times(0,T)),\quad p>n+2,
+\]
+then
+$u\in L^\infty(\Omega\times(0,T))$.
+\end{lemma}
+
+\begin{proof}
+	\begin{align*}
+		-\int(u-k)_+^2(0) + \int (u-k)_+^2
+		&= \iint (u-k)_+u_t = \iint (u-k)_+\Delta u + \iint(u-k)_+\nabla\cdot F\\
+		&\leq - \iint |\nabla(u-k)_+|^2 - \iint \nabla(u-k)_+\cdot F\\
+		&\leq - \iint |\nabla(u-k)_+|^2 
+			- \left(\iint |\nabla(u-k)_+|^2\right)^{\frac12}
+			\cdot\left(\iint |F|^p\right)^{\frac1p}
+			\cdot |\{u\geq k\}|^{\frac{1}{2}-\frac1p},
+	\end{align*}
+using 
+\[
+	\|f\|_{\frac{2(n+2)}{n}}\leq C\|\nabla f\|_2^{\frac{n}{n+2}}\cdot\|f\|_2^{\frac{2}{n+2}} 
+		+ C\|f\|_2,	\quad f\in W^{1,2},
+\]
+we have
+\begin{align*}
+	\left(\iint (u-k)_+^{\frac{2(n+2)}{n}}\right)^{\frac{n}{n+2}}
+	\leq \int(u-k)_+^2(0) + \|F\|_p^2\cdot|\{u\geq k\}|^{1-\frac2p}.
+\end{align*}
+fix $l$ sufficiently large such that 
+\[
+	\int (u-l)_+^2(0) = 0,
+\]
+and noting that for any $h>k$,
+\[
+	\left(\iint (u-k)_+^{\frac{2(n+2)}{n}}\right)^{\frac{n}{n+2}}
+	\geq (h-k)^2|\{u\geq h\}|^{\frac{n}{n+2}},
+\]
+denote 
+\[
+	\psi(\eta) = |\{u\geq \eta\}|,
+\]
+we get
+\[
+	\psi(h) \leq \frac{C(F)\psi(k)^{\frac{n+2}{n}\cdot\frac{p-2}{p}}}{(h-k)^{\frac{2(n+2)}{n}}},
+	\quad h>k>l.
+\]
+Here, $p>n+2$ gurantees that 
+\[
+	\frac{n+2}{n}\cdot\frac{p-2}{p} > 1,
+\]
+which implies the desired assertation by the following lemma.
+\end{proof}
+
+\begin{lemma}
+	if there exist $\varepsilon>0$, $p>0$, $c>0$ and $s_0>0$ such that
+	for each $b>a>s_0$, the non-increasing function $f:\mathbb{R}^+\mapsto\mathbb{R}^+$ has the following property,
+	\[
+		f(b) \leq \frac{cf(a)^{1+\varepsilon}}{(b-a)^p},
+	\]
+	then there exists $d>0$ such that $f(s_0 + d) = 0$.
+\end{lemma}
+\begin{proof}
+	let
+	\[
+		b_k = s_0+d-\frac{d}{2^k},
+	\]
+	then 
+	\begin{align*}
+		f(b_k) &\leq \frac{cf^{1+\varepsilon}(b_{k-1})}{\left(\frac{d}{2^k}\right)^p}
+			= \frac{c}{d^p}2^{pk}f^{1+\varepsilon}(b_{k-1})\\
+			&\leq  \frac{c}{d^p}2^{pk}\left(\frac{c}{d^p}2^{p(k-1)}f^{1+\varepsilon}(b_{k-2})\right)^{1+\varepsilon}\\
+			&= \left(\frac{c}{d^p}\right)\cdot \left(\frac{c}{d^p}\right)^{1+\varepsilon}
+				\cdot 2^{pk + p(k-1)(1+\varepsilon)}f^{(1+\varepsilon)^2}(b_{k-2})\\
+			&= \left(\frac{c}{d^p}\right)^{\sum_{j=0}^{k-1}(1+\varepsilon)^j}
+				\cdot 2^{p\sum_{j=0}^k(k-j)(1+\varepsilon)^j}
+				\cdot f^{(1+\varepsilon)^k}(b_0)\\
+			&\leq \left(\frac{c}{d^p}\right)^{\frac{(1+\varepsilon)^k-1}{\varepsilon}}
+				\cdot 2^{\frac{p(1+\varepsilon)^k}{\varepsilon^2}-\frac{1+\varepsilon}{\varepsilon^2}-\frac{k}{\varepsilon}}
+				\cdot f^{(1+\varepsilon)^k}(b_0)\\
+			&= \left(\left(\frac{c}{d^p}\right)^{\frac{1}{\varepsilon}}
+				\cdot 2^{\frac{p}{\varepsilon^2}}
+				\cdot f(b_0)\right)^{(1+\varepsilon)^k},
+	\end{align*}
+	which implies $f(s_0 + d) = 0$, if $d$ is chosen so large that 
+	\[
+		d > c^{\frac{1}{p}} 
+			\cdot 2^{\frac{1}{\varepsilon}}
+			\cdot f^{\frac{\varepsilon}{p}}(b_0).
+	\] 
+\end{proof}
+
