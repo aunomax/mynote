@@ -1531,7 +1531,7 @@ Here, if $T_m < \infty$, then
 \section{Morser's iteration}
 
 \begin{lemma}
-	suppose $u\in C^(\overline{\Omega}\times[0,T))\cap C^{2,1}(\Omega\times[0,T))$ satisfy 
+	suppose $u\in C^0(\overline{\Omega}\times[0,T))\cap C^{2,1}(\Omega\times[0,T))$ satisfy 
 \begin{equation*}
 	\begin{cases}
 		u_t \leq \Delta u + \nabla\cdot F, & \Omega,\\
@@ -1556,6 +1556,32 @@ $u\in L^\infty(\Omega\times(0,T))$.
 		&\leq p(p-1)\left(\int u^{p-2}|\nabla u|^2\right)^{\frac12}
 			\cdot\left(\int u^{\frac{q(p-2)}{q-2}}\right)^{\frac{q-2}{2q}}\|F\|_q,
 	\end{align*}
+	\textbf{integrability.} using
+	\begin{align*}
+		\left(\int u^{\frac{q(p-2)}{q-2}}\right)^{\frac{q-2}{2q}}
+		&= \|u^{\frac{p}{2}}\|_{\frac{2q(p-2)}{p(q-2)}}^{\frac{p-2}{p}}\\
+		&\leq C\|\nabla u^{\frac{p}{2}}\|_2^{\frac{(p-2)\theta}{p}}\cdot\|u^{\frac{p}{2}}\|_2^{\frac{(1-\theta)(p-2)}{p}} + C\|u^{\frac{p}{2}}\|_2^{\frac{p-2}{p}},
+	\end{align*}
+	with 
+	\[
+		\frac{p(q-2)}{2q(p-2)} = \theta\left(\frac12-\frac1n\right) + 1-\theta,
+	\]
+	noting $p>q>n$ ensures that
+	\[
+		0<\gamma := \frac{(p-2)\alpha}{p} = \frac{n}{q} - \frac{n}{p} < 1,
+	\]
+	we have 
+	\begin{align*}
+		\frac{\dd}{\dd t}\int u^p &+ \frac{4(p-1)}{p}\int |\nabla u^{\frac{p}{2}}|^2
+		\leq Cp(p-1)\left(\int u^{p-2}|\nabla u|^2\right)^{\frac12+\frac\gamma2}\cdot\|u^{\frac{p}{2}}\|_2^{\frac{p-2}{p} - \gamma}\cdot\|F\|_q \\
+		&\quad +Cp(p-1) \left(\int u^{p-2}|\nabla u|^2\right)^{\frac12}\cdot\|u^{\frac{p}{2}}\|_2^{\frac{p-2}{p}}\cdot\|F\|_q \\
+		&\leq \frac{2(p-1)}{p}\int |\nabla u^{\frac{p}{2}}|^2 
+			+ C(F)p^2\|u^{\frac{p}{2}}\|_2^{\frac{2(p-2)}{p(1-\gamma)}-\frac{2\gamma}{1-\gamma}}
+			+ C(F)p^2\|u^{\frac{p}{2}}\|_2^{\frac{2(p-2)}{p}},
+	\end{align*}
+	and obtain $\|u\|_p\leq C(p)$.
+
+	\textbf{boundedness.}
 	\begin{align*}
 		\left(\int u^{\frac{q(p-2)}{q-2}}\right)^{\frac{q-2}{2q}}
 		&= \|u^{\frac{p}{2}}\|_{\frac{2q(p-2)}{p(q-2)}}^{\frac{p-2}{p}}\\
@@ -1581,7 +1607,7 @@ $u\in L^\infty(\Omega\times(0,T))$.
 	\end{align*}
 	Using 
 	\[
-		\|f\|_2\leq C\|\nabla f\|_2^{\frac{n}{n+2}}\cdot\|f\|_1^{\frac{2}{n+2}} + \|f\|_1,\quad f\in W^{1,2}(\Omega),
+		\|f\|_2\leq C\|\nabla f\|_2^{\frac{n}{n+2}}\cdot\|f\|_1^{\frac{2}{n+2}} + C\|f\|_1,\quad f\in W^{1,2}(\Omega),
 	\]
 	we arrive 
 	\begin{align*}
