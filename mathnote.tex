@@ -1422,6 +1422,68 @@ Noting
 		+ \sup_{(0,T-\tau)}\int_t^{t+\tau}\int  |\nabla v|^{n-2}|D^2v|^2 < C,
 \end{align*}
 
+\subsection{疑惑哪里错了}
+\begin{equation}
+	\begin{cases}
+		u_t = \Delta u - \nabla\cdot(u\nabla v) + \mu u - \mu u^\alpha,\\
+		0 = \Delta v - \overline u + u,
+	\end{cases}
+\end{equation}
+let 
+\[
+	\phi(t) = \int_0^R ur^{2n-1}\dd r,
+\]
+and
+\[
+	m(t) = \int_0^R ur^{n-1}\dd r,
+\]
+we calculate
+\begin{align*}
+	\phi'(t) &=
+	\int_0^R(u_rr^{n-1})_rr^n - (uv_rr^{n-1})_rr^n\dd r 
+		+ \mu\int_0^R u r^{2n-1}\dd r - \mu \int_0^Ru^\alpha r^{2n-1}\dd r,
+\end{align*}
+estimate
+\begin{align*}
+	\int_0^R(u_rr^{n-1})_rr^n 
+		&= - n\int_0^Ru_rr^{2n-2}\dd r\\
+		&= -nu(R) + 2n(n-1)\int_0^Rur^{2n-3}\dd r\\
+		&\leq 2n(n-1)\left(\int_0^Rur^{n-1}\dd r\right)^{\frac{2}{n}}
+			\cdot \left(\int_0^Rur^{2n-1}\dd r\right)^{\frac{n-2}{n}}.
+\end{align*}
+Using 
+\[
+	(v_rr^{n-1})_r -\overline{u}r^{n-1} + ur^{n-1} = 0,
+\]
+we get
+\begin{align*}
+	- \int_0^R (uv_rr^{n-1})_rr^n\dd r 
+		&= n\int_0^Rur^{n-1}\cdot v_rr^{n-1}\dd r \\
+		&= n\int_0^R ur^{n-1} \int_0^r(\overline{u}\eta^{n-1} - u\eta^{n-1})\dd\eta\dd r\\
+		&= - \frac{n}2\left(\int_0^Rur^{n-1}\dd r\right)^2 + \overline{u}\int_0^R ur^{2n-1}\dd r, 
+\end{align*}
+and therefore
+\begin{align*}
+	\phi'(t) \leq \Phi(t, \phi) := 2n(n-1)m^{\frac2n}\cdot \phi^{\frac{n-2}{n}} - \frac{nm^2}2 + (\overline{u} + \mu)\phi,
+\end{align*}
+
+while
+\[
+	m' = \mu m - \mu m^\alpha,
+\]
+we have 
+\[
+	m\in\left[\min\{m(0),1\}, \max\{m(0),1\}\right],
+\]
+and thus for any $m(0)>0$, there exists $\varepsilon>0$ 
+such that for any $\xi\in(0,\varepsilon)$,
+$\Phi(t,\xi) < 0$,
+that is for any initial data satisfying $\phi(0) < \varepsilon$, 
+there exists $t_0\in(0,\infty)$ such that 
+\[
+	\phi(t_0) = 0,
+\]
+which implies such solution is not globally well-posed.
 \section{local existence}
 \begin{align*}
 	u_t &= \Delta u - \nabla\cdot(u\nabla v),\\
@@ -1794,4 +1856,8 @@ which implies the desired assertation by the following lemma.
 			\cdot f^{\frac{\varepsilon}{p}}(b_0).
 	\] 
 \end{proof}
+
+\section{Hanack inequality}
+
+\section{H\"older estimate}
 
