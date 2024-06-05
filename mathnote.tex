@@ -1629,7 +1629,139 @@ Here, if $T_m < \infty$, then
 	\end{itemize}
 \end{itemize}
 
-\section{Morser's iteration}
+\section{Morser's Iteration for elliptic equation}
+\begin{theorem}[\cite[Theorem~8.15]{Gilbarg2001}]
+	Let $u$ be a $W^{1,2}$ solution of 
+	\[
+		-\Delta u = \partial_if^i + g\quad\text{in }\Omega
+	\]
+	satisfying $u=0$ on $\partial\Omega$,
+	in the sense of
+	\begin{equation}\label{eq: formula of weak solutions}
+		\int_\Omega \nabla u\cdot\nabla v = - \int_\Omega f^i\partial_iv + \int_\Omega gv 
+		\quad\text{for all }v\in C^1_0(\Omega).
+	\end{equation}
+	Suppose that $f^i\in L^q(\Omega)$, $i=1,2,\cdots,n$, $g\in L^{q/2}(\Omega)$ for some $q>n$.
+	Then 
+	\[
+		\sup_\Omega u \leq C\|u\|_2 + Ck,
+	\]
+	where $k=\lambda^{-1}(\|\mathbf{f}\|_q + \|g\|_{q/2})$ 
+	and $C=C(n,q,|\Omega|)$.
+\end{theorem}
+\begin{proof}
+	For $\beta\geq1$ and $N>k$, let us define a function $H\in C^1([k,\infty))$ by setting
+	$H(z) = z^\beta - k^\beta$ for $z\in[k,N]$ and taking $H$ to be linear for $z\geq N$. 
+	Let us next set $w=u+k$ and take
+	\begin{equation*}
+		v = G(w) = \int_k^w|H'(s)|^2\dd s 
+	\end{equation*} 
+	in the integral equality\eqref{eq: formula of weak solutions}. 
+	By the chain rule, $v$ is a legitimate test function in \eqref{eq: formula of weak solutions}
+	and on substitution we obtain,
+	\begin{align*}
+		\int_\Omega |\nabla w|^2 G'(w) &= - \int_\Omega f^i\partial_iwG'(w) 
+			+ \int_\Omega G(w)g\\
+			&\leq \frac{1}{2}\int_\Omega |\nabla w|^2G'(w) + \int_\Omega |\mathbf{f}|^2G'(w)
+				+ \int_\Omega gwG'(w), 
+	\end{align*}
+	since $G(s)\leq sG'(s)$ and $Du = Dw$ when $v = G(w) >0$. Hence, we obtain,
+	\[
+		\int_\Omega |\nabla w|^2 G'(w) \leq 6\int_\Omega b G'(w)w^2,
+	\]
+	with 
+	\[
+		b = |f|^2/k^2 + |g|/k,
+	\]
+	that is,
+	\[
+		\int_\Omega |DH(w)|^2\dd x \leq 6\int_\Omega b|H'(w)w|^2\dd x.
+	\]
+	Since $H(w)\in W^{1,2}_0(\Omega)$, we may apply the Sobolev inequality and the H\"older inequality to obtain 
+	\begin{align*}
+		\|H(w)\|_{2n/(n-2)}&\leq C\left(\int_\Omega b(H'(w)w)^2\dd x\right)^{1/2}\\
+		&\leq C\|b\|_{q/2}^{1/2} \|H'(w)w\|_{2q(q-2)}.
+	\end{align*}
+	To proceed further, we recall the definition of $H$ and let $N\to\infty$ in the estimate above.
+	It follows then, for any $\beta\geq1$, 
+	that the inclusion $w\in L^{2\beta q/(q-2)}(\Omega)$ implies the stronger inclusion, $w\in L^{2\beta n/(n-2)}(\Omega)$, 
+	and moreover, setting $q^\ast = 2q/(q-2)$, $\chi=n(q-2)/q(n-2)>1$, we obtain
+	\[
+		\|w\|_{\beta\chi q^\ast} \leq (C\beta)^{1/\beta}\|w\|_{\beta q^\ast}.
+	\] 
+	The result is now obtained by iteration of the estimate above. 
+	Namely, by induction, we may assume $w\in\cap_{1\leq p<\infty}L^p(\Omega)$. 
+	Let us take $\beta = \chi^m$, $m=0,1,2,\cdots$, so that by the estimate above,
+	\begin{align*}
+		\|w\|_{\chi^N q^\ast} &\leq \Pi_0^{N-1}(C\chi^{m})^{\chi^{-m}}\|w\|_{q^\ast}\\
+			&\leq C^{\sigma}\chi^\tau\|w\|_{q^\ast},\quad \sigma = \sum_0^{N-1}\chi^{-m},
+				\quad \tau = \sum_0^{N-1}m\chi^{-m}\\
+			&\leq C\|w\|_{q^\ast},
+	\end{align*}
+	where $C=C(n,q,|\Omega|)$. Letting $N\to\infty$, we therefore obtain
+	\[
+		\sup_\Omega w \leq C\|w\|_{q^\ast},
+	\]
+	whence by the interpolation inequality we have
+	\[
+		\sup_\Omega w \leq C\|w\|_2.
+	\]
+	The desired estimate follows from the definition $w = u + k$.
+\end{proof}
+
+The above technique of iteration of $L^p$ norms was introduced by Moser~\cite{Moser1960}.
+The proof may also be effected by other choices of test functions.
+
+\subsection{local properties of weak solutions}
+
+Boardly speaking, the scheme of the joint proof follows the Moser iteration method (see \cite{Moser1961}) introduced in the previous section combined with the John-Nirenberg result, which is employed to bridge a vital gap in the iteration scheme.
+
+\begin{lemma}
+	if $u$ is a $W^{1,2}(\Omega)$ solution of equation \eqref{eq: formula of weak solutions} in $\Omega$,
+	for any ball $B_{2R}(y)\subset\Omega$ and $p>1$,
+	\[
+		\sup_{B_R(y)} u \leq CR^{-n/p}\|u\|_{p, B_{2R}(y)} + Ck(R),
+	\]
+	where $C=C(n, \Lambda/\lambda, R, q, p)$.
+\end{lemma}
+\begin{proof}
+	We assume initially that $R=1$ and $k>0$. The general case is later recovered through a simple coordinate transformation: $x\mapsto x/R$, and by letting $k$ tend to zero.
+	Let us define, for $\beta\neq0$ and non-negative $\eta\in C^1_0(B_4)$, the test function
+	\[
+		v = \eta^2\overline{u}^\beta, \quad(\overline{u} = u + k).
+	\]
+	By the chain and product rules, $v$ is a valid test function in \eqref{eq: formula of weak solutions} 
+	and also
+	\[
+		Dv = 2\eta D\eta \overline{u}^\beta + \beta\eta^2\overline{u}^{\beta-1}Du,
+	\]
+	so that by substitution into \eqref{eq: formula of weak solutions} we obtain
+	\begin{align*}
+		\beta\int_\Omega \eta^2 \overline{u}^{\beta-1}|Du|^2
+			+ 2\int_\Omega \eta D\eta\cdot Du \overline{u}^\beta 
+			= - \beta\int_\Omega \eta^2f^iu_i\overline{u}^{\beta-1}
+			- 2\int_\Omega \eta \eta_i\cdot f^i \overline{u}^\beta
+			+ \int_\Omega \eta^2\overline{u}^\beta g. 
+	\end{align*}
+	We can estimate, for any $0<\varepsilon\leq1$,
+	
+\end{proof}
+
+\begin{lemma}
+	if $u$ is a $W^{1,2}(\Omega)$ solution of equation \eqref{eq: formula of weak solutions} in $\Omega$,
+	non-negative in a ball $B_{4R}(y)\subset\Omega$ and $p\leq<n/(n-2)$, 
+	\[
+		R^{-np}\|u\|_{L^p(B_{2R}(y))} \leq C\inf_{B_R(y)}u + Ck(R),
+	\]
+	where $C=C(n, \Lambda/\lambda, R, q, p)$.
+\end{lemma}
+
+\subsection{Hanack inequality}
+
+\subsection{H\"older estimate}
+
+
+\section{Moser's iteration for parabolic equation}
 
 \begin{lemma}
 	suppose $u\in C^0(\overline{\Omega}\times[0,T))\cap C^{2,1}(\Omega\times[0,T))$ satisfy 
@@ -1857,7 +1989,4 @@ which implies the desired assertation by the following lemma.
 	\] 
 \end{proof}
 
-\section{Hanack inequality}
-
-\section{H\"older estimate}
 
