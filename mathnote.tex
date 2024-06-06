@@ -1992,6 +1992,104 @@ By combining two lemmas above, we obtain the full Harnack inequality.
 
 \subsection{H\"older estimate}
 
+\begin{theorem}
+	Suppose that $f^i\in L^q(\Omega)$, $i=1, \cdot, n$, $g\in L^{q/2}(\Omega)$ for some $q>n$.
+	Then if $u$ is a $W^{1,2}$ solution of the equation
+	\[
+		-\Delta u = D_if^i + g,\quad\text{in }\Omega,
+	\]
+	it follows that $u$ is locally H\"older continuous in $\Omega$, 
+	and for any ball $B_0=B_{R_0}(y)\subset\Omega$ and $R\leq R_0$, we have
+	\[
+		osc_{B_R(y)}u\leq CR^{\alpha}(R_0^{-\alpha}\sup_{B_0}|u| + k),
+	\]
+	where $C=C(n,q,R_0)$ and $\alpha=\alpha(n,q,R_0)$ are positive constants, 
+	and $k=\|f\|_q + \|g\|_{q/2}$. 
+\end{theorem}
+
+\begin{proof}
+	We may assume without loss of generality that $R\leq R_0/4$.
+	Let us write $M_0=\sup_{B_0}|u|$, $M_4 = \sup_{B_{4R}}u$, $m_4 = \inf_{B_{4R}}u$,
+	$M_1=\sup_{B_R}u$, $m_1 = \inf_{B_R}u$.
+	Then we have 
+	\begin{gather*}
+		-\Delta(M_4-u) = -D_if^i - g,\\
+		-\Delta(u-m_4) = D_if^i + g.
+	\end{gather*}
+	Hence, if we set
+	\begin{align*}
+		K(R) &= R^\delta\|f\|_q + R^{2\delta}\|g\|_{q/2},\\
+		\delta &= 1-n/q 
+	\end{align*}
+	and apply the weak Harnack inequality with $p=1$ to the functions 
+	$M_4-u$, $u-m_4$ in $B_{4R}$, we obtain
+	\begin{gather*}
+		R^{-n}\int_{B_{2R}}(M_4-u)\dd x \leq C(M_4 - M_1 + K(R)),\\
+		R^{-n}\int_{B_{2R}}(u-m_4)\dd x \leq C(m_1-m_4) + K(R).
+	\end{gather*}
+	Hence by addition,
+	\[
+		M_4 - m_4 \leq C(M_4 - m_4 + m_1 - M_1 + K(R)),
+	\]
+	so that, writing 
+	\[
+		\omega(R) = osc_{B_R} u = M_1 - m_1,
+	\]
+	we have 
+	\[
+		\omega(R) \leq \gamma\omega(4R) + K(R),
+	\]
+	where $\gamma = 1- C^{-1}$, $C = C(n,R_0,q)$.
+	The following simple lemma then implies the desired result.
+\end{proof}
+
+\begin{lemma}
+	Let $\omega$ be a non-decreasing function on an interval $(0,R_0]$ satisfying,
+	for all $R\leq R_0$, the inequality 
+	\[
+		\omega(\tau R) \leq \gamma \omega(R) + \sigma(R),
+	\]
+	where $\sigma$ is also non-decreasing and $0<\gamma, \tau < 1$.
+	Then, for any $\mu\in(0,1)$ and $R\leq R_0$,
+	we have 
+	\[
+		\omega(R)\leq C\left(\left(\frac{R}{R_0}\right)^\alpha \omega(R_0) + \sigma(R^\mu R_0^{1-\mu})\right),
+	\]
+	where $C=C(\gamma, \tau)$ and $\alpha=\alpha(\gamma, \tau, \mu)$ are positive constants.
+\end{lemma}
+
+\begin{proof}
+	Let us fix initially some number $R_1\leq R_0$.
+	Then for any $R\leq R_1$ we have
+	\[
+		\omega(\tau R) \leq \gamma \omega(R) + \sigma(R_1),
+	\]
+	since $\sigma$ is non-decreasing. 
+	We now iterate this inequality to get,
+	for any positive integer $m$,
+	\begin{align*}
+		\omega(\tau^mR_1)
+			&\leq \gamma^m\omega(R_1) + \sigma(R_1)\sum_{i=0}^{m-1}\gamma^i\\
+			&\leq \gamma^m\omega(R_0) + \frac{\sigma(R_1)}{1-\gamma}.
+	\end{align*}	
+	For any $R\leq R_1$, we can choose $m$ such that
+	\[
+		\tau^mR_1<R\leq\tau^{m-1}R_1.
+	\]
+	Hence
+	\begin{align*}
+		\omega(R) &\leq \omega(\tau^{m-1}R_1)\\
+			&\leq \gamma^{m-1}\omega(R_0) + \frac{\sigma(R_1)}{1-\gamma}\\
+			&\leq \frac{1}{\gamma}\left(\frac{R}{R_1}\right)^{\log\gamma/\log\tau}\omega(R_0)
+				+ \frac{\sigma(R_1)}{1-\gamma}.
+	\end{align*}
+	Now let $R_1=R_0^{1-\mu}R^{\mu}$ so that we have from the preceding
+	\[
+		\omega(R) \leq \frac{1}{\gamma}\left(\frac{R}{R_0}\right)^{(1-\mu)\log\gamma/\log\tau}\omega(R_0)
+		+ \frac{\sigma(R_0^{1-\mu}R^\mu)}{1-\gamma}.
+	\]
+\end{proof}
+
 
 \section{Moser's iteration for parabolic equation}
 
