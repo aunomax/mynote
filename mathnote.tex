@@ -213,13 +213,14 @@ where $\theta=N(q-\sigma)+\sigma+1 / N(q-\sigma)+(q+1)(\sigma+1) ;$ using \eqref
 	${\displaystyle \|x_n\|_{Y} > \varepsilon_0 \|x_n\|_{X}+n\|x_n\|_{Z}}.$ Let $\tilde{x}_n=\dfrac{x_n}{\|x_n\|_Y},$we have $\|\tilde{x}_n\|_X < 1$ and $\|\tilde{x}_n\|_Z < \dfrac{1}{n}.$ on the one hand, 	$X$ is compactly embedded in $Y$, therefore $\{\tilde{x}_n\}$ has a subsequence that is $\|\cdot\|_Y$ convergent, noted $\{\tilde{x}_n\}$ as well; on the other hand, 	$Y$ is continuously embedded in $Z$, so $\{\tilde{x}_n\}$ is $\|\cdot\|_Z$ convengent. noticing $\|\tilde{x}_n\|_Z\mapsto0,$ we have $ \tilde{x}_n \mapsto 0 $ in $Z$, thus $ \tilde{x}_n \mapsto 0 $ in $Y$. However, $\|\tilde{x}_n\|_Y=1$ which has a controdiction with $ \tilde{x}_n \mapsto 0 $ in $Y$ .
 \end{proof}
 
-\section{inequation}
+\section{inequality}
 \begin{lemma}
 	\begin{equation}
 		\|fgh\|_1\leqslant \|f\|_a \|g\|_b \|h\|_c, \quad \text{if } a^{-1} +b^{-1} + c^{-1}=1.
 	\end{equation}
 \end{lemma}
 \begin{lemma}
+	\label{le: Young inequality for convolutions}
 	if $r,p,q\geqslant1$ and such that $1+r^{-1} = p^{-1}+q^{-1}$, then
 	\begin{equation}
 		\|F*G\|_r\leqslant\|F\|_p\|G\|_q.
@@ -1629,7 +1630,107 @@ Here, if $T_m < \infty$, then
 	\end{itemize}
 \end{itemize}
 
-\section{Morser's Iteration for elliptic equation}
+\section{BMO space}
+\begin{theorem}
+	\label{thm: bmo estimates}
+	Let $u\in W^{1,1}(\Omega)$ where $\Omega$ is convex, and suppose there exists a constant $K$ such that
+	\[
+		\int_{\Omega\cap B_R}|Du|\dd x \leq KR^{n-1}\quad\text{for all balls }B_R.
+	\]
+	Then there exist positive constants $\sigma_0$ and $C$ depending only on $n$ such that
+	\[
+		\int_\Omega \exp\left(\frac{\sigma}{K}|u-u_\Omega|\right)\dd x \leq C(diam \Omega)^n,
+	\]
+	where $\sigma = \sigma_0|\Omega|(diam \Omega)^{-n}$.
+\end{theorem}
+\begin{proof}
+	We first show for $\Omega$ be convex and $u\in W^{1,1}(\Omega)$, 
+	\begin{equation}
+		\label{eq: estimate local oscillation by gradient}
+		|u(x) - u_S| \leq \frac{d^n}{n|S|}\int_\Omega|x-y|^{1-n}|Du(y)|\dd y\quad\text{a.e. }\Omega,
+	\end{equation}
+	where 
+	\[
+		u_S = \frac{1}{|S|}\int_S u\dd x,\quad d = diam \Omega,
+	\]
+	and $S$ is any measurable subset of $\Omega$.
+	By dense argument, it is enough to establish \eqref{eq: estimate local oscillation by gradient} for $u\in C^1(\Omega)$.
+	We then have for $x,y\in\Omega$,
+	\[
+		u(x) - u(y) = - \int_0^{|x-y|} D_ru(x + r\omega)\dd r, \quad \omega = \frac{y-x}{|y-x|}.
+	\]
+	Integrating with respect to $y$ over $S$, we obtain
+	\[
+		|S|(u(x) - u_S) = - \int_S\dd y \int_0^{|x-y|}D_r u(x + r\omega)\dd r.
+	\]
+	Writing 
+	\begin{equation*}
+		V(x) = 
+		\begin{cases}
+			|D_ru(x)|, & x\in\Omega,\\
+			0, & x\not\in\Omega,
+		\end{cases}
+	\end{equation*}
+	we thus have 
+	\begin{align*}
+		|u(x) - u_S| 
+		&\leq \frac{1}{|S|}\int_{|x-y|<d}\dd y \int_0^\infty V(x+r\omega)\dd r\\
+		&= \frac{1}{|S|}\int_0^\infty\int_{|\omega|=1}\int_0^dV(x+r\omega)\rho^{n-1}\dd\rho\dd\omega\dd r\\
+		&= \frac{d^n}{n|S|} \int_0^\infty\int_{|\omega|=1}V(x+r\omega)\dd\omega\dd r\\
+		&= \frac{d^n}{n|S|} \int_\Omega |x-y|^{1-n}|Du(y)|\dd y.
+	\end{align*}
+	Using 
+	\[
+		|x-y|^{1-n} = |x-y|^{(1/q-n)/q} \cdot |x-y|^{(1-1/q)(1+1/q-n)},
+	\]
+	we have by H\"older inequality
+	\begin{align*}
+		\int_\Omega |x-y|^{1-n}|Du(y)|\dd y
+			&\leq \left(\int_\Omega|x-y|^{1/q-n}|Du(y)|\dd y\right)^{1/q}
+				\cdot \left(\int_\Omega |x-y|^{1/q+1-n}|Du(y)|\dd y\right)^{1-1/q}.
+	\end{align*}
+	Extend $f$ to be zero outside $\Omega$ and write
+	\[
+		v(\rho) = \int_{B_\rho(x)}|Du(y)|\dd y.
+	\]
+	Then 
+	\begin{align*}
+		\int_\Omega|x-y|^{1+1/q-n}|Du(y)|\dd y 
+			&= \int_\Omega \rho^{1+1/q-n}|Du(y)|\dd y,\quad \rho = |x-y|\\
+			&= \int_0^d\rho^{1+1/q-n}v'(\rho)\dd\rho,\quad d=diam \Omega\\
+			&= d^{1+1/q-n}v(d) + (n-1-1/q)\int_0^d\rho^{1/q-n}v(\rho)\dd\rho\\
+			&\leq Kd^{1/q} + (n-1-1/q)\int_0^d\rho^{1/q-1}\dd\rho\\
+			&\leq q(n-1)Kd^{1/q},
+	\end{align*}
+	For, choose $R_0>0$ so that $|\Omega| = |B_{R_0}(x)| = \omega_nR^n$. Then
+	\begin{align*}
+		\int_\Omega |x-y|^{1/q-n}\dd y 
+			&\leq \int_{B_{R_0}(x)}|x-y|^{1/q-n}\dd y\\
+			&= q\omega_nR_0^{1/q} = q\omega_n^{1-1/(qn)}|\Omega|^{1/(qn)}.
+	\end{align*}
+	Then it follows that %% by adapting the usual proof of the Young inequality for convolutions
+	\begin{align*}
+		\int_\Omega\int_\Omega|x-y|^{1/q-n}|Du(y)|\dd y \dd x 
+		 &\leq \int_\Omega\int_\Omega |x-y|^{1/q-n}\dd x |Du(y)|\dd y\\
+		 &\leq q\omega_nd^{1/q}\|Du\|_1.
+	\end{align*}
+	Hence 
+	\begin{align*}
+		\left\|\int_\Omega |x-y|^{1-n}|Du(y)|\dd y\right\|_q^q
+			&\leq \int_\Omega\int_\Omega|x-y|^{1/q-n}|Du(y)|\dd y
+			\cdot \left(\int_\Omega |x-y|^{1/q+1-n}|Du(y)|\dd y\right)^{q-1}\dd x\\
+			&\leq q^q(n-1)^{q-1}K^{q-1}d\omega_n\|Du\|_1.
+	\end{align*}
+	Consequently,
+	\begin{align*}
+		\int_\Omega\sum_{m=0}^N \frac{\sigma_0^m|u-u_\Omega|^m}{m!K^m}
+			&\leq d\omega_n\|Du\|_1 \sum_{m=0}^N \frac{\sigma_0^md^{nm}m^m(n-1)^{m-1}K^{m-1}}{n^m|\Omega|^mm!K^m}
+			\leq C,
+	\end{align*}
+	if $\sigma_0>|\Omega|/(nd^n)$.
+\end{proof}
+
+\section{Moser's Iteration for elliptic equation}
 \begin{theorem}[\cite[Theorem~8.15]{Gilbarg2001}]
 	Let $u$ be a $W^{1,2}$ solution of 
 	\[
@@ -1744,19 +1845,150 @@ Boardly speaking, the scheme of the joint proof follows the Moser iteration meth
 			+ \int_\Omega \eta^2\overline{u}^\beta g. 
 	\end{align*}
 	We can estimate, for any $0<\varepsilon\leq1$,
-	
+	\begin{align*}
+		- \int_\Omega \eta^2f^iu_i\overline{u}^{\beta-1}
+		&\leq \frac{\varepsilon}{2}\int_\Omega \eta^2 \overline{u}^{\beta-1}|Du|^2 
+			+ \frac1\varepsilon\int_\Omega \eta^2 \overline{u}^{\beta-1}|\mathbf{f}|^2,
+	\end{align*}
+	By choosing $\varepsilon = \min\{1,|\beta|<4\}$, we then obtain from estimates above
+	\begin{equation*}
+		\int_\Omega \eta^2\overline{u}^{\beta-1}|Du|^2\dd X
+		\leq C(\beta)\int_\Omega (b\eta^2 + |D\eta|^2)\overline{u}^{\beta +1}\dd x,
+	\end{equation*}
+	where $C(|\beta|)$ is bounded if $|\beta|$ is bounded away from zero.
+	It is now convenient to introduce a function $w$ defined by
+	\begin{equation*}
+		w = 
+		\begin{cases}
+			\overline{u}^{(\beta+1)/2}, & \text{if } \beta\not=-1,\\
+			\log\overline{u}, & \text{if }\beta = -1.
+		\end{cases}
+	\end{equation*}
+	Letting $\gamma = \beta + 1$, we may rewrite the estimate above
+	\begin{equation}
+		\label{eq: local gradient estimates}
+		\int_\Omega |\eta Dw|^2 \dd x \leq
+		\begin{cases}
+			C(|\beta|)\gamma^2\int_\Omega (b\eta^2 + |D\eta|^2)w^2\dd x, & \text{if }\beta\neq-1,\\
+			C\int_\Omega (b\eta^2 + |D\eta|^2)\dd x, & \text{if }\beta = -1.
+		\end{cases}
+	\end{equation}
+	The desired iteration process can now be developed from the first part of the estimate above.
+	For from the Sobolev inequality we have
+	\[
+		\|\eta w\|^2_{2n/(n-2)} \leq C\int_\Omega (|\eta Dw|^2 + |wD\eta|^2)\dd x.
+	\]
+	Using the H\"older inequality followed by the interpolation inequality, we obtain, for any $\varepsilon>0$,
+	\begin{align*}
+		\int_\Omega b(\eta w)^2\dd x 
+			&\leq \|b\|_{q/2}\|\eta w\|_{2q/(q-2)}^2\\
+			&\leq \|b\|_{q/2}(\varepsilon\|\eta w\|_{2n/(n-2)} + \varepsilon^{-\sigma}\|\eta w\|_2)^2
+	\end{align*}
+	where $\sigma = n/(q-n)$. 
+	Hence, by substitution into the last second estimate and appropriate choice of $\varepsilon$, 
+	we obtain
+	\begin{equation*}
+		\|\eta w\|_{2n/(n-2)} \leq C(1+|\gamma|)^{\sigma+1}\|(\eta + |D\eta|)w\|_2,
+	\end{equation*}
+	where $C=C(n,q,|\beta|)$ is bounded when $|\beta|$ is bounded away from zero.
+	It is now desirable to specify the cut-off function $\eta$ more precisely. 
+	Let $r_1$, $r_2$ be such that $1\leq r_1 < r_2 \leq 3$ and set $\eta\equiv 1$ in $B_{r_1}$,
+	$\eta\equiv0$ in $\Omega-B_{r_2}$ with $D\eta\leq 2/(r_2-r_1)$.
+	Writing $\chi=n/(n-2)$ we then have from the estimate above
+	\[
+		\|w\|_{L^{2\chi}(B_{r_1})} \leq \frac{C(1+|\gamma|)^{\sigma + 1}}{r_2-r_1}\|w\|_{L^2(B_{r_2})}.
+	\]
+	For $r<4$ and $p\neq0$, let us now introduce the quantities
+	\begin{equation}
+		\Phi(p,r) = \left(\int_{B_r}|\overline{u}|^p\right)^{1/p}.
+	\end{equation}
+	Then we have
+	\[
+		\Phi(\infty, r) = \lim_{p\to\infty} \Phi(p,r) = \sup_{B_r}\overline{u},
+	\]
+	and 
+	\[
+		\Phi(-\infty, r) = \lim_{p\to -\infty}\Phi(p,r) = \inf_{B_r}\overline{u}.
+	\]
+	From inequality above, we now obtain
+	\begin{align*}
+		\Phi(\chi\gamma, r_1) &\leq \left(\frac{C(1+|\gamma|)^{\sigma+1}}{r_2-r_1}\right)^{2/|\gamma|}\Phi(\gamma,r_2)\quad \text{if } \gamma > 0,\\
+		\Phi(\gamma, r_2) &\leq \left(\frac{C(1+|\gamma|)^{\sigma+1}}{r_2-r_1}\right)^{2/|\gamma|}\Phi(\chi\gamma,r_1)\quad \text{if } \gamma < 0.
+	\end{align*}
+	These inequalities can now be iterated to yield the desired estimates. 
+	For example, taking $p>1$, we set $\gamma = \gamma_m = \chi^mp$ and $r_m = 1 + 2^{-m}$, $m = 0, 1, \cdots$,
+	so that, 
+	\begin{align*}
+		\Phi(\chi^mp,1) &\leq (C\chi)^{2(1+\sigma)\sum m\chi^{-m}}\Phi(p, 2)\\
+			& = C\Phi(p,2), \quad C = C(n,q,p).	
+	\end{align*}
+	Consequently, letting $m$ tend to infinity, we have
+	\[
+		\sup_{B_1}\overline{u} \leq C\|\overline{u}\|_{L^p(B_2)},
+	\]
+	and, by means of the transformation: $x\mapsto x/R$, the desired estimate is established.
 \end{proof}
 
 \begin{lemma}
 	if $u$ is a $W^{1,2}(\Omega)$ solution of equation \eqref{eq: formula of weak solutions} in $\Omega$,
-	non-negative in a ball $B_{4R}(y)\subset\Omega$ and $p\leq<n/(n-2)$, 
+	non-negative in a ball $B_{4R}(y)\subset\Omega$ and $1\leq p<n/(n-2)$, 
 	\[
 		R^{-np}\|u\|_{L^p(B_{2R}(y))} \leq C\inf_{B_R(y)}u + Ck(R),
 	\]
 	where $C=C(n, \Lambda/\lambda, R, q, p)$.
 \end{lemma}
+\begin{proof}
+	When $\beta<0$ and $\gamma<1$, we may prove in a similar manner, for any $p$, $p_0$ such that 
+	$0<p_0 < p < \chi$,
+	\begin{align*}
+		&\Phi(p,2)\leq C\Phi(p_0,3)\\
+		&\Phi(-p_0, 3) \leq C\Phi(-\infty, 1),\quad C = C(q,p,p_0).
+	\end{align*}
+	The conclusion of this lemma will thus follow if we can show that, for some $p_0 > 0$,
+	\[
+		\Phi(p_0, 3) \leq C\Phi(-p_0, 3).
+	\]
+	In order to establish the estimate above, we turn to the second of the estimates \eqref{eq: local gradient estimates}.
+	Let $B_{2r}$ be any ball of radius $2r$, lying in $B_4(=B_4(y))$, and choose the cut-off function $\eta$
+	so that $\eta\equiv1$ in $B_r$, $\eta\equiv0$ in $\Omega-B_4$ and $|D\eta\leq2/r$.
+	From \eqref{eq: local gradient estimates}, with the aid of the H\"older inequality, we then obtain
+	\begin{align*}
+		\int_{B_r}|Dw|\dd x &\leq Cr^{n/2}\left(\int_{B_r}|Dw|^2\dd x\right)^{1/2}\\
+			&\leq Cr^{n-1},\quad C=C(n).
+	\end{align*}
+	Hence, by Theorem~\ref{thm: bmo estimates}, there exists a constnat $p_0>0$ depending on $n$ such that,
+	for 
+	\[
+		w_0 = \frac{1}{|B_3|}\int_{B_3}w\dd x,
+	\]
+	we have 
+	\[
+		\int_{B_3}e^{p_0|w-w_0|}\dd x \leq C(n, |\Omega|),
+	\]
+	and thus
+	\[
+		\int_{B_3}e^{p_0w}\dd x \int_{B_3}e^{-p_0w}\dd x 
+			\leq C e^{p_0w_0}e^{-p_0w_0} = C.
+	\]
+	Recalling the definition of $w$, we obtain the desired estimate. 
+	The full result then follows by means of the transformation: $x\mapsto x/R$ and by letting $k$ tend to zero.
+\end{proof}
 
-\subsection{Hanack inequality}
+\subsection{Harnack inequality}
+
+By combining two lemmas above, we obtain the full Harnack inequality.
+
+\begin{theorem}
+	Let $u\in W^{1,2}(\Omega)$ satisfy $u\geq0$ in $\Omega$ and 
+	\[
+		-\Delta u = \partial_if^i + g,\quad \text{in }\Omega.
+	\]
+	Then for any ball $B_{4R}(y)\subset\Omega$, 
+	\[
+		\sup_{B_R(y)}u \leq C\inf_{B_R(y)}u,
+	\]
+	where $C=C(n,|\Omega|,R)$.
+\end{theorem}
 
 \subsection{H\"older estimate}
 
