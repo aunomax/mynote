@@ -2319,4 +2319,64 @@ which implies the desired assertation by the following lemma.
 	\] 
 \end{proof}
 
+\section{porous medium diffusion}
+the chemotaxis model with proous medium diffusion ($m>1$)
+\begin{equation}
+	\begin{cases}
+		u_t = \Delta u^m - \nabla \cdot ( u\nabla v), & (x,t)\in\Omega\times(0,T),\\
+		\varepsilon v_t = \Delta v - v + u, & (x,t)\in\Omega\times(0,T),
+	\end{cases}
+\end{equation}
+has a free energy functional
+\begin{equation}
+	\mathcal{F}_\varepsilon(u,v)(t) :=  \int_\Omega \frac{u^m-1}{m-1} - \int_\Omega uv 
+		+ \frac{1}{2}\int_\Omega |\nabla v|^2 + \frac{1}{2}\int_\Omega v^2,
+\end{equation}
+which satisfies 
+\begin{equation}
+	\frac{\dd}{\dd t}\mathcal{F}_\varepsilon = - \mathcal{D}_\varepsilon.
+\end{equation}
+Here, 
+\begin{equation*}
+	\mathcal{D}_\varepsilon(u,v) 
+		= - \int_\Omega u\left|\nabla\left(\frac{m}{m-1}u^{m-1} - v\right)\right|^2
+			- \varepsilon\int_\Omega v_t^2.
+\end{equation*}
+
+When $\varepsilon = 0$, due to
+\[
+	\int_\Omega |\nabla v|^2 + \int_\Omega v^2 = \int_\Omega uv,
+\]
+we have
+\begin{equation}
+	\mathcal{F}_0(u) = \int_\Omega \frac{u^m-1}{m-1} - \frac{1}{2}\int_\Omega uv 
+		= \int_\Omega\frac{u^m-1}{m-1} - \frac{1}{2}\int_\Omega u(-\Delta + 1)^{-1}u.
+\end{equation}
+Thanks to properties of the green function \cite{Grueter1982},
+we estimate
+\begin{align*}
+	\int_\Omega u(-\Delta+1)^{-1}u 
+		&\leq C\int_\Omega u\cdot |x|^{n-2}*u\\
+		&\leq C\|u\|_m\cdot \||x|^{2-n}*u\|_{\frac{m}{m-1}}\\
+		&\leq C\|u\|_m \cdot \||x|^{2-n}\|_r\cdot\|u\|_s,\quad 1+\frac{m-1}{m} = \frac{1}{r} + \frac{1}{s},
+			\quad (2-n)r + n-1 > -1,\\
+		&\leq C\|u\|_m\cdot \||x|^{2-n}\|_r\cdot\|u\|_m^{\theta}\cdot\|u\|_1^{1-\theta},
+			\quad \frac{1}{s} = \frac{\theta}{m} + \frac{1-\theta}{1}, \theta = \frac{s-1}{s}\frac{m}{m-1}\\
+		&\leq C\|u\|_m^{1+\theta}\cdot \||x|^{2-n}\|_r\cdot\|u\|_1^{1-\theta}.
+\end{align*}
+If 
+\[
+	m > 2-\frac2n,
+\]
+we can choose appropriately $r$ such that 
+\begin{align*}
+	1+\theta 
+		&= 1+\frac{s-1}{s}\cdot\frac{m}{m-1}\\
+		&= 1 + \left(\frac1r-\frac{m-1}{m}\right)\cdot\frac{m}{m-1}\\
+		&< 1 + \left(\frac{n-2}{n} - \frac{m-1}{m}\right)\cdot\frac{m}{m-1}\\
+		&= \frac{n-2}{n}\frac{m}{m-1}\leq m,
+\end{align*} 
+and hence $\mathcal{F}_0(u) \geq - C(\lambda)$ with $\lambda := \int_\Omega u$.
+
+
 
