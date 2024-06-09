@@ -2378,5 +2378,33 @@ we can choose appropriately $r$ such that
 \end{align*} 
 and hence $\mathcal{F}_0(u) \geq - C(\lambda)$ with $\lambda := \int_\Omega u$.
 
+\textbf{method 2.}
+\begin{align*}
+	\int_\Omega uv &\leq \|u\|_{\frac{2n}{n+2}}\cdot\|v\|_{\frac{2n}{n-2}}\\
+		&\leq C\|u\|_{\frac{2n}{n+2}}\cdot\|v\|_{W^{1,2}}\\
+		&\leq C\|u\|_m^\theta\cdot\|u\|_1^{1-\theta}\cdot\|v\|_{W^{1,2}},
+			\quad \frac{n+2}{2n} = \frac{\theta}{m} + \frac{1-\theta}{1},\\
+		&\leq \frac{1}{2}\|v\|_{W^{1,2}}^2 + C(\lambda)\|u\|_m^{2\theta}.
+\end{align*}
+If 
+	\[
+		m\geq 2-\frac2n,
+	\]
+we have 
+\[
+	2\theta = \frac{n-2}{n}\cdot\frac{m}{m-1}\leq m,
+\]
+and hence $\mathcal{F}_0(u) \geq - C(\lambda)$ with $\lambda$ appropriately small 
+when $m=2-2/n$. 
+
+Particularly, when $m=2-2/n$,
+\[
+	\int_\Omega uv \leq C\|u\|_m^m \|u\|_1^{2-m},
+\]
+we end up with 
+\begin{equation}
+	C_\ast := \sup_{f\neq0}\left\{\frac{\int_\Omega f(-\Delta+1)^{-1}f}{\|f\|_m^m\|f\|_1^{2-m}}: f\in L^m(\Omega)\cap L^1(\Omega) = L^m(\Omega)\right\} < \infty.
+\end{equation}
+
 
 
