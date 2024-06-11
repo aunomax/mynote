@@ -22,13 +22,13 @@ as \begin{equation}
 \begin{proof}
 	it suffices to show that for any $\phi\in C_0^\infty(\mathbb{R}^2)$,
 	\[
-		\lim_{t\searrow0}\int_{\mathbb{R}^2}K*f\phi = \int_{\mathbb{R}^2}f\phi.
+		\lim_{t\searrow0}\int_{\mathbb{R}^2}K*f\phi\dd x = \int_{\mathbb{R}^2}f\phi\dd x.
 	\]
 	we calculate 
 	\begin{align*}
-		\int_{\mathbb{R}^2}K*f\phi - f\phi
-		&= \iint_{\mathbb{R}^2\times\mathbb{R}^2}K(x-y,t)f(y)\phi(x) - f(x)\phi(x)\\
-		&= \int_{\mathbb{R}^2}\left(\int_{\mathbb{R}^2}K(y-x,t)(\phi(x)-\phi(y))\right)f(y),
+		\int_{\mathbb{R}^2}K*f\phi - f\phi\dd x
+		&= \iint_{\mathbb{R}^2\times\mathbb{R}^2}K(x-y,t)f(y)\phi(x) - f(x)\phi(x)\dd y\dd x\\
+		&= \int_{\mathbb{R}^2}\left(\int_{\mathbb{R}^2}K(y-x,t)(\phi(x)-\phi(y))\dd x\right)f(y)\dd y,
 	\end{align*}
 	since $\phi$ has compact support, $\phi$ is uniformly continuous, which implies that
 	for any $\varepsilon>0$, there exists $\delta>0$ such that 
@@ -38,12 +38,13 @@ as \begin{equation}
 	provided $|x-y| < \delta$.
 	so we have 
 	\[
-		\int_{\mathbb{R}^2}\left(\int_{|x-y|<\delta}K(y-x,t)(\phi(x)-\phi(y))\right)f(y)\leq \varepsilon \|f\|_1.
+		\int_{\mathbb{R}^2}\left(\int_{|x-y|<\delta}K(y-x,t)(\phi(x)-\phi(y))\dd x\right)f(y)\dd y 
+			\leq \varepsilon \|f\|_1.
 	\]
-	while $K(x,t)$ uniformly converges to $0$ over $\{|x|>\delta\}$, therefore
-	we may use Lebesgue's dominated convergence theorem and get
+	while $K(x,t)$ uniformly converges to $0$ over $\{|x|\geq\delta\}$ as $t$ tends to infinity, 
+	therefore we may use Lebesgue's dominated convergence theorem and get
 	\[
-		\lim_{t\searrow0} \int_{\mathbb{R}^2}\left(\int_{|x-y|<\delta}K(y-x,t)(\phi(x)-\phi(y))\right)f(y) = 0.
+		\lim_{t\searrow0} \int_{\mathbb{R}^2}\left(\int_{|x-y|\geq\delta}K(y-x,t)(\phi(x)-\phi(y))\dd x\right)f(y)\dd y = 0.
 	\] 
 	the above two estimates entail the desired conclusion.
 \end{proof}
@@ -85,6 +86,44 @@ as \begin{equation}
 			= \liminf_{c\searrow a}f(c).
 	\]	
 	all of four estimates above imply the continuity of $f$ at $a$.
+\end{proof}
+
+\begin{lemma}
+	The surface area $\omega_n$ and volume $V_n$ of the unit ball $\Omega = B_1 := \{x\in\mathbb{R}^n: |x|<1\}$ are given by
+	\[
+		V_n=\frac{\pi^{\frac{n}{2}}}{\Gamma\left(\frac{n}{2}+1\right)} = \frac{\omega_n}{n},
+	\]
+	where $\Gamma(s)$ is the usual Gamma function.
+\end{lemma}
+\begin{proof}
+	Using the fact
+	\begin{equation*}
+		\int_{\mathbb{R}^2}e^{-|x|^2}\dd x 
+			= 2\pi\int_0^\infty re^{-r^2}\dd r
+			= \pi,
+	\end{equation*}
+	we have 
+	\begin{align*}
+		\int_{\mathbb{R}^n}e^{-|x|^2}\dd x
+			&= \left(\int_{\mathbb{R}}e^{-s^2}\dd s\right)^n\\
+			&= \left(\int_{\mathbb{R}^2}e^{-s^2}\dd s\right)^{n/2}\\
+			&= \pi^{n/2},
+	\end{align*}
+	While 
+	\begin{align*}
+		\int_{\mathbb{R}^n}e^{-|x|^2}\dd x
+			&= \omega_n\int_0^\infty r^{n-1}e^{-r^2}\dd r\\
+			&= \frac{\omega_n}2\int_0^\infty \rho^{n/2-1}e^{-\rho}\dd\rho\\
+			&= \frac{\omega_n\Gamma(n/2)}{2},
+	\end{align*}
+	we end up with
+	\[
+		\omega_n = \frac{2\pi^{n/2}}{\Gamma(n/2)} = \frac{n\pi^{n/2}}{\Gamma(n/2+1)},
+	\]
+	and thus
+	\[
+		V_n = \int_{\Omega}\dd x = \omega_n\int_0^1r^{n-1}\dd r = \frac{\omega_n}{n}.
+	\]
 \end{proof}
 
 \section{the interpolation-trace lemma}
@@ -2324,13 +2363,13 @@ the chemotaxis model with proous medium diffusion ($m>1$)
 \begin{equation}
 	\begin{cases}
 		u_t = \Delta u^m - \nabla \cdot ( u\nabla v), & (x,t)\in\Omega\times(0,T),\\
-		\varepsilon v_t = \Delta v - v + u, & (x,t)\in\Omega\times(0,T),
+		\varepsilon v_t = \Delta v - \alpha v + u, & (x,t)\in\Omega\times(0,T),
 	\end{cases}
 \end{equation}
 has a free energy functional
 \begin{equation}
 	\mathcal{F}_\varepsilon(u,v)(t) :=  \int_\Omega \frac{u^m-1}{m-1} - \int_\Omega uv 
-		+ \frac{1}{2}\int_\Omega |\nabla v|^2 + \frac{1}{2}\int_\Omega v^2,
+		+ \frac{1}{2}\int_\Omega |\nabla v|^2 + \frac{\alpha}{2}\int_\Omega v^2,
 \end{equation}
 which satisfies 
 \begin{equation}
@@ -2345,7 +2384,7 @@ Here,
 
 When $\varepsilon = 0$, due to
 \[
-	\int_\Omega |\nabla v|^2 + \int_\Omega v^2 = \int_\Omega uv,
+	\int_\Omega |\nabla v|^2 + \alpha\int_\Omega v^2 = \int_\Omega uv,
 \]
 we have
 \begin{equation}
@@ -2405,6 +2444,60 @@ we end up with
 \begin{equation}
 	C_\ast := \sup_{f\neq0}\left\{\frac{\int_\Omega f(-\Delta+1)^{-1}f}{\|f\|_m^m\|f\|_1^{2-m}}: f\in L^m(\Omega)\cap L^1(\Omega) = L^m(\Omega)\right\} < \infty.
 \end{equation}
+
+Suppose $\Omega = B_R := \{x\in\mathbb{R}^n: |x|<R\}$. 
+Then if $(u,v)$ is a solution of the stationary system
+\begin{equation}
+	\begin{cases}
+		0 = \Delta u^m - \nabla\cdot(u\nabla v), & x\in B_R\\
+		0 = \Delta v - \alpha v + u, & x\in B_R.
+	\end{cases}
+\end{equation}
+Then $(\tilde{u}, \tilde{v}) = (R^nu(Rx), R^{n-2}v(Rx))$ is a solution of the following problem
+\begin{equation*}
+	\begin{cases}
+		0 = \Delta \tilde{u}^m - \nabla\cdot(\tilde u\nabla \tilde v), & x\in B_1,\\
+		0 = \Delta \tilde v - R^2\alpha \tilde v + \tilde u, & x\in B_1.
+	\end{cases}
+\end{equation*}
+
+for $f\in L^p(\Omega)$, Schwarz Symmetrization~\cite{Kesavan2006}, or, the spherically symmetric and decreasing rearrangement is the function $f^*: \Omega \mapsto \mathbb{R}$ defined by 
+\[
+	f^\ast(x) = f^\sharp (V_n |x|^n),\quad x\in\Omega,
+\]
+where
+\begin{equation*}
+	f^\sharp(s) := 
+	\begin{cases}
+		\esssup(f),& s=0,\\
+		\inf\{t:\mu_f(t) <s\}, & s>0,
+	\end{cases}
+	\quad \mu_f(t) = |\{|f|>t\}| = |\{x\in\Omega: f(x)>t\}|.
+\end{equation*}
+Here, $V_n$ denotes the volume of the unit ball in $\mathbb{R}^n$,
+\[
+	V_n=\frac{\pi^{\frac{n}{2}}}{\Gamma\left(\frac{n}{2}+1\right)},
+\]
+where $\Gamma(s)$ is the usual Gamma function.
+
+Then for $f\in L^m(\Omega)$, 
+\[
+	\|f\|_1 = \|f^*\|_1, \quad \|f\|_m = \|f^*\|_m.
+\]
+Writing
+\[
+	\tilde G_\alpha(x) = G_\alpha(x)\chi_\Omega,\quad \tilde f = f\chi_\Omega, 
+\]
+where $G_\alpha$ is the usual green function of $-\Delta + \alpha I$ associated with homogeneous Neumann boundary conditions.
+Then 
+\begin{align*}
+	\int_\Omega f(-\Delta + \alpha I)^{-1}f 
+		&= \int_\Omega f \cdot G_\alpha * f\\
+		&= \iint_{\mathbb{R}^n\times\mathbb{R}^n} \tilde{f}(x)\cdot\tilde{G}_\alpha(x-y)\tilde{f}(y)\\
+		&\leq \iint_{\mathbb{R}^n\times\mathbb{R}^n} \tilde{f}^\ast(x)\cdot\tilde{G}^\ast_\alpha(x-y)\tilde{f}^\ast(y)\\
+		&= \int_\Omega f^\ast\cdot G_\alpha^\ast*f^\ast.
+\end{align*}
+If $G_\alpha$ is radially non-increasing, then $G_\alpha = G_\alpha^\ast$.
 
 
 
