@@ -2489,7 +2489,7 @@ Writing
 	\tilde G_\alpha(x) = G_\alpha(x)\chi_\Omega,\quad \tilde f = f\chi_\Omega, 
 \]
 where $G_\alpha$ is the usual green function of $-\Delta + \alpha I$ associated with homogeneous Neumann boundary conditions.
-Then 
+Then by Resiz rearrangement properties \cite[Lemma~2.1]{Lieb1983}
 \begin{align*}
 	\int_\Omega f(-\Delta + \alpha I)^{-1}f 
 		&= \int_\Omega f \cdot G_\alpha * f\\
@@ -2497,7 +2497,60 @@ Then
 		&\leq \iint_{\mathbb{R}^n\times\mathbb{R}^n} \tilde{f}^\ast(x)\cdot\tilde{G}^\ast_\alpha(x-y)\tilde{f}^\ast(y)\\
 		&= \int_\Omega f^\ast\cdot G_\alpha^\ast*f^\ast.
 \end{align*}
-If $G_\alpha$ is radially non-increasing, then $G_\alpha = G_\alpha^\ast$.
+
+Since $G_\alpha\in C^{\infty}_{\mathrm{loc}}(\overline{\Omega}\setminus\{0\})$ solves
+\begin{align*}
+	-\Delta G_\alpha + \alpha G_\alpha &= \delta_0, \quad x\in\Omega,\\
+	\frac{\partial G_\alpha}{\partial n} &= 0,\quad x\in\partial\Omega,
+\end{align*}
+we have $G_\alpha$ is positive and radially symmetric function, 
+and integrating over $\Omega\setminus B_s$, for $s\in(0,1)$, get 
+\begin{align*}
+	0 &= \int_{\Omega\setminus B_s} \delta_0\dd x 
+		= - \int_{\Omega\setminus B_s} \Delta G_\alpha + \alpha\int_{\Omega\setminus B_s} G_\alpha\\
+		&= -\left(\int_{\partial\Omega}\frac{\partial G_\alpha}{\partial n}\dd S 
+			- \int_{\partial B_s}\frac{\partial G_\alpha}{\partial n}\dd S\right) 
+			+ \alpha\int_{\Omega\setminus B_s} G_\alpha\\
+		&= \omega_n G_\alpha'(s)s^{n-1} + \alpha\int_{\Omega\setminus B_s} G_\alpha,
+\end{align*}  
+which implies $G_\alpha$ is radially decreasing, and therefore $G_\alpha = G_\alpha^\ast$.
+We end up with 
+\[
+\int_\Omega f(-\Delta + \alpha I)^{-1}f\leq \int_\Omega f^\ast(-\Delta +\alpha I)^{-1}f^\ast.
+\]
+Define 
+\[
+\Lambda(f) := \frac{\int_\Omega f_j(-\Delta + \alpha I)^{-1}f_j}{\|f_j\|_m^m\cdot\|f_j\|_1^{2-m}},
+	\quad f\in L^m(\Omega),
+\]
+and consider a maximising sequence $\{f_j\}$ in $L^m$, that is
+\[
+\Lambda(f_j) \to C_\ast.
+\]
+So we may assume without loss of generality,
+$\{f_j\}$ is a family of nonnegative, radially symmetric and non-increasing functions such that $\|f_j\|_m=1$. 
+Then for any $R\in(0,1)$,
+\begin{align*}
+	f_j(R) \leq \left(\frac{\int_{B_R}f_j^m}{|B_R|}\right)^{1/m}
+		\leq CR^{-n/m}.
+\end{align*}
+Relying on Helly's compactness method, there exists a subsequence (still denoted by $f_j$) 
+and a measurable function $f$ such that 
+\[
+f_j \to f, \quad \text{p.p. } x\in\Omega.
+\]
+By Fatou lemma, $f\in L^m(\Omega)$ and $\|f\|_m\leq\liminf\|f_j\|_m = 1$. 
+Moreover, $\|f_j-f\|_1 \to 0$.
+Using $f\in L^{2n/(n+2)}$ and Hardy-Littlewood-Sobolev inequality, by Lebesgue dominated convergence theorem,
+we have 
+\[
+\int_\Omega f_j(-\Delta + \alpha I)^{-1}f_j = \int_\Omega f (-\Delta + \alpha I)^{-1}f,
+\]
+and thus 
+\[
+C_\ast = \lim_{j\to\infty}\Lambda(f_j) \leq 
+\]
+\emph{how to rule out $\|f\|_1 = 0$?}
 
 
 
