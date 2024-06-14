@@ -586,6 +586,28 @@ Let $\left(f_{n}\right)_{n \in \mathbb{N}} \subseteq L^{p}(X, \tau, \mu), f \in 
 	\end{equation*}
 \end{proof}
 
+\section{\texorpdfstring{$W^{1,1}$}{W1,1} embeds into \texorpdfstring{$L^\infty$}{bounded space}}
+\begin{lemma}
+	If $f\in W^{1,1}(\mathbb{R})$, then $|f|\leq \|f\|_{W^{1,1}}$.
+	Particularly, $\lim_{\xi\to\infty}f(\xi) = 0$.
+\end{lemma}
+\begin{proof}
+	By density, without loss of generality,
+	we may assume that $f\in C^1(\mathbb{R})$, then
+	\[
+	f(b) = f(a) + \int_a^b f'(\xi)\dd \xi,\quad (a,b)\subset(a, a+1)\subset\mathbb{R},
+	\]
+	and hence
+	\[
+	f(b) \leq f(a) + \int_a^{a+1}|f'(\xi)|\dd\xi,
+	\]
+	and integrating over $(a, a+1)$,
+	\begin{align*}
+		|f(b)| &\leq \int_a^{a+1}f(\xi)\dd\xi + \int_a^{a+2}|f'(\xi)|\dd\xi,
+	\end{align*}
+	which implies the desired conclusion.
+\end{proof}
+
 \section{Admissible Relative Entropies and Their Generating
 	Functions}
 
