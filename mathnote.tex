@@ -1020,6 +1020,50 @@ $-\Delta$ is surjective; Obviously, the Laplace equation has only zero solution 
 a direct consequence is $\|u\|_{H^2}\leq C\|\Delta u\|_{L^2}$ for all $u\in D$.
 \end{example}
 
+\section{an equivalent norm}
+
+\begin{lemma}
+	%if $\|f\|_{L^2(\partial\Omega)} + \|\nabla f\|_{L^2(\Omega)} < C$, then $f\in H^1(\Omega)$ is bounded. precisely, 
+	there exists $C>0$ such that 
+	\[
+	\|f\|_{L^2(\Omega)} \leq C\|f\|_{L^2(\partial\Omega)} + C\|\nabla f\|_{L^2(\Omega)}.
+	\]
+\end{lemma}
+
+\begin{proof}
+	By absurdom, for each $n\in \mathbb{N}^+$, there exists $f_n$ such that
+	\[
+	\|f_n\|_{L^{2}(\Omega)} > n (\|f_n\|_{L^2(\partial\Omega)} + \|\nabla f_n\|_{L^2(\Omega)}).
+	\]
+	Writing
+	\[
+	\tilde{f}_n = \frac{f_n}{\|f_n\|_{L^2(\Omega)}},
+	\]
+	we have 
+	\[
+	\|\tilde f_n\|_{L^{2}(\Omega)} = 1,
+	\quad \|\tilde f_n\|_{L^2(\partial\Omega)} + \|\nabla \tilde f_n\|_{L^2(\Omega)} \to 0.
+	\]
+	So $\tilde f_n\in H^1(\Omega)$ implies there exists $\tilde f\in L^2(\Omega)\cap L^2(\partial\Omega)$ such that substracting a subsequence if necessary,
+	\[
+	\tilde f_n\to \tilde f \quad\text{in } L^2(\Omega)\cap L^2(\partial\Omega),
+	\]
+	and thus 
+	\[
+	\|\tilde f\|_{L^2(\Omega)} = 1,
+	\quad \|\tilde f\|_{L^2(\partial\Omega)} = 0,
+	\quad \|\nabla\tilde f\|_{L^2(\Omega)} = 0.
+	\]
+	The last identity follows from the definition of weak derivative, that is,
+	for each $g\in C^\infty_0(\Omega)$,
+	\begin{align*}
+		\int_\Omega \tilde f\partial_i g \leftarrow \int_\Omega \tilde f_n\partial_i g 
+		= - \int_\Omega \partial_i \tilde f_n g \to 0. 
+	\end{align*}
+	We end up with $\tilde f\in H^1_0(\Omega)$ and $\|\tilde f\|_{L^2(\Omega)} = 0$ by Poincar\'e inequality,
+	which is absurd.
+\end{proof}
+
 
 \section{global existence of a chemotaxis system with indirect signal production}
 \begin{align}\label{sys: ks with isp}
