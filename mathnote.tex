@@ -530,6 +530,32 @@ the desired result is a direct consequence of above lemma.
 \end{proof}
 \end{example}
 
+\section{a counterpart about weak convergence}
+
+if $f_n\to f$ in $L^p$, it is obvious that $|f_n|\to |f|$ by the triangle inequality.
+But this is not true in the case of weak convergence.
+Actually, writing $X:=L^2(0,1)$, putting 
+\[
+f_n = \sqrt2\sin(n\pi t),
+\]
+it is easy to check that 
+\[
+\|f_n\|_X = 1.
+\]
+Using Riemann-Lebesgue theorem,
+we have 
+\[
+f_n \rightharpoonup 0\quad\text{in }X,
+\]
+but 
+\[
+|f_n| \not\rightharpoonup 0\quad \text{in }X,
+\]
+since 
+\[
+<|f_n|,1> = 2\sqrt2/\pi.
+\]
+
 \section{The Kolmogorov–Riesz theorem}
 \begin{theorem}[Kolmogorov-Riesz]
 	 Let $1 \leq p<\infty .$ A subset $\mathcal{F}$ of $L^{p}\left(\mathbb{R}^{n}\right)$ is totally bounded if, and only if,
@@ -2610,7 +2636,7 @@ Moreover, $\|f_j-f\|_1 \to 0$.
 Using $f\in L^{2n/(n+2)}$ and Hardy-Littlewood-Sobolev inequality, by Lebesgue dominated convergence theorem,
 we have 
 \[
-\int_\Omega f_j(-\Delta + \alpha I)^{-1}f_j = \int_\Omega f (-\Delta + \alpha I)^{-1}f,
+\int_\Omega f_j(-\Delta + \alpha I)^{-1}f_j \to \int_\Omega f (-\Delta + \alpha I)^{-1}f,
 \]
 and thus 
 \[
