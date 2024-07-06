@@ -459,16 +459,24 @@ therefore
 	&\leqslant 2M\frac\varepsilon2 + |\int_{B_R}(f_k-f)g|
 \end{split}
 \end{equation}
-as $\{f_k\}_{k=1}^{\infty}$ is bounded in $L^p(\Omega)$. By Egoroff theorem, since $f_k$ converges almost everywhere in $\Omega$ to $f$ as $k\rightarrow \infty$, for any given $\tau>0$, there exists a measurable set $B_\tau$ with $|B_\tau|<\tau$, such that $f_n$ converges to $f$ uniformly on $B_R\backslash B_\tau$. Furthermore, for $\varepsilon$ given above, there exists a $\tau>0$, such that for any $|B_\tau|<\tau$, $\int_{B_\tau}|g|^q<(\frac{\varepsilon}{2})^q.$ Consequently, there exists a large $K>0$, such that for any $k>K$, $|f_k-f|^p<\varepsilon/|B_R|$ for any $x\in B_R\backslash B_\tau$, thus
+as $\{f_k\}_{k=1}^{\infty}$ is bounded in $L^p(\Omega)$. 
+By Egoroff theorem, since $f_k$ converges almost everywhere in $\Omega$ to $f$ as $k\rightarrow \infty$, 
+for any given $\tau>0$, there exists a measurable set $\Omega_\tau$ with $|\Omega_\tau|<\tau$, 
+such that $f_n$ converges to $f$ uniformly on $B_R\backslash \Omega_\tau$. 
+Furthermore, for $\varepsilon$ given above, there exists a $\tau>0$, 
+such that for any $|\Omega_\tau|<\tau$, $\int_{\Omega_\tau}|g|^q<(\frac{\varepsilon}{2})^q.$ 
+Consequently, there exists a large $K>0$, 
+such that for any $k>K$, $|f_k-f|^p<\varepsilon/|B_R|$ for any $x\in B_R\backslash \Omega_\tau$, thus
 \begin{equation}
 	\begin{split}
-		|\int_{B_R}(f_k-f)g|&\leqslant |\int_{B_R\backslash B_\tau}(f_k-f)g| + |\int_{B_\tau}(f_k-f)g|\\
+		|\int_{B_R}(f_k-f)g|&\leqslant |\int_{B_R\backslash \Omega_\tau}(f_k-f)g| 
+		+ |\int_{\Omega_\tau}(f_k-f)g|\\
 		&\leqslant \|g\|_{L^q}\varepsilon +2M\frac{\varepsilon}{2}.
 	\end{split}
 \end{equation}
 Now, we have for any $\varepsilon>0$, there exists a $K>0$ large enough such that 
 \begin{equation}
-	|\int_\Omega(f_k-f)g|\leqslant| (2M+ \|g\|_{L^q})\varepsilon \text{ for all } k> K.
+	|\int_\Omega(f_k-f)g|\leqslant (2M+ \|g\|_{L^q})\varepsilon \text{ for all } k> K.
 \end{equation}
 \end{proof}
 
@@ -534,7 +542,7 @@ the desired result is a direct consequence of above lemma.
 
 if $f_n\to f$ in $L^p$, it is obvious that $|f_n|\to |f|$ by the triangle inequality.
 But this is not true in the case of weak convergence.
-Actually, writing $X:=L^2(0,1)$, putting 
+Actually, writing $X:=L^2((0,1))$, putting 
 \[
 f_n = \sqrt2\sin(n\pi t),
 \]
@@ -553,8 +561,25 @@ but
 \]
 since 
 \[
-<|f_n|,1> = 2\sqrt2/\pi.
+(|f_n|,1)_X = 2\sqrt2/\pi.
 \]
+Actually, putting $\phi\in C^0(\overline{\Omega})$, by uniformly continuity, 
+for any $\varepsilon>0$, there exists $\delta>0$ such that for any $t', t''\in[0,1]$,
+\[
+|\phi(t')-\phi(t'')|<\varepsilon,\quad\text{provided } |t'-t''|<\delta.
+\]
+So we estimate for $n>N$ with $N\delta>1$,
+\begin{align*}
+(|f_n|,\phi)_X 
+&= \int_0^1|f_n|\phi\dd t = \sum_{i=0}^{n-1}\int_{i/n}^{(i+1)/n}|f_n|\phi\dd t\\
+&= \sum_{i=0}^{n-1}\int_0^{1/n} f_n(t)\phi(i/n+t)\dd t\\
+&= \sum_{i=0}^{n-1}\int_0^{1/n} f_n(t)\phi(i/n)\dd t 
+	+ \sum_{i=0}^{n-1}\int_0^{1/n}f_n(t)o (\varepsilon)\\
+&= \|f_n\|_1\frac1n\sum_{i=1}^{n-1}\phi(i/n) + \|f_n\|_1o(\varepsilon)\\
+&\to (|f_1|,1)_X (\phi,1)_X + o(\varepsilon),\quad n\to\infty.
+\end{align*}
+That is $|f_n|\rightharpoonup (|f_1|,1)_X$ in $X$, 
+by the density of $C^0(\overline\Omega)\hookrightarrow X$.
 
 \section{The Kolmogorov–Riesz theorem}
 \begin{theorem}[Kolmogorov-Riesz]
@@ -1616,6 +1641,7 @@ there exists $t_0\in(0,\infty)$ such that
 	\phi(t_0) = 0,
 \]
 which implies such solution is not globally well-posed.
+
 \section{local existence}
 \begin{align*}
 	u_t &= \Delta u - \nabla\cdot(u\nabla v),\\

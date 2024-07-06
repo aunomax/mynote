@@ -1,0 +1,648 @@
+% !TeX spellcheck = en_US
+% !TeX encoding = UTF-8
+%!TeX program = xelatex
+
+
+\documentclass[en,hazy,screen,blue,14pt]{elegantnote}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% my own configurations %%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb,amsmath,amsthm} %% $\leqslant%
+\usepackage{mathrsfs} %% $\mathscr{text}$
+
+
+\newcounter{dummy}
+\numberwithin{dummy}{section}
+\newcommand{\Lref}[1]{Lemma~\ref{#1}}
+\newtheorem{exercise}{Exercise}[dummy]
+%% add bib resource in .cls file
+%\addbibresource{mynote.bib}
+
+
+\newcommand{\set}[1]{\left\{#1\right\}}
+
+\newcommand{\dd}{\;\mathrm{d}}
+\newcommand{\chapter}[1]{}
+
+\DeclareMathOperator*{\esssup}{ess\,sup}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{Note}
+
+\author{mao}
+\institute{seu}
+
+\version{0.1}
+\date{\today}
+
+\begin{document}
+\maketitle
+% logo
+\centerline{\includegraphics[width=0.2\textwidth]{example-image-duck}}
+
+%\input{mathnote}
+
+\section{porous medium diffusion}
+the chemotaxis model with proous medium diffusion ($m>1$)
+\begin{equation}
+	\begin{cases}
+		u_t = \Delta u^m - \nabla \cdot ( u\nabla v), & (x,t)\in\Omega\times(0,T),\\
+		\varepsilon v_t = \Delta v - \alpha v + u, & (x,t)\in\Omega\times(0,T),
+	\end{cases}
+\end{equation}
+has a free energy functional
+\begin{equation}
+	\mathcal{F}_\varepsilon(u,v)(t) :=  \int_\Omega \frac{u^m-1}{m-1} - \int_\Omega uv 
+		+ \frac{1}{2}\int_\Omega |\nabla v|^2 + \frac{\alpha}{2}\int_\Omega v^2,
+\end{equation}
+which satisfies 
+\begin{equation}
+	\frac{\dd}{\dd t}\mathcal{F}_\varepsilon = - \mathcal{D}_\varepsilon.
+\end{equation}
+Here, 
+\begin{equation*}
+	\mathcal{D}_\varepsilon(u,v) 
+		= - \int_\Omega u\left|\nabla\left(\frac{m}{m-1}u^{m-1} - v\right)\right|^2
+			- \varepsilon\int_\Omega v_t^2.
+\end{equation*}
+
+When $\varepsilon = 0$, due to
+\[
+	\int_\Omega |\nabla v|^2 + \alpha\int_\Omega v^2 = \int_\Omega uv,
+\]
+we have
+\begin{equation}
+	\mathcal{F}_0(u) = \int_\Omega \frac{u^m-1}{m-1} - \frac{1}{2}\int_\Omega uv 
+		= \int_\Omega\frac{u^m-1}{m-1} - \frac{1}{2}\int_\Omega u(-\Delta + 1)^{-1}u.
+\end{equation}
+Thanks to properties of the green function \cite{Grueter1982},
+we estimate
+\begin{align*}
+	\int_\Omega u(-\Delta+1)^{-1}u 
+		&\leq C\int_\Omega u\cdot |x|^{n-2}*u\\
+		&\leq C\|u\|_m\cdot \||x|^{2-n}*u\|_{\frac{m}{m-1}}\\
+		&\leq C\|u\|_m \cdot \||x|^{2-n}\|_r\cdot\|u\|_s,\quad 1+\frac{m-1}{m} = \frac{1}{r} + \frac{1}{s},
+			\quad (2-n)r + n-1 > -1,\\
+		&\leq C\|u\|_m\cdot \||x|^{2-n}\|_r\cdot\|u\|_m^{\theta}\cdot\|u\|_1^{1-\theta},
+			\quad \frac{1}{s} = \frac{\theta}{m} + \frac{1-\theta}{1}, \theta = \frac{s-1}{s}\frac{m}{m-1}\\
+		&\leq C\|u\|_m^{1+\theta}\cdot \||x|^{2-n}\|_r\cdot\|u\|_1^{1-\theta}.
+\end{align*}
+If 
+\[
+	m > 2-\frac2n,
+\]
+we can choose appropriately $r$ such that 
+\begin{align*}
+	1+\theta 
+		&= 1+\frac{s-1}{s}\cdot\frac{m}{m-1}\\
+		&= 1 + \left(\frac1r-\frac{m-1}{m}\right)\cdot\frac{m}{m-1}\\
+		&< 1 + \left(\frac{n-2}{n} - \frac{m-1}{m}\right)\cdot\frac{m}{m-1}\\
+		&= \frac{n-2}{n}\frac{m}{m-1}\leq m,
+\end{align*} 
+and hence $\mathcal{F}_0(u) \geq - C(\lambda)$ with $\lambda := \int_\Omega u$.
+
+\textbf{method 2.}
+\begin{align*}
+	\int_\Omega uv &\leq \|u\|_{\frac{2n}{n+2}}\cdot\|v\|_{\frac{2n}{n-2}}\\
+		&\leq C\|u\|_{\frac{2n}{n+2}}\cdot\|v\|_{W^{1,2}}\\
+		&\leq C\|u\|_m^\theta\cdot\|u\|_1^{1-\theta}\cdot\|v\|_{W^{1,2}},
+			\quad \frac{n+2}{2n} = \frac{\theta}{m} + \frac{1-\theta}{1},\\
+		&\leq \frac{1}{2}\|v\|_{W^{1,2}}^2 + C(\lambda)\|u\|_m^{2\theta}.
+\end{align*}
+If 
+	\[
+		m\geq 2-\frac2n,
+	\]
+we have 
+\[
+	2\theta = \frac{n-2}{n}\cdot\frac{m}{m-1}\leq m,
+\]
+and hence $\mathcal{F}_0(u) \geq - C(\lambda)$ with $\lambda$ appropriately small 
+when $m=2-2/n$. 
+
+Particularly, when $m=2-2/n$,
+\[
+	\int_\Omega uv \leq C\|u\|_m^m \|u\|_1^{2-m},
+\]
+we end up with 
+\begin{equation}
+	C_\ast := \sup_{f\neq0}\left\{\frac{\int_\Omega f(-\Delta+1)^{-1}f}{\|f\|_m^m\|f\|_1^{2-m}}: f\in L^m(\Omega)\cap L^1(\Omega) = L^m(\Omega)\right\} < \infty.
+\end{equation}
+
+Suppose $\Omega = B_R := \{x\in\mathbb{R}^n: |x|<R\}$. 
+Then if $(u,v)$ is a solution of the stationary system
+\begin{equation}
+	\begin{cases}
+		0 = \Delta u^m - \nabla\cdot(u\nabla v), & x\in B_R\\
+		0 = \Delta v - \alpha v + u, & x\in B_R.
+	\end{cases}
+\end{equation}
+Then $(\tilde{u}, \tilde{v}) = (R^nu(Rx), R^{n-2}v(Rx))$ is a solution of the following problem
+\begin{equation*}
+	\begin{cases}
+		0 = \Delta \tilde{u}^m - \nabla\cdot(\tilde u\nabla \tilde v), & x\in B_1,\\
+		0 = \Delta \tilde v - R^2\alpha \tilde v + \tilde u, & x\in B_1.
+	\end{cases}
+\end{equation*}
+
+for $f\in L^p(\Omega)$, Schwarz Symmetrization~\cite{Kesavan2006}, or, the spherically symmetric and decreasing rearrangement is the function $f^*: \Omega \mapsto \mathbb{R}$ defined by 
+\[
+	f^\ast(x) = f^\sharp (V_n |x|^n),\quad x\in\Omega,
+\]
+where
+\begin{equation*}
+	f^\sharp(s) := 
+	\begin{cases}
+		\esssup(f),& s=0,\\
+		\inf\{t:\mu_f(t) <s\}, & s>0,
+	\end{cases}
+	\quad \mu_f(t) = |\{|f|>t\}| = |\{x\in\Omega: f(x)>t\}|.
+\end{equation*}
+Here, $V_n$ denotes the volume of the unit ball in $\mathbb{R}^n$,
+\[
+	V_n=\frac{\pi^{\frac{n}{2}}}{\Gamma\left(\frac{n}{2}+1\right)},
+\]
+where $\Gamma(s)$ is the usual Gamma function.
+
+Then for $f\in L^m(\Omega)$, 
+\[
+	\|f\|_1 = \|f^*\|_1, \quad \|f\|_m = \|f^*\|_m.
+\]
+Writing
+\[
+	\tilde G_\alpha(x) = G_\alpha(x)\chi_\Omega,\quad \tilde f = f\chi_\Omega, 
+\]
+where $G_\alpha$ is the usual green function of $-\Delta + \alpha I$ associated with homogeneous Neumann boundary conditions.
+Then by Resiz rearrangement properties \cite[Lemma~2.1]{Lieb1983}
+\begin{align*}
+	\int_\Omega f(-\Delta + \alpha I)^{-1}f 
+		&= \int_\Omega f \cdot G_\alpha * f\\
+		&= \iint_{\mathbb{R}^n\times\mathbb{R}^n} \tilde{f}(x)\cdot\tilde{G}_\alpha(x-y)\tilde{f}(y)\\
+		&\leq \iint_{\mathbb{R}^n\times\mathbb{R}^n} \tilde{f}^\ast(x)\cdot\tilde{G}^\ast_\alpha(x-y)\tilde{f}^\ast(y)\\
+		&= \int_\Omega f^\ast\cdot G_\alpha^\ast*f^\ast.
+\end{align*}
+
+Since $G_\alpha\in C^{\infty}_{\mathrm{loc}}(\overline{\Omega}\setminus\{0\})$ solves
+\begin{align*}
+	-\Delta G_\alpha + \alpha G_\alpha &= \delta_0, \quad x\in\Omega,\\
+	\frac{\partial G_\alpha}{\partial n} &= 0,\quad x\in\partial\Omega,
+\end{align*}
+we have $G_\alpha$ is positive and radially symmetric function, 
+and integrating over $\Omega\setminus B_s$, for $s\in(0,1)$, get 
+\begin{align*}
+	0 &= \int_{\Omega\setminus B_s} \delta_0\dd x 
+		= - \int_{\Omega\setminus B_s} \Delta G_\alpha + \alpha\int_{\Omega\setminus B_s} G_\alpha\\
+		&= -\left(\int_{\partial\Omega}\frac{\partial G_\alpha}{\partial n}\dd S 
+			- \int_{\partial B_s}\frac{\partial G_\alpha}{\partial n}\dd S\right) 
+			+ \alpha\int_{\Omega\setminus B_s} G_\alpha\\
+		&= \omega_n G_\alpha'(s)s^{n-1} + \alpha\int_{\Omega\setminus B_s} G_\alpha,
+\end{align*}  
+which implies $G_\alpha$ is radially decreasing, and therefore $G_\alpha = G_\alpha^\ast$.
+We end up with 
+\[
+\int_\Omega f(-\Delta + \alpha I)^{-1}f\leq \int_\Omega f^\ast(-\Delta +\alpha I)^{-1}f^\ast.
+\]
+Define 
+\[
+\Lambda(f) := \frac{\int_\Omega f_j(-\Delta + \alpha I)^{-1}f_j}{\|f_j\|_m^m\cdot\|f_j\|_1^{2-m}},
+	\quad f\in L^m(\Omega),
+\]
+and consider a maximising sequence $\{f_j\}$ in $L^m$, that is
+\[
+\Lambda(f_j) \to C_\ast.
+\]
+So we may assume without loss of generality,
+$\{f_j\}$ is a family of nonnegative, radially symmetric and non-increasing functions such that $\|f_j\|_m=1$. 
+Then for any $R\in(0,1)$,
+\begin{align*}
+	f_j(R) \leq \left(\frac{\int_{B_R}f_j^m}{|B_R|}\right)^{1/m}
+		\leq CR^{-n/m}.
+\end{align*}
+Relying on Helly's compactness method, there exists a subsequence (still denoted by $f_j$) 
+and a measurable function $f$ such that 
+\[
+f_j \to f, \quad \text{p.p. } x\in\Omega.
+\]
+By Fatou lemma, $f\in L^m(\Omega)$ and $\|f\|_m\leq\liminf\|f_j\|_m = 1$. 
+Moreover, $\|f_j-f\|_1 \to 0$.
+Using $f\in L^{2n/(n+2)}$ and Hardy-Littlewood-Sobolev inequality, by Lebesgue dominated convergence theorem,
+we have 
+\[
+\int_\Omega f_j(-\Delta + \alpha I)^{-1}f_j \to \int_\Omega f (-\Delta + \alpha I)^{-1}f,
+\]
+and thus 
+\[
+C_\ast = \lim_{j\to\infty}\Lambda(f_j) \leq 
+\]
+\emph{how to rule out $\|f\|_1 = 0$?}
+
+
+
+
+
+\section{quadratic logistic dampening prevents chemotactic collapse}
+
+consider 
+\begin{equation}
+	\begin{cases}
+		u_t = \Delta u - \nabla\cdot(u\nabla v) + \mu u (1-u), \\
+		v_t = \Delta v - v + u,\\
+		\partial_\nu u = \partial_\nu v = 0,
+	\end{cases}
+\end{equation}
+in a bounded domain $\Omega\subset\mathbb{R}^2$ with smooth boundary.
+It is obvious that
+\[
+	\int_t^{t+\tau}\int u^2 < C,
+\]
+for any $t\in(0, T-\tau)$ with $\tau = \min\{1, T/2\}$.
+By conclusions in Section~\ref{sec: L2 theory}, 
+we have 
+\begin{align*}
+	\sup_{(0,T)}\|\nabla v\|_{L^2} 
+	+ \sup_{(0,T-\tau)}\int_t^{t+\tau}\int |D^2v|^2 
+	+ \sup_{(0, T-\tau)}\int_t^{t+\tau}\int |\nabla v|^4 < C.
+\end{align*}
+
+
+\subsection{method 1: direct \texorpdfstring{$L_p$}{Lp} estimates}
+calculate
+\begin{align*}
+	\frac{\dd}{\dd t}\int u^p 
+	&= p\int u^{p-1}\nabla\cdot(\nabla u - u\nabla v) + \mu p \int u^p(1-u)\\
+	&= - p(p-1)\int u^{p-2}|\nabla u|^2 
+		+ p(p-1) \int u^{p-1}\nabla u\cdot\nabla v 
+		+ \mu p\int u^p(1-u)
+\end{align*}
+estimate
+\begin{align*}
+	p(p-1) \int u^{p-1}\nabla u\cdot\nabla v
+	&= (p-1)\int \nabla u^p\cdot\nabla v
+	 = -(p-1)\int u^p\Delta v\\
+	&\leq (p-1)\left(\int u^{2p}\right)^{\frac12}\left(\int |\Delta v|^2\right)^\frac{1}{2}
+	 = (p-1)\|\Delta v\|_2\cdot\|u^{\frac{p}{2}}\|_4^2\\
+	&\leq c(p) \|\Delta v\|_2\cdot \|u^{\frac{p}{2}}\|_{W^{1,2}}\cdot\|u^{\frac{p}{2}}\|_2,
+\end{align*}
+and
+\begin{align*}
+	\|u^{\frac{p}{2}}\|_2 
+	\leq C\|u^{\frac{p}{2}}\|_{W^{1,2}}^{\frac{p-1}{p}}\|u^{\frac{p}{2}}\|_{\frac2p}^{\frac1p},
+\end{align*}
+which implies 
+\begin{align*}
+	\|u^{\frac{p}{2}}\|_{W^{1,2}}^2 \geq c(m,p) \|u^{\frac{p}{2}}\|_2^{\frac{2p}{p-1}}.
+\end{align*}
+let 
+\[
+	\mathcal{F}(u) := \int u^p + c,
+\]
+we have
+\begin{align*}
+	\mathcal{F}' + \frac1C\mathcal{F}^\frac{p}{p-1} 
+	\leq \mathcal{F} \int |\Delta v|^2 + C,
+\end{align*}
+let
+\[
+	\mathcal{G} := \ln\mathcal{F},
+\]
+we have 
+\begin{equation*}
+	\mathcal{G}' + \frac{\mathcal{G}}{C} \leq \int|\Delta v|^2 + C,
+\end{equation*}
+which implies the uniform-in-time boundedness of $\|u\|_p$.
+
+\subsection{method 2: \texorpdfstring{$L\log L$}{LlogL}-type estimate}
+Let 
+\[
+	\phi(\xi) := \int_0^\xi \ln^\alpha(1+\eta) \dd\eta,\quad\alpha \in (0,2],
+\]
+then
+\begin{align*}
+	\frac{\dd}{\dd t}\int\phi(u)
+	&= \int \nabla\cdot(\nabla u - u\nabla v) \ln^\alpha(1+u) + \mu\int u(1-u)\ln^\alpha(1+u)\\
+	&= - \int \frac{\alpha|\nabla u|^2\ln^{\alpha-1}(1+u)}{1+u}
+		+ \int \frac{\alpha u}{1+u} \ln^{\alpha-1}(1+u)\nabla u\cdot\nabla v  + \mu\int u(1-u)\ln^\alpha(1+u)\\
+	&\leq - \alpha \int \frac{|\nabla u|^2\ln^{\alpha-1}(1+u)}{1+u}
+		+ \alpha\left(\int \frac{|\nabla u|^2\ln^{\alpha-1}}{1+u}\right)^{\frac12}
+			\left(\int \frac{|\nabla v|^2u^2\ln^{\alpha-1}(1+u)}{1+u}\right)^{\frac12}\\
+	&\quad + \mu\int u(1-u)\ln^\alpha(1+u)\\
+	&\leq \frac{\mu}{2}\int u^2\ln^{2\alpha-2}(1+u) + c(\alpha, \mu)\int|\nabla v|^4 
+		+ \mu\int u(1-u)\ln^\alpha(1+u)\\
+	&\leq c(\alpha, \mu)\int|\nabla v|^4 - \int\phi(u) + c(\alpha, \mu),
+\end{align*}
+which implies
+\begin{align*}
+	\int u\ln^\alpha(1+u) \leq C\int \phi(u) + C \leq C.
+\end{align*}
+combining with a logarithmic variant of G-N inequality, one can get 
+\[
+	\|u\|_p + \|\nabla v\|_{2p} < C(p), \quad p>1,
+\]
+which implies uniform-in-time boundedness of $u$ 
+by well-established parabolic regularity theory in the context of chemotaxis models.
+
+or
+
+denote 
+\[
+	\psi(\xi) := \int_0^\xi \frac{\alpha \eta}{1+\eta}\ln^{\alpha-1}(1+\eta),
+\]
+then 
+\begin{align*}
+	\int \frac{\alpha u}{1+u} \ln^{\alpha-1}(1+u)\nabla u\cdot\nabla v
+	&= - \int \psi(u) \Delta v\\
+	&\leq \varepsilon\int \psi^2(u) + c(\varepsilon)\int |\Delta v|^2\\
+	&\leq \varepsilon \int u^2\ln^{2\alpha -2}(1+u) + c(\varepsilon, n) \int |D^2 v|^2,
+\end{align*}
+
+
+\subsection{is the title of this section right when \texorpdfstring{$n\geq3$}{n>=3}?}
+
+\begin{align*}
+	\frac2n\frac{\dd}{\dd t}\int u^{\frac n2} 
+	&= \int u^{\frac n2-1}\nabla\cdot(\nabla u - u\nabla v) + \mu\int u^{\frac n2} - \mu\int u^{\frac n2+1}\\
+	&= -\frac{n-2}{2}\int u^{\frac n2-2}|\nabla u|^2 
+		+ \frac{n-2}{2}\int u^{\frac n2-1}\nabla u\cdot\nabla v + \mu\int u^{\frac n2} - \mu\int u^{\frac n2+1}
+\end{align*}
+\begin{align*}
+	\frac{n-2}{2}\int u^{\frac n2-1}\nabla u\cdot\nabla v
+	&\leq c(n) \left(\int u^{\frac n2-2}|\nabla u|^2\right)^{\frac12}
+		\left(\int u^{\frac n2}|\nabla v|^2\right)^{\frac12}\\
+	&\leq c(n) \left(\int u^{\frac n2-2}|\nabla u|^2\right)^{\frac12}
+		\left(\int u^{\frac{n+2}{2}}\right)^{\frac{n}{2(n+2)}}
+		\left(\int |\nabla v|^{n+2}\right)^{\frac1{n+2}}\\
+	&\leq c\|\nabla u^{\frac n4}\|_2
+		\cdot \|u^{\frac{n+2}{2}}\|_1^{\frac{n}{2(n+2)}}
+		\cdot \||\nabla v|^{\frac n2}\|_2^{\frac{4}{(n+2)n}}
+		\cdot \||\nabla v|^{\frac n2}\|_{W^{1,2}}^{\frac{2}{n+2}},
+\end{align*}
+
+\begin{align*}
+	\frac{\dd}{\dd t}\int |\nabla v|^n 
+	= \frac{n}{2} \int |\nabla v|^{n-2}\Delta |\nabla v|^2 - n\int |\nabla v|^{n-2}|D^2v|^2
+		- n\int |\nabla v|^n 
+		+ n\int |\nabla v|^{n-2}\nabla v\cdot\nabla u,
+\end{align*}
+\begin{align*}
+	\frac{\dd}{\dd t}\int |\nabla v|^n 
+		+ n\int |\nabla v|^n
+	\leq - n\int |\nabla v|^{n-2}|D^2v|^2
+		+ n\int |\nabla v|^{n-2}\nabla v\cdot\nabla u,
+\end{align*}
+let 
+\[
+	w=|\nabla v|^{\frac n2},
+\]
+\begin{align*}
+	n\int |\nabla v|^{n-2}\nabla v\cdot\nabla u
+	&= -n\int \nabla\cdot(|\nabla v|^{n-2}\nabla v)u \\
+	&= -n\int((n-2)|\nabla v|^{n-4}\nabla v \cdot (D^2v\cdot\nabla v) + |\nabla v|^{n-2}\Delta v) u\\
+	&\leq c(n)\int |\nabla v|^{n-2}|D^2v|u\\
+	&\leq \|\nabla|\nabla v|^{\frac{n}{2}}\|_2\left(\int |\nabla v|^{n-2}u^2\right)^{\frac12}\\
+	&\leq c(n)\|\nabla w\|_2\left(\int w^{\frac{2(n-2)}{n}}u^2\right)^{\frac12}\\
+	&\leq c(n)\|\nabla w\|_2 \left(\int w^{\frac{2(n+2)}{n}}\right)^{\frac{n-2}{2(n+2)}}
+		\left(\int u^{\frac{n+2}{2}}\right)^{\frac{2}{n+2}}\\
+	&= c(n)\|\nabla w\|_2 
+		\cdot \|w\|_{\frac{2(n+2)}{n}}^{\frac{n-2}{n}}
+		\cdot \|u\|_{\frac{n+2}{2}}\\
+	&\leq c(n)\|w\|_{W^{1,2}}^{\frac{2n}{n+2}}
+		\cdot \|w\|_2^{\frac{2(n-2)}{n(n+2)}}
+		\cdot \|u\|_{\frac{n+2}{2}}
+\end{align*}
+\subsection{a question}
+\begin{align*}
+	\|u\|_{n/2} < C \Rightarrow \|u\|_\infty < C ?
+\end{align*}
+
+let 
+\[
+	\phi(\xi):= \int_0^\xi \eta^{\frac{n}{2}-1}\ln^{\alpha}(e+\eta), \quad\alpha>1,
+\]
+then
+\[
+	\frac{\xi^{\frac{n}{2}}\ln^{\alpha}(e+\xi)}{C} - C 
+	\leq \phi(\xi) 
+	\leq \xi^{\frac{n}{2}}\ln^{\alpha}(e+\xi),
+\]
+calculate
+\begin{align*}
+	\frac{\dd}{\dd t}\int \phi(u) 
+	&= \int u^{\frac{n}{2} - 1}\ln^{\alpha}(e+u) \nabla\cdot(\nabla u - u\nabla v)
+		+ \mu\int u^{\frac{n}{2}}(1-u)\ln^{\alpha}(e+u)\\
+	&= -\frac{n-2}{2}\int |\nabla u|^2u^{\frac{n}{2}-2}\ln^\alpha(e+u)
+		- \alpha\int\frac{u^{\frac{n}{2}-1}\ln^{\alpha-1}(e+u)}{e+u}|\nabla u|^2\\
+		&\quad + \frac{n-2}{2}\int u^{\frac{n}{2}-1}\ln^\alpha(e+u)\nabla u\cdot\nabla v 
+			+ \alpha\int \frac{u^{\frac{n}{2}}\ln^{\alpha-1}(e+u)}{e+u} \nabla u \cdot \nabla v\\
+		&\quad + \mu\int u^{\frac{n}{2}}(1-u)\ln^{\alpha}(e+u),
+\end{align*}
+Noting
+\begin{align*}
+	\|u\|_{n/2} < C 
+	&\Rightarrow \sup_{(0,T-\tau)}\int_t^{t+\tau} \int u^{\frac{n+2}{2}} < C \\
+	&\Rightarrow \|\nabla v\|_n 
+		+ \sup_{(0,T-\tau)}\int_t^{t+\tau}\int |\nabla v|^{n+2}
+		+ \sup_{(0,T-\tau)}\int_t^{t+\tau}\int  |\nabla v|^{n-2}|D^2v|^2 < C,
+\end{align*}
+
+\subsection{where is wrong?}
+\begin{equation}
+	\begin{cases}
+		u_t = \Delta u - \nabla\cdot(u\nabla v) + \mu u - \mu u^\alpha,\\
+		0 = \Delta v - \overline u + u,
+	\end{cases}
+\end{equation}
+let 
+\[
+	\phi(t) = \int_0^R ur^{2n-1}\dd r,
+\]
+and
+\[
+	m(t) = \int_0^R ur^{n-1}\dd r,
+\]
+we calculate
+\begin{align*}
+	\phi'(t) &=
+	\int_0^R(u_rr^{n-1})_rr^n - (uv_rr^{n-1})_rr^n\dd r 
+		+ \mu\int_0^R u r^{2n-1}\dd r - \mu \int_0^Ru^\alpha r^{2n-1}\dd r,
+\end{align*}
+estimate
+\begin{align*}
+	\int_0^R(u_rr^{n-1})_rr^n 
+		&= - n\int_0^Ru_rr^{2n-2}\dd r\\
+		&= -nu(R) + 2n(n-1)\int_0^Rur^{2n-3}\dd r\\
+		&\leq 2n(n-1)\left(\int_0^Rur^{n-1}\dd r\right)^{\frac{2}{n}}
+			\cdot \left(\int_0^Rur^{2n-1}\dd r\right)^{\frac{n-2}{n}}.
+\end{align*}
+Using 
+\[
+	(v_rr^{n-1})_r -\overline{u}r^{n-1} + ur^{n-1} = 0,
+\]
+we get
+\begin{align*}
+	- \int_0^R (uv_rr^{n-1})_rr^n\dd r 
+		&= n\int_0^Rur^{n-1}\cdot v_rr^{n-1}\dd r \\
+		&= n\int_0^R ur^{n-1} \int_0^r(\overline{u}\eta^{n-1} - u\eta^{n-1})\dd\eta\dd r\\
+		&= - \frac{n}2\left(\int_0^Rur^{n-1}\dd r\right)^2 + \overline{u}\int_0^R ur^{2n-1}\dd r, 
+\end{align*}
+and therefore
+\begin{align*}
+	\phi'(t) \leq \Phi(t, \phi) := 2n(n-1)m^{\frac2n}\cdot \phi^{\frac{n-2}{n}} - \frac{nm^2}2 + (\overline{u} + \mu)\phi,
+\end{align*}
+
+while
+\[
+	m' = \mu m - \mu m^\alpha,
+\]
+we have 
+\[
+	m\in\left[\min\{m(0),1\}, \max\{m(0),1\}\right],
+\]
+and thus for any $m(0)>0$, there exists $\varepsilon>0$ 
+such that for any $\xi\in(0,\varepsilon)$,
+$\Phi(t,\xi) < 0$,
+that is for any initial data satisfying $\phi(0) < \varepsilon$, 
+there exists $t_0\in(0,\infty)$ such that 
+\[
+	\phi(t_0) = 0,
+\]
+which implies such solution is not globally well-posed.
+
+
+
+%\input{mathematics-analysis}
+
+
+
+%\input{elegantNote-manual.tex}
+
+
+
+
+\section{\texorpdfstring{$L^2$}{L2} theory}
+\label{sec: L2 theory}
+
+consider \cite{Winkler2023}
+\begin{equation}
+	v_t = \Delta v - v + f,
+\end{equation}
+with boundary conditions
+\begin{equation*}
+	\frac{\partial v}{\partial\nu} = 0,
+\end{equation*}
+where 
+\begin{equation*}
+	f\in L^\infty((0,T); L^1(\Omega)),
+\end{equation*}
+using \[
+\nabla v \cdot \nabla \Delta v=\Delta\left(\frac{1}{2}|\nabla v|^2\right)-\left|D^2 v\right|^2,
+\]
+we get
+\begin{align*}
+	\frac{\dd}{\dd t}\int|\nabla v|^p 
+	&= p\int |\nabla v|^{p-2}\nabla v\cdot \nabla v_t 
+	= p\int |\nabla v|^{p-2} (\nabla \Delta v - \nabla v + \nabla f) \\
+	&= \frac12\int |\nabla v|^{p-2}\Delta (|\nabla v|^2) - p\int |\nabla v|^{p-2}|D^2v|^2 
+		-p\int |\nabla v|^p + p\int |\nabla v|^{p-2}\nabla v \nabla f,
+\end{align*}
+by additional assumption of convex domain 
+or a pointwise estimate of boundary trace alongwith trace imbedding lemma and Sobolev imbedding inequality,
+we can control the first term of right hand, and estimate
+\begin{align*}
+	p\int |\nabla v|^{p-2}\nabla v \cdot \nabla f 
+	&= - p\int \nabla\cdot(|\nabla v|^{p-2}\nabla v) f\\
+	&= -p(p-2)\int |\nabla v|^{p-4}\nabla v\cdot (D^2v\nabla v) f 
+		- p \int |\nabla v|^{p-2}\Delta v f\\
+	&\leq c(p,n)\int |\nabla v|^{p-2} |D^2v| |f|\\
+	&\leq c(p,n)\left(\int |\nabla v|^{p-2}|D^2v|^2\right)^{\frac12}
+	\left(\int |\nabla v|^{p-2}f^2\right)^{\frac12}\\
+	&= c(p,n) \|\nabla w\|_{L^2} \left(\int |\nabla v|^{p-2}f^2\right)^{\frac12},
+\end{align*}
+here, 
+\[
+	w = |\nabla v|^{\frac{p}{2}},	
+\]
+let $q\in(2,p)$ to be specified below, we estimate
+\begin{align*}
+	\left(\int |\nabla v|^{p-2}f^2\right)^{\frac12}
+	&\leq \left(\int |\nabla v|^{\frac{(p-2)q}{q-2}}\right)^{\frac{q-2}{2q}}
+	\left(\int f^q\right)^{\frac{1}{q}}\\
+	&= \|w\|_{L^{\frac{2(p-2)q}{p(q-2)}}}^{\frac{p-2}{p}}
+		\|f\|_{L^q},
+\end{align*}
+using G-N inequality
+\[
+	\|u\|_{L^{\frac{2(p-2)q}{p(q-2)}}}
+	\leq C_g \|u\|_{W^{1,2}}^\theta\|u\|_{L^2}^{1-\theta},\quad u\in W^{1,2}, 
+\]
+with
+\[
+	\frac{p(q-2)}{2(p-2)q} = \theta\left(\frac12-\frac1n\right) + \frac{1-\theta}{2}.
+\]
+i.e.,
+\[
+	\theta = \frac{n(p-q)}{(p-2)q},
+\]
+we get
+\begin{equation*}
+	p\int |\nabla v|^{p-2}\nabla v \cdot \nabla f 
+	\leq c(p,n) \|w\|_{W^{1,2}}^{1+\frac{n(p-q)}{pq}}
+		\|w\|_{L^2}^{\frac{p-2}{p} - \frac{n(p-q)}{pq}}
+		\|f\|_{L^q}.
+\end{equation*}
+Fixing 
+\[
+	q = \frac{(n+2)p}{n+p},
+\]
+which is such that
+\[
+	\alpha := \frac{2}{1-\frac{n(p-q)}{pq}} = q,\quad \theta = \frac{n}{n+2},
+\]
+and 
+\begin{equation}\label{eq: gn inequality Lpw12L2}
+	\|u\|_{L^{\frac{2(n+2)}{n}}} \leq C_g \|u\|_{W^{1,2}}^{\frac{n}{n+2}}\|u\|_{L^2}^{\frac{2}{n+2}},
+\end{equation}
+using Young inequality, we get
+\begin{align*}
+	p\int |\nabla v|^{p-2}\nabla v \cdot \nabla f 
+	&\leq \varepsilon \|w\|_{W^{1,2}}^2
+		\|w\|_{L^2}^{\left(\frac{p-2}{p} - \frac{n(p-q)}{pq}\right)\alpha}
+		\|f\|_{L^q}^\alpha\\
+	&= \varepsilon \|w\|_{W^{1,2}}^2
+	+ c(\varepsilon) \|w\|_{L^2}^{\frac{2(p-2)}{n+p}}
+	\|f\|_{L^q}^q,
+\end{align*}
+and therefore
+\begin{equation*}
+	\mathcal{F}' + \frac1C F \leq C \mathcal{F}^{\frac{p-2}{n+p}} \|f\|_q^q, 
+\end{equation*} 
+where
+\[
+	\mathcal{F} := \int w^2.
+\]
+So we obtain by a direct application of ODE comparable method,
+\[
+	\mathcal{F}^{\frac{n+2}{n+p}} \leq C \int_0^T\|f\|_q^q,
+\]
+and consequently,
+\begin{align*}
+	\sup_{(0,T)}\int |\nabla v|^p + \int_0^T\int |\nabla v|^{p-2}|D^2 v|^2 
+	\leq C \left(\int_0^T\int |f|^{\frac{(n+2)p}{n+p}}\right)^{\frac{n+p}{n+2}}
+\end{align*}
+and by \eqref{eq: gn inequality Lpw12L2},
+\begin{equation*}
+	\left(\int_0^T\int |\nabla v|^{\frac{(n+2)p}{n}}\right)^{\frac{n}{n+2}} 
+	\leq C \left(\int_0^T\int |f|^{\frac{(n+2)p}{n+p}}\right)^{\frac{n+p}{n+2}}. 
+\end{equation*}
+
+
+
+
+
+
+\printbibliography%[heading=bibintoc, title=\ebibname]
+
+\end{document}
