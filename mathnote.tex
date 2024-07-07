@@ -581,6 +581,36 @@ So we estimate for $n>N$ with $N\delta>1$,
 That is $|f_n|\rightharpoonup (|f_1|,1)_X$ in $X$, 
 by the density of $C^0(\overline\Omega)\hookrightarrow X$.
 
+\section{a compact property of unbounded domain}
+\begin{lemma}
+	$V:=\{f\in H^1(\mathbb{R}^n): \int_{\mathbb R^n}|x|f^2\dd x<\infty\}$ 
+	is relatively compact in $L^2(\mathbb{R}^n)$.
+\end{lemma}
+
+\begin{proof}
+	Let $S$ be a bounded subset of $V$.
+	Then for each $\varepsilon>0$, there exists $R>0$ such that 
+	for any $f\in S$,
+	\[
+	\int_{\mathbb{R}^n\setminus B_R}f^2 \leq \frac1R\int_{\mathbb{R}^n\setminus B_R}|x|f^2<\varepsilon.
+	\]
+	Since $S$ is relatively compact in $L^2(B_R)$, 
+	for each $\varepsilon$ given as above,
+	there exists a finite set $F_\varepsilon = \{f_1, f_2, \cdot, f_k\}\subset S$ such that 
+	for any $f\in S$, 
+	\[
+	\min_{f_k\in F_\varepsilon}\|f-f_k\|_{L^2(B_R)}< \varepsilon.
+	\] 
+	Therefore,
+	\[
+	\min_{f_k\in F_\varepsilon}\|f-f_k\|_{L^{2}(\mathbb R^n)}
+	\leq \min_{f_k\in F_\varepsilon}\|f-f_k\|_{L^{2}(B_R)}
+		+ \sup_{f_k\in F_\varepsilon}\|f-f_k\|_{L^{2}(\mathbb R^n\setminus B_R)} 
+		< 3\varepsilon,
+	\]
+	which implies $S$ is relatively compact in $L^2(\mathbb R^n)$.
+\end{proof}
+
 \section{The Kolmogorov–Riesz theorem}
 \begin{theorem}[Kolmogorov-Riesz]
 	 Let $1 \leq p<\infty .$ A subset $\mathcal{F}$ of $L^{p}\left(\mathbb{R}^{n}\right)$ is totally bounded if, and only if,
