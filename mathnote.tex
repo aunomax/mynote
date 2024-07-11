@@ -112,29 +112,30 @@ as \begin{equation}
 \end{remark}
 
 \begin{proposition}
-	let $I\in\mathbb{R}$ be an open interval. suppose $f: I\mapsto\mathbb{R}$ be a convex function,
+	Let $I\in\mathbb{R}$ be an open interval. Suppose that $f: I\mapsto\mathbb{R}$ is a convex function,
 	i.e.,
 	\[
-		f(\lambda a + (1-\lambda)b) \leq \lambda f(a) + (1-\lambda)f(b),\quad a,b\in I, \quad \lambda\in(0,1),
+		f(\lambda a + (1-\lambda)b) \leq \lambda f(a) + (1-\lambda)f(b),\quad a,b\in I, \quad \lambda\in(0,1).
 	\]
-	then $f\in C^{0,1}_{\mathrm{loc}}(I,\mathbb R)$.
+	Then $f\in C^{0,1}_{\mathrm{loc}}(I,\mathbb R)$.
 \end{proposition}
+
 \begin{proof}
-	fix $a\in I$.
-	if $a<b$, then we have by putting $\lambda\nearrow1$
+	Fix $a\in I$.
+	If $a<b$, then we have by putting $\lambda\nearrow1$
 	\[
 		\limsup_{\lambda\nearrow1}f(\lambda a + (1-\lambda)b) = \limsup_{c\searrow a}f(c)\leq f(a),
 	\]
 	if $a>b$, then we have similarly
 	\[
-		\limsup_{\lambda\nearrow1}f(\lambda a + (1-\lambda)b) = \limsup_{c\nearrow a}f(c)\leq f(a),
+		\limsup_{\lambda\nearrow1}f(\lambda a + (1-\lambda)b) = \limsup_{c\nearrow a}f(c)\leq f(a).
 	\]
-	particularly, using
-	\[
-		f(a) = f(\lambda(a-\varepsilon(1-\lambda)) + (1-\lambda)(a+\varepsilon\lambda))
-			\leq \lambda f(a-\varepsilon(1-\lambda)) + (1-\lambda)f(a+\varepsilon\lambda),
-			\quad 0<\varepsilon<<1,
-	\]
+	Particularly, using
+	\begin{align*}
+		f(a) &= f(\lambda(a-\varepsilon(1-\lambda)) + (1-\lambda)(a+\varepsilon\lambda))\\
+			&\leq \lambda f(a-\varepsilon(1-\lambda)) + (1-\lambda)f(a+\varepsilon\lambda),
+			\quad 0<\varepsilon\ll 1,
+	\end{align*}
 	we have by putting $\lambda\nearrow1$,
 	\[
 		f(a)\leq \liminf_{\lambda\nearrow1}\lambda f(a-\varepsilon(1-\lambda)) 
@@ -143,34 +144,34 @@ as \begin{equation}
 	\]
 	and by putting $\lambda\searrow0$,
 	\[
-		f(a)\leq \liminf_{\lambda\searrow0}\lambda f(a-\varepsilon(1-\lambda)) 
-			+ \limsup_{\lambda\searrow0}(1-\lambda)f(a+\varepsilon\lambda)
+		f(a)\leq \limsup_{\lambda\searrow0}\lambda f(a-\varepsilon(1-\lambda)) 
+			+ \liminf_{\lambda\searrow0}(1-\lambda)f(a+\varepsilon\lambda)
 			= \liminf_{c\searrow a}f(c).
 	\]	
-	all of four estimates above imply the continuity of $f$ at $a$.
+	Four estimates above imply the continuity of $f$ at $a$.
 
 	Using 
 	\[
-	\frac{f(\lambda a + (1-\lambda)b) - f(a)}{\lambda a + (1-\lambda)b - a} \leq \frac{f(b) - f(a)}{b-a},
+	\frac{f(\lambda a + (1-\lambda)b) - f(a)}{\lambda a + (1-\lambda)b - a} \leq \frac{f(b) - f(a)}{b-a},\quad a < b,
 	\]
-	we have if $a<b$,
+	we have
 	\[
 	\limsup_{c\searrow a}\frac{f(c)-f(a)}{c-a} 
 	= \limsup_{\lambda\nearrow 1}\frac{f(\lambda a + (1-\lambda)b) - f(a)}{\lambda a + (1-\lambda)b - a} 
 	\leq \frac{f(b) - f(a)}{b-a},
 	\]
-	and 
+	and hence 
 	\[
 	\limsup_{c\searrow a}\frac{f(c)-f(a)}{c-a} 
 	\leq \liminf_{b\searrow a}\frac{f(b)-f(a)}{b-a},
 	\]
-	and hence $f'(a+)$ exists and satisfies 
+	which implies $f'(a+)$ exists and satisfies 
 	\[
-	f'(a+)\leq \frac{f(b) - f(a)}{b-a}\quad b>a.
+	f'(a+)\leq \frac{f(b) - f(a)}{b-a},\quad b>a.
 	\]
-	If $a>b$, we similarly obtain $f'(a-)$ exists and satisfies 
+	If $a>c=b$, we similarly obtain $f'(a-)$ exists and satisfies 
 	\[
-	f'(a-)\leq \frac{f(c) - f(a)}{c-a}\quad c<a.
+	f'(a-)\geq \frac{f(c) - f(a)}{c-a},\quad c<a.
 	\]
 	Noting 
 	\begin{align*}
@@ -179,6 +180,22 @@ as \begin{equation}
 	&= \frac{(b-c)}{(b-a)(a-c)}\left(f(b)\frac{a-c}{b-c} + f(c)\frac{b-a}{b-c} - f(a) \right)\geq 0,
 	\end{align*}
 	we have $f'(a-)\leq f'(a+)$.
+	Using 
+	\[
+	\frac{f(b) - f(\lambda a + (1-\lambda)b)}{b - \lambda a - (1-\lambda)b} \geq \frac{f(b) - f(a)}{b-a},\quad b>a,
+	\]
+	we obtain
+	\[
+	f'(b-) = \lim_{\lambda\searrow0}\frac{f(b) - f(\lambda a + (1-\lambda)b)}{b - \lambda a - (1-\lambda)b}\geq \frac{f(b) - f(a)}{b-a}\geq f'(a+).
+	\]
+	So $g(a) := f'(a-)$, $a\in I$ is a nondecreasing functions 
+	which has at most countably many  discontinuous points.
+	At its continuous point $p\in I$,
+	\begin{align*}
+		f'(p-) = g(p) = \lim_{a\searrow p}g(a) 
+		= \lim_{a\searrow p} f'(a-) \geq \lim_{a\searrow p}f'(p+) = f'(p+),
+	\end{align*} 
+	which implies that $f'$ exists almost everywhere.
 	Therefore $f\in W^{1,\infty}_{\mathrm{loc}}(I) = C^{0,1}_{\mathrm{loc}}(I)$.
 \end{proof}
 
