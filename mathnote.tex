@@ -196,6 +196,14 @@ as \begin{equation}
 		= \lim_{a\searrow p} f'(a-) \geq \lim_{a\searrow p}f'(p+) = f'(p+),
 	\end{align*} 
 	which implies that $f'$ exists almost everywhere.
+	Moreover, for any compact set $K\subset I$, 
+	there exists an open interval $(c,b)$ such that $K\subset(c,b)$ and $\overline{(c,b)}\subset I$. 
+	For any $a\in K$, if $f'(a)$ exists, 
+	then  
+	\[
+	\frac{f(a) - f(c)}{a - c} 
+	\leq f'(a) \leq \frac{f(b) - f(a)}{b - a}.
+	\] 
 	Therefore $f\in W^{1,\infty}_{\mathrm{loc}}(I) = C^{0,1}_{\mathrm{loc}}(I)$.
 \end{proof}
 
