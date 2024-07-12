@@ -28,9 +28,20 @@ as \begin{equation}
 		\]
 		by Lebesgue differential theorem.
 		\item strong convergence: $K*f\in C([0,\infty);L^1(\mathbb{R}^n))$.
+		\item hypercontraction:
+		\[
+		\|K*f\|_p\leq \|K\|_p\|f\|_1\lesssim t^{-\frac{n}{2}\left(1-\frac1p\right)}\|f\|_1,
+		\]
+		by Young inequality for convolution.
+		Particularly, by \cite{Giga1988},
+		\begin{equation}\label{eq: giga1988}
+			\limsup_{t\searrow0}t^{\frac{n}{2}\left(1-\frac1p\right)}\|K*f\|_p = 0,\quad p>1.
+		\end{equation}
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
+	Without loss of generality, we may assume that $f\geq0$ in the sense of distribution.
+	
 	2. Let $x\in\mathbb R^n$ be a Lebesgue point. 
 	For any $\varepsilon > 0$, there exists $R>2|x|$ such that 
 	\[
@@ -39,7 +50,7 @@ as \begin{equation}
 	Therefore,
 	\begin{align*}
 		K*f-f &= \int_{\mathbb{R}^n}K(x-y)f(y)\dd y - f(x) = \int_{\mathbb R^n}K(x-y)(f(y)-f(x))\dd y\\
-		&\leq \int_{|x-y|<R\sqrt t}K(x-y)|f(y)-f(x)|\dd y + \int_{|x-y|\geq R\sqrt t}K(x-y)|f(y)-f(x)|\dd y\\
+		&\leq \int_{|x-y|<\delta}K(x-y)|f(y)-f(x)|\dd y + \int_{|x-y|\geq \delta}K(x-y)|f(y)-f(x)|\dd y\\
 		&\leq CR^n\fint_{B_{R\sqrt t}(x)}|f(y)-f(x)|\dd y 
 			+ \int_{|x-y|\geq R\sqrt t}|f(y)|\dd y 
 			+ |f(x)|\int_{|x-y|\geq R\sqrt t}K(x-y)\dd y,
@@ -90,6 +101,58 @@ as \begin{equation}
 		&\quad + (4\pi)^{-n/2}\int_{\mathbb R^n\setminus B_R}e^{-z^2/4}\int_{\mathbb{R}^n}|f(x-\sqrt tz)-f(x)|\dd x\dd z\\
 		&\leq 2\|f\|_1\varepsilon + \varepsilon,\quad\text{provided } \sqrt t<\delta/R.
 	\end{align*}
+
+	4. by Young inequality, we estimate
+	\begin{align*}
+		\|K*f\|_p &\leq \|K\|_p\|f\|_1\\
+		&= \frac{1}{(4\pi t)^{n/2}}\left(\int_{\mathbb R^n}e^{-\frac{p|x|^2}{4t}}\dd x\right)^{1/p}\|f\|_1\\
+		&= \frac{(4t)^{n/(2p)}}{(4\pi t)^{n/2}p^{n/(2p)}}\left(\int_{\mathbb R^n}e^{-|z|^2}\dd z\right)^{1/p}\|f\|_1\\
+		&= (4\pi t)^{-\frac{n}2\left(1-\frac1p\right)}p^{-\frac{n}{2p}}\|f\|_1.
+	\end{align*}
+%	For any $\varepsilon>0$, there exists $R>1>\delta>0$ such that $\|f\|_{\mathbb R^n\setminus B_{R-1}}<\varepsilon$,
+	We calculate
+	\begin{align*}
+		t^{\frac{n}{2}\left(1-\frac1p\right)}\|K*f\|_p 
+		&\lesssim t^{-n/(2p)}\left(\int_{\mathbb R^n}\left|\int_{\mathbb R^n}e^{-\frac{|x-y|^2}{4t}}f(y)\dd y\right|^p\dd x\right)^{1/p}\\
+		&\leq \left(t^{-n/2}\int_{\mathbb R^n}\left(\int_{\mathbb R^n\setminus B_\delta(x)}e^{-\frac{|x-y|^2}{4t}}f(y)\dd y\right)^p\dd x\right)^{1/p}\\
+		&\quad + \left(t^{-n/2}\int_{\mathbb R^n}\left(\int_{B_\delta(x)}e^{-\frac{|x-y|^2}{4t}}f(y)\dd y\right)^p\dd x\right)^{1/p}\\
+		&=: I_1^{1/p} + I_2^{1/p}.
+	\end{align*}
+	By Fubini theorem and H\"older inequality, we estimate
+	\begin{align*}
+		%t^{-n/2}\int_{\mathbb R^n}\left|\int_{\mathbb R^n\setminus B_\delta(x)}e^{-\frac{|x-y|^2}{4t}}f(y)\dd y\right|^p\dd x
+		I_1
+		&\leq t^{-n/2} \int_{\mathbb R^n}\int_{\mathbb R^n\setminus B_\delta(x)}e^{-\frac{p|x-y|^2}{4t}}f(y)\dd y
+		\cdot \left(\int_{\mathbb R^n\setminus B_\delta(x)}f(y)\dd y\right)^{p-1}\dd x\\
+		&\leq t^{-n/2}\|f\|^{p-1}_{L^1(\mathbb R^n)}\iint_{\mathbb R^n\times\mathbb R^n}
+		\chi_{\mathbb R^n\setminus B_\delta(x)}(y)	e^{-\frac{p|x-y|^2}{4t}}f(y)\dd y\dd x\\
+		&\leq t^{-n/2}\|f\|_{L^1(\mathbb R^n)}^{p}\int_{\mathbb R^n\setminus B_\delta}e^{-\frac{p|x|^2}{4t}}\dd x\\
+		&\lesssim \|f\|_{L^1(\mathbb R^n)}^{p}\int_{\mathbb R^n\setminus B_\delta/\sqrt t}e^{-|z|^2}\dd z
+		\to 0,\quad\text{as }t\searrow0,
+	\end{align*}
+	% \begin{align*}
+	% 	t^{-n/2}\int_{\mathbb R^n\setminus B_R}\left|\int_{B_\delta(x)}e^{-\frac{|x-y|^2}{4t}}f(y)\dd y\right|^p\dd x
+	% 	&\leq  t^{-n/2} \int_{\mathbb R^n\setminus B_R}\int_{B_\delta(x)}e^{-\frac{p|x-y|^2}{4t}}f(y)\dd y
+	% 	\cdot \left(\int_{B_\delta(x)}f(y)\dd y\right)^{p-1}\dd x\\
+	% 	&\lesssim t^{-n/2}\|f\|^{p-1}_{L^1(\mathbb R^n)} \iint_{\mathbb R^n\times\mathbb R^n}
+	% 	\chi_{B_\delta(x)}(y)\chi_{\mathbb R^n\setminus B_R}(x)	e^{-\frac{p|x-y|^2}{4t}}f(y)\dd y\dd x\\
+	% 	&\lesssim  \|f\|^{p-1}_{L^1(\mathbb R^n)} \int_{\mathbb R^n\setminus B_{R-\delta}}f(y)\dd y,
+	% \end{align*}
+	and 
+	\begin{align*}
+		%t^{-n/2}\int_{\mathbb{R}^n}\left|\int_{B_\delta(x)}e^{-\frac{|x-y|^2}{4t}}f(y)\dd y\right|^p\dd x
+		I_2
+		&\leq t^{-n/2} \int_{\mathbb R^n}\int_{B_\delta(x)}e^{-\frac{p|x-y|^2}{4t}}f(y)\dd y
+		\cdot \left(\int_{B_\delta(x)}f(y)\dd y\right)^{p-1}\dd x\\
+		&\lesssim \|f\|_{L^1(\mathbb R^n)}\sup_{x\in\mathbb R^n} \cdot \left(\int_{B_\delta(x)}f(y)\dd y\right)^{p-1}.
+	\end{align*}
+	Therefore,
+	\[
+	\lim_{t\searrow0}	t^{\frac{n}{2}\left(1-\frac1p\right)}\|K*f\|_p 
+	\leq \|f\|^{1/p}_{L^1(\mathbb R^n)}\sup_{x\in\mathbb R^n} 
+	\cdot \left(\int_{B_\delta(x)}f(y)\dd y\right)^{1-1/p},
+	\]
+	and \eqref{eq: giga1988} follows by absolute continuity of Lebesgue integral.
 \end{proof}
 
 \begin{remark}
