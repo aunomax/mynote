@@ -46,91 +46,9 @@
 \centerline{\includegraphics[width=0.2\textwidth]{example-image-duck}}
 
 
-\begin{proposition}
-	let 
-	\[
-		K(x,t) := \frac{1}{(4\pi t)^{n/2}}e^{-\frac{|x|^2}{4t}},
-	\]
-	then for any $f\in L^1(\mathbb{R}^n)$,
-	\begin{enumerate}
-		\item mass preserving: 	
-			\[
-			\iint_{\mathbb R^n\times\mathbb R^n}K(x-y)f(y)\dd y\dd x 
-			= \int_{\mathbb R^n}f,
-			\]
-			by Fubini theorem.
-		\item pointwise convergence: 
-		\[
-		K*f\to f,\quad{t\searrow0},\quad\text{for a.e. } x\in\mathbb{R}^n,
-		\]
-		by Lebesgue differential theorem.
-		\item strong convergence: $K*f\in C([0,\infty);L^1(\mathbb{R}^n))$.
-	\end{enumerate}
-\end{proposition}
-\begin{proof}
-	2. Let $x\in\mathbb R^n$ be a Lebesgue point. 
-	For any $\varepsilon > 0$, there exists $R>2|x|$ such that 
-	\[
-	\int_{|y|\geq R\sqrt t} K(y)\dd y + \int_{|x-y|\geq R\sqrt t}|f(y)|\dd y < \varepsilon.
-	\]
-	Therefore,
-	\begin{align*}
-		K*f-f &= \int_{\mathbb{R}^n}K(x-y)f(y)\dd y - f(x) = \int_{\mathbb R^n}K(x-y)(f(y)-f(x))\dd y\\
-		&\leq \int_{|x-y|<R\sqrt t}K(x-y)|f(y)-f(x)|\dd y + \int_{|x-y|\geq R\sqrt t}K(x-y)|f(y)-f(x)|\dd y\\
-		&\leq CR^n\fint_{B_{R\sqrt t}(x)}|f(y)-f(x)|\dd y 
-			+ \int_{|x-y|\geq R\sqrt t}|f(y)|\dd y 
-			+ |f(x)|\int_{|x-y|\geq R\sqrt t}K(x-y)\dd y,
-	\end{align*}
-	which implies
-	\[
-	\limsup_{t\searrow0}|K*f-f| \leq (1+|f(x)|)\varepsilon,
-	\] 
-	and the pointwise convergence is attained by putting $\varepsilon\searrow0$.
-
-	3. norm convergence and almost-everywhere convergence imply the strong convergence.
-	
-	We give a direct proof below. 
-	For any $\varepsilon>0$, there exists $\delta >0$ such that for any $|y|<\delta$,
-	\[
-	\|f(x+y)-f(x)\|_{L^1(\mathbb R^n)}<\varepsilon.
-	\]
-	Since there exists $g\in C_0^{\infty}(\mathbb R^n)$ such that 
-	\[
-	\|g(x)-f(x)\|_{L^1(\mathbb R^n)}<\varepsilon/3,
-	\]
-	by density.
-	By uniform continuity of $g$, 
-	there exists $\delta>0$ such that for any $|y|<\delta$,
-	\[
-	\|g(x+y)-g(x)\|_{L^1(\mathbb{R}^n)}<\varepsilon/3.
-	\]
-	we have 
-	\begin{align*}
-		\|f(x+y)-f(x)\|_{L^1(\mathbb R^n)} 
-		\leq \|f(x+y)-g(x+y)\|_{L^1(\mathbb R^n)} 
-		+ \|g(x+y)-g(x)\|_{L^1(\mathbb R^n)}\\
-		+ \|g(x)-f(x)\|_{L^1(\mathbb R^n)}
-		< \varepsilon.
-	\end{align*}
-	for $\varepsilon>0$ given above, there exists $R>0$ such that 
-	\[
-	(4\pi)^{-n/2}\int_{\mathbb R^n\setminus B_R}e^{-z^2/4}<\varepsilon,
-	\]
-	we have 
-	\begin{align*}
-		\|K*f-f\|_{L^1(\mathbb R^n)} 
-		&= \int_{\mathbb{R}^n}\left|\int_{\mathbb{R}^n}K(y)f(x-y)\dd y - f(x)\right|\dd x \\
-		&= \int_{\mathbb{R}^n}\left|\int_{\mathbb{R}^n}K(y)(f(x-y) - f(x))\dd y\right|\dd x\\
-		&\leq \iint_{\mathbb{R}^n\times\mathbb{R}^n}K(y)|(f(x-y) - f(x))|\dd x\dd y\\
-		&= (4\pi)^{-n/2}\int_{\mathbb{R}^n\times\mathbb R^n}e^{-z^2/4}|(f(x-\sqrt tz)-f(x))|\dd x\dd z\\
-		&\leq (4\pi)^{-n/2}\int_{B_R}e^{-z^2/4}\int_{\mathbb{R}^n}|f(x-\sqrt tz)-f(x)|\dd x\dd z\\
-		&\quad + (4\pi)^{-n/2}\int_{\mathbb R^n\setminus B_R}e^{-z^2/4}\int_{\mathbb{R}^n}|f(x-\sqrt tz)-f(x)|\dd x\dd z\\
-		&\leq 2\|f\|_1\varepsilon + \varepsilon,\quad\text{provided } \sqrt t<\delta/R.
-	\end{align*}
-\end{proof}
 
 
-\section{porous medium diffusion}
+\section{Porous medium diffusion}
 the chemotaxis model with proous medium diffusion ($m>1$)
 \begin{equation}
 	\begin{cases}

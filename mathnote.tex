@@ -1,5 +1,19 @@
 
 \chapter{note}
+
+\section{notation}
+
+\subsection{Marcinkiewicz space}
+
+Here the Marcinkiewicz space $M^p\left(\mathbb{R}^d\right), 1<p<\infty$, is defined as the set of $f \in$ $L_{\text {loc }}^1(\mathbb{R}^d)$ such that
+\[
+\int_K|f(x)| d x \leq C|K|^{(p-1) / p}
+\]
+for all subsets $K$ of finite measure. The minimal $C$ in the above inequality gives a norm in this space, i.e.,
+\[
+\|f\|_{M^p\left(\mathbb{R}^d\right)}=\sup \left\{\operatorname{meas}(K)^{-(p-1) / p} \int_K|f| d x: K \subset \mathbb{R}^d, \operatorname{meas}(K)>0\right\}
+\]
+
 \section{calculus}
 \begin{equation}
 	\int_\Omega |\nabla u|^\alpha \nabla u \cdot \nabla\Delta u\mathrm{d}x = \frac{1}{2}\int_{\partial \Omega} |\nabla u|^\alpha \frac{\partial |\nabla u|^2}{\partial n}\mathrm{d}S - \int_\Omega |\nabla u|^\alpha |\nabla^2u|^2\mathrm{d}x - \alpha \int_\Omega |\nabla u|^\alpha (\nabla |\nabla u|)^2\mathrm{d}x
@@ -22,7 +36,7 @@ as \begin{equation}
 			= \int_{\mathbb R^n}f,
 			\]
 			by Fubini theorem.
-		\item pointwise convergence: 
+		\item pointwise convergence \emph{is this true?}: 
 		\[
 		K*f\to f,\quad{t\searrow0},\quad\text{for a.e. } x\in\mathbb{R}^n,
 		\]
@@ -40,7 +54,7 @@ as \begin{equation}
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
-	Without loss of generality, we may assume that $f\geq0$ in the sense of distribution.
+	Without loss of generality, we may assume that $f\geq0$ in the distribution sense.
 	
 	2. Let $x\in\mathbb R^n$ be a Lebesgue point. 
 	For any $\varepsilon > 0$, there exists $R>2|x|$ such that 
@@ -52,7 +66,7 @@ as \begin{equation}
 		K*f-f &= \int_{\mathbb{R}^n}K(x-y)f(y)\dd y - f(x) = \int_{\mathbb R^n}K(x-y)(f(y)-f(x))\dd y\\
 		&\leq \int_{|x-y|<\delta}K(x-y)|f(y)-f(x)|\dd y + \int_{|x-y|\geq \delta}K(x-y)|f(y)-f(x)|\dd y\\
 		&\leq CR^n\fint_{B_{R\sqrt t}(x)}|f(y)-f(x)|\dd y 
-			+ \int_{|x-y|\geq R\sqrt t}|f(y)|\dd y 
+			+ \int_{|x-y|\geq R\sqrt t}K(x-y,t)|f(y)|\dd y 
 			+ |f(x)|\int_{|x-y|\geq R\sqrt t}K(x-y)\dd y,
 	\end{align*}
 	which implies
@@ -148,7 +162,7 @@ as \begin{equation}
 	\end{align*}
 	Therefore,
 	\[
-	\lim_{t\searrow0}	t^{\frac{n}{2}\left(1-\frac1p\right)}\|K*f\|_p 
+	\limsup_{t\searrow0}	t^{\frac{n}{2}\left(1-\frac1p\right)}\|K*f\|_p 
 	\leq \|f\|^{1/p}_{L^1(\mathbb R^n)}\sup_{x\in\mathbb R^n} 
 	\cdot \left(\int_{B_\delta(x)}f(y)\dd y\right)^{1-1/p},
 	\]
@@ -168,7 +182,7 @@ as \begin{equation}
 	\begin{align*}
 	2\|f\|_1 &= \left\|\liminf_{n\to\infty}(|f|+|f_n|-|f_n-f|)\right\|_1\\
 	&\leq \liminf_{n\to\infty}\||f_n|+|f|-|f_n-f|\|_1\\
-	&\leq \liminf_{n\to\infty}\||f_n|+|f|\|_1 - \limsup_{n\to\infty}\|f_n-f\|_1\\
+	&\leq \limsup_{n\to\infty}\||f_n|+|f|\|_1 - \limsup_{n\to\infty}\|f_n-f\|_1\\
 	&= 2\|f\|_1 - \limsup_{n\to\infty}\|f_n-f\|_1,
 	\end{align*}
 	which implies the desired result.	
