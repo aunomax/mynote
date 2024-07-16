@@ -169,13 +169,12 @@ h(x)=
 \end{equation}
 则$h(x)$为$\mathbb{R}$上简单函数。因为$f\in L(\mathbb{R})$，于是$\forall\varepsilon>0$，$\exists X>0$，使得$$\int_{\mathbb{R}\backslash E_X}|f|\mathrm{d}x<\frac{\varepsilon}{4},$$
 其中$E_X=\{x\in\mathbb{R}:|x|<X\}$。
-对在$E_X\subset\mathbb{R}$上的有界可测函数$f(x)$，有$\forall\delta>0$，存在闭集$F\subset E_X$满足$m(E_X\backslash F)<\delta$和$\mathbb{R}$上的连续函数$g(x)$满足$g(x)=h(x),\forall x\in E_X\backslash F$。进一步，
+对在$E_X\subset\mathbb{R}$上的有界可测函数$h(x)$，有$\forall\delta>0$，存在闭集$F\subset E_X$满足$m(E_X\backslash F)<\delta$和$\mathbb{R}$上的连续函数$g(x)$满足$g(x)=h(x),\forall x\in F$. 进一步,
 $$\inf_{\mathbb{R}}g(x)=\inf_Fh(x)\geq-1,\sup_{\mathbb{R}}g(x)=\sup_Fh(x)\leq1.$$
 于是
 \begin{align*}
-|\int_{\mathbb{R}}f(x)h(x)\mathrm{d}x|&=|(\int_{\mathbb{R}\backslash E_X}+\int_{E_X\backslash F}+\int_F)f(x)h(x)\mathrm{d}x|\\
-&=|\int_{\mathbb{R}}f(x)g(x)\mathrm{d}x+(\int_{E_X\backslash F}+\int_{\mathbb{R}\backslash E_x})f(x)(h(x)-g(x))\mathrm{d}x|\\
-&\leq(\int_{E\backslash F}+\int_{\mathbb{R}\backslash E_X})|f(x)||h(x)-g(x)|\mathrm{d}x\\
+|\int_{\mathbb{R}}f(x)h(x)\mathrm{d}x|&=|(\int_{\mathbb{R}\backslash E_X}+\int_{E_X\backslash F}+\int_F)f(x)(h(x)-g(x))\mathrm{d}x|\\
+&=|(\int_{E_X\backslash F}+\int_{\mathbb{R}\backslash E_x})f(x)(h(x)-g(x))\mathrm{d}x|\\
 &\leq2(\int_{E\backslash F}+\int_{\mathbb{R}\backslash E_X})|f(x)|\mathrm{d}x\\
 &\leq\frac{\varepsilon}{2}+2\int_{E_X\backslash F}|f(x)|\mathrm{d}x\\
 \end{align*}
@@ -187,44 +186,36 @@ $$\int_{E_X\backslash F}|f(x)|\mathrm{d}x<\frac{\varepsilon}{4}.$$
 \end{exercise}
 
 \begin{exercise}
-\hfill\\
-设$f,f_k(k=1,2,\cdots)$在$R^n$上可积，且对于任一可测集$E\subset\mathbb{R}^n$，有
+设 $f,f_k(k=1,2,\cdots)$ 在 $R^n$ 上可积, 且对于任一可测集$E\subset\mathbb{R}^n$，有
 $$\int_Ef_k(x)\mathrm{d}x\leq\int_Ef_{k+1}\mathrm{d}x,\quad k=1,2,\cdots,$$
 $$\lim_{k\to\infty}\int_Ef_k(x)\mathrm{d}x=\int_Ef(x)\mathrm{d}x,$$
 试证明$\lim_{k\to\infty}f_k(x)=f(x),a.e.x\in\mathbb{R}^n.$
 
-
+\begin{proof}
 首先由题意，$\forall k\geq1$,有
 $$\int_Ef_k(x)\mathrm{d}x\leq\lim_{k\to\infty}f_k(x)\mathrm{d}x=\int_Ef(x)\mathrm{d}x,$$对任意可测子集$E\subset\mathbb{R}^n$恒成立。
 于是必然有
 \begin{equation}\label{lebesgue_intergal_2}
-f_k(x)\leq f(x)\quad a.e.x\in\mathbb{R}^n.
+f_k(x)\leq f_{k+1}(x) \leq f(x)\quad a.e.x\in\mathbb{R}^n.
 \end{equation}
-另一方面，$\forall\varepsilon>0$，$\exists N>0$，使得$\forall k>N$，有
-$$|\int_E(f(x)-f_k(x))\mathrm{d}x<\varepsilon.$$
-由(\ref{lebesgue_intergal_2})知$$\int_E|f(x)-f_k(x)|\mathrm{d}x=|\int_E(f(x)-f_k(x))\mathrm{d}x,$$即
-$$\lim_{k\to\infty}\int_E|f(x)-f_k(x)|\mathrm{d}x=0.$$
-由此可知，$$f_k(x)\Rightarrow f(x).$$
-而且应用Fatou引理，$$\int_E\liminf_{k\to\infty}f(x)-f_k(x)\mathrm{d}x=\int_Ef(x)\mathrm{d}x-\int_E\limsup_{k\to\infty}f_k(x)\mathrm{d}x\leq0.$$
-
-
-从而
-$$\int_Ef(x)\mathrm{d}x\leq\int_E\limsup_{k\to\infty}f_k(x)\mathrm{d}x\leq\int_Ef(x)\mathrm{d}x.$$
-即$\limsup_{k\to\infty}f_k(x)=f(x),a.e.x\in E.$
-
-
-
-
-?
-
-?
-
-?
-
---------------------未完成--------------
-
-
-
+由 \eqref{lebesgue_intergal_2} 知
+\[
+  \lim_{k\to\infty}\int_E|f(x)-f_k(x)|\mathrm{d}x
+  = \lim_{k\to\infty} \int_E(f(x)-f_k(x))\mathrm{d}x = 0,
+\]
+应用Fatou引理,
+\[
+0\geq\int_E\liminf_{k\to\infty}f(x)-f_k(x)\mathrm{d}x=\int_Ef(x)\mathrm{d}x-\int_E\limsup_{k\to\infty}f_k(x)\mathrm{d}x,
+\]
+即 
+\[
+\int_Ef(x)\mathrm{d}x
+\leq\int_E\limsup_{k\to\infty}f_k(x)\mathrm{d}x
+= \int_E\lim_{k\to\infty}f_k(x)\mathrm{d}x
+\leq\int_Ef(x)\mathrm{d}x.
+\] 
+完成了证明.
+\end{proof}
 \end{exercise}
 
 \begin{exercise}
@@ -246,9 +237,10 @@ $E_y$可测是显然的。$$F(y)=\int_Ef(x)X_{E_y}\mathrm{d}x,$$
 
 
 \begin{exercise}
-\hfill\\
 若$f$在$R$上可积，证明$\int_R|f(x+h)-f(x)|\mathrm{d}x\to0,h\to0$.
+\end{exercise}
 
+\begin{proof}
 首先注意到$0\leq|f(x+h)-f(x)|\leq|f(x+h)|+|f(x)|$，所以由$f\in L(R)$可知$f(x+h)\in L(R),\forall h\in R$，从而$|f(x+h)-f(x)|\in L(R).$于是对任给的$\varepsilon>0$，存在$X>0$使得$$\int_{|x|>X}|f(x+h)-f(x)|\mathrm{d}x<\frac{\varepsilon}{2}.$$
 
 其次，$|f(x+h)-f(x)|$在$[-X-1,X+1]$上可积，由鲁津定理，对任意的$\delta>0$，存在闭集$E\subset[-X,X]$且$m([-X,X]\backslash E)<\delta$，有$f(x)$在$E$上连续。从而$f$在$E$上一致连续，即对上述$\varepsilon>0$，存在$\tau>0$，只要$|h|<\tau$，就有
@@ -264,7 +256,7 @@ $$\int_{F}|f(x)|\mathrm{d}x<\frac{\varepsilon}{8}.$$
 &<\frac{\varepsilon}{2}+\frac{\varepsilon}{4}+2X*\frac{\varepsilon}{2X}\\
 &=\varepsilon.
 \end{align*}
-\end{exercise}
+\end{proof}
 
 
 
