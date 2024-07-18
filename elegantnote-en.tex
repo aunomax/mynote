@@ -46,6 +46,26 @@
 \centerline{\includegraphics[width=0.2\textwidth]{example-image-duck}}
 
 
+\section{background}
+
+Painter and Hillen \cite{Painter2002} introduced volume-filling effect into chemotaxis models, 
+in the form of two component quasilinear parabolic system.
+
+Cieslak and Winkler \cite{Cieslak2008} showed that $q=2/N$ is the critical exponent for finite-time blowup of the following simplified chemotaxis model,
+\begin{equation}
+	\label{sys: cieslak-winkler}
+	\begin{cases}
+		u_t = \nabla\cdot(D(u)\nabla u - u\nabla v), &x\in\Omega, t>0,\\
+		0 = \Delta v - M + u, &x\in\Omega, t>0,
+	\end{cases}
+\end{equation}
+where 
+\[
+D(u) = (1+u)^{q-1},
+\]
+$\Omega = B_R$ and $M$ denotes the average mass of initial data $u_0$. 
+Finite-time blowup was detected by constructing a finite-time gradient-explosion subsolution to the scalar parabolic problem transformed form the original model via the partial mass function.
+This results can be extended to chemotaxis models with nonlinear sensitivity \cite{Winkler2010a}.
 
 
 \section{Porous medium diffusion}

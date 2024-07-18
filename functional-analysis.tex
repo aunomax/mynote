@@ -180,6 +180,44 @@ $$\rho(f_{\overline{M}}(x_1),f_{\overline{M}}(x_2))<\rho(x_1,x_2)\quad(\forall x
 \end{exercise}
 \hfill\\
 \section{线性赋范空间}
+
+\begin{lemma}
+  Let $1\leq p,q<\infty$. Then 
+  \[
+  (L^p((0,T); L^q(\Omega)))' = L^{p'}((0,T); L^{q'}(\Omega)),
+  \quad 1/p+1/p' = 1,\quad 1/q+1/q'=1,
+  \]
+  where $\Omega\subset\mathbb R^n$ is a measurable set.
+\end{lemma}
+
+\begin{proof}
+  Let $X_{p,q} = L^p((0,T); L^q(\Omega))$. 
+  For $f\in X_{p,q}$ and $g\in X_{p',q'}$, denote 
+  \[
+  H_g(f) = \int_0^T\int_\Omega fg\dd x\dd t.
+  \]
+  Then 
+  \begin{align*}
+    |H_g(f)| &\leq \int_0^T\|f\|_q\|g\|_{q'}\dd t \leq \|f\|_{X_{p,q}}\|g\|_{X_{p',q'}}.
+  \end{align*}
+
+  Let $H\in X_{p,q}'$. 
+  Define 
+  \[
+    \mu(E) := H(\chi_E),\quad E\in\Lambda.
+  \]  
+  Clearly, $\mu$ satisfies the countable additivity.
+  Moreover, $\mu$ is absolutely continuous with respect to Lebesgue measure.
+  By Radon-Nikodym theorem, there exists an integrable function $g$ such that 
+  \[
+    \mu(E) = \iint_E g\dd x\dd t,
+  \]
+  and therefore,
+  \[
+    H(f) = \iint_{(0,T)\times\Omega}fg\dd x\dd t,\quad f\in X_{p,q}.
+  \]
+\end{proof}
+
 \begin{exercise}
 \hfill\\
 设$C(0,1]$表示$(0,1]$上连续且有界的函数$x(t)$全体。$\forall x\in C(0,1]$，令$\|x\|=\sup\limits_{0<t\leq1}|x(t)|$。求证：
