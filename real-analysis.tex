@@ -62,12 +62,54 @@
   \begin{align*}
     f''(\phi) = \int_{\mathbb R}  f\phi''\dd x 
     = \int_{\mathbb R^+}  x\phi''\dd x 
-    = - \int_{\mathbb R^+}\phi'\dd x = \phi(0),
+    = - \int_{\mathbb R^+}\phi'\dd x = \phi(0) = \int_{\mathbb R}\phi\dd\delta_0(x),
   \end{align*}
   holds for any $\phi(x)\in C^\infty_0(\mathbb R)$.
 \end{remark}
 
+\begin{remark}
+  Writing 
+  \begin{align*}
+    K(x) &= \int_0^\infty\frac{1}{(4\pi t)^{n/2}}e^{-\frac{|x|^2}{4t}}\dd t 
+    = - \frac{1}{4\pi^{n/2}}\int_0^\infty\frac{1}{(4t)^{n/2-2}}e^{-\frac{|x|^2}{4t}}\dd\frac1{4t}\\
+    &= \frac1{4\pi^{n/2}}\int_0^\infty s^{n/2-2}e^{-|x|^2s}\dd s
+    = \frac{|x|^{2-n}}{4\pi^{n/2}}\int_0^\infty \xi^{n/2-2}e^{-\xi}\dd\xi \\
+    &= \frac{\Gamma(n/2-1)|x|^{2-n}}{4\pi^{n/2}} =: c|x|^{2-n}.
+  \end{align*}
+  We observe that for any $\phi\in C_0^\infty(\mathbb R^n)$,
+  \begin{align*}
+    \Delta K[\phi] (x)
+    &= c\int_{\mathbb R^n}|x-y|^{2-n}\Delta\phi(y)\dd y 
+    = c\lim_{\varepsilon\searrow0}\int_{|x-y|>\varepsilon}|x-y|^{2-n}\Delta \phi(y)\dd y\\
+    &= c\lim_{\varepsilon\searrow0}\left(-\int_{|x-y|=\varepsilon}|x-y|^{2-n}\partial_\nu\phi(y)\dd S(y) 
+    - \int_{|x-y|>\varepsilon}\nabla |x-y|^{2-n}\nabla\phi(y)\dd y\right)\\
+    &= c\lim_{\varepsilon\searrow0}\left(-\varepsilon\omega_n\fint_{|x-y|=\varepsilon}\partial_\nu\phi(y)\dd S(y) 
+    - (n-2)\int_{|x-y|>\varepsilon}|x-y|^{-n}(x-y)\nabla\phi(y)\dd y\right)\\
+    &= c(n-2)\lim_{\varepsilon\searrow0}\left(\int_{|x-y|=\varepsilon}|x-y|^{1-n}\phi(y)\dd y 
+    + \int_{|x-y|>\varepsilon}\nabla\cdot(|x-y|^{-n}(x-y))\phi(y)\dd y\right)\\
+    &= c(n-2)\omega_n\lim_{\varepsilon\searrow0}\fint_{|x-y|=\varepsilon}\phi(y)\dd y\\
+    &= \frac{\Gamma(n/2-1)(n-2)}{4\pi^{n/2}}\frac{2\pi^{n/2}}{\Gamma(n/2)}\phi(x) = \phi(x).
+  \end{align*}
+\end{remark}
+
 \section{可测函数}
+
+\begin{example}
+  Let 
+  \begin{equation}
+    f_{n,k}(x) = 
+    \begin{cases}
+      0, & x\in(-\infty, (k-2)/n],\\
+      nx-k+2,& x\in((k-2)/n, (k-1)/n],\\
+      1,& x\in((k-1/n), k/n],\\
+      -nx+k+1, & x\in(k/n, (k+1)/n],\\
+      0, & x\in((k+2)/n, \infty),
+    \end{cases}
+    \quad k = 1,2,\cdots,n, \quad n\geq1.
+  \end{equation}
+  $\{f_{n,k}\}$ is a sequence of continuous functions that converges in measure, 
+  but does not converge at any point.
+\end{example}
 
 \begin{exercise}
 \hfill\\
