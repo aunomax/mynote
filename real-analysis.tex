@@ -37,11 +37,36 @@
 \begin{exercise}
 \hfill\\
 设$E\subset R^n$。$\{G_{\alpha}\}_{\alpha\in\Lambda}$是$E$的一个开集族覆盖。证明：存在至多可数个开集$\{G_{\alpha_k}\}_{k\geq1}\subset\{G_{\alpha}\}_{\alpha\in\Lambda}$使得它仍覆盖$E$，即$E$的任意开覆盖有至多可数的子覆盖。
-
-
-
 \end{exercise}
-\hfill\\
+
+\section{measure}
+
+\begin{remark}
+  Let 
+  \begin{equation*}
+    f(x) = 
+    \begin{cases}
+      0, & x\leq 0,\\
+      x, & x>0.
+    \end{cases}
+  \end{equation*}
+  Then $ f''(x) = \delta_0(x)$.
+  Indeed,
+  we observe that 
+  \begin{align*}
+    f'(\phi) = - \int_{\mathbb R}  f\phi'\dd x 
+    = - \int_{\mathbb R^+}  x \phi'\dd x 
+    = \int_{\mathbb R^+}\phi\dd x,
+  \end{align*}
+  holds for any $\phi(x)\in C^\infty_0(\mathbb R)$, and 
+  \begin{align*}
+    f''(\phi) = \int_{\mathbb R}  f\phi''\dd x 
+    = \int_{\mathbb R^+}  x\phi''\dd x 
+    = - \int_{\mathbb R^+}\phi'\dd x = \phi(0),
+  \end{align*}
+  holds for any $\phi(x)\in C^\infty_0(\mathbb R)$.
+\end{remark}
+
 \section{可测函数}
 
 \begin{exercise}
