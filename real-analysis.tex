@@ -41,56 +41,142 @@
 
 \section{measure}
 
-\begin{remark}
-  Let 
-  \begin{equation*}
-    f(x) = 
-    \begin{cases}
-      0, & x\leq 0,\\
-      x, & x>0.
-    \end{cases}
-  \end{equation*}
-  Then $ f''(x) = \delta_0(x)$.
-  Indeed,
-  we observe that 
-  \begin{align*}
-    f'(\phi) = - \int_{\mathbb R}  f\phi'\dd x 
-    = - \int_{\mathbb R^+}  x \phi'\dd x 
-    = \int_{\mathbb R^+}\phi\dd x,
-  \end{align*}
-  holds for any $\phi(x)\in C^\infty_0(\mathbb R)$, and 
-  \begin{align*}
-    f''(\phi) = \int_{\mathbb R}  f\phi''\dd x 
-    = \int_{\mathbb R^+}  x\phi''\dd x 
-    = - \int_{\mathbb R^+}\phi'\dd x = \phi(0) = \int_{\mathbb R}\phi\dd\delta_0(x),
-  \end{align*}
-  holds for any $\phi(x)\in C^\infty_0(\mathbb R)$.
-\end{remark}
+\subsection{Harmonic measure}
 
-\begin{remark}
-  Writing 
+Green function $G(x,y)$ (Poisson kernel, Newtonian potential) solves 
+\[
+-\Delta_y G(x,y) = \delta_x(y), \quad x,y\in\mathbb R^n,
+\]
+in the distribution sense. 
+So the singular function $K(x) = G(x,0)$, consistent with Liouville theorem,
+has a unit harmonic capacity.
+
+\begin{proposition}
+  Let $n\geq3$. 
+  Write
   \begin{align*}
     K(x) &= \int_0^\infty\frac{1}{(4\pi t)^{n/2}}e^{-\frac{|x|^2}{4t}}\dd t 
     = - \frac{1}{4\pi^{n/2}}\int_0^\infty\frac{1}{(4t)^{n/2-2}}e^{-\frac{|x|^2}{4t}}\dd\frac1{4t}\\
     &= \frac1{4\pi^{n/2}}\int_0^\infty s^{n/2-2}e^{-|x|^2s}\dd s
     = \frac{|x|^{2-n}}{4\pi^{n/2}}\int_0^\infty \xi^{n/2-2}e^{-\xi}\dd\xi \\
-    &= \frac{\Gamma(n/2-1)|x|^{2-n}}{4\pi^{n/2}} =: c|x|^{2-n}.
+    &= \frac{\Gamma(n/2-1)|x|^{2-n}}{4\pi^{n/2}} = \frac{\Gamma(n/2)|x|^{2-n}}{2(n-2)\pi^{n/2}} =: c_n|x|^{2-n}.
   \end{align*}
-  We observe that for any $\phi\in C_0^\infty(\mathbb R^n)$,
+  It can be seen that 
+  \[
+  K(x) \in W_{\loc}^{1,p}(\mathbb R^n)\cap C_{\loc}^\infty(\mathbb R^n\setminus \{0\}),
+  \quad 1\leq p < n/(n-1),
+  \]
+  and 
+  \[
+  \nabla K\cdot x/|x| = c_n(2-n)|x|^{1-n},\quad \Delta K = 0, \quad x\in  \mathbb R^n\setminus\{0\}.
+  \]
+  It can be observed that for any $\phi\in C_0^\infty(\mathbb R^n)$,
+  \[
+  \Delta K*\phi (x) = -\delta_x(\phi).
+  \]
+\end{proposition}
+
+\begin{proof}
+  We calculate 
   \begin{align*}
-    \Delta K[\phi] (x)
-    &= c\int_{\mathbb R^n}|x-y|^{2-n}\Delta\phi(y)\dd y 
-    = c\lim_{\varepsilon\searrow0}\int_{|x-y|>\varepsilon}|x-y|^{2-n}\Delta \phi(y)\dd y\\
-    &= c\lim_{\varepsilon\searrow0}\left(-\int_{|x-y|=\varepsilon}|x-y|^{2-n}\partial_\nu\phi(y)\dd S(y) 
-    - \int_{|x-y|>\varepsilon}\nabla |x-y|^{2-n}\nabla\phi(y)\dd y\right)\\
-    &= c\lim_{\varepsilon\searrow0}\left(-\varepsilon\omega_n\fint_{|x-y|=\varepsilon}\partial_\nu\phi(y)\dd S(y) 
-    - (n-2)\int_{|x-y|>\varepsilon}|x-y|^{-n}(x-y)\nabla\phi(y)\dd y\right)\\
-    &= c(n-2)\lim_{\varepsilon\searrow0}\left(\int_{|x-y|=\varepsilon}|x-y|^{1-n}\phi(y)\dd y 
-    + \int_{|x-y|>\varepsilon}\nabla\cdot(|x-y|^{-n}(x-y))\phi(y)\dd y\right)\\
-    &= c(n-2)\omega_n\lim_{\varepsilon\searrow0}\fint_{|x-y|=\varepsilon}\phi(y)\dd y\\
-    &= \frac{\Gamma(n/2-1)(n-2)}{4\pi^{n/2}}\frac{2\pi^{n/2}}{\Gamma(n/2)}\phi(x) = \phi(x).
+    &\quad\Delta K*\phi(x)\\
+    &= \int_{\mathbb R^n}K(x-y)\Delta\phi(y)\dd y & \text{distribution derivative}\\ 
+    &= -\int_{\mathbb R^n}\nabla K(y)\nabla\phi(x-y)\dd y
+    & \text{weak derivative}\\
+    &= - \lim_{\varepsilon\searrow0}\int_{|y|>\varepsilon}\nabla K(y)\nabla \phi(x-y)\dd y
+    & \text{Lebesgue dominated convergence theorem}\\
+    &= \lim_{\varepsilon\searrow0}\int_{|y|=\varepsilon}\nabla K(y)\cdot y/|y|\phi(x-y)\dd y
+    & \text{integration by parts}\\
+    &= c_n(2-n)\omega_n\lim_{\varepsilon\searrow0}\fint_{|x-y|=\varepsilon}\phi(y)\dd y
+    = -\phi(x).
+    & \text{continuity}
   \end{align*}
+\end{proof}
+
+\begin{remark}
+  Let 
+  \begin{equation*}
+    f(x) = 
+    \begin{cases}
+      -x/2, & x\leq 0,\\
+      x/2, & x>0.
+    \end{cases}
+  \end{equation*}
+  Then $f\in W_{\loc}^{1,\infty}(\mathbb R)$ and $f''(x) = \delta_0(x)$.
+  Indeed,
+  we observe that 
+  \begin{align*}
+    f''(\phi) = \int_{\mathbb R}  f\phi''\dd x 
+    = \int_{\mathbb R^-}  \phi'/2\dd x - \int_{\mathbb R^+}\phi'/2\dd x 
+    = \phi(0) = \int_{\mathbb R}\phi\dd\delta_0(x),
+  \end{align*}
+  holds for any $\phi(x)\in C^\infty_0(\mathbb R)$.
 \end{remark}
+
+\begin{remark}
+Let 
+  \begin{align*}
+    N(x) = -\frac{1}{2\pi}\ln|x|,\quad x\in\mathbb R^2.
+  \end{align*}
+Then $N\in W^{1,q}_{\loc}(\mathbb R^2)$, $q\in[1,2)$ and $\Delta N = -\delta_0(x)$.
+\end{remark}
+
+\begin{proposition}
+  Let $n\geq2$. 
+  Suppose $P\in W_{\loc}^{1,2}(\mathbb R^n)$.
+  Put $S:= \spt(\Delta P)$.
+  If $S\subset L$, 
+  then $P$ is a distribution Laplacian with zero harmonic capacity,
+  where
+  \[
+  L\cong \mathbb{R}^k,\quad k\in\{0,1,2,3,\cdots, n-2\},
+  \]
+  with the understanding $\mathbb R^0=\{0\}$.
+\end{proposition}
+
+\begin{proof}
+  Without loss of generality, we may assume that 
+  \[
+  L\subset\{(0,0,x_3,x_4,\cdots,x_n)\} := \tilde L.
+  \]
+  Denote $\pi(x) = x_{1,2} = (x_1, x_2, 0,0,\cdots,0)$ as projection of $x$ to $\tilde L^\bot $.
+  %Since $\Delta P = 0$ over $\mathbb R^n\setminus S$, 
+  Fubuni theorem implies 
+  \[
+  b(s) := \int_{|x_{1,2}|=s}\int_{\pi^{-1}(x)}|\nabla P|^2\dd H^{n-2}\dd S
+  \]
+  is well-defined.
+  $P\in W^{1,2}_{\loc}(\mathbb R^n)$ implies that 
+  \[
+  B := \liminf_{s\searrow0}sb(s) = 0.
+  \]
+  Otherwise,
+  \begin{align*}
+    \int_{\mathbb R^n}|\nabla P|^2\dd x 
+    &= \int_{\mathbb R^2}\int_{\pi^{-1}(x)}|\nabla P|^2\dd H^{n-2}\dd H^2\\
+    &= \int_{\mathbb R^+}b(s)\dd s = \infty,
+  \end{align*}
+  which is absurd.
+  Using Young inequality, we obtain for any $\phi\in C_0^{\infty}(\mathbb R^n)$,
+  \begin{align*}
+    \int_{|x_{1,2}|=\varepsilon}
+    \left(\int_{\mathbb R^{n-2}}|\nabla P||\phi|\dd H^{n-2}\right)\dd H^1 
+    \leq C(\phi)\sqrt{\varepsilon b(\varepsilon)}
+  \end{align*}
+  We estimate for any $\phi\in C_0^{\infty}(\mathbb R^n)$,
+  \begin{align*}
+    \Delta P(\phi) 
+    &= \int_{\mathbb R^n}P\Delta\phi\dd x &\text{distribution derivative}\\
+    &= -\int_{\mathbb R^n}\nabla P\nabla \phi\dd x &\text{weak derivative}\\
+    &= -\int_{\mathbb R^{2}}\left(\int_{\mathbb R^{n-2}}\nabla P\nabla \phi\dd H^{n-2} \right)\dd H^2
+    &\text{Fubini theorem}\\
+    &= -\lim_{\varepsilon\searrow0}
+    \int_{|x_{1,2}| > \varepsilon} \left(\int_{\mathbb R^{n-2}}\nabla P\nabla \phi\dd H^{n-2}\right)\dd H^2
+    &\text{Lebesgue dominated convergence theorem}\\
+    &\leq \liminf_{\varepsilon\searrow0}\int_{|x_{1,2}|=\varepsilon}
+    \left(\int_{\mathbb R^{n-2}}|\nabla P||\phi|\dd H^{n-2}\right)\dd H^1 = 0.
+  \end{align*}
+\end{proof}
 
 \section{可测函数}
 
