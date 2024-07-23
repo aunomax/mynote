@@ -39,7 +39,56 @@
 设$E\subset R^n$。$\{G_{\alpha}\}_{\alpha\in\Lambda}$是$E$的一个开集族覆盖。证明：存在至多可数个开集$\{G_{\alpha_k}\}_{k\geq1}\subset\{G_{\alpha}\}_{\alpha\in\Lambda}$使得它仍覆盖$E$，即$E$的任意开覆盖有至多可数的子覆盖。
 \end{exercise}
 
-\section{measure}
+\section{Measure}
+
+\subsection{Lebesgue decomposition theorem}
+
+Throughout this subsection we shall assume that $X$ is the real line, 
+$S$ is the class of all Borel sets,
+and $\mu$ is Lebesgue measure on $S$.
+
+If $(X, S)$ is a measurable space and $\mu$ and $v$ are signed measures on $S$, 
+we say that $v$ is absolutely continuous with respect to $\mu$,
+in symbols $v \ll \mu$, if $v(E) = 0$ for every measurable set $E$ for which $|\mu|(E) = 0$.
+We say that $\mu$ and $v$ are singular, in symbols $\mu \bot v$,
+if there exist two disjoint sets $A$ and $B$ whose union is $X$ such that,
+for every measurable set $E$, $A\cap E$ and $B\cap E$ are measurable and 
+$|\mu|(A\cap E) = |v|(B\cap E) = 0$.
+
+
+\begin{theorem}
+  If $v$ is a finite measure on $S$, 
+  then there exist three uniquely determined $v_1$, $v_2$ and $v_3$ on $S$
+  whose sum is $v$ and which are such that $v_1$ is absolutely continuous with respect to $\mu$, 
+  $v_2$ is purely atomic, 
+  and $v_3$ is singular with respect to $\mu$ but $v_3(\{x\}) = 0$ for every point $x$.
+  Here, we shall say that a finite measure $v$ on $S$ is \textbf{purely atomic} 
+  if there exists a countable set $C$ such that $v(X-C) = 0$.
+\end{theorem}
+
+\begin{proof}
+  According to the Lebesgue decomposition theorem there exist two measures $v_0$ and $v_1$ on $S$ 
+  whose sum is $v$ and which are such that $v_0$ is singular 
+  and $v_1$ is absolutely continuous with respect to $\mu$.
+  Let $C$ be the set of those points $x$ for which $v_0(\{x\}) \neq 0$; the finiteness of $v$ implies that 
+  $C$ is countable. If we write 
+  \[
+  v_2(E) = v_0(E\cap C) \quad \text{and}\quad v_3(E) = v_0(E-C),
+  \]
+  then it is clear that the decomposition $v = v_1 + v_2 + v_3$ has all the desired properties.
+  Uniqueness follows from the uniqueness of the Lebesgue decomposition 
+  and the easily verifiable uniqueness of $C$.
+\end{proof}
+
+\begin{example}
+  Let $r_1, r_2, \cdots$ be an enumeration of the set $R$ of all rational numbers. 
+  Assign $v(\{r_i\}) = 2^{-i}$ and $v(\{p\}) = 0$ for any irrational number $p\in I$.
+  Then $v(X) = 1$, $v_1(E) = 0$, $v_2(E) = v(I\cap E)$ and $v_3(E) = v(E-I)$.
+
+  If $r_j$ is replaced by $r_j=2^{-j}$, writing $Z=\{2^{-j}\}$,
+  then $v(X) = 1$, $v_1(E) = v(E-Z)$, $v_2(E) = v(Z\cap E)$ and $v_3(E) = v(E\cap\{0\})$.
+\end{example}
+
 
 \subsection{Harmonic measure}
 
@@ -143,7 +192,7 @@ Then $N\in W^{1,q}_{\loc}(\mathbb R^2)$, $q\in[1,2)$ and $\Delta N = -\delta_0(x
   %Since $\Delta P = 0$ over $\mathbb R^n\setminus S$, 
   Fubuni theorem implies 
   \[
-  b(s) := \int_{|x_{1,2}|=s}\int_{\pi^{-1}(x)}|\nabla P|^2\dd H^{n-2}\dd S
+  b(s) := \int_{|x_{1,2}|=s}\int_{\pi^{-1}(x_{1,2})}|\nabla P|^2\dd H^{n-2}\dd S
   \]
   is well-defined.
   $P\in W^{1,2}_{\loc}(\mathbb R^n)$ implies that 
@@ -153,14 +202,14 @@ Then $N\in W^{1,q}_{\loc}(\mathbb R^2)$, $q\in[1,2)$ and $\Delta N = -\delta_0(x
   Otherwise,
   \begin{align*}
     \int_{\mathbb R^n}|\nabla P|^2\dd x 
-    &= \int_{\mathbb R^2}\int_{\pi^{-1}(x)}|\nabla P|^2\dd H^{n-2}\dd H^2\\
+    &= \int_{\mathbb R^2}\int_{\pi^{-1}(x_{1,2})}|\nabla P|^2\dd H^{n-2}\dd H^2\\
     &= \int_{\mathbb R^+}b(s)\dd s = \infty,
   \end{align*}
   which is absurd.
-  Using Young inequality, we obtain for any $\phi\in C_0^{\infty}(\mathbb R^n)$,
+  Using H\"older inequality, we obtain for any $\phi\in C_0^{\infty}(\mathbb R^n)$,
   \begin{align*}
     \int_{|x_{1,2}|=\varepsilon}
-    \left(\int_{\mathbb R^{n-2}}|\nabla P||\phi|\dd H^{n-2}\right)\dd H^1 
+    \left(\int_{\mathbb R^{n-2}}|\nabla P||\phi|\dd H^{n-2}\right)\dd S
     \leq C(\phi)\sqrt{\varepsilon b(\varepsilon)}
   \end{align*}
   We estimate for any $\phi\in C_0^{\infty}(\mathbb R^n)$,
@@ -174,11 +223,64 @@ Then $N\in W^{1,q}_{\loc}(\mathbb R^2)$, $q\in[1,2)$ and $\Delta N = -\delta_0(x
     \int_{|x_{1,2}| > \varepsilon} \left(\int_{\mathbb R^{n-2}}\nabla P\nabla \phi\dd H^{n-2}\right)\dd H^2
     &\text{Lebesgue dominated convergence theorem}\\
     &\leq \liminf_{\varepsilon\searrow0}\int_{|x_{1,2}|=\varepsilon}
-    \left(\int_{\mathbb R^{n-2}}|\nabla P||\phi|\dd H^{n-2}\right)\dd H^1 = 0.
+    \left(\int_{\mathbb R^{n-2}}|\nabla P||\phi|\dd H^{n-2}\right)\dd S = 0.
+    &\text{integration by parts}
   \end{align*}
 \end{proof}
 
+\begin{lemma}
+  Let $w\in W^{1,q}(\Omega)$, $q\in[1,n/(n-1))$ be the weak solution of 
+  \begin{equation*}
+    \begin{cases}
+      -\Delta w = f, & \Omega,\\
+      w = 0, &\partial\Omega,
+    \end{cases}
+  \end{equation*}
+  in the sense that 
+  \[
+  \int_\Omega \nabla w\nabla \phi = \int_\Omega f\phi, \quad\phi\in C_0^\infty(\Omega),
+  \]
+  where $f\in L^1(\Omega)$ and $\Omega = \{x\in \mathbb R^n: |x| < 1\}$.
+  Then 
+  \[
+  w(x) = -\int_{\Omega}K(x-y)\Delta w(y)\dd y, \quad x\in\Omega.
+  \]
+\end{lemma}
+
+\begin{proof}
+  Denote 
+  \[
+  h(x) = \int_\Omega \nabla K(x-y) \cdot\nabla w(y)\dd y,\quad x\in\Omega.
+  \]
+  Then $h\in L^{p}(\Omega)$, $p\in[1,n/(n-2))$.
+  It follows that $h$ is almost everywhere finite.
+  Let $x$ be a Lebesgue point of $w$.
+\end{proof}
+
 \section{可测函数}
+
+\begin{proposition}\label{prop: uniform continuity of integrable function}
+  If $f\in L^1(\mathbb R^n)$, then 
+  \[
+  \lim_{\varepsilon\searrow0}\sup_{|y|<\varepsilon}\|f(x+y)-f(x)\|_{L^1(\mathbb R^n)} = 0
+  \]
+  holds.
+\end{proposition}
+
+\begin{proof}
+  Let $g\in C^\infty_0(\mathbb R^n)$. 
+  By triangle inequality,
+  \begin{align*}
+		\|f(x+y)-f(x)\|_{L^1(\mathbb R^n)} 
+		\leq \|f(x+y)-g(x+y)\|_{L^1(\mathbb R^n)} 
+		+ \|g(x+y)-g(x)\|_{L^1(\mathbb R^n)}\\
+		+ \|g(x)-f(x)\|_{L^1(\mathbb R^n)}.
+	\end{align*}
+  The first and third terms of the right side of this inequality may be made arbitrarily small 
+  by choosing a sufficiently close smooth approximation, e.g. by modifier action, 
+  and for fixed $g$, the middle term may be made arbitrarily small by choosing $y$ suffciently small,
+  which can be made uniformly small, due to uniform continuity of $g$.
+\end{proof}
 
 \begin{example}
   Let 

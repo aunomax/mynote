@@ -75,32 +75,8 @@ as \begin{equation}
 	\] 
 	and the pointwise convergence is attained by putting $\varepsilon\searrow0$.
 
-	3. norm convergence and almost-everywhere convergence imply the strong convergence.
-	
-	We give a direct proof below. 
-	For any $\varepsilon>0$, there exists $\delta >0$ such that for any $|y|<\delta$,
-	\[
-	\|f(x+y)-f(x)\|_{L^1(\mathbb R^n)}<\varepsilon.
-	\]
-	Since there exists $g\in C_0^{\infty}(\mathbb R^n)$ such that 
-	\[
-	\|g(x)-f(x)\|_{L^1(\mathbb R^n)}<\varepsilon/3,
-	\]
-	by density.
-	By uniform continuity of $g$, 
-	there exists $\delta>0$ such that for any $|y|<\delta$,
-	\[
-	\|g(x+y)-g(x)\|_{L^1(\mathbb{R}^n)}<\varepsilon/3.
-	\]
-	we have 
-	\begin{align*}
-		\|f(x+y)-f(x)\|_{L^1(\mathbb R^n)} 
-		\leq \|f(x+y)-g(x+y)\|_{L^1(\mathbb R^n)} 
-		+ \|g(x+y)-g(x)\|_{L^1(\mathbb R^n)}\\
-		+ \|g(x)-f(x)\|_{L^1(\mathbb R^n)}
-		< \varepsilon.
-	\end{align*}
-	for $\varepsilon>0$ given above, there exists $R>0$ such that 
+	3. 	 
+	For $\varepsilon>0$, there exists $R>0$ such that 
 	\[
 	(4\pi)^{-n/2}\int_{\mathbb R^n\setminus B_R}e^{-z^2/4}<\varepsilon,
 	\]
@@ -110,11 +86,19 @@ as \begin{equation}
 		&= \int_{\mathbb{R}^n}\left|\int_{\mathbb{R}^n}K(y)f(x-y)\dd y - f(x)\right|\dd x \\
 		&= \int_{\mathbb{R}^n}\left|\int_{\mathbb{R}^n}K(y)(f(x-y) - f(x))\dd y\right|\dd x\\
 		&\leq \iint_{\mathbb{R}^n\times\mathbb{R}^n}K(y)|(f(x-y) - f(x))|\dd x\dd y\\
-		&= (4\pi)^{-n/2}\int_{\mathbb{R}^n\times\mathbb R^n}e^{-z^2/4}|(f(x-\sqrt tz)-f(x))|\dd x\dd z\\
+		&= (4\pi)^{-n/2}\iint_{\mathbb{R}^n\times\mathbb R^n}e^{-z^2/4}|(f(x-\sqrt tz)-f(x))|\dd x\dd z\\
 		&\leq (4\pi)^{-n/2}\int_{B_R}e^{-z^2/4}\int_{\mathbb{R}^n}|f(x-\sqrt tz)-f(x)|\dd x\dd z\\
-		&\quad + (4\pi)^{-n/2}\int_{\mathbb R^n\setminus B_R}e^{-z^2/4}\int_{\mathbb{R}^n}|f(x-\sqrt tz)-f(x)|\dd x\dd z\\
-		&\leq 2\|f\|_1\varepsilon + \varepsilon,\quad\text{provided } \sqrt t<\delta/R.
+		&\quad + (4\pi)^{-n/2}\int_{\mathbb R^n\setminus B_R}e^{-z^2/4}\int_{\mathbb{R}^n}|f(x-\sqrt tz)-f(x)|\dd x\dd z,\\
+		&\leq \sup_{|z|<R}\|f(x-\sqrt t z) - f(x)\|_{L^1(\mathbb R^n)} 
+		+ 2\|f\|_1\int_{|z|\geq R}e^{-z^2/4}.
 	\end{align*}
+	The second term of the right side of this inequality 
+	may be made arbitrarily small by choossing $R$ sufficiently large,
+	and, for fixed $R$, 
+	the first term may be made arbitrarily small by choosing $t$ sufficiently small, 
+	because of the uniform continuity of integrable function proved in  proposition~\ref{prop: uniform continuity of integrable function}. 
+	This proves convergence in norm.
+
 
 	4. by Young inequality, we estimate
 	\begin{align*}
@@ -178,6 +162,8 @@ as \begin{equation}
 
 	If $f_n\to f$ a.e. and $\|f_n\|_1\to\|f\|_1$ as $n\to\infty$, 
 	then $\|f_n-f\|_1 \to 0$ as $n\to\infty$.
+
+	Integration convergence and almost-everywhere convergence imply convergence in norm (strong convergence).
 	Actually, by Fatou lemma,
 	\begin{align*}
 	2\|f\|_1 &= \left\|\liminf_{n\to\infty}(|f|+|f_n|-|f_n-f|)\right\|_1\\
