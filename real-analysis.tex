@@ -57,6 +57,7 @@ $|\mu|(A\cap E) = |v|(B\cap E) = 0$.
 
 
 \begin{theorem}
+  \label{thm: Lebesgue decomposition theorem}
   If $v$ is a finite measure on $S$, 
   then there exist three uniquely determined $v_1$, $v_2$ and $v_3$ on $S$
   whose sum is $v$ and which are such that $v_1$ is absolutely continuous with respect to $\mu$, 
@@ -81,12 +82,23 @@ $|\mu|(A\cap E) = |v|(B\cap E) = 0$.
 \end{proof}
 
 \begin{example}
+  Let $f\in L^1(\mathbb R)$ be a non negative function. 
+  Define 
+  \[
+  \nu(E) := \int_Ef\dd x.
+  \]
+  Then $\nu_1(E) = \nu(E)$, $\nu_2(E) = 0$ and $\nu_3(E) = 0$.
+
   Let $r_1, r_2, \cdots$ be an enumeration of the set $R$ of all rational numbers. 
   Assign $v(\{r_i\}) = 2^{-i}$ and $v(\{p\}) = 0$ for any irrational number $p\in I$.
-  Then $v(X) = 1$, $v_1(E) = 0$, $v_2(E) = v(I\cap E)$ and $v_3(E) = v(E-I)$.
+  Then $v(X) = 1$, $v_1(E) = 0$, $v_2(E) = v(I\cap E)$ and $v_3(E) = 0$.
 
-  If $r_j$ is replaced by $r_j=2^{-j}$, writing $Z=\{2^{-j}\}$,
-  then $v(X) = 1$, $v_1(E) = v(E-Z)$, $v_2(E) = v(Z\cap E)$ and $v_3(E) = v(E\cap\{0\})$.
+  Let $C$ be the Cantor set and $H^{\alpha}$ be the Hausdorff measure with $\alpha=\ln 2/\ln3$.
+  Define 
+  \[
+  v(E) := \int_E H(E\cap C)\dd H^\alpha.
+  \]
+  Then $v(X) = H^\alpha(C)$, $v_1(E) = 0$, $v_2(E) = 0$ and $v_3(E) = v(E-S)$.
 \end{example}
 
 
@@ -168,6 +180,27 @@ Let
     N(x) = -\frac{1}{2\pi}\ln|x|,\quad x\in\mathbb R^2.
   \end{align*}
 Then $N\in W^{1,q}_{\loc}(\mathbb R^2)$, $q\in[1,2)$ and $\Delta N = -\delta_0(x)$.
+\end{remark}
+
+\begin{remark}
+  Let 
+  \[
+  K^\varepsilon := 
+  \begin{cases}
+    c_n\varepsilon^{2-n}, & |x|\leq\varepsilon,\\
+    K(x), & |x|>\varepsilon.
+  \end{cases}
+  \]
+  Then following the proof above, we can see that 
+  \[
+  -\Delta K^\varepsilon(\phi) = \fint_{|x|=\varepsilon}\phi(x)\dd S,\quad \phi\in C_0^\infty(\mathbb R^n).
+  \] 
+  It is clear that for any $\varepsilon>0$,
+  $-\Delta K^\varepsilon$ is mutually singular with respect to Lebesgue measure $\mu$.
+  The singular set is exactly $S^\varepsilon := \{|x|=\varepsilon\}$.
+  When $\varepsilon>0$, for each $x\in S^\varepsilon$, $-\Delta^\varepsilon(\{x\}) = 0$.
+  While $\varepsilon = 0$, $-\Delta(\{0\}) = 1$. 
+  See Theorem~\ref{thm: Lebesgue decomposition theorem} for more details.
 \end{remark}
 
 \begin{proposition}
