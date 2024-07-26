@@ -36,7 +36,7 @@ as \begin{equation}
 			= \int_{\mathbb R^n}f,
 			\]
 			by Fubini theorem.
-		\item pointwise convergence \emph{is this true?}: 
+		\item pointwise convergence: 
 		\[
 		K*f\to f,\quad{t\searrow0},\quad\text{for a.e. } x\in\mathbb{R}^n,
 		\]
@@ -56,24 +56,31 @@ as \begin{equation}
 \begin{proof}
 	Without loss of generality, we may assume that $f\geq0$ in the distribution sense.
 	
-	2. Let $x\in\mathbb R^n$ be a Lebesgue point. 
-	For any $\varepsilon > 0$, there exists $R>2|x|$ such that 
+	2. The idea of this proof is borrowed from \cite[Theorem~2.1 in Chapter~3]{Stein2005}. Let $x\in\mathbb R^n$ be a Lebesgue point. Then  
 	\[
-	\int_{|y|\geq R\sqrt t} K(y)\dd y + \int_{|x-y|\geq R\sqrt t}|f(y)|\dd y < \varepsilon.
+	F(r) := \fint_{|y|\leq r} |f(x-y)-f(x)|\dd y,\quad r > 0,
 	\]
-	Therefore,
-	\begin{align*}
-		K*f-f &= \int_{\mathbb{R}^n}K(x-y)f(y)\dd y - f(x) = \int_{\mathbb R^n}K(x-y)(f(y)-f(x))\dd y\\
-		&\leq \int_{|x-y|<\delta}K(x-y)|f(y)-f(x)|\dd y + \int_{|x-y|\geq \delta}K(x-y)|f(y)-f(x)|\dd y\\
-		&\leq CR^n\fint_{B_{R\sqrt t}(x)}|f(y)-f(x)|\dd y 
-			+ \int_{|x-y|\geq R\sqrt t}K(x-y,t)|f(y)|\dd y 
-			+ |f(x)|\int_{|x-y|\geq R\sqrt t}K(x-y)\dd y,
-	\end{align*}
-	which implies
+	is a continuous function with respect to $r>0$,
+	and 
 	\[
-	\limsup_{t\searrow0}|K*f-f| \leq (1+|f(x)|)\varepsilon,
-	\] 
-	and the pointwise convergence is attained by putting $\varepsilon\searrow0$.
+	F(r)\to 0\quad \text{as }r\searrow0.
+	\]
+	Moreover, $F(r)$ is bounded, that is, $F(r)\leq M$ for some $M>0$ and all $r>0$. 
+	The first two properties are consequences of absolute continuity and Lebesgue differential theorem, respectively, and the third follows from the first two properties and integration of $f$.
+	We estimate,
+	\begin{align*}
+		K*f-f &= \int_{\mathbb{R}^n}K(x-y)f(y)\dd y - f(x) = \int_{\mathbb R^n}K(y)(f(x-y)-f(x))\dd y\\
+		&\leq \int_{|y|\leq\sqrt {4\pi t}}K(y)|f(x-y)-f(x)|\dd y 
+		+ \sum_{k=0}^{\infty}\int_{2^k\sqrt {4\pi t} < |y|\leq 2^{k+1}\sqrt {4\pi t}}K(y)|f(x-y)-f(x)|\dd y\\
+		&\leq C\fint_{B_{\sqrt {4\pi t}}(x)}|f(x-y)-f(x)|\dd y 
+			+ C\sum_{k=0}^\infty\fint_{|y|\leq 2^{k+1}\sqrt{4\pi t}}2^{(k+1)n}e^{-4^k}|f(x-y)-f(x)|\dd y \\
+		&= CF(\sqrt{4\pi t}) + C\sum_{k=0}^\infty 2^{(k+1)n}e^{-4^k} F(2^{k+1}\sqrt{4\pi t})\\
+		&\leq CF(\sqrt{4\pi t}) + C\sum_{k=0}^{L}F(2^{k+1}\sqrt{4\pi t}) + C M \sum_{k=L+1}^\infty 2^{(k+1)n}e^{-4^k}.
+	\end{align*}
+	The third term of the right side of this inequality may be made arbitrarily small 
+  by choosing a sufficiently large integer $L$, 
+  and for fixed $L$, the first two terms may be made arbitrarily small by choosing $t$ suffciently small,
+	as desired.
 
 	3. 	 
 	For $\varepsilon>0$, there exists $R>0$ such that 
