@@ -41,7 +41,40 @@
 
 \section{Measure}
 
+\subsection{Hausdorff measure}
+
+\begin{definition}
+  For any subset $E$ of $\mathbb R^n$, 
+  define the \textbf{exterior $\alpha$-dimensional Hausdorff measure} of $E$ by 
+  \[
+  m^*_\alpha(E) = \lim_{\delta\to0}\inf\left\{\sum_k(\diam F_k)^\alpha : E\subset\cup_{k=1}^\infty F_k,
+  \quad \diam F_k \leq \delta \text{ all } k\right\},
+  \]
+  where $\diam S$ denotes the diameter of the set $S$, that is, 
+  \[
+  \diam S := \sup\{|x-y|: x,y\in S\}.
+  \]
+\end{definition}
+
+\begin{remark}
+  The quantity 
+  \[
+  \mathcal{H}_\alpha^\delta(E) :=  \inf\left\{\sum_k(\diam F_k)^\alpha : E\subset\cup_{k=1}^\infty F_k,
+  \quad \diam F_k \leq \delta \text{ all } k\right\}
+  \]
+  is increasing as $\delta$ decreases, so that the limit 
+  \[
+  m_\alpha^*(E) = \lim_{\delta\to0}\mathcal H_\alpha^\delta(E)
+  \]
+  exists,
+  although $m_\alpha^*(E)$ could be infinite.
+\end{remark}
+
+The Cantor set $\mathcal C$ was constructed by successively removing the middle-third intervals in $[0,1]$.
+
 \subsection{Lebesgue decomposition theorem}
+
+
 
 Throughout this subsection we shall assume that $X$ is the real line, 
 $S$ is the class of all Borel sets,
@@ -99,6 +132,53 @@ $|\mu|(A\cap E) = |v|(B\cap E) = 0$.
   v(E) := \int_E H(E\cap C)\dd H^\alpha.
   \]
   Then $v(X) = H^\alpha(C)$, $v_1(E) = 0$, $v_2(E) = 0$ and $v_3(E) = v(E-S)$.
+\end{example}
+
+\begin{example}
+  \label{eg: Lebesgue decomposition of increasing function}
+  Suppose $F$ is an increasing function on $[a,b]$.
+  \begin{enumerate}
+    \item Prove that we can write 
+    \[
+    F = F_A + F_C + F_J,
+    \]
+    where each of the function $F_A$, $F_C$ and $F_J$ is increasing and:
+    \begin{enumerate}
+      \item $F_A$ is absolutely continuous.
+      \item $F_C$ is continuous, but $F'_C(x) = 0$ for a.e. $x$.
+      \item $F_J$ is a jump function.
+    \end{enumerate}
+    \item Moreover, each component $F_A$, $F_C$, $F_J$ is uniquely determined up to an additive constant.
+  \end{enumerate}
+  The above is the \textbf{Lebesgue decomposition} of $F$. There is a corresponding decomposition for any $F$ of bounded variation.
+\end{example}
+
+\begin{proof}
+  Since $F$ is an increasing function, $F'$ exists for a.e. $x \in [a, b]$.
+  Let 
+  \[
+  F_A(x) = \int_a^xF'(s)\dd s.
+  \]
+  Then $F_A(x) \leq F(b) - F(a)$ is absolutely continuous.
+  Let 
+  \[
+  F_J(x) = F(x+) - F(a) - F_A(x),
+  \]
+  with the understanding $F(b+) = F(b)$.
+  
+\end{proof}
+
+\begin{example}
+  Suppose that $F$ is an increasing normalized function on $\mathbb R$,
+  and let $F = F_A + F_B + F_J$ be the decomposition of $F$ in Example~\ref*{eg: Lebesgue decomposition of increasing function};
+  here $F_A$ is absolutely continuous, $F_C$ is continuous with $F'_C = 0$ a.e, and $F_J$ is a pure jump function.
+  Let $\mu = \mu_A + \mu_C + \mu_J$ with $\mu$, $\mu_A$, $\mu_C$ and $\mu_J$ the Borel measures associated to $F$, $F_A$, $F_C$ and $F_J$, respectively.
+  Verify that:
+  \begin{enumerate}
+    \item $\mu_A$ is absolutely continuous with respect to Lebesgue measure and $\mu_A(E) = \int_EF'(x)\dd x$ for every Lebesgue measurable set $E$.
+    \item As a result, if $F$ is absolutely continuous, then $\int f\dd\mu = \int f\dd F = \int f(x)F'(x)\dd x$ whenever $f$ and $fF'$ are integrable.
+    \item $\mu_C + \mu_J$ and Lebesgue measure are mutually singular.
+  \end{enumerate}
 \end{example}
 
 
