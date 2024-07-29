@@ -230,6 +230,170 @@ and $\mathcal A_{\sigma\delta}$ as the sets that arise as countable intersection
 
 The Cantor set $\mathcal C$ was constructed by successively removing the middle-third intervals in $[0,1]$.
 
+\section{Integration on measure space}
+
+To avoid unnecessary complications will assume throughout that the measure space $(X,\mathcal M,\mu)$ under consideration is $\sigma$-finite.
+
+\subsection{Measurable functions}
+
+\begin{definition}
+  A function $f$ on $X$ with values in the extended real numbers is \textbf{measurable} if 
+  \[
+  f^{-1}([-\infty, a)) = \{x\in X: f(x) < a\}\in\mathcal{M}\quad \text{for all } a\in\mathbb R.
+  \]
+\end{definition}
+
+\begin{remark}
+  With this definition, the basic properties of measurable functions obtained in the case of $\mathbb R^d$
+  with the Lebesgue measure continue to hold.
+  For instance, the collection of measurable functions is closed under the basic algebraic manipulations.
+  Also, the pointwise limits of measurable functions are measurable.
+\end{remark}
+
+The notation of ``almost everywhere'' that we use now is with respect to the measure $\mu$.
+For instance, if $f$ and $g$ are measurable functions on $X$,
+we write $f=g$ a.e. to say that 
+\[
+\mu(\{x\in X: f(x)\neq g(x)\}) = 0.
+\]
+
+A \textbf{simple function} on $X$ takes the form 
+\[
+\sum_{k=1}^N a_k\chi_{E_k},
+\]
+where $E_k$ are measurable sets of finite measure and $a_k$ are real numbers.
+Approximations by simple functions played an important role in the definition of the Lebesgue integral.
+Fortunately, this result continues to hold in our abstract setting.
+
+\begin{theorem}
+  Suppose $f$ is a non-negative measurable function on a measure space $(X,\mathcal M,\mu)$.
+  Then there exists a sequence of simple functions $\{\phi_k\}^\infty_{k=1}$ that satisfies 
+  \[
+  \phi_k(x)\leq \phi_{k+1}(x) 
+  \quad\text{and}\quad
+  \lim_{k\to\infty}\phi_k(x) = f(x) \text{ for all }x.
+  \]
+  In general, if $f$ is only measurable, there exists a sequence of simple functions $\{\phi_k\}_{k=1}^\infty$ that satisfies 
+  \[
+  |\phi_k(x)| \leq |\phi_{k+1}(x)|
+  \quad\text{and}\quad
+  \lim_{k\to\infty}\phi_k(x) = f(x)\text{ for all }x.
+  \]
+\end{theorem}
+
+Another important result that generalizes immediately is Egorov's theorem.
+
+\begin{theorem}
+  Suppose $\{f_k\}_{k=1}^\infty$ is a sequence of measurable functions defined on a measurable set $E\subset X$ with $\mu(E)<\infty$, and $f_k\to f$ a.e. 
+  Then for each $\varepsilon > 0$ there is a set $A_\varepsilon$ with $A_\varepsilon\subset E$,
+  $\mu(E-A_\varepsilon) \leq \varepsilon$, and such that $f_k\to f$ uniformly on $A_\varepsilon$.
+\end{theorem}
+
+The four-step approach to the construction of the Lebesgue integral that begins with its definition on simple functions carries over to the situation of a $\sigma$-finite measure space $(X,\mathcal M,\mu)$.
+This leads to the notion of the integral, with respect to the measure $\mu$, 
+of a non-negative measurable function $f$ on $X$. This integral is denoted by 
+\[
+\int_X f(x)\dd\mu(x),
+\]
+which we sometimes simplify as $\int_Xf\dd\mu$, $\int f\dd\mu$ or $\int f$, 
+when no confusion is possible.
+Finally, we say that a measurable function $f$ is \textbf{integrable} if 
+\[
+\int_X|f(x)|\dd\mu(x) < \infty.
+\]
+The elementary properties of the integral, such as linearity and monotonicity, 
+continue to hold in this general setting, as well as the following basic limit theorems.
+\begin{description}
+  \item[Fatou's lemma.] If $\{f_n\}$ is a sequence of non-negative measurable functions on $X$, then 
+  \[
+  \int \liminf_{n\to\infty}f_n\dd\mu\leq\liminf_{n\to\infty}\int f_n\dd\mu.
+  \]
+  \item[Monotone convergence.] If $\{f_n\}$ is a sequence of non-negative measurable functions with $f_n\nearrow f$, then 
+  \[
+  \lim_{n\to\infty}\int f_n = \int f.
+  \]
+  \item[Dominated convergence.] If $\{f_n\}$ is a sequence of measurable functions with $f_n\to f$ a.e., 
+  and such that $|f_n|\leq g$ for some integrable $g$, then 
+  \[
+  \int |f_n-f|\dd\mu\to0,\quad\text{as }n\to\infty,
+  \]
+  and consequently 
+  \[
+  \int f_n\dd\mu\to\int f\dd\mu,\quad\text{as }n\to\infty.
+  \] 
+\end{description}
+
+\subsection{Product measures and Fubini theorem}
+
+The construction of product measures leads to a general form of the theorem that express a multiple integral as a repeated integral.
+
+Suppose $(X,\mathcal M, \mu)$ and $(Y,\mathcal N, \nu)$ are a pair of measure spaces.
+We want to describe the \textbf{product measure} $\mu\times\nu$ on the space 
+$Z = X\times Y = \{(x,y): x\in X, y\in Y\}$.
+We will suppose here that the two measure spaces are each complete and $\sigma$-finite.
+
+Let $\mathcal A$ denote the collection of all sets in $Z$ that are finite unions of disjoint measurable rectangles $A\times B$, with $A\in\mathcal M$ and $B\in\mathcal N$.
+It is easy to check that $\mathcal A$ is an algebra of subsets of $X$.
+From now on we abbreviate our terminology by referring to measurable rectangles simply as ``rectangles''.
+
+On the rectangles we define the function $\mu_0$ by $\mu_0(A\times B) = \mu(A)\nu(B)$.
+Since $\mu_0$ becomes a premeasure, $\mu_0$ has a unique extension to the algebra $\mathcal A$,
+which we denote by $\gamma=\mu\times\nu$ on the $\sigma$-algebra $\mathcal O$ of sets generated by the algebra $\mathcal A$ of measurable rectangles.
+In this way, we have defined the product measure space $(Z,\mathcal O,\mu) = (X\times Y,\mathcal O,\mu\times\nu)$.
+
+\begin{theorem}
+  In the setting above, suppose $f(x,y)$ is an integrable function on $(X\times Y,\mu\times\nu)$.
+  \begin{enumerate}
+    \item For almost every $x\in X$, the slice $f^y(x) = f(x,y)$ is integrable on $(X,\mu)$.
+    \item $\int_Xf(x,y)\dd\mu$ is an integrable function on $Y$.
+    \item $\int_Y\left(\int_Xf(x,y)\dd\mu\right)\dd\nu = \int_{X\times Y}f\dd\mu\times\nu$.
+  \end{enumerate}
+\end{theorem}
+
+\subsection{Borel measures on $\mathbb R$ and the Lebesgue-Stieltjes integral}
+
+\begin{theorem}
+  Let $F$ be an increasing function on $\mathbb R$ that is normalized.
+  \footnote{We say a function is normalized, if it is right-continuous.}
+  Then there is a unique measure $\mu$ (also denoted by $\dd F$) on the Borel sets $\mathcal B$ on $\mathbb R$
+  such that $\mu((a,b]) = F(b) - F(a)$ if $a<b$.
+  Conversely, if $\mu$ is a measure on $\mathcal B$ that is finite on bounded intervals,
+  then $F$ defined by $F(x) = \mu((0,x])$, $x>0$, $F(0) = 0$ and $F(x) = -\mu((-x,0])$, $x<0$, 
+  is increasing and normalized.
+\end{theorem}
+
+\subsection{Absolute continuity of measures}
+
+The generalization of the notion of absolute continuity requires that we extend the ideas of a measure to encompass set functions that may be positive or negative. 
+We describe this notion first.
+
+\subsubsection{Signed measures}
+
+Loosely speaking, a signed measure possesses all the properties of a measure, 
+except that it may take positive or negative values. 
+More precisely, 
+a \textbf{signed measure} $\nu$ on a $\sigma$-algebra $\mathcal M$ is a mapping that satisfies:
+\begin{enumerate}
+  \item The set function $\nu$ is extended-valued in the sense that $-\infty<\nu(E)\leq\infty$ for all $E\in\mathcal M$.
+  \item If $\{E_j\}_{j=1}^\infty$ are disjoint subsets of $\mathcal M$, then 
+  \[
+  \nu\left(\cup_{j=1}^\infty E_j\right) = \sum_{j=1}^\infty\nu(E_j).
+  \]
+\end{enumerate}
+
+Note that for this to hold the sum $\sum\nu(E_j)$ must be independent of the rearrangements of terms,
+so that if $\nu(\cup_{j=1}^\infty E_j)$ is finite, 
+it implies that the sum converges absolutely.
+
+Given a signed measure $\nu$ on $(X,\mathcal M)$ it is always possible to find a 
+(positive) measure $\mu$ that dominates $\nu$, in the sense that 
+\[
+\nu(E)\leq\mu(E)\quad \text{for all } E,
+\]
+and that in addition is the ``smallest'' $\mu$ that has this property.
+
+The construction is in effect an abstract version 
+
 \subsection{Lebesgue decomposition theorem}
 
 
