@@ -108,9 +108,29 @@ $$\lim_{n\rightarrow\infty}\frac{I_{n+1}}{I_n}=\lim_{n\rightarrow\infty}\sqrt[n]
 $$\lim_{N\to\infty}\exp\sum_{i=1}^{N(k)}\frac{2}{p_i}\geq\lim_{n\to\infty}\sum_{n=1}^N\frac{1}{n}=+\infty.$$
 于是$\sum\frac{2}{p_i}\to\infty$，$k\to\infty$。得证。
 \end{example}
-\hfill\\
-  \section{函数极限与连续函数}
-  \begin{example}
+
+ \section{函数极限与连续函数}
+
+\begin{theorem}[Stone-Weierstrass theorem]
+  Suppose $f\in C([0,1])$. Then there exists a sequence $\{P_n\}$ of polynomials such that 
+  $P_n$ converges to $f$ uniformly $x\in[0,1]$ as $n\to\infty$.  
+\end{theorem}
+
+\begin{proof}
+  Without loss of generality, we may assume that $f(0) = f(1) = 0$ and extend $f$ to $\mathbb{R}$ such that 
+  $f(x)=0$ for $x\not\in[0,1]$.
+  Let $g_n(x) = c_n(1-x^2)^n$ with 
+  \[
+  c_n = \left(\int_0^1(1-x^2)^n\dd x\right)^{-1}.
+  \]
+  Let 
+  \[
+  P_n(x) = \int_0^1f(t)g_n(x-t)\dd t.
+  \]
+  It is clear that $P_n$ is a polynomial, as we need.
+\end{proof}
+
+ \begin{example}
   \hfill\\
   
   若函数$f(x)$在$[0,+\infty)$上连续，$\displaystyle\lim_{x\rightarrow\infty}f(x)=A$存在，则$f(x)$在$[0,+\infty)$上一致连续。（中国人民大学，2001）
@@ -210,61 +230,136 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
 即$\frac{p}{1+p},\frac{1}{1+p}\in S.$证毕。
 \end{example} 
  
-\begin{example}
-a convex function \(f\) defined on an open interval \(I\) is continuous.
-\end{example}
+\begin{proposition}
+	Let $I\in\mathbb{R}$ be an open interval. Suppose that $f: I\mapsto\mathbb{R}$ is a convex function,
+	i.e.,
+	\[
+		f(\lambda a + (1-\lambda)b) \leq \lambda f(a) + (1-\lambda)f(b),\quad a,b\in I, \quad \lambda\in(0,1).
+	\]
+	Then $f\in C^{0,1}_{\mathrm{loc}}(I,\mathbb R)$.
+\end{proposition}
+
 \begin{proof}
-Without loss of generality, we may assume that \(f\) is finite. Fix \(a\in I\), choose \(x\), \(y\in I\) such that both \(f(x)\) and \(f(y)\) are finite, as well as \(x<a<y\). denote \(\varepsilon = \min\{y-a, a-x\}\). Using 
-\begin{gather*}
-  f(\lambda a + (1-\lambda)y)\leq\lambda f(a) + (1-\lambda)f(y), \\
-  f(\lambda a + (1-\lambda)x)\leq\lambda f(a) + (1-\lambda)f(x),
-  \intertext{as well as}
-  f(a) \leq \lambda  f(a+\varepsilon-\varepsilon\lambda) + (1-\lambda)f(a - \varepsilon\lambda),
-\end{gather*}
-we get 
-\begin{align*}
-  \limsup_{z\searrow a}f(z) & = \limsup_{\lambda\nearrow1}f(\lambda a + (1-\lambda)y)\leq f(a), \\
-  \limsup_{z\nearrow a}f(z) & = \limsup_{\lambda\nearrow1}f(\lambda a + (1-\lambda)x)\leq f(a), \\
-  f(a) &\leq \liminf_{\lambda\nearrow1} (\lambda  f(a+\varepsilon-\varepsilon\lambda) + (1-\lambda)f(a - \varepsilon\lambda))\\
-  &\leq \liminf_{\lambda\nearrow1}\lambda  f(a+\varepsilon-\varepsilon\lambda) + \limsup_{\lambda\searrow1}(1-\lambda)f(a - \varepsilon\lambda)\\
-  &\leq \liminf_{z\searrow a}f(z),
-\intertext{as well as}
-  f(a) &\leq
-  \liminf_{\lambda\searrow 0}(\lambda f(a+\varepsilon-\varepsilon\lambda) + (1-\lambda)f(a - \varepsilon\lambda))\\
-  &\leq 
-  \limsup_{\lambda\searrow 0}\lambda f(a+\varepsilon-\varepsilon\lambda) 
-  + \liminf_{\lambda\searrow0}(1-\lambda)f(a - \varepsilon\lambda)\\
-  &\leq\liminf_{z\nearrow a}f(z).
-\end{align*}
-Gathering the previous four inequalities leads us to
-\[
-    \lim_{z\to a} f(z) = f(a),
-\]
-which implies \(f\) is continuous over \(I\).
+	Fix $a\in I$.
+	If $a<b$, then we have by putting $\lambda\nearrow1$
+	\[
+		\limsup_{\lambda\nearrow1}f(\lambda a + (1-\lambda)b) = \limsup_{c\searrow a}f(c)\leq f(a),
+	\]
+	if $a>b$, then we have similarly
+	\[
+		\limsup_{\lambda\nearrow1}f(\lambda a + (1-\lambda)b) = \limsup_{c\nearrow a}f(c)\leq f(a).
+	\]
+	Particularly, using
+	\begin{align*}
+		f(a) &= f(\lambda(a-\varepsilon(1-\lambda)) + (1-\lambda)(a+\varepsilon\lambda))\\
+			&\leq \lambda f(a-\varepsilon(1-\lambda)) + (1-\lambda)f(a+\varepsilon\lambda),
+			\quad 0<\varepsilon\ll 1,
+	\end{align*}
+	we have by putting $\lambda\nearrow1$,
+	\[
+		f(a)\leq \liminf_{\lambda\nearrow1}\lambda f(a-\varepsilon(1-\lambda)) 
+			+ \limsup_{\lambda\nearrow1}(1-\lambda)f(a+\varepsilon\lambda)
+			= \liminf_{c\nearrow a}f(c),
+	\]
+	and by putting $\lambda\searrow0$,
+	\[
+		f(a)\leq \limsup_{\lambda\searrow0}\lambda f(a-\varepsilon(1-\lambda)) 
+			+ \liminf_{\lambda\searrow0}(1-\lambda)f(a+\varepsilon\lambda)
+			= \liminf_{c\searrow a}f(c).
+	\]	
+	Four estimates above imply the continuity of $f$ at $a$.
+
+	Using 
+	\[
+	\frac{f(\lambda a + (1-\lambda)b) - f(a)}{\lambda a + (1-\lambda)b - a} \leq \frac{f(b) - f(a)}{b-a},\quad a < b,
+	\]
+	we have
+	\[
+	\limsup_{c\searrow a}\frac{f(c)-f(a)}{c-a} 
+	= \limsup_{\lambda\nearrow 1}\frac{f(\lambda a + (1-\lambda)b) - f(a)}{\lambda a + (1-\lambda)b - a} 
+	\leq \frac{f(b) - f(a)}{b-a},
+	\]
+	and hence 
+	\[
+	\limsup_{c\searrow a}\frac{f(c)-f(a)}{c-a} 
+	\leq \liminf_{b\searrow a}\frac{f(b)-f(a)}{b-a},
+	\]
+	which implies $f'(a+)$ exists and satisfies 
+	\[
+	f'(a+)\leq \frac{f(b) - f(a)}{b-a},\quad b>a.
+	\]
+	If $a>c=b$, we similarly obtain $f'(a-)$ exists and satisfies 
+	\[
+	f'(a-)\geq \frac{f(c) - f(a)}{c-a},\quad c<a.
+	\]
+	Noting 
+	\begin{align*}
+	\frac{f(b) - f(a)}{b-a} - \frac{f(a) - f(c)}{a-c}
+	&= \frac{f(b)(a-c) + f(c)(b-a) - f(a)(b-c)}{(b-a)(a-c)}\\
+	&= \frac{(b-c)}{(b-a)(a-c)}\left(f(b)\frac{a-c}{b-c} + f(c)\frac{b-a}{b-c} - f(a) \right)\geq 0,
+	\end{align*}
+	we have $f'(a-)\leq f'(a+)$.
+	Using 
+	\[
+	\frac{f(b) - f(\lambda a + (1-\lambda)b)}{b - \lambda a - (1-\lambda)b} \geq \frac{f(b) - f(a)}{b-a},\quad b>a,
+	\]
+	we obtain
+	\[
+	f'(b-) = \lim_{\lambda\searrow0}\frac{f(b) - f(\lambda a + (1-\lambda)b)}{b - \lambda a - (1-\lambda)b}\geq \frac{f(b) - f(a)}{b-a}\geq f'(a+).
+	\]
+	So $g(a) := f'(a-)$, $a\in I$ is a nondecreasing functions 
+	which has at most countably many  discontinuous points.
+	At its continuous point $p\in I$,
+	\begin{align*}
+		f'(p-) = g(p) = \lim_{a\searrow p}g(a) 
+		= \lim_{a\searrow p} f'(a-) \geq \lim_{a\searrow p}f'(p+) = f'(p+),
+	\end{align*} 
+	which implies that $f'$ exists almost everywhere.
+	Moreover, for any compact set $K\subset I$, 
+	there exists an open interval $(c,b)$ such that $K\subset(c,b)$ and $\overline{(c,b)}\subset I$. 
+	For any $a\in K$, if $f'(a)$ exists, 
+	then  
+	\[
+	\frac{f(a) - f(c)}{a - c} 
+	\leq f'(a) \leq \frac{f(b) - f(a)}{b - a}.
+	\] 
+	Therefore $f\in W^{1,\infty}_{\mathrm{loc}}(I) = C^{0,1}_{\mathrm{loc}}(I)$.
 \end{proof}
+
 
 
 \section{微分}
   \begin{example}
-  \hfill\\
-   已知$f(x)$可导，$f(x)+f'(x)\rightarrow a,x\rightarrow+\infty$，则$x\rightarrow+\infty$有$f(x)\rightarrow a,f'(x)\rightarrow0$。（清华大学，2006）
-  
-  反设$f(x)\nrightarrow a$。
-  
-  若$f(x)\rightarrow+\infty,x\rightarrow+\infty\Leftrightarrow\forall M>0,\exists N,\forall x>N,f(x)>M.$
-  
-  即对$x_0,\exists x_1>x_0+1,f(x_1)>f(x_0)$;
-  
-  $\exists x_2>x_1+1,f(x_2)>f(x_1)$;于是有一列$\{x_n\}$满足$x_{n+1}>x_n+1$，且$f(x_{n+1})>f(x_n)$，从而$x_n\rightarrow\infty$，且$f(x_n)\rightarrow+\infty$。
-  
-  由微分中值定理，存在一列$\{\xi_n\}$，有$f'(\xi_n)>0$，其中$$\xi_n\in[x_{n-1},x_n],n=1,2,\cdots$$，这与$f'(x)\rightarrow+\infty$矛盾，故$$f(x)\nrightarrow+\infty,x\rightarrow+\infty$$。
-  
-  同理，$f(x)\nrightarrow-\infty,x\rightarrow+\infty$，从而$f(x)$有界。
-  
-  于是$f(x)$
-  
-  证明有问题。
-  \end{example}
+   已知$f(x)$可导，$f(x)+f'(x)\rightarrow a,x\rightarrow+\infty$，则$x\rightarrow+\infty$有$f(x)\rightarrow a,f'(x)\rightarrow0$. (清华大学, 2006)
+  \end{example} 
+
+  \begin{proof}
+    Without loss of generality, we may assume that $a=0$, otherwise we consider $g=f-a$.
+  For $\varepsilon>0$, there exists $R>0$ such that 
+  \[
+  |f(x)+f'(x)| < \varepsilon,\quad x>R.
+  \]
+  Then 
+  \[
+  -\varepsilon e^x < \left(e^xf\right)' < \varepsilon e^x,\quad x>R,
+  \]
+  which implies by integrating over $(R, x)$,
+  \[
+  -\varepsilon (e^x - e^R) < e^xf(x) - e^Rf(R) < \varepsilon(e^x-e^R),\quad x>R,
+  \]
+  thus,
+  \[
+  e^{R-x}f(R) - \varepsilon(1-e^{R-x}) < f(x) < e^{R-x}f(R) + \varepsilon(1-e^{R-x}), \quad x>R,
+  \]
+  and we get 
+  \[
+  \limsup_{x\to\infty}|f(x)| < \varepsilon.
+  \]
+  This concludes the proof.
+  \end{proof}
+
+
+
   \begin{example}
   \hfill\\
    设$f(x)$，$g(x)$在$[a,b]$上连续，$(a,b)$内可导，$g'(x)\neq0$。证明：$\exists\xi\in(a,b)$，使$\frac{f(a)-f(\xi)}{g(\xi)-g(b)}=\frac{f'(\xi)}{g(\xi)}$（武汉大学，2004）
@@ -769,15 +864,15 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
   \end{align*}    
     
     \end{example}  
-     \begin{example}
-    \hfill\\
-$\displaystyle\sum_{n=0}^{\infty}(1+\frac12+\cdot\cdot\cdot\frac1n)x^n$
-    
-   $\displaystyle\sum_{n=0}^{\infty}(1+\frac12+\cdot\cdot\cdot\frac1n)x^n=(\sum_{n=0}^{\infty}x^n)(\sum_{n=1}^{\infty}\frac{x^n}n)=\frac1{1-x}\ln\frac1{1-x}$   
-        
-    
-    \end{example} 
-  \hfill\\
+  
+\begin{example}
+\[
+\sum_{n=0}^{\infty}(1+\frac12+\cdot\cdot\cdot\frac1n)x^n
+=\left(\sum_{n=0}^{\infty}x^n\right)\left(\sum_{n=1}^{\infty}\frac{x^n}n\right)
+=\frac1{1-x}\ln\frac1{1-x}
+\]
+\end{example} 
+
   
 \section{函数项级数}
 \begin{exercise}
