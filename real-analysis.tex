@@ -392,11 +392,87 @@ Given a signed measure $\nu$ on $(X,\mathcal M)$ it is always possible to find a
 \]
 and that in addition is the ``smallest'' $\mu$ that has this property.
 
-The construction is in effect an abstract version 
+The construction is in effect an abstract version of the decomposition of a function of bounded variation 
+as the difference of two increasing functions. 
+We proceed as follows.
+We define a function $|\nu|$ on $\mathcal M$, called the \textbf{total variation} of $\nu$, by 
+\[
+|\nu|(E) := \sup\sum_{j=1}^\infty|\nu(E_j)|,
+\]
+where the supremum is taken over all partitions of $E$, 
+that is, over all countable unions $E=\cup_{j=1}^\infty E_j$, 
+where the sets $E_j$ are disjoint and belong to $\mathcal M$.
+
+The fact that $|\nu|$ is actually additive is not obvious, and is given in the proof below.
+
+\begin{proposition}
+  The total variation $|\nu|$ of a signed measure $\nu$ is itself a (positive) measure that satisfies $\nu\leq|\nu|$.
+\end{proposition}
+
+It is now possible to write $\nu$ as the difference of two (positive) measures.
+To see this, we define the \textbf{positive variation} and \textbf{positive variation} of $\nu$ by 
+\[
+\nu^+ = \frac12(|\nu|+\nu)
+\quad\text{and}\quad
+\nu^- = \frac12(|\nu|-\nu).
+\]
+By the proposition we see that $\nu^+$ and $\nu^-$ are measures, and they clearly satisfy 
+\[
+\nu = \nu^+ - \nu^-
+\quad\text{and}\quad
+|\nu| = \nu^+ + \nu^-.
+\]
+In the above if $\nu(E) = \infty$ for a set $E$, then $|\nu|(E) = \infty$, and $\nu^-(E)$ is defined to be zero.
+
+We also make the following definition: we say that the signed measure $\nu$ is \textbf{$\sigma$-finite} if the measure $|\nu|$ is $\sigma$-finite.
+
+\subsubsection{Absolute continuity}
+
+Here we adopt the terminology that the measure $\nu$ is \textbf{supported} on a set $A$,
+if $\nu(E) = \nu(E\cap A)$ for all $E\in\mathcal M$.
+
+Two signed measures $\nu$ and $\mu$ on $(X,\mathcal M)$ are \textbf{mutually singular} if there are disjoint subsets $A$ and $B$ in $\mathcal M$ so that 
+\[
+\nu(E) = \nu(A\cap E)
+\quad\text{and}\quad
+\nu(E)=\mu(B\cap E)
+\quad\text{for all } 
+E\in\mathcal M.
+\]
+Thus, $\nu$ and $\mu$ are supported on disjoint subsets.
+We use the symbol $\nu\bot \mu$ to denote the fact that the measures are mutually singular.
+
+In contrast, if $\nu$ is \textbf{absolutely continuous} with respect to $\mu$ if 
+\[
+\nu(E) = 0\quad \text{whenever }E\in\mathcal M \text{ and }\mu(E) = 0.
+\]
+Thus, if $\nu$ is supported in a set $A$, then $A$ must be an essential part of the support of $\mu$ in the sense that $\mu(A)>0$.
+We use the symbol $\nu\ll \mu$ to indicate that $\nu$ is absolutely continuous with respect to $\mu$.
+Note that if $\nu$ and $\mu$ are mutually singular, and $\nu$ is also absolutely continuous with respect to $\mu$, then $\nu$ vanishes identically.
+
+\begin{proposition}
+  The assertion 
+  ``For each $\varepsilon>0$, there is a $\delta>0$ such that $\mu(E)<\delta$ implies $|\nu(E)|<\varepsilon$.''
+  implies $\nu\ll\mu$.
+  Conversely, if $|\nu|$ is a finite measure, then $\nu\ll\mu$ implies this assertion.
+\end{proposition}
+
 
 \subsection{Lebesgue decomposition theorem}
 
+It was proven in the case of $\mathbb R$ by Lebesgue, and in the general case by Radon and Nikodym.
 
+\begin{theorem}
+  Suppose $\mu$ is a $\sigma$-finite positive measure on the measure space $(X,\mathcal M)$ and 
+  $\nu$ a $\sigma$-finite signed measure on $\mathcal M$.
+  Then there exist unique signed measures $\nu_a$ and $\nu_s$ on $\mathcal M$ such that 
+  $\nu_a\ll\mu$, $\nu_s\bot\mu$ and $\nu=\nu_a+\nu_s$.
+  In addition, the measure $\nu_a$ takes the form $\dd\nu_a=f\dd\mu$; that is,
+  \[
+  \nu_a(E) = \int_Ef(x)\dd\mu(x)
+  \]
+  for some extended $\mu$-integrable function $f$.
+\end{theorem}
 
 Throughout this subsection we shall assume that $X$ is the real line, 
 $S$ is the class of all Borel sets,

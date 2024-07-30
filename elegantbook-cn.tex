@@ -86,18 +86,58 @@
 \printbibliography[heading=bibintoc, title=\ebibname]
 \appendix
 
-\chapter{基本数学工具}
+\chapter{The Fourier transform on $L^2$}
 
-
-本附录包括了计量经济学中用到的一些基本数学，我们扼要论述了求和算子的各种性质，研究了线性和某些非线性方程的性质，并复习了比例和百分数。我们还介绍了一些在应用计量经济学中常见的特殊函数，包括二次函数和自然对数，前 4 节只要求基本的代数技巧，第 5 节则对微分学进行了简要回顾；虽然要理解本书的大部分内容，微积分并非必需，但在一些章末附录和第 3 篇某些高深专题中，我们还是用到了微积分。
-
-\section{求和算子与描述统计量}
-
-\textbf{求和算子} 是用以表达多个数求和运算的一个缩略符号，它在统计学和计量经济学分析中扮演着重要作用。如果 $\{x_i: i=1, 2, \ldots, n\}$ 表示 $n$ 个数的一个序列，那么我们就把这 $n$ 个数的和写为：
-
+The Fourier transform of a function $f$ on $\mathbb R^d$ is defined by 
 \begin{equation}
-\sum_{i=1}^n x_i \equiv x_1 + x_2 +\cdots + x_n
+  \hat f(\xi) = \int_{\mathbb R^d}f(x)e^{-2\pi ix\cdot\xi}\dd x,
 \end{equation}
+and its attached inversion is given by 
+\begin{equation}
+  f(x) = \int_{\mathbb R^d}\hat f(\xi)e^{2\pi ix\cdot\xi}\dd \xi.
+\end{equation}
+
+These formulas have already appeared in several contexts.
+We consider first the properties of the Fourier transform in the elementary setting 
+by restricting to functions in the Schwartz class $\mathcal S(\mathbb R^d)$.
+The class $\mathcal S$ consists of functions $f$ that are smooth (indefinitely differentiable)
+and such that for each multi-index $\alpha$ and $\beta$, the function $x^\alpha\left(\frac{\partial}{\partial x} \right)^\beta f$ is bounded on $\mathbb R^d$.
+We saw that on this class the Fourier transform is a bijection,
+that the inversion formula holds,
+and moreover we have the Plancherel identity 
+\begin{equation}
+  \int_{\mathbb R^d}|\hat f(\xi)|^2\dd\xi = \int_{\mathbb R^d}|f(x)|^2\dd x.
+\end{equation}
+
+Turning now to more general (in particular, non-continuous) functions,
+we note that the largest class for which the integral defining $\hat f(\xi)$ converges (absolutely) is the space $L^1(\mathbb R^d)$. 
+For it, we saw that a (relatively) inversion formula is valid, 
+provided $\hat f\in L^1(\mathbb R^d)$. 
+In this case, 
+since $\hat f$ is continuous, bounded, and moreover decays to zero at infinity,
+$f$ could be modified on a set of measure zero to become continuous everywhere,
+which is of course impossible for the general function $f\in L^1(\mathbb R^d)$.
+
+Beyond these particular facts, what we would like here is to reestablish in the general context the symmetry between $f$ and $\hat f$ that holds for $\mathcal S$.
+This is where the special role of the Hilbert space $L^2(\mathbb R^d)$ enters.
+
+We shall define the Fourier transform on $L^2(\mathbb R^d)$ as an extension of its definition on $\mathcal S$.
+For this purpose, we temporarily adopt the notational device of denoting by $\mathcal F_0$ and $\mathcal F$ the Fourier transform on $\mathcal S$ and its extension to $L^2$, respectively.
+
+The main results we prove are the following.
+
+\begin{theorem}
+  The Fourier transform $\mathcal F_0$, initially defined on $\mathcal S(\mathbb R^d)$,
+  has a (unique) extension $\mathcal F$ to a unitary mapping of $L^2(\mathbb R^d)$ to itself.
+  In particular,
+  \[
+  \|\mathcal F(f)\|_{L^2(\mathbb R^d)} = \|f\|_{L^2(\mathbb R^d)}
+  \]
+  for all $f\in L^2(\mathbb R^d)$.
+\end{theorem}
+
+The extension $\mathcal F$ will be given by a limiting process: if $\{f_n\}$ is a sequence in the Schwartz space that converges to $f$ in $L^2(\mathbb R^d)$, 
+then $\{\mathcal F_0(f_n)\}$ will converge to an element in $L^2(\mathbb R^d)$ which we will define as the Fourier transform of $f$.
 
 
 
