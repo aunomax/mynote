@@ -3,6 +3,37 @@
 
 \section{notation}
 
+\subsection{Cut-off function}
+
+For convenience, we introduce the following cut-off functions.
+
+\begin{lemma}
+  \label{le: cut-off function}
+  Let $n\geq1$ and $R>0$.
+  There exists a nonnegative and radially symmetric function 
+  $\phi(x)\in C_0^\infty(\mathbb R^n)$ such that 
+  \begin{displaymath}
+    \phi(x) = 
+    \begin{cases}
+      1, & x\in B_{1/2},\\
+      0, & x\in\mathbb R^n\setminus B_1.
+    \end{cases}
+  \end{displaymath}
+  Moreover, for
+  \begin{displaymath}
+    \phi^{(\rho)}(x) := \phi(Rx/\rho), \quad x\in \mathbb R^n,\quad  \rho\in(0,R),
+  \end{displaymath}
+  it holds 
+  \begin{displaymath}
+    \rho\|\nabla \phi^{(\rho)}\|_{L^\infty(\mathbb R^n)} 
+    + \rho^2\|\Delta \phi^{(\rho)}\|_{L^\infty(\mathbb R^n)} 
+    \leq C_\phi := 
+    R\|\nabla \phi\|_{L^\infty(\mathbb R^n)} 
+    + R^2\|\Delta \phi\|_{L^\infty(\mathbb R^n)}  
+  \end{displaymath}
+  for each $\rho\in(0,R)$.
+\end{lemma}
+
 \subsection{Marcinkiewicz space}
 
 Here the Marcinkiewicz space $M^p\left(\mathbb{R}^d\right), 1<p<\infty$, is defined as the set of $f \in$ $L_{\text {loc }}^1(\mathbb{R}^d)$ such that
@@ -572,6 +603,88 @@ Now, we have for any $\varepsilon>0$, there exists a $K>0$ large enough such tha
 \begin{equation}
 	|\int_\Omega(f_k-f)g|\leqslant (2M+ \|g\|_{L^q})\varepsilon \text{ for all } k> K.
 \end{equation}
+\end{proof}
+
+\section{Sobolev inequality}
+
+\begin{lemma}
+  \label{le: gninequality}
+  Let $\Omega = B_R\subset\mathbb R^n$ for some $R>0$ and $n>2$.
+  There exists $C_e > 0$ such that 
+  \begin{equation}
+    \label{eq: grad gn e}
+    \|\nabla \varphi\|_{L^2(\Omega)} 
+    \leq C_e \|\Delta \varphi - \varphi\|_{L^2(\Omega)}^{(n+2)/(n+4)} 
+    \|\varphi\|_{L^1(\Omega)}^{2/(n+4)}
+  \end{equation}
+  holds for each $\varphi\in W^{2,2}(\Omega)$ 
+  with $\partial_\nu \varphi = 0$ on the boundary $\partial\Omega$ in the sense of trace.  
+  For any $s>0$ there exists $C(s) > 0$ such that 
+  \begin{equation}
+    \label{eq: L2 gn}
+    \|\psi\|_{L^2(\Omega)}^2
+    \leq C(s) \|\nabla \psi\|_{L^2(\Omega)}^{2n/(n+2)}\|\psi\|_{L^1(\Omega)}^{4/(n+2)} 
+    + C(s)\|\psi\|_{L^s(\Omega)}^2
+  \end{equation}
+  and 
+  \begin{equation}
+    \label{eq: L2 gn rho}
+    \|\psi\|_{L^2(B_\rho)}^2 
+    \leq C(s) \|\nabla \psi\|_{L^2(B_\rho)}^{2n/(n+2)}\|\psi\|_{L^1(B_\rho)}^{4/(n+2)} 
+    + C(s)\rho^{(s-2)n/s}R^{-(s-2)n/s}\|\psi\|_{L^{s}(B_\rho)}^2,
+  \end{equation}
+  are valid for all $\psi\in W^{1,2}(\Omega)$ and $\rho > 0$, 
+  where $C_{s}$ is independent of $\rho > 0$.
+\end{lemma}
+
+\begin{proof}
+  Gagliardo-Nirenberg inequality \cite{Nirenberg1959} and 
+  global $L^p$-estimates for elliptic problem subject to homogenerous Neumann boundary conditions provide $C_{gn} > 0$ and $C_e > 0$ 
+  such that 
+  \begin{displaymath}
+    \|\nabla \varphi\|_{L^2(\Omega)} 
+    \leq C_{gn} \|\varphi\|_{W^{2,2}(\Omega)}^{(n+2)/(n+4)} 
+    \|\varphi\|_{L^1(\Omega)}^{2/(n+4)}
+    \leq C_e \|\Delta \varphi - \varphi\|_{L^2(\Omega)}^{(n+2)/(n+4)} 
+    \|\varphi\|_{L^1(\Omega)}^{2/(n+4)},
+  \end{displaymath}
+  which implies \eqref{eq: grad gn e}.
+  \eqref{eq: L2 gn} is exactly one of Gagliardo-Nirenberg inequalities.
+  We intend to verify \eqref{eq: L2 gn rho} by a scaling argument.
+  Let $\psi\in W^{1,2}(\Omega)$, 
+  then $\psi^{(\rho)} := \psi(Rx/\rho) \in W^{1,2}(B_\rho)$.
+  We compute 
+  \begin{align*}
+    % \|\psi^{(\rho)}\|_{L^1(B_\rho)}
+    % &= \rho^nR^{-n}\|\psi\|_{L^1(\Omega)},
+    % \|\psi^{(\rho)}\|_{L^2(B_\rho)}^2
+    % &= \rho^nR^{-n}\|\psi\|_{L^2(\Omega)}^2,\\
+    \|\psi^{(\rho)}\|_{L^s(B_\rho)}^s
+    = \rho^nR^{-n}\|\psi\|_{L^s(\Omega)}^s
+    \quad \text{and}\quad
+    \|\nabla\psi^{(\rho)}\|_{L^2(B_\rho)}^2
+    = \rho^{n-2}R^{2-n}\|\nabla\psi\|_{L^2(\Omega)}^2,
+  \end{align*} 
+  and thus it follows from \eqref{eq: L2 gn} that  
+  \begin{displaymath}
+    \begin{aligned} 
+    \|\psi^{(\rho)}\|_{L^2(B_\rho)}^2 
+    &\leq C(s) \rho^nR^{-n}\|\nabla \psi\|_{L^2(\Omega)}^{2n/(n+2)}\|\psi\|_{L^1(\Omega)}^{4/(n+2)} 
+    + C(s)\rho^nR^{-n}\|\psi\|_{L^{s}(\Omega)}^2\\
+    &= C(s) \|\nabla \psi^{(\rho)}\|_{L^2(B_\rho)}^{2n/(n+2)}\|\psi^{(\rho)}\|_{L^1(B_\rho)}^{4/(n+2)} 
+    + C(s)\rho^{(s-2)n/s}R^{-(s-2)n/s}\|\psi\|_{L^{s}(B_\rho)}^2
+    \end{aligned}
+  \end{displaymath}
+  for all $\rho > 0$.
+  and 
+  \begin{displaymath}
+    \|\psi\|_{L^2(\Omega)} 
+    \leq C_{gn} \|\nabla \psi\|_{L^2(\Omega)}^{n/(n+2)}\|\psi\|_{L^1(\Omega)}^{2/(n+2)} 
+    + C_{gn}\|\psi\|_{L^1(\Omega)}
+  \end{displaymath}
+  are valid for all $\psi\in W^{1,2}(\Omega)$ and some $C_{gn} > 0$, 
+  where it can be verified by a scaling argument that 
+$C_{gn}$ is independent of $\rho\in(0,R)$,
 \end{proof}
 
 
