@@ -31,3 +31,47 @@ $$
 则$|B(t)|$是$t$的多项式，当$t\in(0,1]$时，由已知条件，$B(t)$是主对角占优矩阵，从而$|B(t)|\neq0$。又$|B(0)|=a_{11}a_{12}\cdots a_{nn}>0$。根据连续函数的中间值定理知：$|B(1)|>0$，即$|A|>0$。
 \end{exercise}
 \hfill\\
+
+\begin{exercise}
+    if $x_1, x_2, x_3,\cdots, x_n\in\mathbb R$ and $x_1^2+x_2^2+\cdots x_n^2\neq0$, then 
+    \begin{equation*}
+        \frac{x_1\cdot x_2 + x_2\cdot x_3 + \cdots + x_{n-1}\cdot x_n}{x_1^2 + x_2^2 + x_3^2 + \cdots + x_n^2} \leq \cos\frac{\pi}{n+1}.
+    \end{equation*}
+\end{exercise}
+
+\begin{proof}
+    left side is equal to a half of $(x_1,x_2,\cdots, x_n)A(x_1,x_2,\cdots, x_n)^T$ with 
+    \begin{equation*}
+        A = \begin{pmatrix}
+            0 & 1 & 0 & \cdots & 0 \\
+            1 & 0 & 1 & \cdots & 0 \\
+            0 & 1 & 0 & \cdots & 0 \\
+            \vdots & \vdots & \vdots & \ddots & 1 \\
+            0 & 0 & 0 & 1 & 0
+            \end{pmatrix}.
+    \end{equation*}
+so it suffices to show the most large enginvalue is less than $2\cos\pi/(n+1)$. 
+For the equation $Av = \lambda v$,
+the corresponding enginfunction $v = (v_1,v_2,\cdots, v_n)$ has relations 
+\[
+v_{k-1} + v_{k+1} = \lambda v_k \quad (1 \leq k \leq n)
+\]
+with boundary conditions $v_0=0$ and $v_{n+1} = 0$. As the left hand is less than 1, we have $|\lambda| < 2$. We may assume $v_k = \sin k\theta$, then 
+\[
+\sin((k-1)\theta) + \sin((k+1)\theta) = \lambda \sin(k\theta)
+\]
+which reduce to 
+\[
+\lambda = 2\cos\theta
+\]
+by triangle inequality.
+The boundary condition entails 
+\[
+\theta = \frac{k\pi}{n+1} \quad (k = 1, 2, \dots, n).
+\]
+Therefore,
+\[
+\boxed{\lambda_k = 2\cos\left(\frac{k\pi}{n+1}\right) \quad (k = 1, 2, \dots, n)}
+\]
+We complete the proof as it is obvious that $\lambda_k \leq \lambda_1$.
+\end{proof}
