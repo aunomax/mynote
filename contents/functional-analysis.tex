@@ -14,7 +14,7 @@
 \begin{exercise}
 \hfill\\
 （Newton）设$f$是定义在$[a,b]$上的二次连续可微的实值函数，$x_0\in(a,b)$使得$f(x_0)=0$，$f'(x_0)\neq0$。求证存在$x_0$的临域$U(x_0)$使得$\forall x_0\in U(x_0)$，迭代序列
-$$x_{n+1}=x_n-\frac{f(x_n)}{f‘(x_n)}\quad(n=0,1,2,\cdots)$$是收敛的，并且
+$$x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}\quad(n=0,1,2,\cdots)$$是收敛的，并且
 $$\lim_{n\rightarrow\infty}x_n=x_0.$$
 
 \begin{align*}
@@ -347,17 +347,22 @@ $$\|x_0-x_n\|=1+\frac{1}{2^n}\to1.$$
 \hfill\\
 设$\mathscr{X}$是$B^*$空间，$M$是$\mathscr{X}$上的有限维真子空间，求证$\exists y\in\mathscr{X}$，$\|y\|=1$，使得
 $$\|y-x\|\geq1\quad(\forall x\in M).$$
-
-取定一个$y_0\in\mathscr{X}\\M$，则在$M$中存在最佳逼近元$x_0\in M$使得$$\|y_0-x_0\|\leq\|y_0-x\|,\forall x\in M.$$因为有限维子空间$M$是闭的，故$\|y_0-x_0\|>0$。取
-$$y=\frac{y_0-x_0}{\|y_0-x_0\|},$$
-则$\|y\|=1$。且
-\begin{align*}
-\|y-x\|&=\frac{1}{\|y_0-x_0\|}\|y_0-x_0-\|y_0-x_0\|x\|\\
-&\geq\frac{1}{\|y_0-x_0\|}\|y_0-x_0\|\\
-&=1.
-\end{align*}
 \end{exercise}
-\hfill\\
+\begin{proof}
+  取定一个$y_0\in\mathscr{X}\\M$，则在$M$中存在最佳逼近元$x_0\in M$使得$$\|y_0-x_0\|\leq\|y_0-x\|,\forall x\in M.$$因为有限维子空间$M$是闭的，故$\|y_0-x_0\|>0$。取
+  $$y=\frac{y_0-x_0}{\|y_0-x_0\|},$$
+  则$\|y\|=1$。且
+  \begin{align*}
+  \|y-x\|&=\frac{1}{\|y_0-x_0\|}\|y_0-x_0-\|y_0-x_0\|x\|\\
+  &\geq\frac{1}{\|y_0-x_0\|}\|y_0-x_0\|\\
+  &=1.
+  \end{align*} 
+  证毕。 
+\end{proof}
+
+
+
+
 \section{凸集与不动点}
 \begin{exercise}
 \hfill\\

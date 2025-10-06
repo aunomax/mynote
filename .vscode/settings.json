@@ -1,11 +1,14 @@
 {
+    "editor.fontFamily": "Maple Mono NF CN",
     "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.recipe.default": "LaTeXmk",//"XeLaTeX",
     "latex-workshop.showContextMenu": true,
+    "latex-workshop.latex.build.rootfileInStatus":true,
     "latex-workshop.intellisense.package.enabled": true,
     "latex-workshop.synctex.afterBuild.enabled": true,
     "latex-workshop.message.error.show": false,
     "latex-workshop.message.warning.show": false,
-    //"latex-workshop.latex.outDir": ".\\.temp",
+    "latex-workshop.latex.outDir": "./build",
     "latex-workshop.latex.tools": [
         {
             "name": "xelatex",
@@ -14,6 +17,7 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
+                "--output-directory=%OUTDIR%",
                 "%DOCFILE%"
             ]
         },
@@ -24,6 +28,7 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
+                "--output-directory=%OUTDIR%",
                 "%DOCFILE%"
             ]
         },
@@ -31,11 +36,12 @@
             "name": "latexmk",
             "command": "latexmk",
             "args": [
+                "-xelatex",
                 "-synctex=1",
+                "-shell-escape",
                 "-interaction=nonstopmode",
                 "-file-line-error",
-                "-pdf",
-                "-outdir=%OUTDIR%",
+                "--output-directory=%OUTDIR%",
                 "%DOCFILE%"
             ]
         },
@@ -43,14 +49,14 @@
             "name": "bibtex",
             "command": "bibtex",
             "args": [
-                "%DOCFILE%"
+                "%OUTDIR%/%DOCFILE%"
             ]
         },
         {
             "name": "biber",
             "command": "biber",
             "args": [
-                "%DOCFILE"
+                "%OUTDIR%/%DOCFILE%"
             ]
         },
         {
@@ -63,24 +69,21 @@
                 "-o",
                 "%DOCFILE%.nls"
             ]
-        },
-        {
-            "name": "tectonic",
-            "command": "tectonic",
-            "args": ["-X", "build", "--keep-intermediates", "--keep-logs", "--reruns 0"],
-            "env": {}
         }
     ],
     "latex-workshop.latex.recipes": [
         {
-            "name": "XeLaTeX",
+            "name": "PDFLaTeX",
             "tools": [
-                "xelatex"
+                "pdflatex"
             ]
         },
         {
-            "name": "PDFLaTeX",
+            "name": "pdflatexmk",
             "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
                 "pdflatex"
             ]
         },
@@ -91,40 +94,32 @@
             ]
         },
         {
+            "name": "XeLaTeX",
+            "tools": [
+                "xelatex"
+            ]
+        },
+        {
+            "name": "xelatexmk",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        },
+        {
             "name": "Biber",
             "tools": [
                 "biber"
             ]
-        }
+        },
         {
             "name": "LaTeXmk",
             "tools": [
                 "latexmk"
             ]
         },
-        {
-            "name": "xelatex -> bibtex -> makeIndex -> xelatex*2",
-            "tools": [
-                "xelatex",
-                "bibtex",
-                "makeIndex",
-                "xelatex",
-                "xelatex"
-            ]
-        },
-        {
-            "name": "pdflatex -> bibtex -> pdflatex*2",
-            "tools": [
-                "pdflatex",
-                "bibtex",
-                "pdflatex",
-                "pdflatex"
-            ]
-        },
-        {
-            "name": "tectonic",
-            "tools": ["tectonic"]
-        }
     ],
     "latex-workshop.latex.clean.fileTypes": [
         "*.aux",
@@ -148,11 +143,38 @@
         "*.fdb_latexmk"
     ],
     "latex-workshop.latex.autoClean.run": "onFailed",
-    "latex-workshop.latex.recipe.default": "xelatex",
-    "latex-workshop.latexindent.path": "latexindent",
+    "latex-workshop.latex.clean.method":"glob",
+    "latex-workshop.check.duplicatedLabels.enabled": true,
+    "latex-workshop.formatting.latex": "tex-fmt",
+    "latex-workshop.intellisense.file.exclude": [
+        "**/*.aux",
+        "**/*.bbl",
+        "**/*.bcf",
+        "**/*.blg",
+        "**/*.idx",
+        "**/*.ind",
+        "**/*.lof",
+        "**/*.lot",
+        "**/*.out",
+        "**/*.toc",
+        "**/*.acn",
+        "**/*.acr",
+        "**/*.alg",
+        "**/*.glg",
+        "**/*.glo",
+        "**/*.gls",
+        "**/*.ist",
+        "**/*.fls",
+        "**/*.log",
+        "**/*.nav",
+        "**/*.snm",
+        "**/*.fdb_latexmk",
+        "**/*.synctex.gz",
+        "**/*.run.xml"
+    ],
     "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
     "editor.minimap.enabled": false,
-    "editor.fontSize": 14,
+    "editor.fontSize": 16,
     "editor.wordWrap": "on",
-    "git.autofetch": true
+    "git.autofetch": false,
 }

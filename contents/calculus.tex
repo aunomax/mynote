@@ -5,34 +5,29 @@
 %	SECTION:
 %-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-\section{集合与映射}\index{Set ! function}
+\section{集合与映射}
 
-\begin{example}\label{20151012-190708}
-\hfill \\
-设$f(x)$对任意的$x\in R$有$f(x)=f(x^2)$，且$f(x)$在$x=0$和$x=1$ 处连续。证明$f(x)$在$R$上为常数。（上海交通大学，2003）
-
-
-steps
-  $f(x)$在$x=0$处连续$\Leftrightarrow\forall\varepsilon>0,\exists\delta>0,\forall x\in(-\delta,\delta),|f(x)-f(0)|<\varepsilon$。
-  
-  $\forall x\in(-1,1),|f(x)-f(0)|=|f(x^2)-f(0)|\cdots=|f(x^{2n}-f(0)|$
-  即对上述的$\varepsilon>0$，$\exists N=\max\{1,[\log_x\frac{\delta}2]\}$，$\forall n>N,x^{2n}<\delta$，从而$|f(x)-f(0)|=|f(x^{2n}-f(0)|<\varepsilon$成立。
-  
-  由$\varepsilon$的任意性，有$\forall x\in(-1,1),f(x)\equiv f(0).(|f(x)-f(0)|\leq 0)$
-  
-  又$f(x)$在$x=1$处连续$\Leftrightarrow\forall\varepsilon>0,\exists\delta>0,\forall x\in(1-\delta,1+\delta),|f(x)-f(1)|<\varepsilon$成立。
-  而$\forall x>1,|f(x)-f(1)|=|f(x^{\frac12})-f(1)|=\cdots|f(x^{\frac1{2n}})-f(1)|$，
-  即对上述的$\varepsilon>0,\exists N=\max\{1,[\frac1{2\log_x(1+\delta)}]\},\forall n>N,0<x^{\frac 1{2n}}-1<1+\delta,|f(x)-f(1)|=|f(x^{\frac1{2n}})-f(1)|<\varepsilon$。
-  
-  由$\varepsilon$的任意性，$0\leq|f(x)-f(1)|\leq 0$，从而$\forall x>1,f(x)\equiv f(1)$。
-  
-  易知$\forall x<-1,f(x)=f(x^2)=f(1)$，又$f(0)=\lim_{x\rightarrow1^-}f(x)=f(1)=f(-1)$，从而$\forall x\in R,f(x)\equiv f(0)$。
-
-%\qdepend
-
-%\qdependlist
+\begin{example}
+  \label{20151012-190708}
+设$f(x)$对任意的$x\in \mathbb{R}$有$f(x)=f(x^2)$, 且$f(x)$在$x=0$和$x=1$ 处连续. 证明$f(x)$在$\mathbb{R}$上为常数. (上海交通大学, 2003)
 \end{example}
-\hfill\\
+
+\begin{proof}
+因为 $f(-x)= f(x^2) = f(x)$, 即 $f$ 是偶函数, 所以不妨只考虑 $x\in[0,\infty)$.
+由$f(x)$在$x=0$ 和 $x=1$ 处连续, 
+任给 $\varepsilon>0$, 存在$\delta\in(0,1)$ 使得对所有的 $x\in(-\delta,\delta)$, 
+$|f(x)-f(0)| + |f(1+x)-f(1)| < \varepsilon$. 
+任给 $x\in(0,1)$, $|f(x)-f(0)|=|f(x^2)-f(0)|\cdots=|f(x^{2n})-f(0)|$.
+于是 $|f(x)-f(0)|=|f(x^{2n})-f(0)|<\varepsilon$ 对任意 $n> \log_x \delta$ 成立.
+由$\varepsilon$的任意性, 有$f(x)\equiv f(0)$ 对 $x\in(0,1)$成立.
+
+任给 $x>1$, $|f(x)-f(1)|=|f(x^{\frac12})-f(1)|=\cdots|f(x^{\frac1{2n}})-f(1)|$. 
+于是 $|f(x)-f(1)|=|f(x^{\frac1{2n}})-f(1)|<\varepsilon$ 对任意 $n> \log_{1+\delta}x$ 成立.
+由$\varepsilon$的任意性, $f(x) \equiv f(1)$ 对任意 $x>1$ 成立.
+
+又 $f(0)=\lim_{x\rightarrow1^-}f(x)=f(1)$, 
+从而$f(x)\equiv f(0)$ 对任意 $x\in \mathbb{R}$ 成立.
+\end{proof}
 
 \section{数列极限}
   \begin{example}
@@ -365,7 +360,7 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
    设$f(x)$，$g(x)$在$[a,b]$上连续，$(a,b)$内可导，$g'(x)\neq0$。证明：$\exists\xi\in(a,b)$，使$\frac{f(a)-f(\xi)}{g(\xi)-g(b)}=\frac{f'(\xi)}{g(\xi)}$（武汉大学，2004）
   
   记$F(x)=f(a)g(x)+g(b)f(x)-f(x)g(x)$，
-  则$F(x)$在$[a,b]$上连续，在$(a,b)$内可导，又$F(a)=f(a)g(b)=F(b)$,从而由Largange中值定理：
+  则$F(x)$在$[a,b]$上连续，在$(a,b)$内可导，又$F(a)=f(a)g(b)=F(b)$,从而由Lagrange中值定理：
   $\exists\xi\in(a,b),$$$\frac{F(a)-F(b)}{a-b}=F'(\xi)=0$$,即$$f(a)g'(\xi)+g(b)f'(\xi)-f'(\xi)g(\xi)-f(\xi)g'(\xi)=0.$$
   
   即$\frac{f(a)-f(\xi)}{g(\xi)-g(b)}=\frac{f'(\xi)}{g'(\xi)}$。
@@ -497,31 +492,38 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
  \hfill\\
  
   
-  \section{定积分}
+\section{定积分}
+
   \begin{example}
-  \hfill\\
-  设在任意的有限区间$[0,A]$上$f(x)$Riemann可积，且$\displaystyle\lim_{x\rightarrow+\infty}f(x)=0$，求证：$\displaystyle\lim_{t\rightarrow+\infty}\frac 1t\int_0^t|f(x)|dx=0$（清华大学，2006）
-  
-  
+  设在任意的有限区间$[0,A]$上$f(x)$ Riemann可积,
+  且$\lim_{x\rightarrow+\infty}f(x)=0$,
+  求证：
+  \begin{equation} 
+  \lim_{t\rightarrow+\infty}\frac 1t\int_0^t|f(x)|dx=0.
+  \end{equation} 
+  %(清华大学,2006)
+\end{example}
+
+\begin{proof} 
   因为$\lim_{x\rightarrow\infty}f(x)=0,$所以$$\forall\varepsilon>0,\exists A>0,\forall x>A,|f(x)|<\frac{\varepsilon}{2},$$
-  又$f(x)$在$[0,A]$上Riemann可积，从而$f(x)$在$[0,A]$上有界，即$$\exists M>0,\forall x\in[0,A],|f(x)|<M.$$
+  又$f(x)$在$[0,A]$上Riemann可积, 从而$f(x)$在$[0,A]$上有界，
+  即$$\exists M>0,\forall x\in[0,A],|f(x)|<M.$$
   于是对上述$\varepsilon>0,\exists T=\max\{\frac{2MA}{\varepsilon},A\},\forall t>T,$
-  $$
-  \begin{aligned}
+  \begin{align*}
   \frac{1}{t}\int_0^t|f(x)|dx&=\frac1t\int_0^A|f(x)|dx+\frac1t\int_A^t|f(x)|dx\\
   &<\frac{MA}{t}+\frac{t-A}{t}\cdot\frac{\varepsilon}{2}\\
-  &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon\\
-  \end{aligned}
-  $$
-  从而$$\lim_{t\rightarrow\infty}\frac{1}{t}\int_0^t|f(x)|dx=0.$$
-  \end{example}
+  &<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+  \end{align*}
+  证毕。
+\end{proof}
+
+  
   \begin{example}
-  \hfill\\
-  $\int_0^{2\pi}\frac x{1+cos^2x}dx$（浙江大学，2004）
-  
-  
-  \begin{equation}
-  \begin{aligned}
+  计算 $\int_0^{2\pi}\frac x{1+cos^2x}dx$ %（浙江大学，2004）
+  \end{example}
+
+  \begin{solution}
+    \begin{align*}
     &\int_0^{2\pi }\frac{x dx}{1+\cos^2x}\\&=\int_0^{\pi}\frac{x dx}{1+\cos^2x}+\int_0^{\pi}\frac{x+\pi dx}{1+\cos^(x+\pi)}\\
     &=2\int_0^{\pi}\frac{xdx}{1+\cos^2x}+\int_0^{\pi}\frac{\pi dx}{1+\cos^2x}\\
     &=2[\int_0^{\frac{\pi}{2}}\frac{xdx}{1+\cos^2x}+\int_0^{\frac{\pi}{2}}\frac{x+\frac{\pi}{2}dx}{1+\cos^2(x+\frac{\pi}{2})}]+\\
@@ -537,11 +539,10 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
     &=2\pi\int_0^{\frac{\pi}{2}}\frac{d\tan x}{\tan^2x+2}\\
     &=\sqrt{2}\pi(\arctan(\frac{\tan x}{\sqrt{2}}))|_0^{\frac{\pi}{2}}\\
     &=\frac{\pi^2}{\sqrt{2}}.\\
-  \end{aligned}
-  \end{equation}
-  \end{example}
+  \end{align*}
+  \end{solution}
+  
   \begin{example}
-  \hfill\\
   若$f(x)$在$(0,+\infty)$上可微，$\displaystyle\lim_{x\rightarrow+\infty}\frac{f(x)}x=0$，求证：$(0,+\infty)$内存在一个单调数列${\xi_n}$，使得$\displaystyle\lim_{n\rightarrow\infty}\xi_n=+\infty$且$\displaystyle\lim_{n\rightarrow\infty}f'(\xi_n)=0$。 （浙江师范大学，2005）
   
   
@@ -627,18 +628,18 @@ $$f(1)-f(0)=\int_0^1f'(t)\mathrm{d}t=\lim_{n\rightarrow\infty}\sum_{k=0}^{n-1}\f
 \end{example}
 \begin{example}
 \hfill\\
- 设$f(x)$在$[a,b]$上可积，求证：$$\displaystyle\lim_{p\rightarrow+\infty}\int_a^bf(x)\sin pxdx=0,\lim_{p\rightarrow+\infty}\int_a^bf(x)\cos psdx=0.$$
+ 设$f(x)$在$[a,b]$上可积，求证：$$\displaystyle\lim_{p\rightarrow+\infty}\int_a^bf(x)\sin px\dd x=0,\lim_{p\rightarrow+\infty}\int_a^bf(x)\cos px\dd x=0.$$
  
- 对任意有界区间$[\alpha,\beta]$有$$|\int_{\alpha}^{\beta}\sin px\mathrm{d}x|=|\frac{\cos p\alpha-\cos p\beta}{p}|\leq\frac{2}{p}.$$
+ 对任意有界区间$[\alpha,\beta]$有$$|\int_{\alpha}^{\beta}\sin px\dd x|=|\frac{\cos p\alpha-\cos p\beta}{p}|\leq\frac{2}{p}.$$
 设在$[a,b]$上，$|f(x)|\leq M$，任给$\varepsilon>0$，存在$[a,b]$的分割$T$:
 $$a=x_0<x_1<x_2<\cdots<x_{n-1}<x_n=b,$$
 使得
 $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
 其中$S(T,f)$与$s(T,f)$分别代表$f(x)$关于$T$的大和和小和，于是当$p\geq\frac{4nM}{\varepsilon}$，有
 \begin{align*}
-|\int_a^bf(x)\sin px\mathrm{d}x|&=
-|\sum_{k=1}^n\int_{x_{k-1}}^{x_k}(f(x_k)+f(x)-f(x_k))\sin px\mathrm{d}x|\\
-&\leq\sum_{k=1}^n(|f(x_k)||\int_{x_{k-1}}^{x_k}\sin px\mathrm{d}x|+\int_{x_{k-1}}^{x_k}|f(x)-f(x_k)||\sin px|\mathrm{d}x)\\
+|\int_a^bf(x)\sin px\dd x|&=
+|\sum_{k=1}^n\int_{x_{k-1}}^{x_k}(f(x_k)+f(x)-f(x_k))\sin px\dd x|\\
+&\leq\sum_{k=1}^n(|f(x_k)||\int_{x_{k-1}}^{x_k}\sin px\dd x|+\int_{x_{k-1}}^{x_k}|f(x)-f(x_k)||\sin px|\dd x)\\
 &<(S(T,f)-s(T,f))+\frac{2Mn}{p}\\
 &<\varepsilon.\\
 \end{align*}
@@ -662,20 +663,61 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
   \begin{align*}
   \sum_{k=1}^nw_k(f(\phi))\Delta x_k&=\sum'w_k(f(\phi))\Delta x_k+\sum''w_k(f(\phi))\Delta x_k\\
   &\leq2M\sum'\Delta x_k+\frac{\varepsilon\sum''\Delta x_k}{2(b-a)}\\
-  &<\varepsilon.\\
+  &<\varepsilon.
   \end{align*}
   这就证得了$f(\phi(x))$在$[a,b]$上可积。
 \end{example}  
- \hfill\\
+
+文献~\cite[Lemma~4.3]{Nagai1995}给出了一个有趣的例子。
+
+\begin{example}
+  Let $f, g, h$ and $k$ be nonnegative functions on $[0, T)$ satisfying $f \in C([0, T) )\cap C^1((0, T))$, $g$, $h \in C([0, T])$ and $k \in C([0, T))$. 
+  If the differential inequality
+$$
+f^{\prime}(t)+k(t) \leq h(t) f(t)+g(t)
+$$
+holds on $(0, T)$, 
+then for $t \in[0, T)$ we have the following relations:
+$$
+\begin{gathered}
+f(t) \leq\left\{f(0)+\int_{(t-1) \vee 0}^t(f(s)+g(s)) d s\right\} H(t)\quad\text{and} \\
+\int_{(t-1) \vee 0}^t k(s) d s \leq\left\{f((t-1) \vee 0)+\int_{(t-1) \vee 0}^t g(s) d s\right\} H(t),
+\end{gathered}
+$$
+where
+$$
+t \vee s=\max \{t, s\}, \quad H(t)=\exp \left(\int_{(t-1) \vee 0}^t h(s) d s\right)
+$$
+\end{example}
+
+\begin{proof}
+  Let $\tau > 0$. 
+  Multiplying both sides of the inequality by $\exp\big(-\int_\tau^th(s)\dd s\big)$, 
+  we get 
+  \begin{equation*}
+    \bigg(f\exp\Big(-\int_\tau^th(s)\dd s\Big)\bigg)'
+    + k(t)\exp\bigg(-\int_\tau^th(s)\dd s\bigg) 
+    \le g(t)\exp\bigg(-\int_\tau^th(s)\dd s\bigg).
+  \end{equation*}
+  Integrating from $\tau$ to $t$ yields 
+  \begin{equation*}
+    f(t) 
+    + \int_\tau^t k(\sigma)\exp\bigg(\int_\sigma^th(r)\dd r\bigg)\dd r\dd\sigma
+    \leq f(\tau)\exp\bigg(\int_\tau^th(s)\dd s\bigg)
+    + \int_\tau^t g(\sigma)\exp\bigg(\int_\sigma^th(r)\dd r\bigg)\dd r\dd\sigma.
+  \end{equation*}
+  If $t\in(0,1)$, then we let $\tau=0$.
+  If $t\geq1$, then we integrate from $\tau=t-1$ to $t$.
+\end{proof}
  
-    \section{反常积分}
-    \begin{example}
-    \hfill\\
+\section{反常积分}
+
+  \begin{example}
     $\int_0^{\frac {\pi}2}\ln\sin xdx$
-    
-    
-    \begin{equation}
-  \begin{aligned}
+  \end{example}
+  
+  \begin{solution}
+  \begin{align*}
   &\int_0^{\frac{\pi}{2}}\ln\sin xdx\\
   &=\int_0^{\frac{\pi}{2}}(\ln2+\ln\cos\frac{x}{2}+\ln\sin\frac{x}{2})dx\\
   &=2\int_0^{\frac{\pi}{4}}(\ln2+\ln\cos x+\ln\sin x)dx\\
@@ -683,15 +725,11 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
   &=\frac{\pi\ln2}{2}-2\int_0^{-\frac{\pi}{4}}\ln\cos xdx+2\int_0^{\frac{\pi}{4}}\sin xdx\\
   &=\frac{\pi\ln2}{2}-2\int_{\frac{\pi}{2}}^{\frac{\pi}{4}}\ln\cos(x-\frac{\pi}{2})d(x-\frac{\pi}{2})+2\int_0^{\frac{\pi}{4}}\sin xdx\\
   &=\frac{\pi\ln2}{2}+2\int_0^{\frac{\pi}{2}}\ln\sin xdx\\
-  &=-\frac{\pi\ln2}{2}\\
-  \end{aligned}
-  \end{equation}
-    
-    \end{example}
+  &=-\frac{\pi\ln2}{2}
+  \end{align*}
+\end{solution}
   
-  
-    \begin{example}
-    \hfill\\
+\begin{example}
     设$a>0$，函数$f(x)$在$[0,a]$上连续可微，证明：$|f(0)|\leq\frac1a\int_0^a|f(x)|dx+\int_0^a|f'(x)|dx$
     
     
@@ -699,75 +737,62 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
   
   存在$\xi\in(0,a)$使$\int_0^af(x)dx=f(\xi)(a-0)=f(\xi)a.$
   
-  由于$f(0)=f(\xi)-\int_0^{\xi}f'(x)dx$，
+  由于$f(0)=f(\xi)-\int_0^{\xi}f'(x)dx$,
   
   可得
-  \begin{equation}
-  \begin{aligned}
+  \begin{align*}
   |f(0)|&=|f(\xi)-\int_0^{\xi}f'(x)dx|\\
   &\leq|f(\xi)|+|\int_0^{\xi}f'(x)dx|\\
   &\leq\frac{1}{a}|\int_0^af(x)dx|+|\int_0^{\xi}f'(x)dx|\\
   &\leq\frac{0}{a}|f(x)|dx+\int_0^a|f'(x)|dx\\
-  \end{aligned}
-  \end{equation}
-    
-    \end{example}
+  \end{align*}
+\end{example}
   
-  
-     \begin{example}
-    \hfill\\
-    证明：$\int_0^1\frac{\ln\frac1x}{1-x}dx=\frac{\pi^2}6$。（复旦大学，2001）
-    
-    
-    \begin{equation}
-  \begin{aligned}
-  \int_0^1\frac{\ln\frac1x}{1-x}dx&=-\int_0^1\frac{\ln(1-x)}{x}dx\\
-  &=\int_0^1\sum_{n=1}^{\infty}\frac{x^{n-1}}{n}dx\\
-  &=\int_0^1\sum_{n=0}^{\infty}\frac{x^n}{n+1}dx\\
-  &=\sum_{n=0}^{\infty}\int_0^1\frac{x^n}{n+1}dx\\
-  &=\sum_{n=0}^{\infty}\frac{1}{(n+1)^2}\\
-  &=\sum_{n=1}^{\infty}\frac{1}{n^2}\\  
-  &=\frac{\pi^2}6
-  \end{aligned}
-  幂级数在收敛域内可交换积分与求和次序。
-  \end{equation}
-    
-    \end{example}
-  
-    \begin{example}
-    \hfill\\
-    计算$\int_0^{+\infty}\frac{\sin x}xdx$（浙江大学，2005）
-  考虑二重积分$$\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin xdxdy,$$
-    
-    
-    $\int_0^{+\infty}e^{-xy}\sin xdx$关于$y$在$(0,+\infty)$上内闭一致收敛。从而
-  \begin{equation}
-  \begin{aligned}
-  \int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin xdxdy&=\int_0^{+\infty}\sin xdx\int_0^{+\infty}e^{-xy}dy\\
-  &=\int_0^{+\infty}\sin xdx(-\frac{e^{-xy}}{x}|_0^{+\infty}\\
-  &=\int_0^{+\infty}\frac{\sin x}xdx,\\
-  \end{aligned}
-  \end{equation}
+\begin{example}
+证明：$\int_0^1\frac{\ln\frac1x}{1-x}dx=\frac{\pi^2}6$。（复旦大学，2001）
+\end{example}
+
+\begin{proof}
+  \begin{align*}
+    \int_0^1\frac{\ln\frac1x}{1-x}dx&=-\int_0^1\frac{\ln(1-x)}{x}dx\\
+    &=\int_0^1\sum_{n=1}^{\infty}\frac{x^{n-1}}{n}dx\\
+    &=\int_0^1\sum_{n=0}^{\infty}\frac{x^n}{n+1}dx\\
+    &=\sum_{n=0}^{\infty}\int_0^1\frac{x^n}{n+1}dx\\
+    &=\sum_{n=0}^{\infty}\frac{1}{(n+1)^2}\\
+    &=\sum_{n=1}^{\infty}\frac{1}{n^2}\\  
+    &=\frac{\pi^2}6
+    \end{align*}
+    幂级数在收敛域内可交换积分与求和次序。
+\end{proof}
+
+\begin{example}
+计算$\int_0^{+\infty}\frac{\sin x}xdx$ %（浙江大学，2005）
+\end{example}
+
+\begin{proof}
+考虑二重积分
+$$\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\dd y.$$
+因为 $\int_0^{+\infty}e^{-xy}\sin x\dd x$关于$y$在$(0,+\infty)$上内闭一致收敛，
+\begin{align*}
+  \int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin xdxdy
+  =\int_0^{+\infty}\sin xdx\int_0^{+\infty}e^{-xy}dy 
+  =\int_0^{+\infty}\frac{\sin x}xdx,
+\end{align*}
   又
-  \begin{equation}
-  \begin{aligned}
-  &\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin xdxdy\\
-  &=\int_0^{+\infty}dy\int_0^{+\infty}e^{-xy}\sin xdx\\
-  &=\int_0^{+\infty}dy[(-\frac{e^{-xy}}{y}\sin x)|_0^{+\infty}+\int_0^{+\infty}\frac{e^{-xy}\cos x}{y}dx]\\
-  &=\int_0^{+\infty}dy[(-\frac{e^{-xy}\sin x}{y}|_0^{+\infty}-\int_0^{+\infty}\frac{e^{-xy}\sin x}{y}]\\
-  &=\int_0^{+\infty}dy[\frac{1}{y^2}-\frac{1}{y^2}\int_0^{+\infty}e^{-xy}\sin xdx]\\
+\begin{align*}
+  &\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\dd y\\
+  &=\int_0^{+\infty}dy\int_0^{+\infty}e^{-xy}\sin x\dd x\\
+  &=\int_0^{+\infty}dy[(-\frac{e^{-xy}}{y}\sin x)|_0^{+\infty}+\int_0^{+\infty}\frac{e^{-xy}\cos x}{y}\dd x]\\
+  &=\int_0^{+\infty}dy[(-\frac{e^{-xy}\sin x}{y}|_0^{+\infty}-\int_0^{+\infty}\frac{e^{-xy}\sin x}{y}\dd x]\\
+  &=\int_0^{+\infty}dy[\frac{1}{y^2}-\frac{1}{y^2}\int_0^{+\infty}e^{-xy}\sin x\dd x]\\
   &=\int_0^{+\infty}\frac{dy}{1+y^2}\\
   &=\frac{\pi}{2}
-  \end{aligned}
-  \end{equation}
-    
-    \end{example}  
-    \begin{example}
-    \hfill\\
-    讨论不同$p$对$f(x)$在$[1,+\infty)$上积分的敛散性，$$\displaystyle f(x)=\ln(1+\frac{\sin x}{x^p}).$$（北京大学，2007）
-    
-    
-    \begin{align*}
+\end{align*}   
+\end{proof}
+
+\begin{example}
+讨论不同$p$对$f(x)$在$[1,+\infty)$上积分的敛散性，$$\displaystyle f(x)=\ln(1+\frac{\sin x}{x^p}).$$（北京大学，2007）
+  \begin{align*}
   \overline{\lim_{x\rightarrow\infty}}x^p|\ln(1+\frac{\sin x}{x^p})|
   &=\lim_{x\rightarrow\infty}x^p\ln(1-\frac{1}{x^p})^{-1}\\
   &=\lim_{x\rightarrow\infty}x^p\ln(1+\frac{1}{x^p-1})\\
@@ -801,17 +826,17 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
   
   未完成！！
     
-    \end{example}  
-\hfill\\
+\end{example}  
     
  \section{数项级数}
-     \begin{example}
-    \hfill\\
-    利用数项级数$\displaystyle\sum_{n=1}^{\infty}\frac 1{n^2}=\frac{\pi^2}6$计算积分$I=\int_0^1\frac{\ln(x+1)}xdx$。（三峡大学，2006；厦门大学，2000）
-    
-    
-     \begin{equation}
-  \begin{aligned}
+
+  \begin{example}
+  利用数项级数$\displaystyle\sum_{n=1}^{\infty}\frac 1{n^2}=\frac{\pi^2}6$
+  计算积分$I=\int_0^1\frac{\ln(x+1)}xdx$。%（三峡大学，2006；厦门大学，2000）
+  \end{example} 
+
+  \begin{solution}
+  \begin{align*}
   I&=\int_0^1\frac{\ln(1+x)}{x}dx\\
   &=\int_0^1\sum_{n=1}^{\infty}\frac{(-1)^{n+1}x^{n-1}}{n}dx\\
   &=\sum_{n=1}^{\infty}\int_0^1\frac{(-1)^{n+1}x^{n-1}}{n}dx\\
@@ -819,26 +844,28 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
   &=\sum_{n=1}^{\infty}\frac{1}{(2n-1)^2}-\sum_{n=1}^{\infty}\frac{1}{(2n)^2}\\
   &=\sum_{n=1}^{\infty}\frac{1}{n^2}-\frac{1}{2}\sum_{n=1}^{\infty}\frac{1}{n^2}\\
   &=\frac{1}{2}\sum_{n=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{12}.
-  \end{aligned}
-  \end{equation} 
-    
-    \end{example} 
-    \begin{example}
-    \hfill\\
-    设$\displaystyle a_n>0,n=1,2,\cdot\cdot\cdot\lim_{n\rightarrow\infty}n(\frac{a_n}{a_{n-1}}-1)=c>0$。证明：$\displaystyle\sum_{n=1}^{\infty}(-1)^{n+1}a_n$收敛。（大连理工大学，2004）  
-    
-    
-   由$\displaystyle a_n>0,n=1,2,\cdot\cdot\cdot\lim_{n\rightarrow\infty}n(\frac{a_n}{a_{n-1}}-1)=c>0$可知，当$n$充分大时，有$a_n>a_{n+1}$。取$a>0,b>0$使得$c>b>a>0$，当$n$充分大时，可得$$\frac{a_n}{a_{n+1}}>1+\frac{b}{n}>(1+\frac{1}{n})^{\alpha}=\frac{(n+1)^{\alpha}}{n^{\alpha}},$$
+  \end{align*}
+  \end{solution}
+
+  \begin{example}
+  设$a_n>0,n=1,2,\cdot\cdot\cdot\lim_{n\rightarrow\infty}n(\frac{a_n}{a_{n-1}}-1)=c>0$。
+  证明：$\displaystyle\sum_{n=1}^{\infty}(-1)^{n+1}a_n$收敛。%（大连理工大学，2004）     
+  \end{example}  
+  
+  \begin{solution}
+    由$\displaystyle a_n>0,n=1,2,\cdot\cdot\cdot\lim_{n\rightarrow\infty}n(\frac{a_n}{a_{n-1}}-1)=c>0$可知，当$n$充分大时，有$a_n>a_{n+1}$。取$a>0,b>0$使得$c>b>a>0$，当$n$充分大时，可得$$\frac{a_n}{a_{n+1}}>1+\frac{b}{n}>(1+\frac{1}{n})^{\alpha}=\frac{(n+1)^{\alpha}}{n^{\alpha}},$$
   从而得到$(n+1)^{\alpha}a_{n+1}<n^{\alpha}a_n$，即数列$\{n^{\alpha}a_n\}$对较大的$n$单调递减。从而存在$M>0$，使得$n^{\alpha}a_n\leq M$，即$$0<a_n<\frac{M}{n^{\alpha}}.$$
-  由夹逼定理可知数列$\{a_n\}$趋于0,$\sum_{n=1}^{\infty}(-1)^{n+1}a_n$时Lebniz级数，因此$\sum_{n=1}^{\infty}(-1)^{n+1}a_n$收敛。   
-    
-    \end{example}  
-    \begin{example}
-    \hfill\\
-  利用幂级数展开以及公式$\displaystyle\sum_{n=1}^{\infty}\frac1{n^2}=\frac{\pi^2}6$计算$\int_0^1\frac{\ln x}{1-x^2}dx$。    
-    
-    
-  \begin{equation}
+  由夹逼定理可知数列$\{a_n\}$趋于0,$\sum_{n=1}^{\infty}(-1)^{n+1}a_n$时Leibniz级数,
+  因此$\sum_{n=1}^{\infty}(-1)^{n+1}a_n$收敛。  
+  \end{solution}
+
+  \begin{example}
+  利用幂级数展开以及公式$\sum_{n=1}^{\infty}\frac1{n^2}=\frac{\pi^2}6$
+  计算$\int_0^1\frac{\ln x}{1-x^2}dx$。    
+  \end{example}  
+
+  \begin{solution}
+    \begin{equation}
   \begin{aligned}
   \int_0^1\frac{\ln x}{1-x^2}dx&=\int_0^1\sum_{n=0}^{\infty}x^{2n}\ln xdx\\
   &=\sum_{n=0}^{\infty}\int_0^1x^{2n}\ln xdx\\
@@ -850,20 +877,19 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
   &=-\frac{\pi^2}{12}\\
   \end{aligned}
   \end{equation}   
-    
-    \end{example}  
-    \begin{example}
-    \hfill\\
-  $\displaystyle\sum_{n=0}^{\infty}q^n\cos n\theta(|q|<1)$.    
-    
-    
+  \end{solution}
+  
+  \begin{example}
+  $\sum_{n=0}^{\infty}q^n\cos n\theta(|q|<1)$.    
+  \end{example}  
+
+  \begin{solution}
   \begin{align*}
   \sum_{n=0}^{\infty}(qe^{i\theta})^n&=\frac{1}{1-qe^{i\theta}}=\frac{1-qe^{-i\theta}}{1-2q\cos\theta+q^2}\\
   &=\frac{1-q\cos\theta}{1-2q\cos\theta+q^2}+i\frac{q\sin\theta}{1-2q\cos\theta+q^2}\\
   &=\sum_{n=0}^{\infty}q^n\cos n\theta+i\sum_{n=0}^{\infty}q^n\sin n\theta\\
-  \end{align*}    
-    
-    \end{example}  
+  \end{align*}   
+  \end{solution}
   
 \begin{example}
 \[
@@ -875,27 +901,33 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
 
   
 \section{函数项级数}
+
 \begin{exercise}
-\hfill\\
-  设函数列${a_n(x)}$在$[a,b]$上可导，且存在$M>0$，使对任意正整数$n$和$x\in[a,b]$，有$\displaystyle|\sum_{k=1}^na_k(x)|\leq M$ 成立，证明：如果级数$\displaystyle\sum_{n=1}^{\infty}a_n(x)$在$[a,b]$收敛，则必一致收敛。（大连理工大学，2006）
-  
-  对区间$[a,b]$作如下分割：
+设函数列${a_n(x)}$在$[a,b]$上可导，且存在$M>0$,
+使对任意正整数$n$和$x\in[a,b]$,
+有$|\sum_{k=1}^na_k(x)|\leq M$ 成立，
+证明：如果级数$\sum_{n=1}^{\infty}a_n(x)$在$[a,b]$收敛，则必一致收敛。%（大连理工大学，2006）
+  \end{exercise}  
+
+
+  \begin{proof}
+    对区间$[a,b]$作如下分割：
   $$a=x_0<x_1<\cdots x_{m-1}<x_m=b,$$
   使得$[a,b]$被分割成$m$个小区间$\Delta_i=[x_{i-1},x_i],i=1,2,\cdots m,$且$\Delta_i=x_i-x_{i-1}<\frac{\varepsilon}{2M}$。
   因为级数$\sum_{n=1}^{\infty}a_n(x)$在$[a,b]$上收敛，所以对$\Delta_i$上任意一点$\overline{x}_i$，存在$N_i>0$，使得$\forall m,n>N_i$，有$$|\sum_n^ma_n(\overline{x}_i)|<\frac{\varepsilon}{2}(\overline{x}_i\in\Delta_i).$$
   对函数$\sum_n^ma_n(x)$应用微分中值定理可知：
-  
-  对任意$x\in\Delta_i$，存在$\phi$介于$x$与$\overline{x}_i$之间，有$$|\sum_n^ma_n(x)-\sum_n^ma_n(\overline{x}_i|=|\sum_n^ma'_n(\phi)||x-\overline{x}_i|<M\cdot\frac{\varepsilon}{2M}=\frac{\varepsilon}{2}.$$
-  
-  于是$$|\sum_n^ma_n(x)|\leq|\sum_n^ma_n(x)-\sum_n^ma_n(\overline{x}_i|+|\sum_n^ma_n(\overline{x}_i|<\varepsilon.$$
+  对任意$x\in\Delta_i$，存在$\phi$介于$x$与$\overline{x}_i$之间，有$$|\sum_n^ma_n(x)-\sum_n^ma_n(\overline{x}_i)|=|\sum_n^ma'_n(\phi)||x-\overline{x}_i|<M\cdot\frac{\varepsilon}{2M}=\frac{\varepsilon}{2}.$$
+  于是$$|\sum_n^ma_n(x)|\leq|\sum_n^ma_n(x)-\sum_n^ma_n(\overline{x}_i)|+|\sum_n^ma_n(\overline{x}_i)|<\varepsilon.$$
   即$\forall\varepsilon>0,\exists N=\max\{N_1,N_2,\cdots N_m\},\forall m,n>N,\forall x\in[a,b],$$$|\sum_n^ma_n(x)|<\varepsilon.$$
   即$\sum_n^ma_n(x)$在$[a,b]$上一致收敛。
-  \end{exercise}  
+  \end{proof}
+
   \begin{exercise}
-  \hfill\\
-    设对每个自然数n,$f_n(x)$为$[a,b]$上的单调函数，${f_n(x)}$收敛于连续函数$f(x)$，求证${f_n(x)}$必在$[a,b]$上一致收敛。
-  
-  对$x_i\in(a,b)$，$\forall\varepsilon>0$，$\exists\delta>0$，$\forall x\in B(x_i,\delta)$，
+  设对每个自然数n,$f_n(x)$为$[a,b]$上的单调函数，${f_n(x)}$收敛于连续函数$f(x)$，求证${f_n(x)}$必在$[a,b]$上一致收敛。
+  \end{exercise}
+
+  \begin{proof}
+    对$x_i\in(a,b)$，$\forall\varepsilon>0$，$\exists\delta>0$，$\forall x\in B(x_i,\delta)$，
   $$|f(x)-f(x_i)|<\frac{\varepsilon}3.$$
   $\exists N>0$，$\forall n>N$，
   $$|f_n(x_i)-f(x_i)|<\frac{\varepsilon}{3},$$
@@ -905,25 +937,29 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
   \begin{align*}
   |f_n(x)-f(x)|&=|f_n(x)-f(x_i)+f(x_i)-f(x)|\\
   &\leq|f_n(x)-f(x_i)|+|f(x_i)-f(x)|\\
-  &\leq\max\{|f_n(x_i-\frac{\delta}{2})-f(x_i)|,|f_n(x_i+\frac{\delta}{2})-f(x_i)|\}+\frac{\varepsilon}{3}\\
-  &\leq\varepsilon.\\
+  &\leq\max\{|f_n(x_i-\frac{\delta}{2})-f(x_i)|,|f_n(x_i+\frac{\delta}{2})-f(x_i)|\}+\frac{\varepsilon}{3}
+  \leq\varepsilon.
   \end{align*}
   即对$x_i\in(a,b)$，$\forall\varepsilon>0,$ $\exists\delta_i>0,N_i>0$,$\forall n>N_i$，$x\in B(x_i,\frac{\delta}{2})$,
   $$|f_n(x)-f(x)|<\varepsilon.$$
-  显然$\cup_{x_i\in(a,b)}B(x_i,\frac{\delta_i}{2})$是$[a,b]$的一个开覆盖。于是必有有限子覆盖不妨记为$\{B(x_i,\frac{\delta_i}{2}):i=1,2,\cdots,m\}$覆盖$[a,b]$。于是取$N=\max\{N_1,N_2,\cdots,N_m\}$。有$\forall\varepsilon>0,\exists N>0,\forall n>N,\forall x\in[a,b],|f_n(x)-f(x)|<\varepsilon.$
-  \end{exercise}
-  \hfill\\
-    \section{Euclid空间上的极限与连续}
+  显然$\cup_{x_i\in(a,b)}B(x_i,\frac{\delta_i}{2})$是$[a,b]$的一个开覆盖。于是必有有限子覆盖不妨记为$\{B(x_i,\frac{\delta_i}{2}):i=1,2,\cdots,m\}$覆盖$[a,b]$。于是取$N=\max\{N_1,N_2,\cdots,N_m\}$。有$\forall\varepsilon>0,\exists N>0,\forall n>N,\forall x\in[a,b],|f_n(x)-f(x)|<\varepsilon.$    
+  \end{proof}
+
+\section{Euclid空间上的极限与连续}
+
     \begin{exercise}
-    \hfill\\
-  设$f(x)$是$R^n$上的连续函数，满足$lim_{|x|\rightarrow+\infty}f(x)=+\infty$，其中$x=(x_1,x_2,\cdot\cdot\cdot,x_n),|x|=(x_1^2+x_2^2+\cdot\cdot\cdot x_n^2)^{\frac12}$。证明一定存在$x_0\in R^n$使得$f(x_0)=\inf_{x\in R^n}f(x)$。（兰州大学，2006）
-	
-	取$x'=(x_1',x_2',\cdots x_n'\in R^n$，因为$\lim_{|x|\rightarrow+\infty}f(x)=+\infty$，从而$\exists R>0,\forall|x|>R,f(x)>f(x')$。于是在紧集$\{x||x|\leq R\}$上，必有最小值$f(x_0)=\inf_{|x|\leq R}f(x)$。显然$\{x||x|\leq R|\}$上的最小值就是$R^n上$的最小值。
-	\end{exercise}
+  设$f(x)$是$R^n$上的连续函数，满足$lim_{|x|\rightarrow+\infty}f(x)=+\infty$，其中$x=(x_1,x_2,\cdot\cdot\cdot,x_n),|x|=(x_1^2+x_2^2+\cdot\cdot\cdot x_n^2)^{\frac12}$。证明一定存在$x_0\in R^n$使得$f(x_0)=\inf_{x\in R^n}f(x)$。%（兰州大学，2006）
+    \end{exercise}
+
+    \begin{proof}
+	取$x'=(x_1',x_2',\cdots x_n'\in R^n$，因为$\lim_{|x|\rightarrow+\infty}f(x)=+\infty$，从而$\exists R>0,\forall|x|>R,f(x)>f(x')$。于是在紧集$\{x||x|\leq R\}$上，必有最小值$f(x_0)=\inf_{|x|\leq R}f(x)$。显然$\{x||x|\leq R|\}$上的最小值就是$R^n$的最小值。
+	\end{proof}
+
 	\begin{exercise}
-	\hfill\\
-  设$f$是$[a,b]\times[a,b]$上的二元连续函数，定义$$g(x)=\max\{f(x,y)|y\in[a,b]\}$$。证明：$g$在$[a,b]$上连续。（南京理工大学，2005）
+  设$f$是$[a,b]\times[a,b]$上的二元连续函数，定义$$g(x)=\max\{f(x,y)|y\in[a,b]\}$$。证明：$g$在$[a,b]$上连续。%（南京理工大学，2005）
+	\end{exercise}
 	
+	\begin{proof}
 	对固定的$x_0\in[a,b],g(x_0,y)$对$y\in[a,b]$上的最大值是存在且唯一的。因为$g(x_0,y)$对$y$是闭区间上的连续函数。从而$g(x)$是良定义的。
 	
 	因为$f$是区间$[a,b]\times[a,b]$上的二元连续函数，从而$f$在$[a,b]\times[a,b]$上一致连续。从而存在$\delta>0,\forall(x_1,y_1),(x_2,y_2)\in[a,b]\times[a,b]$，只要$|x_1-x_2|<\delta,|y_1-y_2|<delta,|f(x_1,y_1)-f(x_2,y_2)|<\frac{\varepsilon}{2}$成立。
@@ -939,13 +975,14 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
 	\end{aligned}
 	$$
 	于是$g(x)$在$[a,b]$上连续。
-	\end{exercise}
+	\end{proof}
 	
 	\begin{exercise}
-	\hfill\\
-  设n元函数$f$在$R^n$上具有连续偏导数，证明对于任意的$x=(x_1,x_2,\cdot\cdot\cdot x_n),y=(y_1,y_2,\cdot\cdot\cdot y_n)\in R^n$成立下述Hadamard公式：
+  设n元函数$f$在$\mathbb R^n$上具有连续偏导数，证明对于任意的$x=(x_1,x_2,\cdot\cdot\cdot x_n),y=(y_1,y_2,\cdot\cdot\cdot y_n)\in \mathbb R^n$成立下述Hadamard公式:
   $$\displaystyle f(\bar{y})-f(\bar{x})=\sum_{i=1}^n\int_0^1(y_i-x_i)\frac{\partial f}{\partial y_i}(\bar{x}+t(\bar{y}-\bar{x}))dt$$
-	
+  \end{exercise}
+  
+  \begin{proof}
 设$$F(t)=f(\overline{x}+t(\overline{y}-\overline{x})),$$
 则$$f(\overline{y})-f(\overline{x})=F(1)-F(0)=\int_0^1F'(t)\mathrm{d}t.$$
 由于
@@ -954,11 +991,13 @@ F'(t)&=\sum_{i=1}^n\frac{\partial f}{\partial x_i}(\overline{x}+t(\overline{y}-\
 &=\sum_{i=1}^n(y_i-x_i)\frac{\partial f(\overline{x}+t(\overline{y}-\overline{x}))}{\partial x_i}.\\
 \end{align*}
 所以Hadamard公式得证。
-	\end{exercise}
+	\end{proof}
+
 	\begin{exercise}
-	\hfill\\
-	  设函数$z=f(x,y)$在全平面上有定义，具有连续的偏导数，且满足方程$xf_x(x,y)+yf_y(x,y)=0$，证明：$f(x,y)$为常数。
-	
+  设函数$z=f(x,y)$在全平面上有定义，具有连续的偏导数，且满足方程$xf_x(x,y)+yf_y(x,y)=0$，证明：$f(x,y)$为常数。
+  \end{exercise}	
+  
+  \begin{proof}
 	作极坐标变换：
 	$$
 	\begin{cases}
@@ -971,13 +1010,15 @@ F'(t)&=\sum_{i=1}^n\frac{\partial f}{\partial x_i}(\overline{x}+t(\overline{y}-\
 	又因为$z=f(x,y)$在$(0,0)$处连续。
 	从而$$f(0,0)=\lim_{r\rightarrow0}f(r\cos\theta,r\sin\theta)=\lim_{r\rightarrow0}F(\theta)=F(\theta).$$
 	这就是说$$f(x,y)=f(0,0).$$
-	\end{exercise}
-	\hfill\\
-  \section{多元函数的微分学}
-  \begin{exercise}
-  \hfill\\
-    设函数$f(x)$在$[a,b]$上可导，$f'(x)$在$[a,b]$上单调下降，且$f'(x)\geq m>0.$求证：$|\int_a^b\cos f(x)dx|\leq\frac 2m$。
+	\end{proof}
+  
+\section{多元函数的微分学}
 
+\begin{exercise}
+设函数$f(x)$在$[a,b]$上可导，$f'(x)$在$[a,b]$上单调下降，且$f'(x)\geq m>0.$求证：$|\int_a^b\cos f(x)dx|\leq\frac 2m$。
+\end{exercise}
+
+\begin{proof}
 因为$f'(x)>0$，所以$f(x)$严格单调递增，设$f(a)=A$，$f(b)=B$，则$f(x)$的反函数$x=\phi(t)$在$[A,B]$上业单调递增，且可导。同时有$$0<\phi(t)=\frac{1}{f'(x)}\leq\frac{1}{m}.$$
 但因为$f'(x)$在$[a,b]$上单调下降，所以$\phi'(x)$在$[A,B]$上严格单调递增，从而$\phi'(t)$若有间断点，只能是第一类间断点，但是因为$\phi(t)$在$[A,B]$上可导，所以$\phi'(t)$在$[A,B]$上不可能有第一类间断点，从而$\phi'(t)$在$[A,B]$上连续。于是
 $$\int_a^b\cos f(x)\mathrm{d}x=\int_A^B\cos t\cdot\phi'(t)\mathrm{d}t,$$
@@ -985,23 +1026,25 @@ $$\int_a^b\cos f(x)\mathrm{d}x=\int_A^B\cos t\cdot\phi'(t)\mathrm{d}t,$$
 $$\int_A^B\cos t\cdot\phi'(t)\mathrm{d}t=\phi'(B)\int_{\xi}^B\cos t\mathrm{d}t=\phi'(B)(\sin B-\sin\xi),$$
 联立上式可得：
 $$|\int_a^b\cos f(x)\mathrm{d}x|\leq2|\phi'(B)|\leq\frac{2}{m}.$$
-\end{exercise}
-\hfill\\
-  \section{重积分}
-  \begin{exercise}
-  \hfill\\
-    计算$\displaystyle\lim_{n\rightarrow\infty}\sum_{j=1}^{2n}\sum_{i=1}^n\frac2{n^2}[\frac{2i+j}n]$，这里$[x]$为不超过$x$的最大整数。（清华大学，2007）
+\end{proof}
+
   
+\section{重积分}
+
+\begin{exercise}
+计算$\displaystyle\lim_{n\rightarrow\infty}\sum_{j=1}^{2n}\sum_{i=1}^n\frac2{n^2}[\frac{2i+j}n]$，这里$[x]$为不超过$x$的最大整数。%（清华大学，2007）
+\end{exercise}
+
+\begin{proof}
   \begin{align*}
   \lim_{n\rightarrow\infty}\sum_{j=1}^{2n}\sum_{i=1}^n\frac{2}{n^2}[\frac{2i+j}{n}]&=4\lim_{n\rightarrow\infty}\frac{1}{n}\frac{1}{2n}\sum_{i=1}^{2n}\sum_{i=1}^n[\frac{2}{n}i+2\frac{j}{2n}]\\
-  &=4\iint_D[2x+2y]dxdy,\\
+  &=4\iint_D[2x+2y]\dd x\dd y,\\
   \end{align*}
   其中$D=\{(x,y):0\leq x\leq1,0\leq y\leq1\}$，因此
-  $$\lim_{n\rightarrow\infty}\sum_{j=1}^{2n}\sum_{i=1}^n\frac{2}{n^2}[\frac{2i+j}{n}]=4\iint_D[2x+2y]dxdy=6.$$
-  \end{exercise}
+  $$\lim_{n\rightarrow\infty}\sum_{j=1}^{2n}\sum_{i=1}^n\frac{2}{n^2}[\frac{2i+j}{n}]=4\iint_D[2x+2y]\dd x\dd y=6.$$
+  \end{proof}
   
-  \begin{exercise}
-  \hfill\\
+\begin{exercise}
    设$f(t)$连续，试证$\displaystyle\iiint_{x^2+y^2+z^2\leq1}f(ax+by+cz)dxdydz=\pi\int_{-1}^1(1-u^2)f(ku)du$，其中$k=\sqrt{a^2+b^2+c^2}>0$。（南京大学，2007） 
   
    作旋转变换使平面$ax+by+cz=0$变成$Ox'y'z'$空间中的坐标平面$z'=0$。则
@@ -1014,7 +1057,6 @@ $$|\int_a^b\cos f(x)\mathrm{d}x|\leq2|\phi'(B)|\leq\frac{2}{m}.$$
   \end{exercise}
   
   \begin{exercise}
-  \hfill\\
   求$\int\int_S\frac{ds}z$，其中$S$是球面$x^2+y^2+z^2=a^2$被平面$z=h(0<h<a)$截得的球冠部分。（华东师范大学，2007）  
   
    曲面$S$的方程为$z=\sqrt{a^2-x^2-y^2}$，定义域$D$为圆域$x^2+y^2\leq a^2-h^2$。由于$$z_x=\frac{-x}{\sqrt{a^2-x^2-y^2}},z_y=\frac{-y}{\sqrt{a^2-x^2-y^2}},$$
@@ -1027,11 +1069,13 @@ $$|\int_a^b\cos f(x)\mathrm{d}x|\leq2|\phi'(B)|\leq\frac{2}{m}.$$
   &=2a\pi\ln\frac{a}{h}.\\
   \end{align*} 
   \end{exercise}
-  \begin{exercise}
-  \hfill\\
-   $I=\iint_{x^2+y^2+z^2=R^2}\frac{ds}{\sqrt{x^2+y^2+(z-h)^2}}$，其中$h\neq R$（浙江大学，2002）
-   
   
+  \begin{exercise}
+   $I=\iint_{x^2+y^2+z^2=R^2}\frac{ds}{\sqrt{x^2+y^2+(z-h)^2}}$,
+   其中$h\neq R$. %（浙江大学，2002）
+  \end{exercise} 
+  
+  \begin{proof}
   令
   \[
 	\begin{cases}
@@ -1051,14 +1095,12 @@ I&=\iint\limits_{x^2+y^2+z^2=R^2}\frac{dS}{\sqrt{x^2+y^2+(z-h)^2}}\\
 &=R^2\int_0^{2\pi}\mathrm{d}\phi\int_0^{\pi}\frac{\sin\theta\mathrm{d}\theta}{\sqrt{R^2-2Rh\cos\theta+h^2}}\\
 &=4\pi R.\\
 \end{align*}
- 
-  \end{exercise}
-\hfill\\
+\end{proof}
+
 \section{曲线积分、曲面积分与场论}  
   
-  \begin{exercise}
-  \hfill\\
-  计算$\int_Lx^2ds$，其中$L$是球面$x^2+y^2+z^2=1$与平面$x+y+z=0$的交线。（北京大学，2005）
+\begin{exercise}
+计算$\int_Lx^2ds$，其中$L$是球面$x^2+y^2+z^2=1$与平面$x+y+z=0$的交线。%（北京大学，2005）
    
   
    由坐标对称性知:
@@ -1236,80 +1278,8 @@ $$\lim_{p\rightarrow+\infty}\int_0^N\phi(x)\sin px\mathrm{d}x=0.$$
   \end{align*}
   在此，令$x=0$，得到$F(0)=\frac{A_0}{2}-\sum_{n=1}^{\infty}\frac{b_n}{n}$，说明了级数$\sum_{n=1}^{\infty}\frac{b_n}{n}$收敛。  
   \end{exercise}
-  \begin{exercise}
-  \hfill\\
-  
-  
-  
-  \end{exercise}
-  
-   \begin{exercise}
-  \hfill\\
-  
-  
-  
-  \end{exercise}
-  
-  \begin{exercise}
-  \hfill\\
-  
-  
-  
-  \end{exercise}
-  
-  \begin{exercise}
-  \hfill\\
-  
-  
-  
-  \end{exercise}
-  
-  
-  \begin{exercise}
-  \hfill\\
-  
-  
-  
-  \end{exercise} 
-\begin{example}[id:20151012-201647] \label{20151012-201647}\index{Example!20151012-201647} \hfill \\
-\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%
 
 
-
-\%\%\%\%\%\%\%\%\%\%\%\%\%\%\%
-
-
-example \ref{20151012-190708}-20151012-190708
-
-\end{example}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%-=-=-= DEFINITION
 \begin{definition}[Natural Numbers]\index{Number System! Natural Numbers}
 
 \[
@@ -1327,5 +1297,3 @@ It is not uncommon for zero to be excluded from the natural numbers.  In fact, s
 
 For the purposes of these notes, zero will be included within the set of natural numbers.
 \end{remark}
-
-%-=-=-= DEFINITION 

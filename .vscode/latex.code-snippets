@@ -1,0 +1,24 @@
+{
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	},
+	"Equation Environment": {
+		"prefix": "eq",
+		"body": [
+			"\\begin{equation}\\label{eq:${1:label}}",
+			"\t$0",
+			"\\end{equation}"
+		],
+		"description": "插入带标签的公式环境"
+	},
+	"Date Today": {
+		"prefix": "date",
+		"body": "\\today{}  % ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
+		"description": "插入当前日期"
+	}
+}
