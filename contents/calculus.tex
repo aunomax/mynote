@@ -50,8 +50,6 @@ $|f(x)-f(0)| + |f(1+x)-f(1)| < \varepsilon$.
 \end{example}
 
 \begin{example}
-\hfill\\
-
  任意给定$x\in R$，令$x_1=\cos x,x_{n+1}=\cos x_n$，证明数列收敛。
  
 
@@ -126,8 +124,6 @@ $$\lim_{N\to\infty}\exp\sum_{i=1}^{N(k)}\frac{2}{p_i}\geq\lim_{n\to\infty}\sum_{
 \end{proof}
 
  \begin{example}
-  \hfill\\
-  
   若函数$f(x)$在$[0,+\infty)$上连续，$\displaystyle\lim_{x\rightarrow\infty}f(x)=A$存在，则$f(x)$在$[0,+\infty)$上一致连续。（中国人民大学，2001）
  
   $\lim_{x\rightarrow\infty}f(x)=A\Leftrightarrow$对任意的$\varepsilon>0,\exists M>0,\forall x_1,x_2>M,|f(x_1)-f(x_2)|<\varepsilon$。
@@ -407,13 +403,11 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
  其中$\xi\in(\frac{x+a}{2},x)$，$\eta\in(a,\frac{x+a}{2})$，$\phi\in(\eta,\xi)$，又$f''(x)$在$[a,b]$上恒正。
  故$F(x)$在$[a,b]$上恒正。$F(x)$在$[a,b]$上连续故闭存在最大值$\frac{M}{4}$和最小值$\frac{m}{4}$。这就完成了证明。  
   \end{exercise}  
-  
-  \hfill\\
 
   \section{微分中值定理及其应用}
+
   \begin{example}
-  \hfill\\
-  设$f(x)\in[0,1]$上可导，$f(1)=2\int xf(x)dx$。求证：存在$\xi\in(0,1)$，使得$f'(\xi)=-\frac{f(\xi)}{\xi}$。（清华大学，2003）
+    设$f(x)\in[0,1]$上可导，$f(1)=2\int xf(x)dx$。求证：存在$\xi\in(0,1)$，使得$f'(\xi)=-\frac{f(\xi)}{\xi}$。（清华大学，2003）
   
   
   反设$\forall\xi\in(0,1),f'(\xi)+\frac{f(\xi)}{\xi}=\frac{\xi f'(\xi)+f(\xi)}{\xi}=0$均不成立。
@@ -1015,11 +1009,88 @@ F'(t)&=\sum_{i=1}^n\frac{\partial f}{\partial x_i}(\overline{x}+t(\overline{y}-\
 \section{多元函数的微分学}
 
 \begin{exercise}
+  show
+    \begin{equation*}
+      \Big||x|^{\gamma-1}x - |y|^{\gamma-1}y\Big|
+    \leq 2^{1-\gamma}|x-y|^{\gamma}
+    \quad\text{for all } x,y\in\mathbb{R}^N \text{ and } \gamma\in(0,1],
+  \end{equation*}
+  where the equality holds if and only if $x = \pm y$.
+\end{exercise}
+
+\begin{proof}
+  Without loss of generality, we can assume $|x|\ge |y| > 0$. 
+  Denote $\mathbf{v} := (1,0,\dots,0)\in\mathbb{R}^N$.
+  Notice 
+  \begin{equation*}
+    \frac{\Big||x|^{\gamma-1}x - |y|^{\gamma-1}y\Big|}{|x-y|^{\gamma}}
+    = \frac{\bigg|\frac{x}{|x|} -\frac{|y|^{\gamma-1}y}{|x|^\gamma}\bigg|}{\bigg|\frac{x}{|x|}-\frac{y}{|x|}\bigg|^\gamma} 
+    \leq \sup_{r\in(0,1),\xi\in\mathbb{S}^{N-1}}\frac{|\mathbf{v}-r^\gamma \xi|}{|\mathbf{v}-r\xi|^\gamma}
+    = \sup_{r\in(0,1),\zeta\in(-1,1)}\frac{\sqrt{(1-r^\gamma\zeta)^2+r^{2\gamma}(1-\zeta^2)}}{((1-r\zeta)^2 + r^2(1-\zeta^2))^{\gamma/2}}.
+  \end{equation*}
+  consider 
+  \begin{equation*}
+  f(r,\zeta) := \frac{(1-r^\gamma\zeta)^2+r^{2\gamma}(1-\zeta^2)}{((1-r\zeta)^2 + r^2(1-\zeta^2))^{\gamma}}
+  \quad \text{for } r\in(0,1),\zeta\in(-1,1).
+  \end{equation*}
+  Then we have
+  \begin{align*}
+    \frac{\partial f}{\partial \zeta} 
+    &= \frac{-2r^\gamma(1-r^\gamma\zeta)-2r^{2\gamma}\zeta}{((1-r\zeta)^2 + r^2(1-\zeta^2))^{\gamma}} 
+    + \frac{(1-r^\gamma\zeta)^2+r^{2\gamma}(1-\zeta^2)}{((1-r\zeta)^2 + r^2(1-\zeta^2))^{\gamma+1}}\cdot - \gamma(-2r(1-r\zeta)-2r^2\zeta)\\
+    &= - \frac{2r^\gamma}{((1-r\zeta)^2 + r^2(1-\zeta^2))^{\gamma}} 
+    + 2r\gamma\cdot\frac{(1-r^\gamma\zeta)^2+r^{2\gamma}(1-\zeta^2)}{((1-r\zeta)^2 + r^2(1-\zeta^2))^{\gamma+1}}\\
+    &= \frac{2r^\gamma}{((1-r\zeta)^2 + r^2(1-\zeta^2))^{\gamma}} 
+    \bigg(-1 + r^{1-\gamma}\gamma\cdot\frac{(1-r^\gamma\zeta)^2+r^{2\gamma}(1-\zeta^2)}{(1-r\zeta)^2 + r^2(1-\zeta^2)}\bigg)\\
+    &= \frac{2r^\gamma}{((1-r\zeta)^2 + r^2(1-\zeta^2))^{\gamma}} 
+    \bigg(-1 + r^{1-\gamma}\gamma\cdot\frac{1-2r^\gamma\zeta + r^{2\gamma}}{1-2r\zeta + r^2}\bigg).
+  \end{align*}
+  Let 
+  \begin{equation*}
+    g(\gamma, r,\zeta) := \gamma r^{1-\gamma}
+    - 2r\gamma\zeta + r^{1+\gamma}\gamma 
+    \quad \text{for } r\in(0,1),\zeta\in(-1,1), \gamma\in(0,1).
+  \end{equation*}
+  Since 
+  \begin{align*}
+    \frac{\partial g}{\partial \gamma} 
+    &= r^{1-\gamma} 
+    - \gamma r^{1-\gamma}\ln r 
+    - 2r\zeta 
+    + r^{1+\gamma} 
+    + \gamma r^{1+\gamma} \ln r \\
+    &\geq r(r^{-\gamma} + r^{\gamma} -2) 
+    \geq 0 
+    \quad \text{for all } r\in(0,1),\zeta\in(-1,1),\gamma\in(0,1),
+  \end{align*}
+  we have 
+  \begin{equation*}
+    g(\gamma,r,\zeta) \leq g(1,r,\zeta) = 1 - 2r\zeta + r^2 
+    \quad \text{for all } r\in(0,1),\zeta\in(-1,1).
+  \end{equation*}
+  and thus 
+  \begin{equation*}
+    \frac{\partial f}{\partial \zeta} \leq 0 
+    \quad \text{for all } r\in(0,1),\zeta\in(-1,1), \gamma\in(0,1),
+  \end{equation*}
+  which implies 
+  \begin{equation*}
+    f(r,\zeta) 
+    \leq f(r,-1) 
+    = \frac{(1+r^\gamma)^2}{(1+r)^{2\gamma}} 
+    \leq f(1,-1) = 4^{1-\gamma}
+    \quad \text{for all } r\in(0,1),\gamma\in(0,1).
+  \end{equation*}
+  This completes the proof.
+\end{proof}
+
+
+\begin{exercise}
 设函数$f(x)$在$[a,b]$上可导，$f'(x)$在$[a,b]$上单调下降，且$f'(x)\geq m>0.$求证：$|\int_a^b\cos f(x)dx|\leq\frac 2m$。
 \end{exercise}
 
 \begin{proof}
-因为$f'(x)>0$，所以$f(x)$严格单调递增，设$f(a)=A$，$f(b)=B$，则$f(x)$的反函数$x=\phi(t)$在$[A,B]$上业单调递增，且可导。同时有$$0<\phi(t)=\frac{1}{f'(x)}\leq\frac{1}{m}.$$
+因为$f'(x)>0$，所以$f(x)$严格单调递增，设$f(a)=A$, $f(b)=B$，则$f(x)$的反函数$x=\phi(t)$在$[A,B]$上业单调递增，且可导。同时有$$0<\phi(t)=\frac{1}{f'(x)}\leq\frac{1}{m}.$$
 但因为$f'(x)$在$[a,b]$上单调下降，所以$\phi'(x)$在$[A,B]$上严格单调递增，从而$\phi'(t)$若有间断点，只能是第一类间断点，但是因为$\phi(t)$在$[A,B]$上可导，所以$\phi'(t)$在$[A,B]$上不可能有第一类间断点，从而$\phi'(t)$在$[A,B]$上连续。于是
 $$\int_a^b\cos f(x)\mathrm{d}x=\int_A^B\cos t\cdot\phi'(t)\mathrm{d}t,$$
 根据积分第二中值定理，$\exists\xi\in[A,B]$，使得
@@ -1157,11 +1228,10 @@ S&=\frac{1}{4\pi}\iint_{\sum}(u\frac{(x-x_0)\cos\alpha+(y-y_0)\cos\beta+(z-z_0)\
 \end{align*}
 由$u$的连续性，令$\delta\rightarrow0$，可得$S=u(x_0,y_0,z_0)$。
   \end{exercise}
- \hfill\\
  
-   \section{含参变量积分}
+  \section{含参变量积分}
+
   \begin{exercise}
-  \hfill\\
  $\displaystyle\int_0^{\pi}\ln(1-2a\cos x+a^2)dx$（华东师范大学，2003）  
   
    记$I(a)=\int_0^{\pi}\ln(1-2a\cos x+a^2)\mathrm{d}x$，则$I(0)=0$，$$I'(a)=\int_0^{\pi}\frac{-2\cos x+2a}{1-2a\cos x+a^2}\mathrm{d}x$$。
@@ -1234,10 +1304,10 @@ $$|I(x)-I(x_0)|=|\int_c^{\infty}f(x,y)\mathrm{d}y-\int_c^{\infty}f(x_0,y)\mathrm
 \end{align*}
 从而得到$[a,b]$的一个开覆盖$\{(x_0-\delta,x_0+\delta)|x\in[a,b]\}$，有有限开覆盖定理，存在其中有限个开区间$(x_i-\delta,x_i+\delta),i=1,2,\cdots,n$覆盖$[a,b]$。不妨令$M'=\max\{M_{x_1},M_{x_2},\cdots,M_{x_n}\}$，则对任意的$M>M'$，有$\int_M^{\infty}f(x,y)\mathrm{d}y<\frac{\varepsilon}{4}$。因此$I(x)$在$[a,b]$上一致收敛。
 \end{exercise}
-  \hfill\\
-  \section{傅里叶级数}
-  \begin{exercise}
-  \hfill\\
+
+\section{傅里叶级数}
+
+\begin{exercise}
   设$\psi(x)$在$[0,+\infty)$上连续且单调，$$\displaystyle\lim_{x\rightarrow+\infty}\psi(x)=0$$，证明：$$\displaystyle\lim_{p\rightarrow+\infty}\int_0^{+\infty}\psi(x)\sin pxdx=0.$$  
   
  因为$\lim_{x\rightarrow+\infty}\phi(x)=0$，所以存在$N>0$，使得$x\geq N$，$|\phi(x)|<1$。利用积分第二中值定理可得
@@ -1258,8 +1328,8 @@ $$\lim_{p\rightarrow+\infty}\int_0^N\phi(x)\sin px\mathrm{d}x=0.$$
  三角级数$\displaystyle\frac{a_0}2+\sum_{n=1}^{\infty}(a_n\cos x+b_n\sin nx)$是某个在$[-\pi,\pi]$上可积且绝对可积函数的Fourier级数的必要条件是$\displaystyle\sum_{n=1}^{\infty}\frac{b_n}n$收敛。  
   
   设$f(x)\sim\frac{a_0}{2}+\sum_{n=1}^{\infty}(a_n\cos x+b_n\sin x)$。
-  令$F(x)=\int_c^x[f(t)-\frac{a_0}{2}\mathrm{d}t.$（仅考虑$f(x)$只有有限个间断点的情况）
-  $F(x)$是周期为$2\pi$的连续函数，在$f(x)$的连续点，成立$F'(x)=f(x)-\frac{a_0}{2}$。在$f(x)$的第一类间断点，$F(x)$的两个单侧导数$F'_{\pm}(x)=f(x\pm)-\frac{a_0}{2}$都存在。由Dini-Lipschitz判别法，$F(x)$可展开为收敛的Fourier级数$$F(x)=\frac{A_0}{2}+\sum_{n=1}^{\infty}(A_n\cos nx+B_n\sin nx).$$
+  令$F(x)=\int_c^x(f(t)-\frac{a_0}{2})\mathrm{d}t.$（仅考虑$f(x)$只有有限个间断点的情况）
+  $F(x)$是周期为$2\pi$的连续函数，在$f(x)$的连续点，成立$F'(x)=f(x)-\frac{a_0}{2}$。在$f(x)$的第一类间断点，$F(x)$的两个单侧导数$F'_{\pm}(x)=f(x\pm)-\frac{a_0}{2}$都存在。由Dini-Lipschitz判别法, $F(x)$可展开为收敛的Fourier级数$$F(x)=\frac{A_0}{2}+\sum_{n=1}^{\infty}(A_n\cos nx+B_n\sin nx).$$
   利用分步积分法
   \begin{align*}
   A_n&=\frac{1}{\pi}\int_{-\pi}^{\pi}F(x)\cos nx\mathrm{d}x\\
