@@ -888,12 +888,9 @@ $\forall\delta>0$，$\exists E_{\delta}\subset E$使得$m(E_{\delta})<\delta$，
 
 \end{exercise}
 
-\hfill\\
 \section{Lebesgue积分}
 
-
 \begin{exercise}
-\hfill\\
 设$f(x)$在$[a,b]$上的$\mathbb{R}$反常积分存在。证明：$f(x)$在$[a,b]$上可积的充要条件为$|f(x)|$在$[a,b]$上的$\mathbb{R}$反常积分存在。并证明此时成立$$(L)\int_{[a,b]}f(x)\mathrm{d}x=(R)\int_a^bf(x)\mathrm{d}x.$$
 
 
@@ -903,8 +900,8 @@ $\forall\delta>0$，$\exists E_{\delta}\subset E$使得$m(E_{\delta})<\delta$，
 \begin{align*}
 (L)\int_E|f(x)|\mathrm{d}x&=\lim_{n\to\infty}\int_E|f(x)|X_{E_n}(x)\mathrm{d}x\\
 &=\lim_{n\to\infty}\int_{E_n}|f(x)|\mathrm{d}x\\
-&=(R)\int_a^b|f(x)|\mathrm{d}x\\
-&\leq\infty.
+&=(R)\int_a^b|f(x)|\mathrm{d}x
+\leq\infty.
 \end{align*}
 这就说明了$|f(x)|\in L(E).$
 
@@ -912,7 +909,7 @@ $\forall\delta>0$，$\exists E_{\delta}\subset E$使得$m(E_{\delta})<\delta$，
 定义$E_n=[a,b_n]$，其中$b_n\leq b$且$\lim\limits_{n\to\infty}b_n=b$。
 因为$\{|f(x)|X_{E_n}(x)\}$是非负递增函数，且
 $$\lim_{n\to\infty}|f(x)|X_{E_n}(x)=|f(x)|,$$
-所以应用Levi定理可得：
+所以应用Levi定理可得:
 $$+\infty>(L)\int_E|f(x)|\mathrm{d}x=\lim_{n\to\infty}\int_E|f(x)|X_{E_n}(x)\mathrm{d}x.$$
 另一方面$$\int_{E_n}|f(x)|\mathrm{d}x=\int_E|f(x)|X_{E_n}(x)\mathrm{d}x.$$
 这就说明了$$\lim_{n\to\infty}\int_a^{b_n}|f(x)|\mathrm{d}x=\int_E|f(x)|\mathrm{d}x<\infty$$
@@ -922,13 +919,13 @@ $$+\infty>(L)\int_E|f(x)|\mathrm{d}x=\lim_{n\to\infty}\int_E|f(x)|X_{E_n}(x)\mat
 
 
 \begin{exercise}
-\hfill\\
 设$f$是$E$上定义的函数。如果存在可积函数列$g_n$，$h_n$使得$g_n(x)\leq f(x)\leq h_n(x)\quad a.e.$，而且
 $$\lim_{n\to\infty}(h_n(x)-g_n(x))\mathrm{d}x=0,$$
 则$f$在$E$上可积。
+\end{exercise}
 
-
-定义$$K_n(x)=f(x)-g_n(x),$$
+\begin{proof}
+  定义$$K_n(x)=f(x)-g_n(x),$$
 $$F_n(x)=h_n(x)-g_n(x),$$
 则
 $$0\leq K_n(x)\leq F_n(x)\quad a.e.,$$
@@ -940,16 +937,15 @@ $$0\leq K_n(x)\leq F_n(x)\quad a.e.,$$
 于是$K_n(x)\Rightarrow0$。即$g_n(x)\Rightarrow f(x)$。
 那么由依测度收敛的Lebesgue控制收敛定理知$f$在$E$上可积，且积分满足：
 $$\int_Ef(x)\mathrm{d}x=\lim_{n\to\infty}\int_Eg_n(x)\mathrm{d}x.$$
-\end{exercise}
-
+\end{proof}
 
 
 \begin{exercise}
-\hfill\\
 设$f\in L(\mathbb{R})$，若对$\mathbb{R}$上任意连续函数$g(x)$，有$\int_{\mathbb{R}}f(x)g(x)\mathrm{d}x=0$，证明$f(x)=0,\quad a.e.x\in\mathbb{R}.$
+\end{exercise}
 
-
-定义
+\begin{proof}
+  定义
 \begin{equation}
 h(x)=
 \begin{cases}
@@ -973,13 +969,15 @@ $$\int_{E_X\backslash F}|f(x)|\mathrm{d}x<\frac{\varepsilon}{4}.$$
 于是$$|\int_{\mathbb{R}}f(x)h(x)\mathrm{d}x|<\varepsilon.$$
 事实上，我们有$$\int_{\mathbb{R}}|f(x)|\mathrm{d}x=\int_{\mathbb{R}}f(x)h(x)\mathrm{d}x<\varepsilon.$$
 于是由$\varepsilon$的任意性，就有$\int_{\mathbb{R}}|f(x)|\mathrm{d}x=0$，即$f(x)=0,a.e.$
-\end{exercise}
+\end{proof}
 
 \begin{exercise}
 设 $f,f_k(k=1,2,\cdots)$ 在 $R^n$ 上可积, 且对于任一可测集$E\subset\mathbb{R}^n$，有
 $$\int_Ef_k(x)\mathrm{d}x\leq\int_Ef_{k+1}\mathrm{d}x,\quad k=1,2,\cdots,$$
 $$\lim_{k\to\infty}\int_Ef_k(x)\mathrm{d}x=\int_Ef(x)\mathrm{d}x,$$
 试证明$\lim_{k\to\infty}f_k(x)=f(x),a.e.x\in\mathbb{R}^n.$
+\end{exercise}
+
 
 \begin{proof}
 首先由题意，$\forall k\geq1$,有
@@ -1006,14 +1004,14 @@ f_k(x)\leq f_{k+1}(x) \leq f(x)\quad a.e.x\in\mathbb{R}^n.
 \] 
 完成了证明.
 \end{proof}
-\end{exercise}
 
 \begin{exercise}
-\hfill\\
 设$f(x)$，$g(x)$是$E$上非负可测函数且$f(x)g(x)$在$E$上可积。令$Ey=E[g\geq y]$。证明：$$F(y)=\int_{E_y}f(x)\mathrm{d}x$$对一切$y>0$都存在，且成立
 $$\int_0^{\infty}F(y)\mathrm{d}y=\int_Ef(x)g(x)\mathrm{d}x.$$
+\end{exercise}
 
-$E_y$可测是显然的。$$F(y)=\int_Ef(x)X_{E_y}\mathrm{d}x,$$
+\begin{proof}
+  $E_y$可测是显然的。$$F(y)=\int_Ef(x)X_{E_y}\mathrm{d}x,$$
 而$|f(x)X_{E_y}|\leq|f(x)|$，故由$f(x)$的可积性知$f(x)X_{E_y}\in L(E),\forall y>0.$
 考虑到$g(x)=\int_0^{\infty}X_{E_y}\mathrm{d}y$，于是
 \begin{align*}
@@ -1022,8 +1020,7 @@ $E_y$可测是显然的。$$F(y)=\int_Ef(x)X_{E_y}\mathrm{d}x,$$
 &=\int_0^{\infty}\int_Ef(x)X_{E_y}\mathrm{d}x\mathrm{d}y\\
 &=\int_0^{\infty}F(y)\mathrm{d}y.\\
 \end{align*}
-
-\end{exercise}
+\end{proof}
 
 
 \begin{exercise}
@@ -1047,33 +1044,5 @@ $$\int_{F}|f(x)|\mathrm{d}x<\frac{\varepsilon}{8}.$$
 &=\varepsilon.
 \end{align*}
 \end{proof}
-
-
-
-
-\begin{exercise}
-\hfill\\
-
-
-
-\end{exercise}
-
-
-
-\begin{exercise}
-\hfill\\
-
-
-
-\end{exercise}
-
-
-
-\begin{exercise}
-\hfill\\
-
-
-
-\end{exercise}
 
 

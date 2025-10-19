@@ -40,21 +40,35 @@
 \allowdisplaybreaks[4]
 
 %%%%%%%%%%%%%%%%%%%%%%
-\includeonly{contents/calculus}
+%\includeonly{contents/calculus}
 %%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\set}[1]{\left\{#1\right\}}
 
 \newcommand{\Lref}[1]{Lemma~\ref{#1}}
 
-\newcommand{\dd}{\;\mathrm{d}}
+\newcommand{\ddd}{\;\mathrm{d}}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}\mkern0.5mu}
+\newcommand{\dddd}{\ensuremath{\mathchoice{\:}{\mspace{1.5mu}}{}{}\mathrm{d}}}
 
 \newcommand{\e}{\mathrm{e}}
 
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator{\Span}{span}
 \DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator{\trace}{Tr}
+
 \DeclareMathOperator*{\loc}{loc}
 \DeclareMathOperator*{\spt}{spt}
 \DeclareMathOperator*{\diam}{diam}
+
+\newcommand{\sgn}{\text{sign}}
 
 \begin{document}
 

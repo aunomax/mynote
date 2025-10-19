@@ -152,7 +152,7 @@ as \begin{equation}
 		&\lesssim t^{-n/(2p)}\left(\int_{\mathbb R^n}\left|\int_{\mathbb R^n}e^{-\frac{|x-y|^2}{4t}}f(y)\dd y\right|^p\dd x\right)^{1/p}\\
 		&\leq \left(t^{-n/2}\int_{\mathbb R^n}\left(\int_{\mathbb R^n\setminus B_\delta(x)}e^{-\frac{|x-y|^2}{4t}}f(y)\dd y\right)^p\dd x\right)^{1/p}\\
 		&\quad + \left(t^{-n/2}\int_{\mathbb R^n}\left(\int_{B_\delta(x)}e^{-\frac{|x-y|^2}{4t}}f(y)\dd y\right)^p\dd x\right)^{1/p}\\
-		&=: I_1^{1/p} + I_2^{1/p}.
+		&\eqcolon I_1^{1/p} + I_2^{1/p}.
 	\end{align*}
 	By Fubini theorem and H\"older inequality, we estimate
 	\begin{align*}
@@ -371,10 +371,22 @@ where $\theta=N(q-\sigma)+\sigma+1 / N(q-\sigma)+(q+1)(\sigma+1) ;$ using \eqref
 	
 	${\displaystyle \|x\|_{Y}\leqslant \varepsilon \|x\|_{X}+C(\varepsilon )\|x\|_{Z}}.$
 \end{lemma}
+
 \begin{proof}
 	proof by contradiction.
 	for some given $\varepsilon_0 > 0,$ for all $n \in N^ \star$, there exists $x_n \in X$, such that
-	${\displaystyle \|x_n\|_{Y} > \varepsilon_0 \|x_n\|_{X}+n\|x_n\|_{Z}}.$ Let $\tilde{x}_n=\dfrac{x_n}{\|x_n\|_Y},$we have $\|\tilde{x}_n\|_X < 1$ and $\|\tilde{x}_n\|_Z < \dfrac{1}{n}.$ on the one hand, 	$X$ is compactly embedded in $Y$, therefore $\{\tilde{x}_n\}$ has a subsequence that is $\|\cdot\|_Y$ convergent, noted $\{\tilde{x}_n\}$ as well; on the other hand, 	$Y$ is continuously embedded in $Z$, so $\{\tilde{x}_n\}$ is $\|\cdot\|_Z$ convergent. noticing $\|\tilde{x}_n\|_Z\mapsto0,$ we have $ \tilde{x}_n \mapsto 0 $ in $Z$, thus $ \tilde{x}_n \mapsto 0 $ in $Y$. However, $\|\tilde{x}_n\|_Y=1$ which has a contradiction with $ \tilde{x}_n \mapsto 0 $ in $Y$ .
+	$\|x_n\|_{Y} > \varepsilon_0 \|x_n\|_{X}+n\|x_n\|_{Z}$. 
+	Let $\tilde{x}_n=\dfrac{x_n}{\|x_n\|_Y},$we have $\|\tilde{x}_n\|_X < 1$ and $\|\tilde{x}_n\|_Z < \dfrac{1}{n}$. 
+	on the one hand, $X$ is compactly embedded in $Y$, 
+	therefore $\{\tilde{x}_n\}$ has a subsequence that is $\|\cdot\|_Y$ convergent, 
+	noted $\{\tilde{x}_n\}$ as well; 
+	on the other hand, $Y$ is continuously embedded in $Z$, 
+	so $\{\tilde{x}_n\}$ is $\|\cdot\|_Z$ convergent. 
+	noticing $\|\tilde{x}_n\|_Z\mapsto0,$ 
+	we have $ \tilde{x}_n \mapsto 0 $ in $Z$, 
+	thus $ \tilde{x}_n \mapsto 0 $ in $Y$. 
+	However, $\|\tilde{x}_n\|_Y=1$, 
+	which has a contradiction with $ \tilde{x}_n \mapsto 0 $ in $Y$.
 \end{proof}
 
 \section{inequality}

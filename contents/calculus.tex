@@ -124,63 +124,60 @@ $$\lim_{N\to\infty}\exp\sum_{i=1}^{N(k)}\frac{2}{p_i}\geq\lim_{n\to\infty}\sum_{
 \end{proof}
 
  \begin{example}
-  若函数$f(x)$在$[0,+\infty)$上连续，$\displaystyle\lim_{x\rightarrow\infty}f(x)=A$存在，则$f(x)$在$[0,+\infty)$上一致连续。（中国人民大学，2001）
- 
+  若函数$f(x)$在$[0,+\infty)$上连续，$\displaystyle\lim_{x\rightarrow\infty}f(x)=A$存在，则$f(x)$在$[0,+\infty)$上一致连续。%（中国人民大学，2001）
+ \end{example}
+
+ \begin{proof}
   $\lim_{x\rightarrow\infty}f(x)=A\Leftrightarrow$对任意的$\varepsilon>0,\exists M>0,\forall x_1,x_2>M,|f(x_1)-f(x_2)|<\varepsilon$。
-  
   因为$f(x)$在$[0,M+1]$上连续，从而在$[0,M+1]$上一致连续，即存在$0<\delta<1$，对任意的$x_1,x_2\in[0,M+1]$，当$|x_1-x_2|<\delta$时，有$|f(x_1)-f(x_2)|<\varepsilon$。因此，对任意的$x_1,x_2\in[0,+\infty)$，当$|x_1-x_2|<\delta$时，有$|f(x_1)-f(x_2)|<\varepsilon$。
-  
   即$f(x)$在$[0,+\infty)|<\varepsilon$。
-  \end{example}
+  \end{proof}
+
+
   \begin{example}
-  \hfill\\
-  证明：函数$f(x)=\sqrt{x}lnx$在$[1,+\infty)$上一致连续。（北京大学，2001）
-  
-  steps
+  证明：函数$f(x)=\sqrt{x}lnx$在$[1,+\infty)$上一致连续。%（北京大学，2001）
+  \end{example}
+
+  \begin{proof}
   对$f(x)$求导可得
   \[f'(x)=\frac{\ln x+2}{2\sqrt x},\]
   \[f''(x)=-\frac{\ln x}{4x\sqrt x.}\]
   当$x\in[1,+\infty)$时，$f'(x)>0,f''(x)<0$，因此，$f'(x)$在$[1,+\infty)$上单调递减趋于0,又$\lim_{x\rightarrow1}f'(x)=1$，意味着$f'(x)$在$[1,+\infty)$有界，不妨假设$|f'(x)|\leq M$。
   
   对任意的$\varepsilon>0,\exists\delta=\frac{\delta}M,$对任意的$x_1,x_2\in[1,+\infty)$，当$|x_1,x_2|<\delta$时，有$|f(x_1)-f(x_2)|=|f'(\xi)(x_1-x_2)|<M\cdot\frac{\varepsilon}{M}=\varepsilon.$其中$\xi\in[x_1,x_2]$，即函数$f(x)=\sqrt{x}\ln x$在$[1,+\infty)$上一致收敛。
-  \end{example}
+  \end{proof}
 
 \begin{remark}
   札记：可以用Cauchy收敛准则和微分中值定理证明函数一致连续性
 \end{remark}
 
 \begin{example}
-\hfill\\
-  设$f(x)$在$[a,b]$上连续，对$x\in[a,b]$定义$\displaystyle m(x)=\inf_{a\leq t\leq x}f(t)$。证明：$m(x)$在$[a,b]$上连续。（大连理工大学，2004）
-  
-  
+  设$f(x)$在$[a,b]$上连续，对$x\in[a,b]$定义$\displaystyle m(x)=\inf_{a\leq t\leq x}f(t)$。
+  证明：$m(x)$在$[a,b]$上连续。%（大连理工大学，2004）
+  \end{example}
+
+  \begin{proof}  
   首先，因为闭区间上的连续函数必有最大值和最小值，故$m(x)$是良定义的。
-  
   其次，$\forall a\leq x_1<x_2\leq b$,
-  \[
-  \begin{aligned}
+  \begin{align*}
   m(x_2)&=\inf_{a\leq t\leq x_1}f(t)\\
   &=\min\{\inf_{a\leq t\leq x_1}f(t)+\inf_{x_1\leq t\leq x_2}f(t)\}\\
   &\leq\min_{a\leq t\leq x_1}f(t)\\
-  &=m(x_1)\\
-  \end{aligned}
-  \]
-  故$m(x)$在$[a,b]$上单调递减，$\forall x_1,x_2\in[a,b],|x_1-x_2|<2\delta$，因为$f(x)$在$[a,b]$上一致连续，故$\forall\varepsilon>0,\exists\delta<0,|f(x_1)-f(x_2)|<\varepsilon.$从而$\forall x\in[a,b]$，
-  \[
-  \begin{aligned}
+  &=m(x_1)
+  \end{align*}
+  故$m(x)$在$[a,b]$上单调递减，$\forall x_1,x_2\in[a,b],|x_1-x_2|<2\delta$，因为$f(x)$在$[a,b]$上一致连续，故$\forall\varepsilon>0,\exists\delta<0,|f(x_1)-f(x_2)|<\varepsilon.$ 从而$\forall x\in[a,b]$，
+  \begin{align*}
   m(x+)&=\lim_{\delta\rightarrow0+}m(x+\delta)\\
   &=\lim_{\delta\rightarrow0+}\frac{m(x)+\inf_{x\leq t\leq x+\delta}f(t)-|m(x)-\inf_{x\leq t\leq x+\delta}f(\delta)|}{2}\\
   &=\frac{m(x)+f(x)-|f(x)-m(x)|}{2}\\
   &=m(x)\\
-  \end{aligned}
-  \]
+  \end{align*}
   对$m(x-)$，若$m(x)<m(x-\delta)$，则$f(\eta)=m(x)\leq m(x-\delta)\leq f(x-\delta),(\eta\in(x-\delta,x))$
-  因为$f(x)$在$[a,b]$上一致连续，故$\forall\varepsilon>0,\exists\delta>0,x_1,x_2\in[a,b],|x_1-x_2|<\delta,|f(x_1)-f(x_2)|<\varepsilon$。从而对上述$\varepsilon>0$，有上述$\delta>0$，$$|m(x)-m(x-\delta)|\leq|f(\eta)-f(x-\delta)|<\varepsilon,(\eta\in(x-\delta,x).$$
+  因为$f(x)$在$[a,b]$上一致连续，故$\forall\varepsilon>0,\exists\delta>0,x_1,x_2\in[a,b],|x_1-x_2|<\delta,|f(x_1)-f(x_2)|<\varepsilon$。从而对上述$\varepsilon>0$，有上述$\delta>0$，$$|m(x)-m(x-\delta)|\leq|f(\eta)-f(x-\delta)|<\varepsilon, \eta\in(x-\delta,x).$$
   由此$m(x)$在$x$处左连续，右连续。故$m(x)$在$[a,b]$上连续。
-  \end{example}
+  \end{proof}
   
   \begin{example}
-  \hfill\\
   如果$f$是$(0,\infty)$上的正值函数，合于
   \begin{enumerate}
   \item[a] $f(x+1)=xf(x)$;
@@ -188,22 +185,25 @@ $$\lim_{N\to\infty}\exp\sum_{i=1}^{N(k)}\frac{2}{p_i}\geq\lim_{n\to\infty}\sum_{
   \item[c] $\log f$是凸的;
   \end{enumerate}
   那么$f(x)=\Gamma(x)$。其中$$\Gamma(x)=\int_0^{\infty}t^{x-1}e^{-t}\mathrm{d}t.$$
-  
+\end{example} 
+\begin{proof}
   因为$\Gamma$函数满足以上三点，那么只需证明$x>0$时$f(x)$是由以上三点决定的函数就行了。根据$a$只需考虑$x\in(0,1).$
   
   令$\varphi =\log f$，那么$\varphi(x+1)=\varphi(x)+\log x(0<x<\infty).$ $\varphi(1)=0$，并且$\varphi$是凸的，假定$0<x<1$，而$n$是正整数，由上式$\varphi(n+1)=\log (n!).$现在考虑一下$\varphi$在$[n,n+1]$，$[n+1,n+1+x]$，$[n+1,n+2]$三个区间上的差商，既然$\varphi$是凸的，那么$$\log n\leq\frac{\varphi(n+1+x)-\varphi(n+1)}{x}\leq\log(n+1).$$
   $$\varphi(n+1+x)=\varphi(x)+\log[x(x+1)\cdots(x+n)].$$
   所以$$0\leq\varphi(x)-\log[\frac{n!n^x}{x(n+1)\cdots(x+n)}]\leq x\log(1+\frac{1}{n}).$$
   最末的式子当$n\to\infty$时趋于零。从而确定了$\varphi$。
-  \end{example}
+  \end{proof}
  
 \begin{example}
 定义区间$(a,b)$上的实连续函数满足：
 $$\forall x,y \in(a,b),f(\frac{x+y}{2})\leq\frac{1}{2}(f(x)+f(y)).$$
 求证：$f$是凸函数。其中，所谓凸函数是指
 $$f(\lambda x+(1-\lambda)y)\leq\lambda f(x)+(1-\lambda)f(y),\forall x,y\in(a,b),\lambda\in(0,1).$$
+\end{example}
 
-\textbf{引理:}若非空集合$S\subset(0,1)\cap\mathit{Q}$满足:若$\frac{1}{2}\in S$;若$p\in S$，则$\frac{p}{1+p},\frac{1}{1+p}\in S.$则$S=(0,1)\cap\mathit{Q}$。
+\begin{proof}
+断言：若非空集合$S\subset(0,1)\cap\mathit{Q}$满足:若$\frac{1}{2}\in S$;若$p\in S$，则$\frac{p}{1+p},\frac{1}{1+p}\in S.$则$S=(0,1)\cap\mathit{Q}$。
 
 引理的证明只需注意到，$(0,1)$的有理数可用真分数表示，而全体真分数具有$\frac{q}{p}$形式，其中$p<q\in\mathrm{N}^*$。于是我们可以关于分母$p=N$作第二数学归纳法证明上述引理。
 
@@ -219,7 +219,8 @@ f(\frac{p}{1+p}x+\frac{1}{p+1}y)&=f(p(\frac{1}{1+p}x+\frac{p}{1+p}y)+(1-p)y)\\
 于是
 $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
 即$\frac{p}{1+p},\frac{1}{1+p}\in S.$证毕。
-\end{example} 
+\end{proof}
+ 
  
 \begin{proposition}
 	Let $I\in\mathbb{R}$ be an open interval. Suppose that $f: I\mapsto\mathbb{R}$ is a convex function,
@@ -298,7 +299,7 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
 	\[
 	f'(b-) = \lim_{\lambda\searrow0}\frac{f(b) - f(\lambda a + (1-\lambda)b)}{b - \lambda a - (1-\lambda)b}\geq \frac{f(b) - f(a)}{b-a}\geq f'(a+).
 	\]
-	So $g(a) := f'(a-)$, $a\in I$ is a nondecreasing functions 
+	So $g(a) \coloneq f'(a-)$, $a\in I$ is a nondecreasing functions 
 	which has at most countably many  discontinuous points.
 	At its continuous point $p\in I$,
 	\begin{align*}
@@ -320,8 +321,9 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
 
 
 \section{微分}
+
   \begin{example}
-   已知$f(x)$可导，$f(x)+f'(x)\rightarrow a,x\rightarrow+\infty$，则$x\rightarrow+\infty$有$f(x)\rightarrow a,f'(x)\rightarrow0$. (清华大学, 2006)
+   已知$f(x)$可导，$f(x)+f'(x)\rightarrow a,x\rightarrow+\infty$，则$x\rightarrow+\infty$有$f(x)\rightarrow a,f'(x)\rightarrow0$. %(清华大学, 2006)
   \end{example} 
 
   \begin{proof}
@@ -349,12 +351,12 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   This concludes the proof.
   \end{proof}
 
-
-
   \begin{example}
-  \hfill\\
-   设$f(x)$，$g(x)$在$[a,b]$上连续，$(a,b)$内可导，$g'(x)\neq0$。证明：$\exists\xi\in(a,b)$，使$\frac{f(a)-f(\xi)}{g(\xi)-g(b)}=\frac{f'(\xi)}{g(\xi)}$（武汉大学，2004）
+   设$f(x)$，$g(x)$在$[a,b]$上连续，$(a,b)$内可导，$g'(x)\neq0$。证明：$\exists\xi\in(a,b)$，使$\frac{f(a)-f(\xi)}{g(\xi)-g(b)}=\frac{f'(\xi)}{g(\xi)}$
+   %（武汉大学，2004）
+  \end{example}
   
+  \begin{proof}
   记$F(x)=f(a)g(x)+g(b)f(x)-f(x)g(x)$，
   则$F(x)$在$[a,b]$上连续，在$(a,b)$内可导，又$F(a)=f(a)g(b)=F(b)$,从而由Lagrange中值定理：
   $\exists\xi\in(a,b),$$$\frac{F(a)-F(b)}{a-b}=F'(\xi)=0$$,即$$f(a)g'(\xi)+g(b)f'(\xi)-f'(\xi)g(\xi)-f(\xi)g'(\xi)=0.$$
@@ -362,20 +364,26 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   即$\frac{f(a)-f(\xi)}{g(\xi)-g(b)}=\frac{f'(\xi)}{g'(\xi)}$。
   
   考虑到$g'(x)\neq 0,$从而$g(\xi)\neq g(b)$，因为不然，若$g(\xi)=g(b),\xi\in(a,b)$，由微分中值定理，$\exists\eta\in(\xi,b),g'(\eta)=0$与$g'(x)\neq0$矛盾，故上式是有意义的。
-  \end{example}
-  \begin{example}
-  \hfill\\
-   设$f(x)$在$(a,b)$上可微，$f'(x)$在$(a,b)$上单调。求证：$f'(x)$在$(a,b)$上连续。（北京航空航天大学，2004）
+  \end{proof}
   
+  \begin{example}
+   设$f(x)$在$(a,b)$上可微，$f'(x)$在$(a,b)$上单调。求证：$f'(x)$在$(a,b)$上连续。
+   %（北京航空航天大学，2004）
+  \end{example}
+  
+  \begin{proof}
   不妨设$f(x)$单调递增，从而$\forall c\in(a,b)$,$f'(x)$在$(a,c)$上单调递增有上界，$f(x)\leq f(c)$。由确界原理，$\exists S_c=\sup_{x\in(a,c)}f'(x)$,由确界定义与左极限定义易知：$f(c-)=S_c$。同理$f(c+)=I_c=\inf_{x\in(c,b)}f'(x)$。
   故单调的导函数不存在第二类间断点。
   
   又$f'(c-)\leq f'(c+)$，由达布引理，导函数具有介值性，若$f'(c-)<f'(c+)$，$\forall\eta\in[f'(c-),f'(c+)],\exists\xi\in[c-\varepsilon,c+\varepsilon],f'(\xi)=\eta.$而这样的$\xi$时不存在的，因为$f'(x)$单调。从而$f'(c-)=f'(c+)$，即导函数连续。
-  \end{example}
+  \end{proof} 
+
   \begin{exercise}
-  \hfill\\
- 设$f(x)$在$[a,b](a<b)$上处处有正的二阶导数，证明存在常数$0<m\leq M$，使$\frac m4(x-a)^2\leq f(x)-2f(\frac{x+a}2)+f(a)\leq \frac M4(x-a)^2,x\in(a,b]$。（南京航空航天大学，2003） 
+ 设$f(x)$在$[a,b](a<b)$上处处有正的二阶导数，证明存在常数$0<m\leq M$，使$\frac m4(x-a)^2\leq f(x)-2f(\frac{x+a}2)+f(a)\leq \frac M4(x-a)^2,x\in(a,b]$。
+  %（南京航空航天大学，2003） 
+  \end{exercise}
   
+  \begin{proof}
   设$$F(x)=
   \begin{cases}
   \frac{f(x)-2f(\frac{x+a}{2})+f(a)}{(x-a)^2},&x>a,\\
@@ -402,14 +410,17 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
  \end{align*}
  其中$\xi\in(\frac{x+a}{2},x)$，$\eta\in(a,\frac{x+a}{2})$，$\phi\in(\eta,\xi)$，又$f''(x)$在$[a,b]$上恒正。
  故$F(x)$在$[a,b]$上恒正。$F(x)$在$[a,b]$上连续故闭存在最大值$\frac{M}{4}$和最小值$\frac{m}{4}$。这就完成了证明。  
-  \end{exercise}  
+  \end{proof}  
 
   \section{微分中值定理及其应用}
 
   \begin{example}
-    设$f(x)\in[0,1]$上可导，$f(1)=2\int xf(x)dx$。求证：存在$\xi\in(0,1)$，使得$f'(\xi)=-\frac{f(\xi)}{\xi}$。（清华大学，2003）
+    设$f(x)\in[0,1]$上可导，$f(1)=2\int xf(x)dx$。
+    求证：存在$\xi\in(0,1)$，使得$f'(\xi)=-\frac{f(\xi)}{\xi}$。
+    %（清华大学，2003）
+  \end{example}
   
-  
+  \begin{proof}
   反设$\forall\xi\in(0,1),f'(\xi)+\frac{f(\xi)}{\xi}=\frac{\xi f'(\xi)+f(\xi)}{\xi}=0$均不成立。
   
   从而$\xi f'(\xi)+f(\xi)$恒正或恒负（Darboux引理，导函数介值性）。不妨设
@@ -428,14 +439,15 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   矛盾。
   
   故$\exists\xi\xi(0,1),f'(\xi)\xi+f(\xi)=0$。
-  \end{example}
+  \end{proof}
+  
   \begin{example}
-  \hfill\\
-  $x^y+y^x>1,x,y>0$.（中国科学院，2007）
+  $x^y+y^x>1,x,y>0$.
+  %（中国科学院，2007）
+  \end{example}
   
-  
+  \begin{proof}
   考虑$f(x)=(1+x)^r-rx-1,(x>0,r>1)$,
-  
   $$f'(x)=r(1+x)^{r-1}-r>r(1+x)^0-r=0.$$
   故$f(x)>f(0)=0,$，得$(1+x)^r>rx+1.$
   $$(1+\frac{x}{y})^{\frac1x}>\frac1y+1>\frac1y,x=\frac xy,r=\frac1x.$$
@@ -444,16 +456,21 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   同理$x^y>\frac{x}{x+y},$
   
   故$x^y+y^x>1,x,y\in(0,1).$ 
-  \end{example}
+  \end{proof}
+  
   \begin{example}
-  \hfill\\
-   若$-\infty<a<b<c<+\infty,f(x)$在$[a,c]$上连续，且$f(x)$在$(a,c)$内二阶可导，求证：存在$\xi\in(a,c)$，使得（四川大学，2005）$$\frac{f(a)}{(a-b)(a-c)}+\frac{f(b)}{(b-c)(b-a)}+\frac{f(c)}{(c-a)(c-b)}=\frac12f^{''}(\xi)$$。
+   若$-\infty<a<b<c<+\infty,f(x)$在$[a,c]$上连续，且$f(x)$在$(a,c)$内二阶可导，
+   求证：存在$\xi\in(a,c)$，使得$$\frac{f(a)}{(a-b)(a-c)}+\frac{f(b)}{(b-c)(b-a)}+\frac{f(c)}{(c-a)(c-b)}=\frac12f^{''}(\xi)$$。
+   %（四川大学，2005）
 \end{example}
+
 \begin{example}
-\hfill\\
-  已知$f(x)$在$[a,b]$上单调增加，$f(a)\geq a,f(b)\leq b$，求证：$\exists\xi\in[a,b]$，使得$f(\xi)=\xi$。（武汉大学，2006）
-  
-  
+  已知$f(x)$在$[a,b]$上单调增加，$f(a)\geq a,f(b)\leq b$，
+  求证：$\exists\xi\in[a,b]$，使得$f(\xi)=\xi$。
+  %（武汉大学，2006）
+\end{example}
+
+\begin{proof}
   反设$\forall\xi\in[a,b],f(\xi)\neq\xi,$则$\forall\xi\in[a,b],f(\xi)<\xi$或$f(\xi)>\xi$。
   记$A=\{\xi:f(\xi)>\xi\},B=\{\xi:f(\xi)>\xi\},$则由$f(a)>a,f(b)<b$,有$a\in A,b\in B$。于是$A,B$不空且$A\cup B=[a,b],A\cap B=\emptyset$。因为$B$有界，故$\eta=\inf B$存在且$\eta\in[a,b]$。
   
@@ -462,11 +479,13 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   若$\eta\in A$即$f(\eta)>\eta$，同上矛盾。
   
   则$\eta\in B$，即$f(\eta)<\eta$，而$f(\eta-)=\lim_{x\rightarrow\eta-}f(x)\geq\eta>f(\eta)$，与$f(x)$单调增加矛盾。故$\eta\not\in B,\eta\not\in A$，则$f(\eta)=\eta$。
-  \end{example}
+  \end{proof}
+  
   \begin{example}
-  \hfill\\
    设$f(x)$在$[0,1]$上连续可微，且$f'(0)\neq0$，若对$\forall x\in(0,1),\theta(x)$满足$\int_0^xf(t)dt=f(\theta(x))x$，求证：$\displaystyle \lim_{x\rightarrow 0^+}\frac{\theta(x)}x=\frac12$.
-   
+  \end{example}
+  
+  \begin{proof}
      令$$F(x)=\int_0^xf(t)\mathrm{d}t,$$
   则有$F''(0)=f(0)\neq0$，用泰勒公式得
   $$F(x)=F(0)+f'(0)x+\frac{1}{2}F''(0)x^2+o(x^2)$$
@@ -475,15 +494,12 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   由$F(0)=0$，$F(x)=f(\theta(x))x=F'(\theta)x$联立得
   $$F'(0)x+\frac{1}{2}F''(0)x^2+o(x^2)=x(F'(0)+F''(0)\theta+o(\theta)),$$
   消去$F'(0)x$并同时除$F''(0)x^2$得：
-  $$\frac{1}{2}+o(1)=\frac{\theta}{x}+o(\frac{\theta}{x}=\frac{\theta}{x}(1+o(1)),x\rightarrow0+.$$
+  $$\frac{1}{2}+o(1)=\frac{\theta}{x}+o\frac{\theta}{x}=\frac{\theta}{x}(1+o(1)),x\rightarrow0+.$$
   即
   $$\frac{\theta}{x}=\frac{\frac{1}{2}+o(1)}{1+o(1)},x\rightarrow0+.$$
   即
   $$\lim_{x\rightarrow0+}\frac{\theta}{x}=\frac{1}{2}.$$
-  \end{example}
-  
-  
- \hfill\\
+  \end{proof}
  
   
 \section{定积分}
@@ -768,16 +784,16 @@ $$
 $$\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\dd y.$$
 因为 $\int_0^{+\infty}e^{-xy}\sin x\dd x$关于$y$在$(0,+\infty)$上内闭一致收敛，
 \begin{align*}
-  \int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin xdxdy
-  =\int_0^{+\infty}\sin xdx\int_0^{+\infty}e^{-xy}dy 
-  =\int_0^{+\infty}\frac{\sin x}xdx,
+  \int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\ddd y
+  =\int_0^{+\infty}\sin x\dd x\int_0^{+\infty}e^{-xy}\ddd y 
+  =\int_0^{+\infty}\frac{\sin x}x\dd x,
 \end{align*}
   又
 \begin{align*}
   &\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\dd y\\
-  &=\int_0^{+\infty}dy\int_0^{+\infty}e^{-xy}\sin x\dd x\\
+  &=\int_0^{+\infty}dy\int_0^{+\infty}e^{-xy}\sin x\ddd x\dd x\\
   &=\int_0^{+\infty}dy[(-\frac{e^{-xy}}{y}\sin x)|_0^{+\infty}+\int_0^{+\infty}\frac{e^{-xy}\cos x}{y}\dd x]\\
-  &=\int_0^{+\infty}dy[(-\frac{e^{-xy}\sin x}{y}|_0^{+\infty}-\int_0^{+\infty}\frac{e^{-xy}\sin x}{y}\dd x]\\
+  &=\int_0^{+\infty}dy(-\frac{e^{-xy}\sin x}{y}|_0^{+\infty}-\int_0^{+\infty}\frac{e^{-xy}\sin x}{y}\dd x]\\
   &=\int_0^{+\infty}dy[\frac{1}{y^2}-\frac{1}{y^2}\int_0^{+\infty}e^{-xy}\sin x\dd x]\\
   &=\int_0^{+\infty}\frac{dy}{1+y^2}\\
   &=\frac{\pi}{2}
@@ -1116,16 +1132,24 @@ $$|\int_a^b\cos f(x)\mathrm{d}x|\leq2|\phi'(B)|\leq\frac{2}{m}.$$
   \end{proof}
   
 \begin{exercise}
-   设$f(t)$连续，试证$\displaystyle\iiint_{x^2+y^2+z^2\leq1}f(ax+by+cz)dxdydz=\pi\int_{-1}^1(1-u^2)f(ku)du$，其中$k=\sqrt{a^2+b^2+c^2}>0$。（南京大学，2007） 
-  
-   作旋转变换使平面$ax+by+cz=0$变成$Ox'y'z'$空间中的坐标平面$z'=0$。则
+   设$f(t)$连续，试证
+   \begin{equation*}
+   \iiint_{x^2+y^2+z^2\leq1}f(ax+by+cz)\dd x \dd y\dd z 
+   =\pi\int_{-1}^1(1-u^2)f(ku)du,
+   \end{equation*}
+   其中$k=\sqrt{a^2+b^2+c^2}>0$。%（南京大学，2007） 
+  \end{exercise}
+
+\begin{solution}
+  作旋转变换使平面$ax+by+cz=0$变成$Ox'y'z'$空间中的坐标平面$z'=0$。则
   \begin{align*}
-  \iiint_{x^2+y^2+z^2\leq 1}f(ax+by+cz)dxdydz&=\iiint_{x'^2+y'^2+z'^2\leq1}f(kz')dx'dy'dz'\\
+  \iiint_{x^2+y^2+z^2\leq 1}f(ax+by+cz)\dd x\dd y\dd z
+  &=\iiint_{x'^2+y'^2+z'^2\leq1}f(kz')dx'dy'dz'\\
   &=\int_{-1}^1f(kz')\iint_{x'^2+y'^2\leq1-z'^2}dx'dy'\\
   &=\pi\int_{-1}^1(1-z'^2)f(kz')dz'\\
-  &=\pi\int_{-1}^1(1-u^2)f(ku)du.\\
+  &=\pi\int_{-1}^1(1-u^2)f(ku)du.
   \end{align*} 
-  \end{exercise}
+\end{solution}
   
   \begin{exercise}
   求$\int\int_S\frac{ds}z$，其中$S$是球面$x^2+y^2+z^2=a^2$被平面$z=h(0<h<a)$截得的球冠部分。（华东师范大学，2007）  
@@ -1178,11 +1202,15 @@ I&=\iint\limits_{x^2+y^2+z^2=R^2}\frac{dS}{\sqrt{x^2+y^2+(z-h)^2}}\\
   $$\int_Lx^2\mathrm{d}S=\int_Ly^2\mathrm{d}S=\int_Lz^2\mathrm{d}S,$$
   从而$$\int_Lx^2\mathrm{d}S=\frac{1}{3}\int_L(x^2+y^2+z^2)\mathrm{d}S=\frac{1}{3}\int_L\mathrm{d}S=\frac{2\pi}{3}.$$
  
-  \end{exercise}
+\end{exercise}
+
   \begin{exercise}
-  \hfill\\
-   设$n$是平面区域$D$的正向边界线$C$的外法线，则$$\int_C\frac{\partial u}{\partial n}ds=\int\int_D(\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2})dxdy.$$（中国科学院，2006） 
-  
+  设$n$是平面区域$D$的正向边界线$C$的外法线，
+  则$$\int_C\frac{\partial u}{\partial n}ds=\int\int_D(\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2})\dd x\dd y.$$ 
+  %（中国科学院，2006） 
+  \end{exercise}
+
+  \begin{solution}
 记$n=(\cos\alpha,\cos\beta)$，设切线方向为$l=(\cos x,\cos y)$。则
 $$\cos x=-\cos\beta,\cos y=\cos\alpha.$$
 从而
@@ -1190,17 +1218,21 @@ $$\cos x=-\cos\beta,\cos y=\cos\alpha.$$
 \int_L\frac{\partial u}{\partial n}dS&=\int_C(\frac{\partial u}{\partial x}\cos\alpha+\frac{\partial u}{\partial y}\cos\beta)ds\\
 &=\int_L\frac{\partial u}{\partial x}\cos y-\frac{\partial u}{\partial y}\cos x\mathrm{d}S\\
 &=\int_L\frac{\partial u}{\partial x}dy-\frac{\partial u}{\partial y}dx\\
-&=\iint_D(\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2})dxdy.\\
+&=\iint_D(\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2})\dd x\dd y.
 \end{align*}  
-  \end{exercise}
+  \end{solution}
 
   \begin{exercise}
-  \hfill\\
-设区域$\Omega$由分片光滑封闭曲面$\sum$所围成，$u(x,y,z)$在$\overline{\Omega}$上具有二阶连续偏导数，且在$\overline{\Omega}$上调和，即满足
+设区域$\Omega$由分片光滑封闭曲面$\sum$所围成，
+$u(x,y,z)$在$\overline{\Omega}$上具有二阶连续偏导数，
+且在$\overline{\Omega}$上调和，
+即满足
 $$\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2}+\frac{\partial^2u}{\partial z^2}=0.$$  
-  
-  证明：$\iint_{\Sigma}\frac{\partial u}{\partial n}ds=0$，其中$n$为$\Sigma$的单位外法向量。
-  
+  证明：$\iint_{\Sigma}\frac{\partial u}{\partial n}\dd \mathbf{S} = 0$, 
+  其中$n$为$\Sigma$的单位外法向量。
+  \end{exercise}
+
+  \begin{solution}
   设$(x_0,y_0,z_0)\in\Omega$为一定点，证明
   $$u(x_0,y_0,z_0)=\frac1{4\pi}\int\int_{\Sigma}(u\frac{\cos(r,n)}{r^2}+\frac1r\frac{\partial u}{\partial n})dS,$$
   其中$r=(x-x_0,y-y_0,z-z_0),r=|r|.$  
@@ -1208,13 +1240,14 @@ $$\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2}+\frac{\parti
    设$n=(\cos\alpha,\cos\beta,\cos\gamma)$，则
   $$\frac{\partial f}{\partial n}=(\frac{\partial f}{\partial x}\cos\alpha,\frac{\partial f}{\partial y}\cos\beta,\frac{\partial f}{\partial z}\cos\gamma).$$
   \begin{align*}
-    \iint_{\Sigma}\frac{\partial u}{\partial n}ds&=\iint_{\Sigma}\frac{\partial f}{\partial x}dydz+\frac{\partial f}{\partial y}dzdx+\frac{\partial f}{\partial z}dxdy\\
-    &=\iiint_V(\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2}+\frac{\partial^2z}{\partial z^2})dxdydz.
+    \iint_{\Sigma}\frac{\partial u}{\partial n}ds
+    &=\iint_{\Sigma}\frac{\partial f}{\partial x}\dd y\dd z + \frac{\partial f}{\partial y}\dd z\dd x+\frac{\partial f}{\partial z}\dd y\dd x\\
+    &=\iiint_V(\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2}+\frac{\partial^2z}{\partial z^2})\dd x\dd y\dd z.
   \end{align*} 
   
   记
 $$S=\frac1{4\pi}\int\int_{\Sigma}(u\frac{\cos(r,n)}{r^2}+\frac1r\frac{\partial u}{\partial n})dS,$$
-$$\sum':=\{(x,y,z):|r|=\delta,\delta\in(0,1)\}.$$
+$$\sum:=\{(x,y,z):|r|=\delta,\delta\in(0,1)\}.$$
 则
 \begin{align*}
 S&=\frac{1}{4\pi}\iint_{\sum}(u\frac{(x-x_0)\cos\alpha+(y-y_0)\cos\beta+(z-z_0)\cos\gamma}{r^3}+\frac{1}{r}\frac{\partial u}{\partial \textbf{n}})\mathrm{d}S\\
@@ -1227,15 +1260,23 @@ S&=\frac{1}{4\pi}\iint_{\sum}(u\frac{(x-x_0)\cos\alpha+(y-y_0)\cos\beta+(z-z_0)\
 &=\frac{1}{4\pi}\iint_{\sum'}\frac{u}{\delta^2}\mathrm{d}S.\\
 \end{align*}
 由$u$的连续性，令$\delta\rightarrow0$，可得$S=u(x_0,y_0,z_0)$。
-  \end{exercise}
+  \end{solution}
  
   \section{含参变量积分}
 
   \begin{exercise}
- $\displaystyle\int_0^{\pi}\ln(1-2a\cos x+a^2)dx$（华东师范大学，2003）  
-  
-   记$I(a)=\int_0^{\pi}\ln(1-2a\cos x+a^2)\mathrm{d}x$，则$I(0)=0$，$$I'(a)=\int_0^{\pi}\frac{-2\cos x+2a}{1-2a\cos x+a^2}\mathrm{d}x$$。
-  作变换$t=\tan\frac{x}{2}$，则$$\mathrm{d}x=\frac{2\mathrm{d}t}{1+t^2},\cos x=\frac{1-t^2}{1+t^2},\sin x=\frac{2t}{1+t^2}.$$
+    计算 
+    \begin{equation*}
+      \int_0^{\pi}\ln(1-2a\cos x+a^2)\dd x
+    \end{equation*}
+    %（华东师范大学，2003）  
+  \end{exercise}
+
+  \begin{solution}
+   记$I(a)=\int_0^{\pi}\ln(1-2a\cos x+a^2)\dd x$，则$I(0)=0$, 
+   $$I'(a)=\int_0^{\pi}\frac{-2\cos x+2a}{1-2a\cos x+a^2}\dd x.$$
+  作变换$t=\tan\frac{x}{2}$, 
+  则$$\dd x=\frac{2\dd t}{1+t^2},\cos x=\frac{1-t^2}{1+t^2},\sin x=\frac{2t}{1+t^2}.$$
   于是
   \begin{align*}
   I'(a)&=4\int_0^{\infty}\frac{t^2-1+a+at^2}{1+t^2-2a(1-t^2)+a^2(1+t^2)}\frac{\mathrm{d}t}{1+t^2}\\
@@ -1244,14 +1285,15 @@ S&=\frac{1}{4\pi}\iint_{\sum}(u\frac{(x-x_0)\cos\alpha+(y-y_0)\cos\beta+(z-z_0)\
   &=0\quad(|a|<1).
   \end{align*}
   从而$I(a)=0.$
- 
-  \end{exercise}
+  \end{solution}
 
   \begin{exercise}
-  \hfill\\
-   设$f(x)$是$[-1,1]$上的连续函数，则$\displaystyle\lim_{y\rightarrow0^+}\int_{-1}^{1}\frac{yf(x)}{x^2+y^2}dx=\pi f(0)$。（中国科学院，2003） 
-  
- 因为$\forall\delta>0$，
+   设$f(x)$是$[-1,1]$上的连续函数，则$\displaystyle\lim_{y\rightarrow0^+}\int_{-1}^{1}\frac{yf(x)}{x^2+y^2}dx=\pi f(0)$。
+   %（中国科学院，2003） 
+  \end{exercise}
+
+  \begin{solution}
+     因为$\forall\delta>0$, 
 $$\lim_{y\rightarrow0+}\int_{-1}^{-\delta}\frac{yf(x)}{x^2+y^2}\mathrm{d}x=\int_{-1}^{-\delta}\lim_{y\rightarrow0+}\frac{yf(x)}{x^2+y^2}\mathrm{d}x=0,$$
 $$\lim_{y\rightarrow0+}\int^{1}_{\delta}\frac{yf(x)}{x^2+y^2}\mathrm{d}x=\int^{1}_{\delta}\lim_{y\rightarrow0+}\frac{yf(x)}{x^2+y^2}\mathrm{d}x=0,$$
 从而
@@ -1264,13 +1306,13 @@ $$\lim_{y\rightarrow0+}\int_{-1}^{1}\frac{yf(x)}{x^2+y^2}\mathrm{d}x=\lim_{y\rig
 \end{align*}
 同理$$\lim_{y\rightarrow0+}\int_{-\delta}^{\delta}\frac{yf(x)}{x^2+y^2}\mathrm{d}x>(f(0)-\varepsilon)\pi.$$
 于是由$\varepsilon$的任意性，可得所求结果。 
-  \end{exercise}
+  \end{solution}
 
   \begin{exercise}
-  \hfill\\
-   设$0<r<1,x\in R$，求证：$\displaystyle\frac{1-r^2}{1-2r\cos x+r^2}=1+2\sum_{n=1}^{\infty}r^n\cos nx$; 
-  
+   设$0<r<1,x\in R$，求证：$\displaystyle\frac{1-r^2}{1-2r\cos x+r^2}=1+2\sum_{n=1}^{\infty}r^n\cos nx$;
+  \end{exercise}
 
+  \begin{solution}
 \begin{align*}
 \frac{1-r^2}{1-2r\cos x+r^2}&=-1+\frac{2-2r\cos x}{1-2r\cos x+r^2}\\
 &=-1+\frac{2-2r\cos x}{(1-r\cos x)^2+r^2\sin^2x}\\
@@ -1280,18 +1322,22 @@ $$\lim_{y\rightarrow0+}\int_{-1}^{1}\frac{yf(x)}{x^2+y^2}\mathrm{d}x=\lim_{y\rig
 &=-1+\sum_{n=0}^{\infty}(re^{ix})^n+\sum_{n=0}^{\infty}(re^{-ix})^n\\
 &=-1+\sum_{n=0}^{\infty}r^n(e^{inx}+e^{-inx})\\
 &=-1+2\sum_{n=0}^{\infty}r^n\cos nx\\
-&=1+2\sum_{n=1}^{\infty}r^n\cos nx.\\
+&=1+2\sum_{n=1}^{\infty}r^n\cos nx.
 \end{align*}
+  \end{solution}
 
-  \end{exercise}
-\begin{exercise}
-\hfill\\
-  设二元函数$f(x,y)$为$[a,b]\times[c,+\infty)$上的连续非负函数，$I(x)=\int_c^{+\infty}f(x,y)dy$在$[a,b]$上连续。证明：$I(x)$在$[a,b]$上一致连续。（南京师范大学，2004,2008）
+  \begin{exercise}
+  设二元函数$f(x,y)$为$[a,b]\times[c,+\infty)$上的连续非负函数，$I(x)=\int_c^{+\infty}f(x,y)dy$在$[a,b]$上连续。证明：$I(x)$在$[a,b]$上一致连续。
+  %（南京师范大学，2004,2008）
+\end{exercise}
 
-设$x_0\in[a,b]$，由于$\int_c^{+\infty}f(x_0,y)\mathrm{d}y$收敛，因此对任意$\varepsilon>0$，存在$M_{x_0}>c$，对任意$M>M_{x_0}$，有$\int_M^{+\infty}f(x_0,y)\mathrm{d}y<\frac{\varepsilon}{4}.$
+\begin{solution}
+  设$x_0\in[a,b]$，由于$\int_c^{+\infty}f(x_0,y)\mathrm{d}y$收敛，因此对任意$\varepsilon>0$，存在$M_{x_0}>c$，对任意$M>M_{x_0}$，有$\int_M^{+\infty}f(x_0,y)\mathrm{d}y<\frac{\varepsilon}{4}.$
 
 $f(x,y)$在$[a,b]\times[c,M]$上一致连续，从而存在$\delta>0,$对任意$x\in(x_0-\delta_1,x_0+\delta_1)\cap[a,b]$，有$$|f(x_0,y)-f(x,y)|<\frac{\varepsilon}{4(M_{x_0}-c)}.$$
-$I(x)=\int_c^{\infty}f(x,y)\mathrm{d}y$在$[a,b]$上一致连续，对上述$\varepsilon>0$，存在$\delta_2>0$，对任意$x\in(x_0-\delta_2,x_0+\delta_2)\cap[a,b]$，有
+$I(x)=\int_c^{\infty}f(x,y)\mathrm{d}y$在$[a,b]$上连续，
+对上述$\varepsilon>0$，
+存在$\delta_2>0$，对任意$x\in(x_0-\delta_2,x_0+\delta_2)\cap[a,b]$，有
 $$|I(x)-I(x_0)|=|\int_c^{\infty}f(x,y)\mathrm{d}y-\int_c^{\infty}f(x_0,y)\mathrm{d}y|<\frac{\varepsilon}{2}.$$
 取$\delta=\min\{\delta_1,\delta_2\}$，对任意$x_0\in[a,b]$，$x\in(x_0-\delta,x_0+\delta)\cap[a,b]$，有
 \begin{align*}
@@ -1300,16 +1346,24 @@ $$|I(x)-I(x_0)|=|\int_c^{\infty}f(x,y)\mathrm{d}y-\int_c^{\infty}f(x_0,y)\mathrm
 &+\int_c^M[f(x_0,y)-f(x,y)]\mathrm{d}y+\int_M^{\infty}f(x_0,y)\mathrm{d}y|\\
 &<|\int_c^{\infty}f(x,y)\mathrm{d}y-\int_c^{\infty}f(x_0,y)\mathrm{d}y|\\
 &+|\int_c^M[f(x_0,y)-f(x,y)\mathrm{d}y|+|\int_M^{\infty}f(x_0,y)\mathrm{d}y|\\
-&<\frac{\varepsilon}{2}+(M-c)\frac{\varepsilon}{4(M_{x_0}-c)}+\frac{\varepsilon}{4}<\varepsilon.\\
+&<\frac{\varepsilon}{2}+(M-c)\frac{\varepsilon}{4(M_{x_0}-c)}+\frac{\varepsilon}{4}<\varepsilon.
 \end{align*}
-从而得到$[a,b]$的一个开覆盖$\{(x_0-\delta,x_0+\delta)|x\in[a,b]\}$，有有限开覆盖定理，存在其中有限个开区间$(x_i-\delta,x_i+\delta),i=1,2,\cdots,n$覆盖$[a,b]$。不妨令$M'=\max\{M_{x_1},M_{x_2},\cdots,M_{x_n}\}$，则对任意的$M>M'$，有$\int_M^{\infty}f(x,y)\mathrm{d}y<\frac{\varepsilon}{4}$。因此$I(x)$在$[a,b]$上一致收敛。
-\end{exercise}
+从而得到$[a,b]$的一个开覆盖$\{(x_0-\delta,x_0+\delta)|x\in[a,b]\}$，
+有有限开覆盖定理，
+存在其中有限个开区间$(x_i-\delta,x_i+\delta),i=1,2,\cdots,n$覆盖$[a,b]$。
+不妨令$M'=\max\{M_{x_1},M_{x_2},\cdots,M_{x_n}\}$，则对任意的$M>M'$，
+有$\int_M^{\infty}f(x,y)\mathrm{d}y<\frac{\varepsilon}{4}$。
+因此$I(x)$在$[a,b]$上一致收敛。
+\end{solution}
 
 \section{傅里叶级数}
 
 \begin{exercise}
-  设$\psi(x)$在$[0,+\infty)$上连续且单调，$$\displaystyle\lim_{x\rightarrow+\infty}\psi(x)=0$$，证明：$$\displaystyle\lim_{p\rightarrow+\infty}\int_0^{+\infty}\psi(x)\sin pxdx=0.$$  
-  
+  设$\psi(x)$在$[0,+\infty)$上连续且单调，$$\displaystyle\lim_{x\rightarrow+\infty}\psi(x)=0.$$
+  证明：$$\displaystyle\lim_{p\rightarrow+\infty}\int_0^{+\infty}\psi(x)\sin pxdx=0.$$  
+\end{exercise}
+
+\begin{solution}
  因为$\lim_{x\rightarrow+\infty}\phi(x)=0$，所以存在$N>0$，使得$x\geq N$，$|\phi(x)|<1$。利用积分第二中值定理可得
 \begin{align*}
 |\int_N^A\phi(x)\sin px\mathrm{d}x|&=|\phi(N)\int_N^{\xi}\sin px\mathrm{d}x+\phi(A)\int_{\xi}^A\sin px\mathrm{d}x|\\
@@ -1321,12 +1375,15 @@ $$\lim_{p\rightarrow+\infty}\int_N^{+\infty}\phi(x)\sin px\mathrm{d}x=0.$$
 而由Riemann引理
 $$\lim_{p\rightarrow+\infty}\int_0^N\phi(x)\sin px\mathrm{d}x=0.$$
 这就得到了我们所要求的结果。 
-  \end{exercise}
+\end{solution}
 
-  \begin{exercise}
-  \hfill\\
- 三角级数$\displaystyle\frac{a_0}2+\sum_{n=1}^{\infty}(a_n\cos x+b_n\sin nx)$是某个在$[-\pi,\pi]$上可积且绝对可积函数的Fourier级数的必要条件是$\displaystyle\sum_{n=1}^{\infty}\frac{b_n}n$收敛。  
-  
+\begin{exercise}
+ 三角级数$\frac{a_0}2+\sum_{n=1}^{\infty}(a_n\cos x+b_n\sin nx)$
+ 是某个在$[-\pi,\pi]$上可积且绝对可积函数的Fourier级数的必要条件是
+ $\sum_{n=1}^{\infty}\frac{b_n}n$收敛。  
+\end{exercise}
+
+\begin{solution}
   设$f(x)\sim\frac{a_0}{2}+\sum_{n=1}^{\infty}(a_n\cos x+b_n\sin x)$。
   令$F(x)=\int_c^x(f(t)-\frac{a_0}{2})\mathrm{d}t.$（仅考虑$f(x)$只有有限个间断点的情况）
   $F(x)$是周期为$2\pi$的连续函数，在$f(x)$的连续点，成立$F'(x)=f(x)-\frac{a_0}{2}$。在$f(x)$的第一类间断点，$F(x)$的两个单侧导数$F'_{\pm}(x)=f(x\pm)-\frac{a_0}{2}$都存在。由Dini-Lipschitz判别法, $F(x)$可展开为收敛的Fourier级数$$F(x)=\frac{A_0}{2}+\sum_{n=1}^{\infty}(A_n\cos nx+B_n\sin nx).$$
@@ -1347,8 +1404,7 @@ $$\lim_{p\rightarrow+\infty}\int_0^N\phi(x)\sin px\mathrm{d}x=0.$$
   &=\sum_{n=1}^{\infty}\int_c^x(a_n\cos nt+b_n\sin nt)dt.\\
   \end{align*}
   在此，令$x=0$，得到$F(0)=\frac{A_0}{2}-\sum_{n=1}^{\infty}\frac{b_n}{n}$，说明了级数$\sum_{n=1}^{\infty}\frac{b_n}{n}$收敛。  
-  \end{exercise}
-
+\end{solution}
 
 \begin{definition}[Natural Numbers]\index{Number System! Natural Numbers}
 
@@ -1359,11 +1415,9 @@ $$\lim_{p\rightarrow+\infty}\int_0^N\phi(x)\sin px\mathrm{d}x=0.$$
 \end{definition}
 
 \begin{remark}
-It is not uncommon for zero to be excluded from the natural numbers.  In fact, some exclude zero from the natural numbers and then describe the set of natural numbers that include zero the whole numbers. \\
-
-\[
+It is not uncommon for zero to be excluded from the natural numbers.  In fact, some exclude zero from the natural numbers and then describe the set of natural numbers that include zero the whole numbers. 
+\begin{equation*}
 \mathbb{W}=\set{0, 1, 2, 3, \ldots}
-\]
-
+\end{equation*}
 For the purposes of these notes, zero will be included within the set of natural numbers.
 \end{remark}
