@@ -8,7 +8,6 @@
 \section{集合与映射}
 
 \begin{example}
-  \label{20151012-190708}
 设$f(x)$对任意的$x\in \mathbb{R}$有$f(x)=f(x^2)$, 且$f(x)$在$x=0$和$x=1$ 处连续. 证明$f(x)$在$\mathbb{R}$上为常数. (上海交通大学, 2003)
 \end{example}
 
@@ -30,29 +29,31 @@ $|f(x)-f(0)| + |f(1+x)-f(1)| < \varepsilon$.
 \end{proof}
 
 \section{数列极限}
-  \begin{example}
-  \hfill\\
-   Cauchy收敛准则，叙述并证明。（浙江大学，2003）
 
+  \begin{example}
+   Cauchy收敛准则，叙述并证明。（浙江大学，2003）
+  \end{example}
+
+  \begin{solution}
   Cauchy收敛准则：数列$\{a_n\}$收敛的充分必要条件是$$\forall\varepsilon>0,\exists N,\forall m,n>N,|a_m-a_n|<\varepsilon.$$
   
   必要性：数列$\{a_n\}$收敛，则$\exists a$使得$\forall\varepsilon>0,\exists N,\forall n>N$，有
   $|a_n-a|<\frac{\varepsilon}2$，从而$\forall m,n>N,|a_m-a_n|\leq|a_m-a|+|a_n-a|<\varepsilon.$
   
-  充分性：若$\forall\varepsilon>0,\exists N,\forall m,n>N,|a_m-a_n|<\varepsilon.$则当$\varepsilon=1$时，$\exists N_1$，固定$m+N_1+1,\forall n>N_1,|a_n-a_m|<\varepsilon$。从而数列
+  充分性：若$\forall\varepsilon>0,\exists N,\forall m,n>N,|a_m-a_n|<\varepsilon.$则当$\varepsilon=1$时，$\exists N_1$，固定$m+N_1+1,\forall n>N_1,|a_n-a_m|<\varepsilon$。
+  从而数列
   $\{a_n\}$必有界，由抽子列定理，存在子列$\{a_{n_j}\}$收敛到$a$。
-  
   于是$\forall\varepsilon>0,\exists N_2,\forall n_j>N_2,|a_{n_j}-a|<\varepsilon.$
-  
-  $|a_n-a|=|a_n-a_{n_j}+a_{n_j}-a|\leq|a_n-a_{n_j}|+|a_{n_j}-a|\leq\varepsilon+\varepsilon=2\varepsilon.$
+  $|a_n-a|=|a_n-a_{n_j}+a_{n_j}-a|\leq|a_n-a_{n_j}|+|a_{n_j}-a|\leq\varepsilon+\varepsilon=2\varepsilon$.
   故$\{a_n\}$收敛。
+\end{solution}
 
-\end{example}
 
 \begin{example}
  任意给定$x\in R$，令$x_1=\cos x,x_{n+1}=\cos x_n$，证明数列收敛。
- 
+\end{example}
 
+\begin{solution}
   $\because x_1\in[-1,1],\therefore x_2\in[-1,1]$归纳易知，$\forall n\in N^+,0\leq|x_n|\leq1$又
   \[
   \begin{aligned}
@@ -65,22 +66,20 @@ $|f(x)-f(0)| + |f(1+x)-f(1)| < \varepsilon$.
   \end{aligned}
 \]
 由拉格朗日中值定理可证：$|\sin\frac{x_n}2-\sin\frac{x_{n-1}}2|\leq\frac12|x_n-x_{n-1}|$。于是$|x_{n+1}-x_n|<\delta|x_n-x_{n-1}|$其中$\delta\in(0,1)$。易推：$|x_{n+1}-x_n|<\delta^n|x_1-x|$于是对$0<n<m$有
-\[
-\begin{aligned}
+\begin{align*}
 |x_m-x_n|&=|x_m-x_{m-1}+x_{m-1}\cdots+x_{n+1}-x_n|\\
 &\leq\sum_{i=n+1}^m|x_i-x_{i-1}|\\
 &<|x_1-x|\sum_{i=n+1}^m\delta^{i-1}\\
-&=|x_1-x|\frac{\delta^n(1-\delta^{m-n}}{1-\delta}\\
-&<|x_1-x|\frac{\delta^n}{1-\delta}\rightarrow0,n\rightarrow\infty.
-\end{aligned}
-\]
+&<|x_1-x|\frac{\delta^n}{1-\delta}\to0,\quad n\to\infty.
+\end{align*}
 即$\forall\epsilon>0,\exists N\in N^+,\forall m,n>N,\verb+有+|x_m-x_n|<\epsilon$，由Cauchy收敛准则知：$\{x_n\}$收敛。
+\end{solution}
 
-\end{example}
 \begin{example}
-\hfill\\
 设$\phi(x)$与$f(x)$是区间$[a,b]$上的正值连续函数，求证：$$\displaystyle\lim_{n\rightarrow\infty}\frac{\int_a^b\phi(x)f^{n+1}(x)dx}{\int_a^b\phi(x)f^n(x)dx}=\max_{a\leq x\leq b}f(x).$$
+\end{example}
 
+\begin{solution}
 设$I_n=\int_a^b\phi(x)f^n(x)\mathrm{d}x$。应用Schwarz不等式，得
 $$I_n^2\leq\int_a^b\phi(x)f^{n-1}(x)\mathrm{d}x\int_a^b\phi(x)f^{n+1}(x)\mathrm{d}x=I_{n-1}I_{n+1}.$$
 故$$\frac{I_{n+1}}{I_n}\geq\frac{I_n}{I_{n-1}}.$$
@@ -90,10 +89,9 @@ $$\frac{I_{n+1}}{I_n}\leq\max_{a\leq x\leq b}f(x)\frac{I_n}{I_n}=\max_{a\leq x\l
 $$\lim_{n\rightarrow\infty}\frac{I_{n+1}}{I_n}=\lim_{n\rightarrow\infty}\sqrt[n]{I_n}.$$
 而$$\lim_{n\rightarrow\infty}\sqrt[n]{I_n}=\max_{a\leq x\leq b}f(x).$$
 这就完成了证明。
-\end{example}
+\end{solution}
 
 \begin{example}
-\hfill\\
 试证$\sum1/p$发散，其中$p$遍历一切质数。
 
 提示：给定$N$，设$p_1,p_2,\cdots,p_k$是至少能整除一个不大于$N$的正整数。那么$$\sum_{n=1}^N\frac{1}{n}\leq\prod_{i=1}^k(1+\frac{1}{p_i}+\frac{1}{p_i^2}+\cdots)=\prod^k(1-\frac{1}{p_i})^{-1}\leq\exp\sum_{i=1}^k\frac{2}{p_i}.$$
@@ -102,7 +100,7 @@ $$\lim_{N\to\infty}\exp\sum_{i=1}^{N(k)}\frac{2}{p_i}\geq\lim_{n\to\infty}\sum_{
 于是$\sum\frac{2}{p_i}\to\infty$，$k\to\infty$。得证。
 \end{example}
 
- \section{函数极限与连续函数}
+\section{函数极限与连续函数}
 
 \begin{theorem}[Stone-Weierstrass theorem]
   Suppose $f\in C([0,1])$. Then there exists a sequence $\{P_n\}$ of polynomials such that 
@@ -168,24 +166,29 @@ $$\lim_{N\to\infty}\exp\sum_{i=1}^{N(k)}\frac{2}{p_i}\geq\lim_{n\to\infty}\sum_{
   故$m(x)$在$[a,b]$上单调递减，$\forall x_1,x_2\in[a,b],|x_1-x_2|<2\delta$，因为$f(x)$在$[a,b]$上一致连续，故$\forall\varepsilon>0,\exists\delta<0,|f(x_1)-f(x_2)|<\varepsilon.$ 从而$\forall x\in[a,b]$，
   \begin{align*}
   m(x+)&=\lim_{\delta\rightarrow0+}m(x+\delta)\\
-  &=\lim_{\delta\rightarrow0+}\frac{m(x)+\inf_{x\leq t\leq x+\delta}f(t)-|m(x)-\inf_{x\leq t\leq x+\delta}f(\delta)|}{2}\\
-  &=\frac{m(x)+f(x)-|f(x)-m(x)|}{2}\\
-  &=m(x)\\
+  &=\lim_{\delta\rightarrow0+}\frac{1}{2}(m(x)+\inf_{x\leq t\leq x+\delta}f(t)-|m(x)-\inf_{x\leq t\leq x+\delta}f(\delta)|)\\
+  &=\frac{m(x)+f(x)-|f(x)-m(x)|}{2} 
+  =m(x)
   \end{align*}
-  对$m(x-)$，若$m(x)<m(x-\delta)$，则$f(\eta)=m(x)\leq m(x-\delta)\leq f(x-\delta),(\eta\in(x-\delta,x))$
+  对$m(x-)$，若$m(x)<m(x-\delta)$，
+  则$f(\eta)=m(x)\leq m(x-\delta)\leq f(x-\delta),(\eta\in(x-\delta,x))$
   因为$f(x)$在$[a,b]$上一致连续，故$\forall\varepsilon>0,\exists\delta>0,x_1,x_2\in[a,b],|x_1-x_2|<\delta,|f(x_1)-f(x_2)|<\varepsilon$。从而对上述$\varepsilon>0$，有上述$\delta>0$，$$|m(x)-m(x-\delta)|\leq|f(\eta)-f(x-\delta)|<\varepsilon, \eta\in(x-\delta,x).$$
   由此$m(x)$在$x$处左连续，右连续。故$m(x)$在$[a,b]$上连续。
   \end{proof}
   
-  \begin{example}
+\begin{example}
   如果$f$是$(0,\infty)$上的正值函数，合于
   \begin{enumerate}
   \item[a] $f(x+1)=xf(x)$;
   \item[b] $f(1)=1$;
   \item[c] $\log f$是凸的;
   \end{enumerate}
-  那么$f(x)=\Gamma(x)$。其中$$\Gamma(x)=\int_0^{\infty}t^{x-1}e^{-t}\mathrm{d}t.$$
+  那么$f(x)=\Gamma(x)$，其中
+  \begin{equation*}
+    \Gamma(x)=\int_0^{\infty}t^{x-1}e^{-t}\mathrm{d}t.
+  \end{equation*}
 \end{example} 
+
 \begin{proof}
   因为$\Gamma$函数满足以上三点，那么只需证明$x>0$时$f(x)$是由以上三点决定的函数就行了。根据$a$只需考虑$x\in(0,1).$
   
@@ -197,9 +200,15 @@ $$\lim_{N\to\infty}\exp\sum_{i=1}^{N(k)}\frac{2}{p_i}\geq\lim_{n\to\infty}\sum_{
  
 \begin{example}
 定义区间$(a,b)$上的实连续函数满足：
-$$\forall x,y \in(a,b),f(\frac{x+y}{2})\leq\frac{1}{2}(f(x)+f(y)).$$
-求证：$f$是凸函数。其中，所谓凸函数是指
-$$f(\lambda x+(1-\lambda)y)\leq\lambda f(x)+(1-\lambda)f(y),\forall x,y\in(a,b),\lambda\in(0,1).$$
+\begin{equation*}
+\forall x,y \in(a,b),f\Bigl(\frac{x+y}{2}\Bigr)\leq\frac{f(x)+f(y)}{2}.
+\end{equation*}
+求证：$f$是凸函数。
+其中，所谓凸函数是指
+\begin{equation*}
+f(\lambda x+(1-\lambda)y)\leq\lambda f(x)+(1-\lambda)f(y),
+\forall x,y\in(a,b),\lambda\in(0,1).
+\end{equation*}
 \end{example}
 
 \begin{proof}
@@ -210,20 +219,24 @@ $$f(\lambda x+(1-\lambda)y)\leq\lambda f(x)+(1-\lambda)f(y),\forall x,y\in(a,b),
 我们想用上述引理说明，当$\lambda\in S$时，凸函数定义中的不等式成立。又因为$S$在$(0,1)$中稠密，以及$f$的连续性，可以说明$\forall\lambda\in(0,1)$，凸函数定义中的不等式成立。从而证毕。
 
 现在我们只需说明，若$p\in S$，则$\frac{p}{1+p},\frac{1}{1+p}\in S$即可。
-
 \begin{align*}
-f(\frac{p}{1+p}x+\frac{1}{p+1}y)&=f(p(\frac{1}{1+p}x+\frac{p}{1+p}y)+(1-p)y)\\
-&\leq pf(\frac{1}{1+p}x+\frac{p}{1+p}y)+(1-p)f(y)\\
-&\leq p^2f(\frac{p}{1+p}x+\frac{1}{p+1}y)+p(1-p)f(x)+(1-p)f(y)\\
+f\Bigl(\frac{px}{1+p}+\frac{y}{p+1}\Bigr)
+&= f\biggl(p\Bigl(\frac{x}{1+p} + \frac{py}{p+1}\Bigr) + (1-p)y\biggr)\\
+&\leq pf\biggl(\frac{x}{1+p}+\frac{py}{p+1}\biggr)+(1-p)f(y)\\
+&\leq p^2f\Bigl(\frac{px}{1+p}+\frac{y}{p+1}\Bigr)+p(1-p)f(x)+(1-p)f(y)
 \end{align*}
 于是
-$$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
-即$\frac{p}{1+p},\frac{1}{1+p}\in S.$证毕。
+\begin{equation*}
+  f\Bigl(\frac{px}{1+p}+\frac{y}{p+1}\Bigr) 
+  \leq \frac{pf(x)}{1+p} + \frac{f(y)}{p+1},
+\end{equation*}
+即$\frac{p}{1+p},\frac{1}{1+p}\in S$. 
+证毕。
 \end{proof}
  
- 
 \begin{proposition}
-	Let $I\in\mathbb{R}$ be an open interval. Suppose that $f: I\mapsto\mathbb{R}$ is a convex function,
+	Let $I\in\mathbb{R}$ be an open interval. 
+  Suppose that $f: I\mapsto\mathbb{R}$ is a convex function,
 	i.e.,
 	\[
 		f(\lambda a + (1-\lambda)b) \leq \lambda f(a) + (1-\lambda)f(b),\quad a,b\in I, \quad \lambda\in(0,1).
@@ -359,15 +372,28 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   \begin{proof}
   记$F(x)=f(a)g(x)+g(b)f(x)-f(x)g(x)$，
   则$F(x)$在$[a,b]$上连续，在$(a,b)$内可导，又$F(a)=f(a)g(b)=F(b)$,从而由Lagrange中值定理：
-  $\exists\xi\in(a,b),$$$\frac{F(a)-F(b)}{a-b}=F'(\xi)=0$$,即$$f(a)g'(\xi)+g(b)f'(\xi)-f'(\xi)g(\xi)-f(\xi)g'(\xi)=0.$$
-  
-  即$\frac{f(a)-f(\xi)}{g(\xi)-g(b)}=\frac{f'(\xi)}{g'(\xi)}$。
-  
-  考虑到$g'(x)\neq 0,$从而$g(\xi)\neq g(b)$，因为不然，若$g(\xi)=g(b),\xi\in(a,b)$，由微分中值定理，$\exists\eta\in(\xi,b),g'(\eta)=0$与$g'(x)\neq0$矛盾，故上式是有意义的。
+  $\exists\xi\in(a,b)$,
+  \begin{equation*}
+    \frac{F(a)-F(b)}{a-b}=F'(\xi)=0,
+  \end{equation*}
+  即
+  \begin{equation*}
+    f(a)g'(\xi)+g(b)f'(\xi)-f'(\xi)g(\xi)-f(\xi)g'(\xi)=0,
+  \end{equation*}
+  即
+  \begin{equation*}
+    \frac{f(a)-f(\xi)}{g(\xi)-g(b)}=\frac{f'(\xi)}{g'(\xi)}.
+  \end{equation*}
+  考虑到$g'(x)\neq 0$, 
+  从而$g(\xi)\neq g(b)$，
+  因为不然，若$g(\xi)=g(b),\xi\in(a,b)$，
+  由微分中值定理，$\exists\eta\in(\xi,b),g'(\eta)=0$与$g'(x)\neq0$矛盾，
+  故上式是有意义的。
   \end{proof}
   
   \begin{example}
-   设$f(x)$在$(a,b)$上可微，$f'(x)$在$(a,b)$上单调。求证：$f'(x)$在$(a,b)$上连续。
+   设$f(x)$在$(a,b)$上可微，$f'(x)$在$(a,b)$上单调。
+   求证：$f'(x)$在$(a,b)$上连续。
    %（北京航空航天大学，2004）
   \end{example}
   
@@ -384,32 +410,37 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   \end{exercise}
   
   \begin{proof}
-  设$$F(x)=
-  \begin{cases}
-  \frac{f(x)-2f(\frac{x+a}{2})+f(a)}{(x-a)^2},&x>a,\\
-  \frac{f''(a)}{4},&x=a,\\
-  \end{cases}
-  $$
+  设
+  \begin{equation*}
+    F(x)=
+    \begin{cases}
+    \frac{f(x)-2f(\frac{x+a}{2})+f(a)}{(x-a)^2},&x>a,\\
+    \frac{f''(a)}{4},&x=a,
+    \end{cases}
+  \end{equation*}
   则
   \begin{align*}
   F(a+)&=\lim_{x\rightarrow a+}\frac{f(x)-2f(\frac{x+a}{2})+f(a)}{(x-a)^2}\\
-  &=\lim_{x\rightarrow a+}\frac{f'(x)-f'(\frac{x+a}{2}}{2(x-a)}\\
+  &=\lim_{x\rightarrow a+}\frac{f'(x)-f'(\frac{x+a}{2})}{2(x-a)}\\
   &=\lim_{x\rightarrow a+}\frac{f''(x)}{2}-\frac{f''(\frac{x+a}{2})}{4}\\
   &=\frac{f''(a)}{4}\\
-  &=F(a),\\
+  &=F(a),
   \end{align*}
   从而$F(x)$在$[a,b]$上连续。
-  
   下面证明$F(x)$在$[a,b]$上恒正。
  因为
  \begin{align*}
  &f(x)-2f(\frac{x+a}{2})+f(a)\\
  &=f'(\xi)(x-\frac{x+a}{2})-f'(\eta)(\frac{x+a}{2}-a)\\
  &=[f'(\xi)-f'(\eta)]\frac{x-a}{2}\\
- &=\frac{f''(\phi)}2(x-a)(\xi-\eta)\quad(x>a),\\
+ &=\frac{f''(\phi)}2(x-a)(\xi-\eta)\quad(x>a),
  \end{align*}
- 其中$\xi\in(\frac{x+a}{2},x)$，$\eta\in(a,\frac{x+a}{2})$，$\phi\in(\eta,\xi)$，又$f''(x)$在$[a,b]$上恒正。
- 故$F(x)$在$[a,b]$上恒正。$F(x)$在$[a,b]$上连续故闭存在最大值$\frac{M}{4}$和最小值$\frac{m}{4}$。这就完成了证明。  
+ 其中$\xi\in(\frac{x+a}{2},x)$，
+ $\eta\in(a,\frac{x+a}{2})$，$\phi\in(\eta,\xi)$，
+ 又$f''(x)$在$[a,b]$上恒正。
+ 故$F(x)$在$[a,b]$上恒正。
+ $F(x)$在$[a,b]$上连续故闭存在最大值$\frac{M}{4}$和最小值$\frac{m}{4}$。
+ 这就完成了证明。  
   \end{proof}  
 
   \section{微分中值定理及其应用}
@@ -423,22 +454,25 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   \begin{proof}
   反设$\forall\xi\in(0,1),f'(\xi)+\frac{f(\xi)}{\xi}=\frac{\xi f'(\xi)+f(\xi)}{\xi}=0$均不成立。
   
-  从而$\xi f'(\xi)+f(\xi)$恒正或恒负（Darboux引理，导函数介值性）。不妨设
-  $$\forall\xi\in(0,1),\xi f'(\xi)+f(\xi)>0.$$
-  从而$f(x)x$在$(0,1)$上严格单调递增。从而
-  \[
-  \begin{aligned}
-  f(1)&=2\int_0^{1/2}xf(x)dx\\
-  &=\int_0^{1/2}xf(x)dx+\int_0^{1/2}xf(x)dx\\
-  &<\int_0^{1/2}xf(x)dx+\int_{1/2}^1xf(x)dx\\
-  &=\int_0^1xf(x)dx\\
-  &<\int_0^1f(1)dx\\
-  &=f(1).
-  \end{aligned}
-  \]
+  从而$\xi f'(\xi)+f(\xi)$恒正或恒负（Darboux引理，导函数介值性）。
+  不妨设
+  \begin{equation*}
+    \forall\xi\in(0,1),\xi f'(\xi)+f(\xi)>0.
+  \end{equation*}
+  从而$f(x)x$在$(0,1)$上严格单调递增。
+  从而
+  \begin{align*}
+  f(1) 
+  &=2\int_0^{1/2}xf(x)\dd x\\
+  &=\int_0^{1/2}xf(x)\dd x 
+  +\int_0^{1/2}xf(x)\dd x\\
+  &<\int_0^{1/2}xf(x)\dd x 
+  +\int_{1/2}^1xf(x)\dd x\\
+  &=\int_0^1xf(x)\dd x
+  <\int_0^1f(1)\dd x = f(1).
+  \end{align*}
   矛盾。
-  
-  故$\exists\xi\xi(0,1),f'(\xi)\xi+f(\xi)=0$。
+  故$\exists\xi(0,1),f'(\xi)\xi+f(\xi)=0$。
   \end{proof}
   
   \begin{example}
@@ -447,20 +481,29 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   \end{example}
   
   \begin{proof}
-  考虑$f(x)=(1+x)^r-rx-1,(x>0,r>1)$,
-  $$f'(x)=r(1+x)^{r-1}-r>r(1+x)^0-r=0.$$
-  故$f(x)>f(0)=0,$，得$(1+x)^r>rx+1.$
-  $$(1+\frac{x}{y})^{\frac1x}>\frac1y+1>\frac1y,x=\frac xy,r=\frac1x.$$
-  $$\Longrightarrow 1+\frac xy>\frac{1}{y^x}$$
-  $$\Longrightarrow y^x>\frac{y}{x+y}$$
-  同理$x^y>\frac{x}{x+y},$
-  
-  故$x^y+y^x>1,x,y\in(0,1).$ 
+  由$(1+\xi)^r>r\xi+1$ 对任意$r>0$ 和$\xi > 0$恒成立，可得
+  \begin{equation*}
+    (1+\frac{x}{y})^{\frac1x}>\frac1y+1>\frac1y
+  \end{equation*}
+  对任意$x>0$ 和 $y>0$ 恒成立。
+  于是
+  \begin{equation*}
+    1+\frac xy>\frac{1}{y^x},
+  \end{equation*}
+  也即
+  \begin{equation*}
+    y^x>\frac{y}{x+y}
+  \end{equation*}
+  对任意$x>0$ 和 $y>0$ 恒成立.
+  同理$x^y>\frac{x}{x+y}$ 对任意$x>0$ 和 $y>0$ 恒成立.  
   \end{proof}
   
   \begin{example}
    若$-\infty<a<b<c<+\infty,f(x)$在$[a,c]$上连续，且$f(x)$在$(a,c)$内二阶可导，
-   求证：存在$\xi\in(a,c)$，使得$$\frac{f(a)}{(a-b)(a-c)}+\frac{f(b)}{(b-c)(b-a)}+\frac{f(c)}{(c-a)(c-b)}=\frac12f^{''}(\xi)$$。
+   求证：存在$\xi\in(a,c)$，使得
+   \begin{equation*}
+    \frac{f(a)}{(a-b)(a-c)}+\frac{f(b)}{(b-c)(b-a)}+\frac{f(c)}{(c-a)(c-b)}=\frac12f{''}(\xi).
+   \end{equation*}
    %（四川大学，2005）
 \end{example}
 
@@ -482,7 +525,13 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   \end{proof}
   
   \begin{example}
-   设$f(x)$在$[0,1]$上连续可微，且$f'(0)\neq0$，若对$\forall x\in(0,1),\theta(x)$满足$\int_0^xf(t)dt=f(\theta(x))x$，求证：$\displaystyle \lim_{x\rightarrow 0^+}\frac{\theta(x)}x=\frac12$.
+   设$f(x)$在$[0,1]$上连续可微，
+   且$f'(0)\neq0$，
+   若对$\forall x\in(0,1),\theta(x)$满足$\int_0^xf(t)dt=f(\theta(x))x$. 
+   求证：
+   \begin{equation*}
+    \lim_{x\rightarrow 0^+}\frac{\theta(x)}x=\frac12.
+   \end{equation*}
   \end{example}
   
   \begin{proof}
@@ -494,11 +543,17 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   由$F(0)=0$，$F(x)=f(\theta(x))x=F'(\theta)x$联立得
   $$F'(0)x+\frac{1}{2}F''(0)x^2+o(x^2)=x(F'(0)+F''(0)\theta+o(\theta)),$$
   消去$F'(0)x$并同时除$F''(0)x^2$得：
-  $$\frac{1}{2}+o(1)=\frac{\theta}{x}+o\frac{\theta}{x}=\frac{\theta}{x}(1+o(1)),x\rightarrow0+.$$
+  \begin{equation*}
+    \frac{1}{2}+o(1)=\frac{\theta}{x}+o\frac{\theta}{x}=\frac{\theta}{x}(1+o(1)),x\rightarrow0+.
+  \end{equation*}
   即
-  $$\frac{\theta}{x}=\frac{\frac{1}{2}+o(1)}{1+o(1)},x\rightarrow0+.$$
+  \begin{equation*}
+    \frac{\theta}{x}=\frac{\frac{1}{2}+o(1)}{1+o(1)},x\rightarrow0+.
+  \end{equation*}
   即
-  $$\lim_{x\rightarrow0+}\frac{\theta}{x}=\frac{1}{2}.$$
+  \begin{equation*}
+    \lim_{x\rightarrow0+}\frac{\theta}{x}=\frac{1}{2}.
+  \end{equation*}
   \end{proof}
  
   
@@ -553,9 +608,12 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   \end{solution}
   
   \begin{example}
-  若$f(x)$在$(0,+\infty)$上可微，$\displaystyle\lim_{x\rightarrow+\infty}\frac{f(x)}x=0$，求证：$(0,+\infty)$内存在一个单调数列${\xi_n}$，使得$\displaystyle\lim_{n\rightarrow\infty}\xi_n=+\infty$且$\displaystyle\lim_{n\rightarrow\infty}f'(\xi_n)=0$。 （浙江师范大学，2005）
+  若$f(x)$在$(0,+\infty)$上可微，且$\lim_{x\rightarrow+\infty}\frac{f(x)}x=0$，
+  求证：$(0,+\infty)$内存在一个单调数列${\xi_n}$，使得$\lim_{n\rightarrow\infty}\xi_n=+\infty$且$\lim_{n\rightarrow\infty}f'(\xi_n)=0$。
+  % （浙江师范大学，2005）
+  \end{example}
   
-  
+  \begin{proof}
   $\lim_{x\rightarrow\infty}\frac{f(x)}{x}\Longrightarrow\forall\varepsilon>0,\exists N,\forall m,n>N$，有$$|\frac{f(m)}{m}-\frac{f(n)}{n}|<\frac{\varepsilon}{2},|\frac{f(n)}n|<\frac{\varepsilon}{2}.$$
   
   于是取$m=2n$，有$|\frac{f(2n)-f(n)}{n}|=|\frac{f(2n)}{2n}-\frac{f(n)}{n}+\frac{f(2n)}{2n}|<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.$
@@ -563,11 +621,15 @@ $$f(\frac{p}{1+p}x+\frac{1}{p+1}y)\leq \frac{p}{1+p}f(x)+\frac{1}{p+1}f(y),$$
   取$\{\xi_n\}$，满足$f'(\xi_n)=\frac{f(2^{n+1})-f(2^n)}{2^n},\xi_n\in(2^n,2^{n+1}).$
   
   显见$\xi_n\rightarrow\infty,n\rightarrow\infty.$对上述$\varepsilon>0,\exists N_1>\max\{\log_2N,1\}$时有$|f'(\xi_n)|<\varepsilon$，从而$f'(\xi_n)\rightarrow0,(n\rightarrow\infty)$。
-  \end{example}
-  \begin{example}
-  \hfill\\
-  设函数$f(x)$在$[a,b]$上连续且严格递增，证明下式成立$$\int_a^bf(x)dx=bf(b)-af(a)-\int_{f(a)}^{f(b)}f^{-1}(x)dx.$$（河海大学，2006）
+  \end{proof}
 
+  \begin{example}
+  设函数$f(x)$在$[a,b]$上连续且严格递增，
+  证明下式成立$$\int_a^bf(x)dx=bf(b)-af(a)-\int_{f(a)}^{f(b)}f^{-1}(x)dx.$$
+  %（河海大学，2006）
+  \end{example}
+
+  \begin{proof}
 对$a,b$中插入$n$个分点$$a=x_0<x_1<x_2<\cdots<x_{n-1}<x_n=b,$$
 从而对应$x=f^{-1}(y)$也有$n$个分点：
 $$f(a)=f(x_0)<f(x_1)<f(x_2)<\cdots<f(x_{n-1})<f(x_n)=f(b).$$
@@ -580,11 +642,14 @@ $$\Delta_n\rightarrow0,\max\{f(x_i)-f(x_{i-1}):i=1,2,\cdots,n\}\rightarrow0,n\ri
 &=\lim_{\Delta_n\rightarrow0}\sum_{i=1}^nf(x_i)x_i-f(x_{i-1})x_{i-1}\\
 &=f(b)b-f(a)a.\\
 \end{align*}
-\end{example}
+\end{proof}
+
 \begin{example}
-\hfill\\
-计算积分$\int_0^1\frac{\ln(1+x)}{1+x^2}dx$。（南京航空航天大学，2005）
-  
+计算积分$\int_0^1\frac{\ln(1+x)}{1+x^2}dx$。
+%（南京航空航天大学，2005）
+\end{example}
+
+\begin{proof}
   \begin{align*}
   \int_0^1\frac{\ln(1+x)}{1+x^2}dx&=\int_0^{\frac{\pi}{4}}\frac{\ln(1+\tan t)}{1+\tan^2t}d\tan t\\
   &=\int_0^{\frac{\pi}{4}}\ln(1+\tan t)dt\\
@@ -592,22 +657,28 @@ $$\Delta_n\rightarrow0,\max\{f(x_i)-f(x_{i-1}):i=1,2,\cdots,n\}\rightarrow0,n\ri
   &=\frac{\pi}{8}\ln2+\int_0^{\frac{\pi}{4}}\ln\cos(t-\frac{\pi}{4})-\int_0^{\frac{\pi}{4}}\ln\cos tdt\\
   &=\frac{\pi}{8}\ln2.\\
   \end{align*}
-\end{example}
+\end{proof}
+
 \begin{example}
-  \hfill\\
-   利用可积条件证明：函数$f(x)=\frac1x-[\frac1x],x\neq0;f(x)=0,x=0$在$[0,1]$上可积。（南京师范大学，2006）注：此题函数为分段函数，标准书写格式为大括号括起来书写。
-   
+   利用可积条件证明：函数$f(x)=\frac1x-[\frac1x],x\neq0;f(x)=0,x=0$在$[0,1]$上可积。
+   %（南京师范大学，2006）注：此题函数为分段函数，标准书写格式为大括号括起来书写。
+\end{example}
+
+\begin{proof}
      $0\leq f(x)\leq1$且$f(x)$在$[0,1]$上的不连续点为$$x=\frac{1}{2},\frac{1}{3},\cdots,\frac{1}{n},\cdots$$与$x=0$。$\forall\varepsilon>0$，取定$m>\frac{2}{\varepsilon}$，$f(x)$在区间$[\frac{1}{m},1]$上只有有限个不连续点，因此，$f(x)$在$[\frac{1}{m},1]$上可积，即存在$[\frac{1}{m},1]$的一个划分$P$，使得
   $$\sum_{i=1}^nw_i\Delta x_i<\frac{\varepsilon}{2},$$
   将$P$的分点和$0$合在一起，作为$[0,1]$的划分$P'$，则
   $$\sum_{i=1}^{n+1}w_i'\Delta x_i'=\sum_{i=1}^nw_i\Delta x_i+w_i'\Delta x_i'<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.$$
   因此，$f(x)$在$[0,1]$上可积。
-\end{example}
+\end{proof}
+
 \begin{example}
-\hfill\\
- 设$f(x)\in C^1[0,1]$，试证明：$$\displaystyle\lim_{n\rightarrow\infty}n[\int_0^1f(t)dt-\frac1n\sum_{k=1}^{n-1}f(\frac kn)]=\frac{f(1)-f(0)}2.$$（南京大学，2005）
- 
- 由泰勒公式可得
+ 设$f(x)\in C^1[0,1]$，试证明：$$\displaystyle\lim_{n\rightarrow\infty}n[\int_0^1f(t)dt-\frac1n\sum_{k=1}^{n-1}f(\frac kn)]=\frac{f(1)-f(0)}2.$$
+ （南京大学，2005）
+\end{example}
+
+\begin{proof}
+  由泰勒公式可得
 $$f(t)=f(\frac{k}{n})+f'(\xi_k)(t-\frac{k}{n}),$$
 其中$\xi_k$介于$t$和$\frac{k}{n}$之间，$k=0,1,2,\cdots,n-1$，则
 \begin{align*}
@@ -618,13 +689,14 @@ $$f(t)=f(\frac{k}{n})+f'(\xi_k)(t-\frac{k}{n}),$$
 \end{align*}
 由于$f(t)\in C^1[0,1]$，进一步可得
 $$f(1)-f(0)=\int_0^1f'(t)\mathrm{d}t=\lim_{n\rightarrow\infty}\sum_{k=0}^{n-1}\frac{1}{n}f'(\xi_k).$$
-
 这样就完成了证明。
-\end{example}
-\begin{example}
-\hfill\\
- 求$\displaystyle\lim_{n\rightarrow\infty}\sum_{k=1}^n\sin\frac k{n^2}$.
+\end{proof}
 
+\begin{example}
+ 求$\displaystyle\lim_{n\rightarrow\infty}\sum_{k=1}^n\sin\frac k{n^2}$.
+\end{example}
+
+\begin{proof}
   \begin{equation*}
   \begin{aligned}
   e^{\int_0^1\ln f(x)dx}&=\displaystyle e^{\lim_{n\rightarrow\infty}\frac1n\sum_{i=1}^n\ln f(\frac kn)}\\
@@ -635,11 +707,13 @@ $$f(1)-f(0)=\int_0^1f'(t)\mathrm{d}t=\lim_{n\rightarrow\infty}\sum_{k=0}^{n-1}\f
   \end{aligned}
   \end{equation*}
 %  $\displaystyle e^{\int_0^1\ln f(x)dx}=\displaystyle e^{\lim_{n\rightarrow\infty}\frac1n\sum_{i=1}^n\ln f(\frac kn)}=e^{\lim_{n\rightarrow\infty}[\ln(\prod_{i=1}^nf(\frac kn))]^{\frac1n}}=\lim_{n\rightarrow\infty}[\prod_{i=1}^nf(\frac kn)]^{\frac1n}\leq\lim_{n\rightarrow\infty}\frac1n\sum_{i=1}^nf(\frac kn)=\int_0^1f(x)dx$.
-\end{example}
+\end{proof}
+
 \begin{example}
-\hfill\\
  设$f(x)$在$[a,b]$上可积，求证：$$\displaystyle\lim_{p\rightarrow+\infty}\int_a^bf(x)\sin px\dd x=0,\lim_{p\rightarrow+\infty}\int_a^bf(x)\cos px\dd x=0.$$
- 
+\end{example}
+
+\begin{proof}
  对任意有界区间$[\alpha,\beta]$有$$|\int_{\alpha}^{\beta}\sin px\dd x|=|\frac{\cos p\alpha-\cos p\beta}{p}|\leq\frac{2}{p}.$$
 设在$[a,b]$上，$|f(x)|\leq M$，任给$\varepsilon>0$，存在$[a,b]$的分割$T$:
 $$a=x_0<x_1<x_2<\cdots<x_{n-1}<x_n=b,$$
@@ -654,11 +728,13 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
 &<\varepsilon.\\
 \end{align*}
 同理可证后者极限等式成立。
-\end{example}
+\end{proof}
+
 \begin{example}
-\hfill\\
  设$f(x)$在$[A,B]$上连续，$\phi(x)$在$[a,b]$上可积，而且$\phi([a,b])\subset[A,B]$，求证：$f(\phi(x))$在$[a,b]$上可积。
- 
+\end{example}
+
+\begin{proof}
    设$|f(n)|\leq M$，$\forall u\in[A,B]$。由$f(u)$在$[A,B]$上连续可知，$\forall\varepsilon>0$，$\exists\delta>0$，当$u',u''\in[A,B]$且$|u'-u''|<\delta$时，有
   $$|f'(u')-f(u'')|<\frac{\varepsilon}{2(b-a)}.$$
   由$\phi(x)$在$[a,b]$上可积可知，$\exists\eta>0$对一切分割
@@ -676,7 +752,7 @@ $$S(T,f)-s(T,f)<\frac{\varepsilon}{2},$$
   &<\varepsilon.
   \end{align*}
   这就证得了$f(\phi(x))$在$[a,b]$上可积。
-\end{example}  
+\end{proof}  
 
 文献~\cite[Lemma~4.3]{Nagai1995}给出了一个有趣的例子。
 
@@ -741,8 +817,9 @@ $$
   
 \begin{example}
     设$a>0$，函数$f(x)$在$[0,a]$上连续可微，证明：$|f(0)|\leq\frac1a\int_0^a|f(x)|dx+\int_0^a|f'(x)|dx$
+\end{example}    
     
-    
+\begin{proof}
     $f(x)$在$[0,a]$上连续，由积分第一中值定理：
   
   存在$\xi\in(0,a)$使$\int_0^af(x)dx=f(\xi)(a-0)=f(\xi)a.$
@@ -756,7 +833,7 @@ $$
   &\leq\frac{1}{a}|\int_0^af(x)dx|+|\int_0^{\xi}f'(x)dx|\\
   &\leq\frac{0}{a}|f(x)|dx+\int_0^a|f'(x)|dx\\
   \end{align*}
-\end{example}
+\end{proof}
   
 \begin{example}
 证明：$\int_0^1\frac{\ln\frac1x}{1-x}dx=\frac{\pi^2}6$。（复旦大学，2001）
@@ -784,14 +861,14 @@ $$
 $$\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\dd y.$$
 因为 $\int_0^{+\infty}e^{-xy}\sin x\dd x$关于$y$在$(0,+\infty)$上内闭一致收敛，
 \begin{align*}
-  \int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\ddd y
-  =\int_0^{+\infty}\sin x\dd x\int_0^{+\infty}e^{-xy}\ddd y 
+  \int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\dd y
+  =\int_0^{+\infty}\sin x\dd x\int_0^{+\infty}e^{-xy}\dd y 
   =\int_0^{+\infty}\frac{\sin x}x\dd x,
 \end{align*}
   又
 \begin{align*}
   &\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\dd y\\
-  &=\int_0^{+\infty}dy\int_0^{+\infty}e^{-xy}\sin x\ddd x\dd x\\
+  &=\int_0^{+\infty}dy\int_0^{+\infty}e^{-xy}\sin x\dd x\dd x\\
   &=\int_0^{+\infty}dy[(-\frac{e^{-xy}}{y}\sin x)|_0^{+\infty}+\int_0^{+\infty}\frac{e^{-xy}\cos x}{y}\dd x]\\
   &=\int_0^{+\infty}dy(-\frac{e^{-xy}\sin x}{y}|_0^{+\infty}-\int_0^{+\infty}\frac{e^{-xy}\sin x}{y}\dd x]\\
   &=\int_0^{+\infty}dy[\frac{1}{y^2}-\frac{1}{y^2}\int_0^{+\infty}e^{-xy}\sin x\dd x]\\
@@ -801,8 +878,12 @@ $$\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\dd y.$$
 \end{proof}
 
 \begin{example}
-讨论不同$p$对$f(x)$在$[1,+\infty)$上积分的敛散性，$$\displaystyle f(x)=\ln(1+\frac{\sin x}{x^p}).$$（北京大学，2007）
-  \begin{align*}
+讨论不同$p$对$f(x)$在$[1,+\infty)$上积分的敛散性，$$\displaystyle f(x)=\ln(1+\frac{\sin x}{x^p}).$$
+%（北京大学，2007）
+\end{example}
+
+\begin{solution}
+\begin{align*}
   \overline{\lim_{x\rightarrow\infty}}x^p|\ln(1+\frac{\sin x}{x^p})|
   &=\lim_{x\rightarrow\infty}x^p\ln(1-\frac{1}{x^p})^{-1}\\
   &=\lim_{x\rightarrow\infty}x^p\ln(1+\frac{1}{x^p-1})\\
@@ -836,7 +917,7 @@ $$\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\dd y.$$
   
   未完成！！
     
-\end{example}  
+\end{solution}  
     
  \section{数项级数}
 
@@ -916,9 +997,9 @@ $$\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\dd y.$$
 设函数列${a_n(x)}$在$[a,b]$上可导，且存在$M>0$,
 使对任意正整数$n$和$x\in[a,b]$,
 有$|\sum_{k=1}^na_k(x)|\leq M$ 成立，
-证明：如果级数$\sum_{n=1}^{\infty}a_n(x)$在$[a,b]$收敛，则必一致收敛。%（大连理工大学，2006）
+证明：如果级数$\sum_{n=1}^{\infty}a_n(x)$在$[a,b]$收敛，则必一致收敛。
+%（大连理工大学，2006）
   \end{exercise}  
-
 
   \begin{proof}
     对区间$[a,b]$作如下分割：
@@ -962,7 +1043,12 @@ $$\int_0^{+\infty}\int_0^{+\infty}e^{-xy}\sin x\dd x\dd y.$$
     \end{exercise}
 
     \begin{proof}
-	取$x'=(x_1',x_2',\cdots x_n'\in R^n$，因为$\lim_{|x|\rightarrow+\infty}f(x)=+\infty$，从而$\exists R>0,\forall|x|>R,f(x)>f(x')$。于是在紧集$\{x||x|\leq R\}$上，必有最小值$f(x_0)=\inf_{|x|\leq R}f(x)$。显然$\{x||x|\leq R|\}$上的最小值就是$R^n$的最小值。
+	取$x'=(x_1',x_2',\cdots x_n')\in R^n$，
+  因为$\lim_{|x|\rightarrow+\infty}f(x)=+\infty$，
+  从而$\exists R>0,\forall|x|>R,f(x)>f(x')$。
+  于是在紧集$\{x||x|\leq R\}$上，
+  必有最小值$f(x_0)=\inf_{|x|\leq R}f(x)$。
+  显然$\{x||x|\leq R|\}$上的最小值就是$R^n$的最小值。
 	\end{proof}
 
 	\begin{exercise}

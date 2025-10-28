@@ -1,22 +1,28 @@
 \chapter{泛函分析}
-\section{度量空间}
-\subsection{压缩映像原理}
-\begin{exercise}
-\hfill\\
-证明完备空间的闭子集是一个完备的子空间，而任一度量空间中的完备子空间必是闭子集。
 
+\section{度量空间}
+
+\subsection{压缩映像原理}
+
+\begin{exercise}
+证明完备空间的闭子集是一个完备的子空间，而任一度量空间中的完备子空间必是闭子集。
+\end{exercise}
+
+\begin{proof}
 设距离空间$(\mathscr{X},\rho)$是一个完备的距离空间，闭集$U\subset\mathscr{X}$。任取闭集$U$中的基本列$\{x_n\}\subset U$，则$\{x_n\}$也是定义在$(\mathscr{X},\rho)$中的基本列，从而存在$x\in\mathscr{X}$，使得$\lim_{n\rightarrow\infty}x_n=x$。又因为$U$是闭集，所以$x\in U$。这就是说距离空间$(U,\rho)$是完备的。
 
 设$(U,\rho)$是度量空间$(\mathscr{X},\rho)$的一个完备子空间。则$\forall\{x_n\}\subset U$，若$x_n\rightarrow x$，则易知$\{x_n\}$是距离空间$(U,\rho)$的基本列，从而存在$x'\in U$使得$$\lim_{n\rightarrow\infty}x_n=x'.$$
 于是$\rho(x',x)=\lim_{n\rightarrow\infty}\rho(x_n,x)=0$，从而$x'=x\in U$。于是$U$是闭子集。
-\end{exercise}
+\end{proof}
 
 \begin{exercise}
-\hfill\\
-（Newton）设$f$是定义在$[a,b]$上的二次连续可微的实值函数，$x_0\in(a,b)$使得$f(x_0)=0$，$f'(x_0)\neq0$。求证存在$x_0$的临域$U(x_0)$使得$\forall x_0\in U(x_0)$，迭代序列
+（Newton）设$f$是定义在$[a,b]$上的二次连续可微的实值函数，$x_0\in(a,b)$使得$f(x_0)=0$，
+$f'(x_0)\neq0$。求证存在$x_0$的临域$U(x_0)$使得$\forall x_0\in U(x_0)$，迭代序列
 $$x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}\quad(n=0,1,2,\cdots)$$是收敛的，并且
 $$\lim_{n\rightarrow\infty}x_n=x_0.$$
+\end{exercise}
 
+\begin{proof}
 \begin{align*}
 \shortintertext{记}
  Tx&=x-\frac{f(x)}{f'(x)},\\
@@ -30,28 +36,39 @@ $$|Tx-x_0|=|x-x_0-\frac{f(x)-f(x_0)}{f'(x)}|=|x-x_0||1-\frac{f'(\xi)}{f'(x)}|<|x
 $\forall x\in(x_0-h,x_0+h)$，其中$\xi$介于$x$与$x_0$之间。这就是说$T$是在$(x_0-h,x_0+h)$到上的映射。
 
 于是只要取$\tau=\frac{1}{2}\min\{\delta,h\}$，就有$T$是在$[x_0-\tau,x_0+\tau]$上的压缩映射。于是由压缩映象原理知，存在$x_0$的一个临域，使得迭代序列$\{x_n\}$收敛。收敛到$x_0$是显然的。
-\end{exercise}
+\end{proof}
+
 \begin{exercise}\label{13}
-\hfill\\
 设$M$是$(\mathbb{R}^n,\rho)$中的有界闭集，映射$T:M\rightarrow M$满足：
 $$\rho(Tx,Ty)<\rho(x,y)(\forall x,y\in M,x\neq y).$$
 求证$T$在$M$中存在唯一的不动点。
-
-首先，如果$$\rho(x_n,x_0)\rightarrow0\quad(n\rightarrow\infty)$$，则$$\rho(Tx_n,Tx_0)<\rho(x_n,x_0)\rightarrow0.\quad(n\rightarrow\infty)$$
-这就是说$T$是一个连续映射。又距离函数$\rho(x,y)$是连续的，从而映射
-$$f(x)=\rho(Tx,x),x\in M$$是$M\mapsto\mathbb{R}^+\cup\{0\}$上的连续映射。又$M\subset\mathbb{R}^n$是有界闭集，从而$M$是紧集，于是存在$x_0\in M$，使得$\forall x\in M$，$f(x_0)\leq f(x)$。如果$Tx_0\neq x_0$，则
-$$f(x_0)=\rho(Tx_0,x_0)>\rho(T(Tx_0),Tx_0)=f(Tx_0).$$
-这就与$x_0$的定义矛盾。于是$x_0$是不动点。假设$x'\neq x_0$也是$T$的一个不动点，则
-$$\rho(x',x_0)=\rho(Tx',Tx_0)<\rho(x',x_0),$$
-矛盾。于是不动点是唯一的。
 \end{exercise}
 
+\begin{proof}
+首先，如果$$\rho(x_n,x_0)\rightarrow0\quad(n\rightarrow\infty),$$
+则$$\rho(Tx_n,Tx_0)<\rho(x_n,x_0)\rightarrow0.\quad(n\rightarrow\infty)$$
+这就是说$T$是一个连续映射。又距离函数$\rho(x,y)$是连续的，从而映射
+$$f(x)=\rho(Tx,x),x\in M$$是$M\mapsto\mathbb{R}^+\cup\{0\}$上的连续映射。
+又$M\subset\mathbb{R}^n$是有界闭集，从而$M$是紧集，
+于是存在$x_0\in M$，使得$\forall x\in M$，$f(x_0)\leq f(x)$。
+如果$Tx_0\neq x_0$，则
+$$f(x_0)=\rho(Tx_0,x_0)>\rho(T(Tx_0),Tx_0)=f(Tx_0).$$
+这就与$x_0$的定义矛盾。
+于是$x_0$是不动点。
+假设$x'\neq x_0$也是$T$的一个不动点，则
+$$\rho(x',x_0)=\rho(Tx',Tx_0)<\rho(x',x_0),$$
+矛盾。
+于是不动点是唯一的。
+\end{proof}
+
 \begin{exercise}
-\hfill\\
 对于积分方程
 $$x(t)-\lambda\int_0^1e^{t-s}x(s)\mathrm{d}s=y(t),$$
-其中$y(t)\in C[0,1]$为一给定函数，$\lambda$为常数，$|\lambda|<1$，求证存在唯一解$x(t)\in C[0,1]$。
+其中$y(t)\in C[0,1]$为一给定函数，$\lambda$为常数，$|\lambda|<1$，
+求证存在唯一解$x(t)\in C[0,1]$。
+\end{exercise}
 
+\begin{proof}
 考虑原积分方程等价于
 $$e^{-t}x(t)=\lambda\int_0^1e^{-s}x(s)\mathrm{d}s+e^{-t}y(t),$$
 籍此记
@@ -71,7 +88,7 @@ $$\int_0^1e^{-t}x(t)dt=\lambda\int_0^1\int_0^1e^{-s}x(s)\mathrm{d}s\mathrm{d}t+\
 $$\int_0^1e^{-t}x(t)\mathrm{d}t=\frac{1}{1-\lambda}\int_0^1e^{-t}y(t)\mathrm{d}t,$$
 所以原积分方程的解为：
 $$x(t)=\frac{1}{1-\lambda}\int_0^1e^{t-s}y(s)\mathrm{d}s+y(t).$$
-\end{exercise}
+\end{proof}
 
 \subsection{完备化}
 
@@ -80,8 +97,12 @@ $$x(t)=\frac{1}{1-\lambda}\int_0^1e^{t-s}y(s)\mathrm{d}s+y(t).$$
 $$x=(\xi_1,\xi_2,\cdots,\xi_n,\cdots)$$
 组成的集合，在$S$中定义距离为
 $$\rho(x,y)=\sum_{k=1}^{\infty}\frac{1}{2^k}\frac{|\xi_k-\eta_k|}{1+|\xi_k-\eta_k|},$$
-其中$x=(\xi_1,\xi_2,\cdots,\xi_n,\cdots)$，$y=(\eta_1,\eta_2,\cdots,\eta_n,\cdots)$。求证$S$为一个完备的距离空间。
+其中$x=(\xi_1,\xi_2,\cdots,\xi_n,\cdots)$，
+$y=(\eta_1,\eta_2,\cdots,\eta_n,\cdots)$。
+求证$S$为一个完备的距离空间。
+\end{exercise}
 
+\begin{proof}
 首先检验$\rho(x,y)$是一个距离。
 \begin{enumerate}
 \item[i] $\rho(x,y)\geq0$是显然的;进一步，$\rho(x,y)=0$ $\Longleftrightarrow|\xi_k-\eta_k|=0,\forall k\geq0$ $\Longleftrightarrow x=y.$
@@ -91,7 +112,7 @@ $$\rho(x,y)=\sum_{k=1}^{\infty}\frac{1}{2^k}\frac{|\xi_k-\eta_k|}{1+|\xi_k-\eta_
 \frac{|x-y|}{1+|x-y|}&=\frac{|x-z+z-y|}{1+|x-z+z-y|}\\
 &\leq\frac{|x-z|+|z-y|}{1+|x-z|+|z-y|}\\
 &=\frac{|x-z|}{1+|x-z|+|z-y|}+\frac{|z-y|}{1+|x-z|+|y-z|}\\
-&\leq\frac{|x-z|}{1+|x-z|}+\frac{|z-y|}{1+|z-y|}\\
+&\leq\frac{|x-z|}{1+|x-z|}+\frac{|z-y|}{1+|z-y|}
 \end{align*}
 于是容易得到
 $$\rho(x,y)\leq\rho(x,z)+\rho(y,z).$$
@@ -104,16 +125,20 @@ $$\rho(x^{(m)}-x^{(n)})\rightarrow0,\text{ if }n,m\rightarrow\infty.$$
 $$\lim_{n\rightarrow\infty}\xi_k^{(n)}=\xi_k.$$
 令$m\rightarrow\infty,$
 于是我们有$$\rho(x_k^{(n)},x)\rightarrow0,\text{ if }n\rightarrow\infty,$$
-其中，$x=(\xi_1,\xi_2,\cdots,\xi_n,\cdots)$。这就是说$x^{(n)}\rightarrow x$，显然$x\in S$。这就完成了完备性的证明。
-\end{exercise}
+其中，$x=(\xi_1,\xi_2,\cdots,\xi_n,\cdots)$。
+这就是说$x^{(n)}\rightarrow x$，显然$x\in S$。这就完成了完备性的证明。
+\end{proof}
 
 \begin{exercise}
-\hfill\\
 设$F$是只有有限项不为0的实数列全体，在$F$上引进距离
 $$\rho(x,y)=\sup_{k\geq1}|\xi_k-\eta_k|,$$
-其中$x=\{\xi_k\}\in F,y=\{\eta_k\}\in F$，求证$(F,\rho)$不完备，并指出它的完备化空间。
+其中$x=\{\xi_k\}\in F,y=\{\eta_k\}\in F$，
+求证$(F,\rho)$不完备，并指出它的完备化空间。
+\end{exercise}
 
-要说明$(F,\rho)$不完备，只需给出一个反例。考虑$$x_n(1,\frac{1}{2},\cdots,\frac{1}{n},0,\cdots,0,\cdots),$$
+\begin{proof}
+要说明$(F,\rho)$不完备，只需给出一个反例。
+考虑$$x_n(1,\frac{1}{2},\cdots,\frac{1}{n},0,\cdots,0,\cdots),$$
 显然$$\rho(x_m,x_n)\leq\min\{\frac{1}{n},\frac{1}{m}\}\rightarrow0,\textbf{ if }m,n\rightarrow0,$$
 即$\{x_n\}\subset F$是基本列，然而
 $$x_n\rightarrow(1,\frac{1}{2},\cdots\frac{1}{n},\cdots)\not\in F.$$
@@ -143,16 +168,17 @@ $$|\xi_l-\xi_k|\rightarrow0,k,l\rightarrow\infty.$$
 即$x\in\overline{F}$，$\overline{F}$是完备距离空间。
 
 综上，$\overline{F}$是$F$的完备化空间。
-\end{exercise}
+\end{proof}
 
 \section{列紧性}
 
 \begin{exercise}
-
 设$(\mathscr{X},\rho)$是度量空间，$M$是$\mathscr{X}$中的列紧集，映射$f$满足
 $$\rho(f(x_1),f(x_2))<\rho(x_1,x_2)\quad(\forall x_1,x_2\in\mathscr{X},x_1\neq x_2).$$
 求证：$f$在$\mathscr{X}$中存在唯一的不动点。
+\end{exercise}
 
+\begin{proof}
 定义
 $$\overline{M}:=\{x\in\mathscr{X}:\exists x_n\in M,n=1,2,\cdots\text{ s.t. }\lim_{n\rightarrow\infty}x_n=x.\}.$$
 
@@ -178,7 +204,7 @@ $$\lim_{k\rightarrow\infty}\xi_{i_k}=\xi_0.$$
 $$\rho(f_{\overline{M}}(x_1),f_{\overline{M}}(x_2))<\rho(x_1,x_2)\quad(\forall x_1,x_2\in\overline{M},x_1\neq x_2).$$
 
 再利用练习\ref{13}的结果（证明方法），就得到了我们所要的结论。
-\end{exercise}
+\end{proof}
 
 \section{线性赋范空间}
 
@@ -220,13 +246,16 @@ $$\rho(f_{\overline{M}}(x_1),f_{\overline{M}}(x_2))<\rho(x_1,x_2)\quad(\forall x
 \end{proof}
 
 \begin{exercise}
-\hfill\\
-设$C(0,1]$表示$(0,1]$上连续且有界的函数$x(t)$全体。$\forall x\in C(0,1]$，令$\|x\|=\sup\limits_{0<t\leq1}|x(t)|$。求证：
+设$C(0,1]$表示$(0,1]$上连续且有界的函数$x(t)$全体。
+$\forall x\in C(0,1]$，令$\|x\|=\sup\limits_{0<t\leq1}|x(t)|$。
+求证：
 \begin{enumerate}
 \item[(1)] $\|\cdot\|$是$C(0,1]$空间上的范数。
 \item[(2)] $l^{\infty}$与$C(0,1]$空间的一个子空间是等距同构的。
 \end{enumerate}
+\end{exercise}
 
+\begin{proof}
 \begin{enumerate}
 \item[(1)]
 \begin{enumerate}
@@ -242,13 +271,14 @@ $$\|x\|=0\Leftrightarrow x=0.$$
 易知$\phi(l)(x)\in C(0,1]$。且显然$\phi(l)$是从$l^{\infty}$到$\phi(l^{\infty}\subset C(0,1]$上的一一映射。且有$$\|\phi(l_1)-\phi(l_2)\|=\|\phi(l_1-l_2)\|=\|l_1-l_2\|.$$
 现在只需证明$\phi(l)$是连续映射。只需证$\phi(l)$在$l=\theta$处连续。这是显然的因为，对任意的$\varepsilon>0$，存在$\delta=\varepsilon$，只要$\|l\|<\delta$，就有$\|\phi(l)\|=\|l\|<\varepsilon$成立。于是$l^{\infty}$与$\phi(l^{\infty})\subset C(0,1]$同构。
 \end{enumerate}
-\end{exercise}
+\end{proof}
 
 \begin{exercise}
-\hfill\\
 设$\mathscr{X}$是$B^*$空间。求证：$\mathscr{X}$是$B$空间，必须而且仅须
 $$\forall \{x_n\}\subset\mathscr{X},\sum_{n=1}^{\infty}\|x_n\|<\infty\Longrightarrow\sum_{n=1}^{\infty}x_n\text{收敛}.$$
+\end{exercise}
 
+\begin{proof}
 $\Leftarrow:$记$$S_n=\sum_{i=1}^{n}x_i,$$
 由$$\sum_{n=1}^{\infty}\|x_n\|<\infty,$$我们有
 $\forall\varepsilon>0$,$\exists N>0$，使得只要$m>n>N$，就有
@@ -258,39 +288,41 @@ $$\|S_n-S_m\|=\|\sum_{i=n+1}^{m}x_i\|\leq\sum_{i=n+1}^{m}\|x_i\|<\varepsilon.$$�
 $\Rightarrow:$任取柯西列$\{x_n\}\subset\mathscr{X}$，则我们只要证明存在子列$\{x_{n_k}\}$收敛即可。因为$\forall\varepsilon>0$,$\exists N$，使得$m>n>N$，就有$$\|x_m-x_n\|<\varepsilon.$$于是对$\frac{1}{2}$，能找到$N_1$，使得只要$m>n>N_1$，就有$$\|x_m-x_n\|<\frac12,$$不妨取$n_1=N_1+1$。同样的，对$\frac{1}{4}$，能找到$N_2>N_1$，使得只要$m>n>N_2$，就有$$\|x_m-x_n\|<\frac{1}{4},$$不妨取$n_2=N_2+1$。依次进行下去，我们就得到子列$\{x_{n_k}\}$满足
 $$\|x_{n_{k+1}}-x_{n_k}\|<\frac{1}{2^k}.$$
 显然$$\sum_{k=1}^{\infty}\|x_{n_{k+1}}-x_{n_k}\|<1<\infty.$$于是$$S_n=\sum_{i=1}^{k}x_{n_{k+1}}-x_{n_k}=x_{n_{k+1}}-x_{n_1}$$收敛，即$\{x_{n_k}\}$收敛。
-\end{exercise}
+\end{proof}
 
 \begin{exercise}
-\hfill\\
 设$\mathscr{X}$是线性赋范空间，函数$\phi:\mathscr{X}\mapsto R^1$称为凸的，如果不等式
 \begin{equation}\label{tu}
 \phi(\lambda x+(1-\lambda)y)\leq\lambda\phi(x)+(1-\lambda)\phi(y)\quad(\forall 0\leq\lambda\leq1)
 \end{equation}
-成立。求证凸函数的局部极小值必然是全空间最小值。
+成立。
+求证凸函数的局部极小值必然是全空间最小值。
+\end{exercise}
 
+\begin{proof}
 设$x_0$是凸函数$f(x)$的一个局部极小值。则存在$\delta>0$，使得$\forall x\in B^0(x_0,\delta)$，有$f(x)\geq f(x_0)$。对任意固定的$y$，当$n$足够大时，总有
 $$(1-\frac{1}{n})x_0+\frac{1}{n}y\in B^0(x_0,\delta).$$
 于是$$f(x_0)\leq f((1-\frac{1}{n})x_0+\frac{1}{n}y)\leq (1-\frac1n)f(x_0)+\frac{1}{n}f(y),$$
 即$f(x_0)\leq f(y)$。得证。
-\end{exercise}
+\end{proof}
 
 \begin{exercise}
-\hfill\\
 设$\mathscr{X}$是$B^*$空间，$\mathscr{X}_0$是$\mathscr{X}$的线性子空间，假定$\exists c\in(0,1)$，使得
 \begin{equation}
 \inf_{x\in\mathscr{X}_0}\|y-x\|\leq c\|y\|\quad(\forall y\in\mathscr{X}).
 \end{equation}
 求证：$\mathscr{X}_0$在$\mathscr{X}$中稠密。
+\end{exercise}
 
+\begin{proof}
 反证，$\mathscr{X}$在$\mathscr{X}$中不稠密，则存在$x\in\mathscr{X}$但$x\not\in\overline{\mathscr{X}_0}$。显然$\overline{\mathscr{X}_0}$也是$\mathscr{X}$的子空间，即是说$\overline{\mathscr{X}_0}$是$\mathscr{X}$的真闭子空间。于是应用F.Riesz引理，$\forall0<\varepsilon<1$，$\exists y\in\mathscr{X}$，使得$\|y\|=1$，并且$$\|y-x\|\geq1-\varepsilon\quad(\forall x\in\overline{\mathscr{X}_0}).$$
 于是对$\varepsilon=\frac{1-c}{2}$，$\exists y_0\in\overline{\mathscr{X}}$，使得$\|y_0\|=1$，并且
 $$\|y_0-x\|\geq\frac{1+c}{2}>c\quad(\forall x\in\overline{\mathscr{X}_0}).$$
 这就与$$\inf_{x\in\mathscr{X}_0}\|y_0-x\|\leq c.$$
 矛盾。
-\end{exercise}
+\end{proof}
 
 \begin{exercise}
-\hfill\\
 设$C_0$表示以0为极限的实数全体，并在$C_0$中赋以范数
 $$\|x\|=\max_{n\geq1}|\xi_n\|\quad(\forall x=(\xi_1,\xi_2,\cdots,\xi_n,\cdots)\in C_0).$$
 又设$$M\overset{\Delta}{=}\left\{x=\{\xi_n\}_{n=1}^{\infty}\in C_0|\sum_{n=1}^{\infty}\frac{\xi_n}{2^n}=0\right\}.$$
@@ -301,16 +333,17 @@ $$\|x\|=\max_{n\geq1}|\xi_n\|\quad(\forall x=(\xi_1,\xi_2,\cdots,\xi_n,\cdots)\i
 \inf_{Z\in M}\|x_0-Z\|=1,
 \end{equation}
 但$\forall y\in M$有$\|x_0-y\|>1$。
+\end{enumerate}
+\end{exercise}
 
-注： 
-
+\begin{remark}
 本题提供一个例子说明：对于无穷维闭线性子空间来说，给定其外一点$x_0$，未必能在其上找到一点$y$适合
 $$\|x_0-y\|=\inf_{Z\in M}\|x_0-Z\|.$$
 换句话说，给定$x_0\not\in M$，未必能在$M$上找到最佳逼近元。
-\end{enumerate}
+\end{remark}
 
-\begin{enumerate}
-\item[(1)] $\forall k,l\in\mathbb{K}$以及$x,y\in M$，易见
+\begin{proof}
+(1) $\forall k,l\in\mathbb{K}$以及$x,y\in M$，易见
 $$\sum_{n=1}^{\infty}\frac{k\xi_n+l\eta_n}{2^n}=k\sum_{n=1}^{\infty}\frac{\xi_n}{2^n}+l\sum_{n=1}^{\infty}\frac{\eta_n}{2^n}=0,$$
 其中$x=(\xi_1,\xi_2,\cdots,\xi_n,\cdots)$，$y=(\eta_1,\eta_2,\cdots,\eta_n,\cdots)$即$M$是线性的。
 下面说明$M$是闭的。
@@ -332,7 +365,7 @@ $$|\xi_m^{(m)}-\xi|\leq|\xi_m^{(m)}-\xi_m|+|\xi_m-\xi|\leq\|x_m-x\|+|\xi_m-\xi|<
 $|\xi|\leq\frac{\varepsilon}{2}<\varepsilon.$
 这就是说$\xi=0$。证毕。
 
-\item[(2)] 记$Z=(z_1,z_2,\cdots)$，如果存在$i>1$使得$|z_i|>1$，则$\|x_0-Z\|\geq|0-z_i|>1$。否则如果$\forall i>1$,$|z_i|\leq1$，那么要使
+(2) 记$Z=(z_1,z_2,\cdots)$，如果存在$i>1$使得$|z_i|>1$，则$\|x_0-Z\|\geq|0-z_i|>1$。否则如果$\forall i>1$,$|z_i|\leq1$，那么要使
 $$\sum_{i=1}^{\infty}=0,$$
 有$$|\frac{z_1}{2}|=|\sum_{i=2}^{\infty}\frac{z_i}{2^i}|\leq\sum_{i=2}^{\infty}|\frac{z_i}{2^i}|\leq\sum_{i=2}^{\infty}\frac{1}{2^i}=\frac{1}{2},$$即$|z_1|\leq1$。这样也有
 $$\|x_0-Z\|\geq1.$$
@@ -341,14 +374,16 @@ $$\|x_0-Z\|\geq1.$$
 取$$x_n=(1-\frac{1}{2^n},-1,-1,\cdots,-1,0,0,\cdots)$$，其中$x_n$中共有$n$项的值为$-1$。易验证，$x_n\in M$，且
 $$\|x_0-x_n\|=1+\frac{1}{2^n}\to1.$$
 综上，$\inf_{Z\in M}\|x_0-Z\|=1.$
-\end{enumerate}
-\end{exercise}
+\end{proof}
 
 \begin{exercise}
-\hfill\\
-设$\mathscr{X}$是$B^*$空间，$M$是$\mathscr{X}$上的有限维真子空间，求证$\exists y\in\mathscr{X}$，$\|y\|=1$，使得
+设$\mathscr{X}$是$B^*$空间，
+$M$是$\mathscr{X}$上的有限维真子空间，
+求证$\exists y\in\mathscr{X}$，$\|y\|=1$，
+使得
 $$\|y-x\|\geq1\quad(\forall x\in M).$$
 \end{exercise}
+
 \begin{proof}
   取定一个$y_0\in\mathscr{X}\\M$，则在$M$中存在最佳逼近元$x_0\in M$使得$$\|y_0-x_0\|\leq\|y_0-x\|,\forall x\in M.$$因为有限维子空间$M$是闭的，故$\|y_0-x_0\|>0$。取
   $$y=\frac{y_0-x_0}{\|y_0-x_0\|},$$
@@ -362,28 +397,29 @@ $$\|y-x\|\geq1\quad(\forall x\in M).$$
 \end{proof}
 
 
-
-
 \section{凸集与不动点}
-\begin{exercise}
-\hfill\\
-求证在$B$空间中，列紧集的凸包是列紧集。
 
+\begin{exercise}
+求证在$B$空间中，列紧集的凸包是列紧集。
+\end{exercise}
+
+\begin{proof} 
 设$\mathscr{X}$是$B$空间，$M\in\mathscr{X}$是列紧集。则$\forall\varepsilon>0,$存在$$N_{\varepsilon}=\{x_{\varepsilon}^1,x_{\varepsilon}^2,\cdots,x_{\varepsilon}^N\}$$为$M$的有穷$\varepsilon$网。易证$co(N_{\varepsilon})$是$co(M)$的一个$\varepsilon$网。而$co(N_{\varepsilon})$是有限维子空间$span(N_{\varepsilon})$上的有界闭凸集，从而列紧，即对上述$\varepsilon>0$，存在$co(N_{\varepsilon})$的有穷$\varepsilon$网，记为$$coN_{\varepsilon}.$$下面我们要证明$coN_{\varepsilon}$恰好是$co(M)$的有穷$2\varepsilon$网。
 
 因为$\forall x\in co(M)$，$\exists x_1\in co(N_{\varepsilon})$，使得$$\|x-x_1\|<\varepsilon;$$又对$x_1$，存在$x_{\varepsilon}\in coN_{\varepsilon}$，使得$$\|x_1-x_{\varepsilon}\|<\varepsilon.$$
 于是，$\forall x\in co(M)$，$\exists x_{\varepsilon}\in coN_{\varepsilon}$，使得
 $$\|x-x_{\varepsilon}\|=\|x-x_1+x_1-x_{\varepsilon}\|\leq\|x-x_1\|+\|x_1-x_{\varepsilon}\|<2\varepsilon.$$
 这就是说，$coN_\varepsilon$是$co(M)$的一个有穷$\varepsilon$网。由$\varepsilon$的任意性，我们知道，$co(M)$是列紧集。
-\end{exercise}
+\end{proof}
 
 \begin{exercise}
-\hfill\\
 设$K(x,y)$是$[0,1]\times[0,1]$上的正值连续函数，定义映射
 $$(Tu)(x)=\int_0^1K(x,y)u(y)\mathrm{d}y\quad(\forall u\in C[0,1]).$$
 求证：存在$\lambda>0$及非负但不恒为零的连续函数$u$，满足
 $$Tu=\lambda u.$$
+\end{exercise}
 
+\begin{proof}
 定义
 $$C:=\{u(x)\in C[0,1]|\int_0^1u(x)\mathrm{d}x=1,u(x)\geq0\},$$
 则$C$是$C[0,1]$的闭凸子集。
@@ -403,22 +439,26 @@ $$|f(u)|\leq\frac{M\int_0^1u(y)\mathrm{d}y}{m\int_0^1\int_0^1u(y)\mathrm{d}y\mat
 &\leq\frac{m\varepsilon\int_0^1u(y)\mathrm{d}y}{\int_0^1\int_0^1K(x,y)u(y)\mathrm{d}y\mathrm{d}x}\\
 &\leq\varepsilon.\\
 \end{align*}
-以上说明了$C$是一致有界且等度连续的，由Arzela-Ascoli定理知$C$列紧。最后由Schauder不动点定理知，$\exists u_0\in C$使得$$f(u_0)=u_0,$$
+以上说明了$C$是一致有界且等度连续的，由Arzela-Ascoli定理知$C$列紧。
+最后由Schauder不动点定理知，$\exists u_0\in C$使得$$f(u_0)=u_0,$$
 即
 $$(Tu_0)=\int_0^1K(x,y)u_0(y)\mathrm{d}y=\lambda u_0,$$其中$\lambda=\int_0^1\int_0^1K(x,y)u_0(y)\mathrm{d}y\mathrm{d}x>0.$
-\end{exercise}
+\end{proof}
 
 \section{内积空间}
 
 
 \begin{exercise}
-\hfill\\
-设$\{e_n\}_1^{\infty}$，$\{f_n\}_1^{\infty}$是Hilbert空间$\mathscr{X}$中的两个正交规范集，满足条件
+设$\{e_n\}_1^{\infty}$，
+$\{f_n\}_1^{\infty}$是Hilbert空间$\mathscr{X}$中的两个正交规范集，
+满足条件
 \begin{equation}
 \sum_{n=1}^{\infty}\|e_n-f_n\|^2<1.
 \end{equation}
 求证：$\{e_n\}$和$\{f_n\}$两者中一个完备蕴含另一个完备。
+\end{exercise}
 
+\begin{proof}
 不妨设$\{e_n\}$是完备的，而$\{f_n\}$不完备。于是存在$f\in\mathscr{X}$满足$(f,f)=1$，而$(f,f_n)=0,\forall n\geq1.$
 因为$\{e_n\}$完备，所以
 $$f=\sum_{i=1}^{\infty}(f,e_i)e_i,$$
@@ -438,23 +478,23 @@ $$(f-\overline{f},f-\overline{f})=(f,f)+(\overline{f},\overline{f})=2.$$
 &\leq1.
 \end{align*}
 这就导出了矛盾。于是如果$\{e_n\}$完备，则必然$\{f_n\}$完备。
-\end{exercise}
+\end{proof}
 
 \begin{exercise}
-\hfill\\
 设$f(x)\in C^2[a,b]$，满足边界条件：
 $$f(a)=f(b)=0,f'(a)=1,f'(b)=0.$$
 求证：
 $$\int_a^b|f''(x)|^2\mathrm{d}x\geq\frac{4}{b-a}.$$
+\end{exercise}
 
+\begin{proof}
 只需注意到由题目条件定义的三次样条插值函数为
 $$g(x)=\frac{(x-a)(x-b)^2}{(b-a)^2},$$
 且
-$$\int_a^b|g''(x)|^2\mathrm{d}x=\frac{4}{b-a}.$$
-\end{exercise}
+$$\int_a^b|g''(x)|^2\mathrm{d}x=\frac{4}{b-a}.$$  
+\end{proof}
 
 \begin{exercise}
-\hfill\\
 设$D$是$\mathbb{C}$中的单位开圆域，$H^2(D)$表示在$D$内满足
 $$\iint_D|u(z)|^2\mathrm{d}x\mathrm{d}y<\infty\quad(z=x+iy)$$
 的解析函数全体组成的空间。规定内积为
@@ -472,7 +512,9 @@ $$(u,v)=\pi\sum_{k=0}^{\infty}\frac{a_k\overline{b_k}}{k+1};$$
 $$|u(z)|\leq\frac{\|u\|}{\sqrt[2]{\pi}(1-|z|)}\quad(\forall|z|<1);$$
 \item[4] 验证$H^2(D)$是Hilbert空间。
 \end{enumerate}
+\end{exercise} 
 
+\begin{proof}
 \begin{enumerate}
 \item[(1)]记 $u_k(z)=z^k,$则
 $$
@@ -511,7 +553,8 @@ $$0\leq f(x)\leq(\frac{k}{k+1})^{2k}\frac{1}{(k+1)^2}<\frac{1}{k+1}.$$
 
 未完待续
 \end{enumerate}
-\end{exercise}
+\end{proof}
+
 
 
 

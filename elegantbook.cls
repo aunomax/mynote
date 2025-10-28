@@ -422,7 +422,7 @@
   \newcommand{\datename}{\citshape 时间：}
   \newcommand{\versionname}{\citshape 版本：}
   \newcommand{\notename}{笔记}
-  \renewcommand*{\proofname}{证明}
+  \renewcommand*{\proofname}{证}
   \newcommand{\definitionname}{定义}
   \newcommand{\theoremname}{定理}
   \newcommand{\axiomname}{公理}
@@ -430,7 +430,7 @@
   \newcommand{\lemmaname}{引理}
   \newcommand{\propositionname}{命题}
   \newcommand{\corollaryname}{推论}
-  \newcommand{\examplename}{例题} %
+  \newcommand{\examplename}{例} %
   \newcommand{\instancename}{示例} %
   \newcommand{\problemname}{问题} % 问题
   \newcommand{\exercisename}{练习} % 练习=习题
@@ -1159,3 +1159,21 @@
 
 % restore the tt default family to lmodern tt family
 \renewcommand\ttdefault{lmtt}
+
+
+
+% Derivatives
+\def\diff{\mathrm{d}}
+\DeclareDocumentCommand\differential{ o g d() }{% 
+  % Differential 'd'
+	% o: optional n for nth differential
+	% g: optional argument for readability and to control spacing
+	% d: long-form as in d(cos x)
+	\IfNoValueTF{#2}{
+		\IfNoValueTF{#3}
+			{\diff\IfNoValueTF{#1}{}{^{#1}}}
+			{\mathinner{\diff\IfNoValueTF{#1}{}{^{#1}}\argopen(#3\argclose)}}
+		}
+		{\mathinner{\diff\IfNoValueTF{#1}{}{^{#1}}#2} \IfNoValueTF{#3}{}{(#3)}}
+	}
+\DeclareDocumentCommand\dd{}{\differential} % Shorthand for \differential
